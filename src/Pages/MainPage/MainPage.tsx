@@ -3,6 +3,7 @@ import RouteGoService from "../../Services/Stores/Routes/Route.services";
 import {route} from "../../Services/Stores/Routes/Route.interfaces";
 import {observer} from "mobx-react";
 import {ReactComponent as IconHome} from "../../Assets/icon/icon_home.svg"
+import ButtonStandard from "../../Component/Atoms/ButtonStandard/ButtonStandard";
 
 const MainPage = () => {
     const toAboutPage = () => {
@@ -12,6 +13,7 @@ const MainPage = () => {
     return (
         <div>
             <IconHome/>
+            <ButtonStandard title='Created' color='red' click={() => ''}/>
             <div>MainPage</div>
             <div onClick={toAboutPage}>About</div>
         </div>

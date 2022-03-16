@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ButtonStandart = () => {
+const Header = () => {
     return (
         <div>
-            
+
         </div>
     );
 };
 
-export default ButtonStandart;
+export default Header;

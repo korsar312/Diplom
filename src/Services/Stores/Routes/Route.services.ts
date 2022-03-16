@@ -6,8 +6,16 @@ import RestApi from "../../RestApi/RestApi";
 
 class RouteGoService {
 
+    public RouterGo(
+        name: route.Name,
+        params?: Params,
+        actionElementName?: string,
+        state?: Record<string, any>,
+    ): void {
+        return this.go(name, params, actionElementName, state);
+    }
 
-    private go(name: route.Name, params?: Params, currentPage?: string, state?: Record<string, any>): void {
+    private go(name: route.Name, params?: Params, actionElementName?: string, state?: Record<string, any>): void {
         const findRoute = getRoutes().find((r) => r.name === name);
         const navigate = rootStore.routeStore.getNavigation()
 
@@ -16,19 +24,10 @@ class RouteGoService {
         } else {
             RestApi.logAction({
                 action: `переход на страницу ${findRoute.name} по пути ${findRoute.path}`,
-                currentPage: currentPage
+                element: actionElementName
             })
             navigate(generatePath(findRoute.path, params), {replace: true, state});
         }
-    }
-
-    public RouterGo(
-        name: route.Name,
-        params?: Params,
-        currentPage?: string,
-        state?: Record<string, any>,
-    ): void {
-        return this.go(name, params, currentPage, state);
     }
 }
 
