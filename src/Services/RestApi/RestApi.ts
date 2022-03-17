@@ -1,12 +1,6 @@
 import {getStringCurrentTime} from "../../Libs/Utils/Utils";
+import {rest} from "./RestApi.interface";
 
-type  TlogAction = {
-    currentPage?: string
-    element?: string,
-    action?: string,
-    data?: any,
-    comment?: string,
-}
 
 class RestApi {
 
@@ -18,7 +12,7 @@ class RestApi {
      * @param data важные переменные для logAction (props, arguments ...)
      * @param comment комментарии
      */
-    public logAction({currentPage, element, action, data, comment}: TlogAction) {
+    public logAction({currentPage, element, action, data, comment}: rest.TlogAction) {
         const log = Object.entries({currentPage, element, action, comment}).filter(el => el[1])
         const date = getStringCurrentTime()
         log.push(['time', date])

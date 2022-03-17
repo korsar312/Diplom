@@ -1,0 +1,60 @@
+@use '/src/Styles/Variables' as *;
+@use '/src/Styles/Mixins' as *;
+
+
+$size_avatar: 50px;
+
+.title, .subtitle, .status {
+  width: 100%;
+}
+
+.imageWrapper, .image {
+  min-width: $size_avatar;
+  min-height: $size_avatar;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.imageWrapper {
+  @include mixin--Center;
+  width: $size_avatar;
+  height: $size_avatar;
+
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.infoWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  height: $size_avatar;
+}
+
+.buttonWrapper {
+  @include mixin--Center;
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.title {
+  color: $color__white1;
+  font-size: 16px;
+}
+
+.subtitle {
+  color: $color__grey2;
+  font-size: 10px;
+}
+
+.status {
+  color: $color__green1;
+  font-size: 10px;
+}

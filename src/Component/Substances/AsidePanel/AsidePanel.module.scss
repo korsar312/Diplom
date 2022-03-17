@@ -1,5 +1,31 @@
 @use '/src/Styles/Variables' as *;
+@use '/src/Styles/Mixins' as *;
 
 .wrapper {
+  background: $color__black2;
+  height: 100vh;
+}
 
+.show_ {
+  &on {
+    width: 265px;
+  }
+
+  &off {
+    width: 0;
+  }
+}
+
+.line {
+  border: 1px solid $color__grey1;
+  margin: 15px 0;
+}
+
+.element {
+
+}
+
+.logo {
+  @include mixin--Center;
+  display: flex;
 }
