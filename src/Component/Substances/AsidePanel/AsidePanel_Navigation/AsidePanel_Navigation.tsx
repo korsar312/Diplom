@@ -64,6 +64,11 @@ export const navigateList: TNavigateList[] = [
                 id: '3-3',
                 name: 'Заявки',
                 link: route.Name.ABOUT
+            },
+            {
+                id: '3-4',
+                name: 'Заявки',
+                link: route.Name.ABOUT
             }
         ]
 
