@@ -3,14 +3,14 @@ import styles from "./AsidePanel_Navigation.module.scss";
 import {route} from "../../../../Services/Stores/Routes/Route.interfaces";
 import {RequireOnlyOne} from "../../../../Libs/Types/RequireOnlyOne";
 
-type TBaseProp = {
+type TBasePropNavigateList = {
     id: string;
     name: string;
     link?: route.Name;
     children?: TNavigateList[];
 }
 
-type TNavigateList = RequireOnlyOne<TBaseProp, 'children' | 'link'>
+type TNavigateList = RequireOnlyOne<TBasePropNavigateList, 'children' | 'link'>
 
 
 export const navigateList: TNavigateList[] = [
