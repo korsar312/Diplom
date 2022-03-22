@@ -1,31 +1,27 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import styles from './AsidePanel.module.scss'
 import UserPanel from "../../Molecules/UserPanel/UserPanel";
-import {ReactComponent as IconLogo} from "../../../Assets/icon/icon_logo.svg";
+import SearchInput from "../../Molecules/SearchInput/SearchInput";
+import AsidePanel_Logo from "./AsidePanel_Logo/AsidePanel_Logo";
 
 interface IAsidePanel {
-    isShowPanel: boolean
     extClass?: string
 }
 
 /**
  * Боковая панель
- * @param props.isShowPanel - показывать ли боковую панель
  * @param props.extClass - дополнительный CSS класс
  */
 const AsidePanel: FC<IAsidePanel> = (props) => {
-    const {isShowPanel, extClass} = props
+    const {extClass} = props
+
+    const [isShowPanel, setIsShowPanel] = useState(true)
 
     return (
         <aside className={`${styles.wrapper} ${isShowPanel ? styles.show_on : styles.show_off} ${extClass}`}>
-            <div className={styles.element}>
-                <figure className={styles.logo}>
-                    <IconLogo/>
-                    <figcaption>Метеор</figcaption>
-                </figure>
-                <div>
 
-                </div>
+            <div className={styles.element}>
+                <AsidePanel_Logo setShowPanel={setIsShowPanel} isShowPanel={isShowPanel}/>
             </div>
 
             <hr className={styles.line}/>
@@ -37,7 +33,7 @@ const AsidePanel: FC<IAsidePanel> = (props) => {
             <hr className={styles.line}/>
 
             <div className={styles.element}>
-                поиск
+                <SearchInput callback={(value) => ''}/>
             </div>
 
             <hr className={styles.line}/>

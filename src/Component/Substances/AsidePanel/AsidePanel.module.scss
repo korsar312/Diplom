@@ -1,31 +1,39 @@
 @use '/src/Styles/Variables' as *;
-@use '/src/Styles/Mixins' as *;
+
+$panel_width: 265px;
+$panel_padding_vert: 15px;
 
 .wrapper {
-  background: $color__black2;
-  height: 100vh;
+    background: $color__black2;
+    height: calc(100vh - #{$panel_padding_vert} * 2);
+    padding: $panel_padding_vert 0;
+    position: relative;
+    transition: ease-in-out 0.5s;
+    width: $panel_width;
+
+    .line {
+        border: 1px solid $color__grey1;
+        margin: 15px 0;
+    }
+
+    .element {
+        padding: 0 24px;
+    }
 }
+
 
 .show_ {
-  &on {
-    width: 265px;
-  }
+    &on {
+        left: 0;
+    }
 
-  &off {
-    width: 0;
-  }
+    &off {
+        left: - $panel_width;
+        margin-right: - $panel_width;
+    }
 }
 
-.line {
-  border: 1px solid $color__grey1;
-  margin: 15px 0;
-}
 
-.element {
 
-}
 
-.logo {
-  @include mixin--Center;
-  display: flex;
-}
+

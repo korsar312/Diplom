@@ -10,6 +10,7 @@ interface IButtonStandard {
     extClass?: string
     iconLeft?: JSX.Element
     iconRight?: JSX.Element
+    isNoPadding?: boolean
     log?: rest.TlogAction
 }
 
@@ -19,15 +20,15 @@ interface IButtonStandard {
  * @param props.title - функция onClick по кнопке
  * @param props.color - цвет кнопки
  * @param props.extClass - дополнительный CSS класс
- * @param props.iconLeft - иконка для слева
- * @param props.iconRight - иконка для справа
+ * @param props.iconLeft - иконка для левой стороны
+ * @param props.iconRight - иконка для правой стороны
+ * @param props.isNoPadding - убрать внутренний отступ
  * @param props.log - логирование
  */
 const ButtonStandard: FC<IButtonStandard> = (props) => {
-    const {click, title, color, extClass = '', iconLeft, iconRight, log} = props
+    const {click, title, color, extClass = '', iconLeft, iconRight, isNoPadding, log} = props
 
     function clickHandler() {
-        console.log()
         RestApi.logAction({
             element: ButtonStandard.name,
             action: 'Нажатие',
@@ -41,7 +42,7 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
     return (
         <button
             onClick={clickHandler}
-            className={`${styles.wrapper} ${color ? styles[`color_${color}`] : ''} ${extClass}`}
+            className={`${styles.wrapper} ${color ? styles[`color_${color}`] : ''} ${extClass} ${isNoPadding ? styles.noPadding : ''}`}
         >
             {iconLeft}
             <span className={styles.text}>{title}</span>
