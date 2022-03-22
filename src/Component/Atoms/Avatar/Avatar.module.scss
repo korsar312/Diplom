@@ -1,0 +1,19 @@
+@use '/src/Styles/Variables' as *;
+@use '/src/Styles/Mixins' as *;
+
+$size_avatar: 50px;
+
+.wrapper {
+  @include mixin--Center;
+  width: $size_avatar;
+  height: $size_avatar;
+  min-width: $size_avatar;
+  min-height: $size_avatar;
+  overflow: hidden;
+  border-radius: 6px;
+
+  img {
+    min-width: $size_avatar;
+    min-height: $size_avatar;
+  }
+}

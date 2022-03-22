@@ -11,7 +11,7 @@ const App = () => {
         <div id="App">
             <HashRouter>
                 <div className={styles.wrapper}>
-                    <AsidePanel isShowPanel={true}/>
+                    <AsidePanel/>
                     <RouteActivator/>
                     <div>
                         <Header/>

@@ -2,37 +2,42 @@
 @use "/src/Styles/Mixins" as *;
 
 .wrapper {
-  @include mixin--Center;
-  padding: 8px 19px;
-  border-radius: 6px;
-  border: none;
-  background: none
+    @include mixin--Center;
+    padding: 8px 19px;
+    border-radius: 6px;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 .text {
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 18px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
 }
 
 .color_ {
-  &red {
-    background: $color__red1;
-    color: $color__white1
-  }
+    &red {
+        background: $color__red1;
+        color: $color__white1
+    }
 
-  &blue {
-    background: $color__blue1;
-    color: $color__white1
-  }
+    &blue {
+        background: $color__blue1;
+        color: $color__white1
+    }
 
-  &skyBlue {
-    background: $color__blue2;
-    color: $color__white1
-  }
+    &skyBlue {
+        background: $color__blue2;
+        color: $color__white1
+    }
 
-  &white {
-    background: $color__white1;
-    color: $color__black1
-  }
+    &white {
+        background: $color__white1;
+        color: $color__black1
+    }
+}
+
+.noPadding {
+    padding: 0;
 }

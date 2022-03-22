@@ -1,0 +1,26 @@
+@use '/src/Styles/Variables' as *;
+@use '/src/Styles/Mixins' as *;
+
+$input_indent: 10px;
+
+.wrapper {
+    display: flex;
+    gap: $input_indent;
+    padding: $input_indent;
+    border-radius: 6px;
+    align-items: center;
+
+    svg {
+        width: 23px;
+        height: 23px;
+    }
+}
+
+.input {
+    background: none;
+    border: none;
+    width: calc(100% - #{$input_indent});
+    outline: none;
+    caret-color: $color__white1;
+    color: $color__white1;
+}
