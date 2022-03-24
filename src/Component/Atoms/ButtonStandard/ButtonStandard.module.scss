@@ -4,16 +4,19 @@
 .wrapper {
     @include mixin--Center;
     padding: 8px 19px;
-    border-radius: 6px;
+    border-radius: $border-radius_btn;
     border: none;
     background: none;
     cursor: pointer;
+    gap: 5px;
 }
 
 .text {
     font-size: 12px;
     font-weight: 600;
     line-height: 18px;
+    flex: 1;
+    transition: ease-in-out 0.5s;
 }
 
 .color_ {
@@ -40,4 +43,5 @@
 
 .noPadding {
     padding: 0;
+    gap: 0;
 }

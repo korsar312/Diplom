@@ -3,6 +3,7 @@ import styles from './AsidePanel.module.scss'
 import UserPanel from "../../Molecules/UserPanel/UserPanel";
 import SearchInput from "../../Molecules/SearchInput/SearchInput";
 import AsidePanel_Logo from "./AsidePanel_Logo/AsidePanel_Logo";
+import AsidePanel_Navigation from "./AsidePanel_Navigation/AsidePanel_Navigation";
 
 interface IAsidePanel {
     extClass?: string
@@ -38,9 +39,10 @@ const AsidePanel: FC<IAsidePanel> = (props) => {
 
             <hr className={styles.line}/>
 
-            <nav className={styles.element}>
-                основная часть
+            <nav className={styles.elementHalfPadding}>
+                <AsidePanel_Navigation/>
             </nav>
+
         </aside>
     );
 };

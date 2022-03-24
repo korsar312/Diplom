@@ -1,6 +1,15 @@
 @use '/src/Styles/Variables' as *;
-@use '/src/Styles/Mixins' as *;
 
 .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow: hidden;
 
+    .dropBtn {
+        button {
+            color: $color__white1;
+            padding-left: 14px;
+        }
+    }
 }

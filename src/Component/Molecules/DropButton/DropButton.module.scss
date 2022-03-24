@@ -1,0 +1,97 @@
+@use '/src/Styles/Variables' as *;
+
+
+$transition_open: ease-in-out 0.6s;
+
+.wrapper {
+    transition: $transition_open;
+
+    .headBtn {
+
+        span {
+            opacity: 1 !important;
+        }
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: flex-start;
+        text-align: left;
+        transition: $transition_open;
+        border-bottom-left-radius: 0;
+
+        span {
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+
+
+    .bodyBtn {
+        margin-top: 10px;
+
+
+        button {
+            span {
+                opacity: 0.6;
+            }
+        }
+    }
+
+
+    .bodyBtnOn {
+        padding-left: 15px;
+    }
+
+    .svgArrow {
+        transition: $transition_open;
+        transform: rotateZ(-90deg);
+    }
+
+    .svgActive {
+        transform: rotateZ(360deg);
+    }
+
+    .listBtn {
+        overflow: hidden;
+        transition: $transition_open;
+        border-left: 1px solid rgba($color__grey2, 0);
+    }
+
+    .dropBtnOff {
+        max-height: 0;
+        transform: scale(0);
+        animation: dropDown forwards 1s;
+    }
+
+    .dropBtnOn {
+        max-height: 100vh;
+        transform: scale(1);
+        animation: dropUp forwards 0.7s 0.5s;
+    }
+
+    @keyframes dropDown {
+        0% {
+            border-left: 1px solid rgba($color__grey2, 100);
+        }
+        20% {
+            border-left: 1px solid rgba($color__grey2, 0);
+
+        }
+
+        100% {
+            border-left: 1px solid rgba($color__grey2, 0);
+        }
+    }
+
+    @keyframes dropUp {
+        0% {
+            border-left: 1px solid rgba($color__grey2, 0);
+        }
+
+        100% {
+            border-left: 1px solid rgba($color__grey2, 100);
+        }
+    }
+}
+
