@@ -4,23 +4,28 @@
 $input_indent: 10px;
 
 .wrapper {
-    display: flex;
-    gap: $input_indent;
-    padding: $input_indent;
-    border-radius: 6px;
-    align-items: center;
+  display: flex;
+  gap: $input_indent;
+  padding: $input_indent;
+  border-radius: 6px;
+  align-items: center;
+  transition: $transition;
+  background: var(--color__black7);
 
-    svg {
-        width: 23px;
-        height: 23px;
-    }
-}
+  svg {
+    transition: $transition;
+    fill: var(--color__black1);
+    width: 23px;
+    height: 23px;
+  }
 
-.input {
+  .input {
     background: none;
     border: none;
     width: calc(100% - #{$input_indent});
     outline: none;
-    caret-color: $color__white1;
-    color: $color__white1;
+    caret-color: var(--color__black1);
+    color: var(--color__black1);
+  }
 }
+

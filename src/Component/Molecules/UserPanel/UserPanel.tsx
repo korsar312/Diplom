@@ -30,7 +30,6 @@ const persona: TPerson = {
 /**
  * Панель пользователя
  * @param props.click - функция onClick по панели
- * @param props.isOnline - является ли человек онлайн
  * @param props.person - объект с данными человека
  */
 const UserPanel: FC<IUserPanel> = (props) => {

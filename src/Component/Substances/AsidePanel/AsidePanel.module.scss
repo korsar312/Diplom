@@ -4,37 +4,40 @@ $panel_width: 265px;
 $panel_padding_vert: 15px;
 
 .wrapper {
-    background: $color__black2;
-    height: calc(100vh - #{$panel_padding_vert} * 2);
-    padding: $panel_padding_vert 0;
-    position: relative;
-    transition: ease-in-out 0.5s;
-    width: $panel_width;
+  background: var(--color__asaid);
+  padding: $panel_padding_vert 0;
+  transition: $transition;
+  width: $panel_width;
+  position: relative;
+  top: 0;
+  bottom: 0;
 
-    .line {
-        border: 1px solid $color__grey1;
-        margin: 15px 0;
-    }
 
-    .element {
-        padding: 0 24px;
-    }
+  .line {
+    border: 1px solid var(--color__black7);
+    margin: 15px 0;
+    transition: $transition;
+  }
 
-    .elementHalfPadding {
-        padding: 0 10px;
-    }
+  .element {
+    padding: 0 24px;
+  }
+
+  .elementHalfPadding {
+    padding: 0 10px;
+  }
 }
 
 
 .show_ {
-    &on {
-        left: 0;
-    }
+  &on {
+    left: 0;
+  }
 
-    &off {
-        left: - $panel_width;
-        margin-right: - $panel_width;
-    }
+  &off {
+    left: - $panel_width;
+    margin-right: - $panel_width;
+  }
 }
 
 

@@ -1,0 +1,76 @@
+@use '/src/Styles/Variables' as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid rgba(var(--color__black1), 0);
+
+  .btn {
+    transition: $transition;
+    border-bottom-left-radius: 0;
+
+    span {
+      font-size: 14px;
+      font-weight: 500;
+      text-align: left;
+    }
+  }
+
+  .motherWrapper {
+    transition: $transition;
+    padding-top: 10px;
+  }
+
+  .isClose {
+    max-height: 0;
+    transform: scale(0);
+    animation: dropDown forwards 1s;
+  }
+
+  .isOpen {
+    max-height: 100vh;
+    transform: scale(1);
+    animation: dropUp forwards 0.7s 0.5s;
+  }
+
+  .motherPadding {
+    padding-left: 15px;
+  }
+
+  .svgArrow {
+    transition: $transition;
+  }
+
+  .btnOff {
+    transform: rotateZ(635deg);
+  }
+
+  //=======================
+
+
+  @keyframes dropDown {
+    0% {
+      border-left: 1px solid rgba(var(--color__black1), 100);
+    }
+    20% {
+      border-left: 1px solid rgba(var(--color__black1), 0);
+
+    }
+
+    100% {
+      border-left: 1px solid rgba(var(--color__black1), 0);
+    }
+  }
+
+  @keyframes dropUp {
+    0% {
+      border-left: 1px solid rgba(var(--color__black1), 0);
+    }
+
+    100% {
+      border-left: 1px solid rgba(var(--color__black1), 100);
+    }
+  }
+
+}
+

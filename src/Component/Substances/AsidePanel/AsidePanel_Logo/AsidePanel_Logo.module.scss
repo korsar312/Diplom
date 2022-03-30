@@ -2,32 +2,35 @@
 @use '/src/Styles/Mixins' as *;
 
 .wrapper {
-    @include mixin--Center;
-    justify-content: space-between;
+  @include mixin--Center;
+  justify-content: space-between;
 
-    .logo {
-        margin: 0;
-        display: flex;
-        gap: 4px;
-        color: $color__white1;
+  .logo {
+    color: var(--color__black1);
+    font-weight: 900;
+    font-size: 18px;
+    margin: 0;
+    display: flex;
+    gap: 4px;
+    transition: $transition;
+  }
+
+  .logoWrapperBtn {
+    transition: $transition;
+    background: var(--color__asaid);
+    padding: 5px;
+    border-radius: 0 50% 50% 0;
+
+    button {
+      transition: $transition;
     }
+  }
 
-    .logoWrapperBtn {
-        transition: ease-in-out 0.5s;
-        background: $color__black2;
-        padding: 5px;
-        border-radius: 0 50% 50% 0;
+  .logoWrapperBtnOn {
+    transform: translateX(50px);
 
-        button {
-            transition: ease-in-out 0.5s;
-        }
+    button {
+      transform: scaleX(-1)
     }
-
-    .logoWrapperBtnOn {
-        transform: translateX(50px);
-
-        button {
-            transform: scaleX(-1)
-        }
-    }
+  }
 }

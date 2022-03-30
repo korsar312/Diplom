@@ -4,9 +4,11 @@ import UserPanel from "../../Molecules/UserPanel/UserPanel";
 import SearchInput from "../../Molecules/SearchInput/SearchInput";
 import AsidePanel_Logo from "./AsidePanel_Logo/AsidePanel_Logo";
 import AsidePanel_Navigation from "./AsidePanel_Navigation/AsidePanel_Navigation";
+import rootStore from "../../../Services/Stores/Store";
+import {setting} from "../../../Services/Stores/Settings/Setting.interface";
 
 interface IAsidePanel {
-    extClass?: string
+  extClass?: string
 }
 
 /**
@@ -14,37 +16,41 @@ interface IAsidePanel {
  * @param props.extClass - дополнительный CSS класс
  */
 const AsidePanel: FC<IAsidePanel> = (props) => {
-    const {extClass} = props
+  const {extClass} = props
 
-    const [isShowPanel, setIsShowPanel] = useState(true)
+  const [isShowPanel, setIsShowPanel] = useState(true)
 
-    return (
-        <aside className={`${styles.wrapper} ${isShowPanel ? styles.show_on : styles.show_off} ${extClass}`}>
+  const switchTheme = () => {
+    rootStore.settingStore.setTheme = rootStore.settingStore.isLightTheme ? setting.theme.DARK : setting.theme.LIGHT
+  }
 
-            <div className={styles.element}>
-                <AsidePanel_Logo setShowPanel={setIsShowPanel} isShowPanel={isShowPanel}/>
-            </div>
+  return (
+    <aside className={`${styles.wrapper} ${isShowPanel ? styles.show_on : styles.show_off} ${extClass}`}>
 
-            <hr className={styles.line}/>
+      <div className={styles.element}>
+        <AsidePanel_Logo setShowPanel={setIsShowPanel} isShowPanel={isShowPanel}/>
+      </div>
 
-            <div className={styles.element}>
-                <UserPanel click={() => ''}/>
-            </div>
+      <hr className={styles.line}/>
 
-            <hr className={styles.line}/>
+      <div className={styles.element}>
+        <UserPanel click={switchTheme}/>
+      </div>
 
-            <div className={styles.element}>
-                <SearchInput callback={(value) => ''}/>
-            </div>
+      <hr className={styles.line}/>
 
-            <hr className={styles.line}/>
+      <div className={styles.element}>
+        <SearchInput callback={(value) => ''}/>
+      </div>
 
-            <nav className={styles.elementHalfPadding}>
-                <AsidePanel_Navigation/>
-            </nav>
+      <hr className={styles.line}/>
 
-        </aside>
-    );
+      <nav className={styles.elementHalfPadding}>
+        <AsidePanel_Navigation/>
+      </nav>
+
+    </aside>
+  );
 };
 
 export default AsidePanel;

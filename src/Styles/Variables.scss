@@ -1,20 +1,138 @@
-$color__red1: #F64E60;
+.light-theme {
+  --color__black1: #181C32;
+  --color__black2: #3F4254;
+  --color__black3: #5E6278;
+  --color__black4: #7E8299;
+  --color__black5: #A1A5B7;
+  --color__black6: #B5B5C3;
+  --color__black7: #E4E6EF;
+  --color__black8: #EFF2F5;
+  --color__black9: #F5F8FA;
+  --color__black10: #F5F8FA;
 
-$color__green1: #50CD89;
+  --color__red1: #D9214E;
+  --color__red2: #F1416C;
+  --color__red3: #FFF5F8;
 
-$color__blue1: #3699FF;
-$color__blue2: #C9F7F5;
-$color__blue3: #2C2C41;
+  --color__lightGreen1: #47BE7D;
+  --color__lightGreen2: #50CD89;
+  --color__lightGreen3: #E8FFF3;
 
-$color__grey1: #2D2D43;
-$color__grey2: #7E8299;
-$color__grey3: #EEF0F8;
-$color__grey4: #B6B9C8;
+  --color__skyblue1: #0095E8;
+  --color__skyblue2: #009EF6;
+  --color__skyblue3: #ECF8FF;
 
-$color__white1: #FFFFFF;
+  --color__purple1: #5014D0;
+  --color__purple2: #7239EA;
+  --color__purple3: #F8F5FF;
 
-$color__black1: #000000;
-$color__black2: #1E1E2D;
+  --color__yellow1: #F1BC00;
+  --color__yellow2: #FFC700;
+  --color__yellow3: #FFF8DD;
+
+  --color__orange1: #F69B11;
+  --color__orange2: #FFA621;
+  --color__orange3: #FFF5E7;
+
+  --color__turquoise1: #00AFAF;
+  --color__turquoise2: #04C8C8;
+  --color__turquoise3: #DCFDFD;
+
+  --color__blue1: #4A7DFF;
+  --color__blue2: #366CF9;
+  --color__blue3: #F1F5FF;
+
+  --color__maroon1: #58244B;
+  --color__maroon2: #663259;
+  --color__maroon3: #FBF1F8;
+
+  --color__green1: #2BA579;
+  --color__green2: #4AB58E;
+  --color__green3: #DFF1EB;
+
+  --color__ultramarine1: #3F3CE1;
+  --color__ultramarine2: #5F5CF1;
+  --color__ultramarine3: #F0EFFF;
+
+  --color__brown1: #98654F;
+  --color__brown1: #AA7762;
+  --color__brown1: #D2C9C5;
+
+  --color__sapphire1: #1B2CCF;
+  --color__sapphire2: #3445E5;
+  --color__sapphire3: #F1F3FF;
+
+  --color__asaid: var(--color__black10);
+}
+
+.dark-theme {
+  --color__black1: #FFFFFF;
+  --color__black2: #9A9AB0;
+  --color__black3: #92929F;
+  --color__black4: #6D6D80;
+  --color__black5: #4C4C66;
+  --color__black6: #474761;
+  --color__black7: #323248;
+  --color__black8: #2B2B40;
+  --color__black9: #262639;
+  --color__black10: #1E1E2D;
+
+  --color__red1: #EE2D41;
+  --color__red2: #F64E60;
+  --color__red3: #3A2434;
+
+  --color__lightGreen1: #04AA77;
+  --color__lightGreen2: #0BB783;
+  --color__lightGreen3: #1C3238;
+
+  --color__skyblue1: #187DE4;
+  --color__skyblue2: #3699FF;
+  --color__skyblue3: #212E48;
+
+  --color__purple1: #7337EE;
+  --color__purple2: #8950FC;
+  --color__purple3: #2F264F;
+
+  --color__yellow1: #EE9D01;
+  --color__yellow2: #FFA800;
+  --color__yellow3: #392F28;
+
+  --color__orange1: #E05417;
+  --color__orange2: #EF6327;
+  --color__orange3: #39272C;
+
+  --color__turquoise1: #0BB7AF;
+  --color__turquoise2: #1BC5BD;
+  --color__turquoise3: #1C3833;
+
+  --color__blue1: #4A7DFF;
+  --color__blue2: #6993FF;
+  --color__blue3: #E1E9FF;
+
+  --color__maroon1: #58244B;
+  --color__maroon2: #663259;
+  --color__maroon3: #2E2237;
+
+  --color__green1: #2BA579;
+  --color__green2: #4AB58E;
+  --color__green3: #DFF1EB;
+
+  --color__ultramarine1: #3F3CE1;
+  --color__ultramarine2: #5F5CF1;
+  --color__ultramarine3: #F0EFFF;
+
+  --color__brown1: #98654F;
+  --color__brown1: #AA7762;
+  --color__brown1: #D2C9C5;
+
+  --color__sapphire1: #1B2CCF;
+  --color__sapphire2: #3445E5;
+  --color__sapphire3: #F1F3FF;
+
+  --color__asaid: var(--color__black10);
+}
+
+$transition: ease-in-out 0.5s;
 
 $border-radius: 6px;
 $border-radius_btn: 6px

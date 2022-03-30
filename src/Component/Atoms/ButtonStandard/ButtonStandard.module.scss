@@ -2,46 +2,52 @@
 @use "/src/Styles/Mixins" as *;
 
 .wrapper {
-    @include mixin--Center;
-    padding: 8px 19px;
-    border-radius: $border-radius_btn;
-    border: none;
-    background: none;
-    cursor: pointer;
-    gap: 5px;
+  @include mixin--Center;
+  padding: 8px 19px;
+  border-radius: $border-radius_btn;
+  border: none;
+  background: none;
+  cursor: pointer;
+  gap: 5px;
+
+  svg {
+    transition: $transition;
+    fill: var(--color__black1)
+  }
 }
 
 .text {
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 18px;
-    flex: 1;
-    transition: ease-in-out 0.5s;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  flex: 1;
+  transition: $transition;
+  color: var(--color__black1);
 }
 
 .color_ {
-    &red {
-        background: $color__red1;
-        color: $color__white1
-    }
+  &red {
+    background: var(--color__red2);
+    color: var(--color__black1)
+  }
 
-    &blue {
-        background: $color__blue1;
-        color: $color__white1
-    }
+  &blue {
+    background: var(--color__blue2);
+    color: var(--color__black1)
+  }
 
-    &skyBlue {
-        background: $color__blue2;
-        color: $color__white1
-    }
+  &skyBlue {
+    background: var(--color__skyblue2);
+    color: var(--color__black1)
+  }
 
-    &white {
-        background: $color__white1;
-        color: $color__black1
-    }
+  &white {
+    background: var(--color__black1);
+    color: var(--color__black1)
+  }
 }
 
 .noPadding {
-    padding: 0;
-    gap: 0;
+  padding: 0;
+  gap: 0;
 }
