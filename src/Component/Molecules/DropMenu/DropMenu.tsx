@@ -8,17 +8,15 @@ interface iDropMenu {
   children: JSX.Element
   iconLeft?: JSX.Element
   extClass?: string
-  click?: () => void;
   isPaddingOn?: boolean
 }
 
 /**
- * Стандартный Drop Button с рекурсией (НЕ ИСПОЛЬЗУЕТСЯ!!)
+ * Стандартный Drop Button
  * @param props.title - отображаемое имя кнопки
  * @param props.children - скрываемая часть, основной контент
  * @param props.iconLeft - иконка для левой стороны
  * @param props.extClass - дополнительный CSS класс
- * @param props.click - действие при клике
  * @param props.isPaddingOn - Нужен ли отступ
  */
 const DropMenu: FC<iDropMenu> = (props) => {
@@ -33,8 +31,11 @@ const DropMenu: FC<iDropMenu> = (props) => {
         title={title}
         click={() => setIsShowListBtn(val => !val)}
         log={{element: DropMenu.name}}
-        iconRight={<span className={`${styles.svgArrow} ${isShowListBtn ? '' : styles.btnOff}`}><IconArrow/></span>}
-        iconLeft={iconLeft}
+        iconRight={{
+          icon: <IconArrow/>,
+          extClass: `${styles.arrow} ${isShowListBtn ? styles.btnOn : ''}`
+        }}
+        iconLeft={{icon: iconLeft}}
         extClass={styles.btn}
       />
       <div

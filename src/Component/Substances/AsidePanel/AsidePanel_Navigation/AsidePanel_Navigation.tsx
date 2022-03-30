@@ -122,7 +122,7 @@ const AsidePanel_Navigation: FC = () => {
           title={navObj.name}
           click={navObj.click}
           log={{element: AsidePanel_Navigation.name}}
-          iconLeft={navObj.leftImg}
+          iconLeft={{icon: navObj.leftImg || undefined}}
         />
       </React.Fragment>
     }

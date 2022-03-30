@@ -7,7 +7,7 @@ export class SettingController {
   private readonly rootStore: typeof RootStore;
 
   constructor(rootStore: typeof RootStore) {
-    makeAutoObservable(this,);
+    makeAutoObservable(this);
     this.rootStore = rootStore;
   }
 

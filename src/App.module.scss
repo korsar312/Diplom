@@ -1,7 +1,12 @@
+@use '/src/Styles/Variables' as *;
+
 .wrapper {
   position: fixed;
   top: 0;
   bottom: 0;
+  width: 100%;
   display: flex;
+  background: var(--color__black7);
+  transition: $transition;
 }
 

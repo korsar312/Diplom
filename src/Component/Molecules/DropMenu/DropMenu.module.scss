@@ -6,7 +6,6 @@
   border-left: 1px solid rgba(var(--color__black1), 0);
 
   .btn {
-    transition: $transition;
     border-bottom-left-radius: 0;
 
     span {
@@ -37,15 +36,16 @@
     padding-left: 15px;
   }
 
-  .svgArrow {
-    transition: $transition;
+  .arrow {
+    svg {
+      width: 12px;
+      height: 12px;
+    }
   }
 
-  .btnOff {
-    transform: rotateZ(635deg);
+  .btnOn {
+    transform: rotateZ(90deg);
   }
-
-  //=======================
 
 
   @keyframes dropDown {

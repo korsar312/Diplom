@@ -8,10 +8,15 @@ interface IButtonStandard {
   title?: string
   color?: "red" | "white" | "blue" | "skyBlue"
   extClass?: string
-  iconLeft?: JSX.Element
-  iconRight?: JSX.Element
+  iconLeft?: TIcon
+  iconRight?: TIcon
   isNoPadding?: boolean
   log?: rest.TlogAction
+}
+
+type TIcon = {
+  icon: JSX.Element | undefined
+  extClass?: string
 }
 
 /**
@@ -33,7 +38,7 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
       element: ButtonStandard.name,
       action: 'Нажатие',
       data: props,
-      comment: `кнопка ${title || (iconLeft || iconRight)?.type.render.name || 'не определена'}`,
+      comment: `кнопка ${title || (iconLeft || iconRight)?.icon?.type.render.name || 'не определена'}`,
       ...log,
     })
     click()
@@ -44,9 +49,9 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
       onClick={clickHandler}
       className={`${styles.wrapper} ${color ? styles[`color_${color}`] : ''} ${extClass} ${isNoPadding ? styles.noPadding : ''}`}
     >
-      {iconLeft}
+      {iconLeft?.icon && <span className={iconLeft.extClass || ''}>{iconLeft.icon}</span>}
       <span className={styles.text}>{title}</span>
-      {iconRight}
+      {iconRight?.icon && <span className={iconRight.extClass || ''}>{iconRight.icon}</span>}
     </button>
   );
 };

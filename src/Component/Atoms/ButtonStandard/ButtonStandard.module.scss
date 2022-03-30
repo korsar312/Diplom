@@ -10,20 +10,26 @@
   cursor: pointer;
   gap: 5px;
 
-  svg {
+  span {
     transition: $transition;
-    fill: var(--color__black1)
+
+    svg {
+      transition: $transition;
+      fill: var(--color__black1)
+    }
+  }
+
+
+  .text {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+    flex: 1;
+    transition: $transition;
+    color: var(--color__black1);
   }
 }
 
-.text {
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 18px;
-  flex: 1;
-  transition: $transition;
-  color: var(--color__black1);
-}
 
 .color_ {
   &red {

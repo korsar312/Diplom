@@ -50,7 +50,7 @@ const UserPanel: FC<IUserPanel> = (props) => {
           isNoPadding={true}
           extClass={styles.btn}
           click={click}
-          iconLeft={<IconSetting/>}
+          iconLeft={{icon: <IconSetting/>}}
           log={{element: UserPanel.name}}/>}
     </div>
   );

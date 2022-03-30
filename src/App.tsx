@@ -20,7 +20,7 @@ const App = () => {
           <div>
             <Header/>
             <Suspense fallback={<>Прелоадер круть-круть :3</>}>
-              <main>
+              <main className={styles.main}>
                 <Routes>
                   {routePath.map(({name, element: Element, path, ...rest}) => (
                     <Route
