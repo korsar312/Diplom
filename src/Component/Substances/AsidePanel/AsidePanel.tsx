@@ -40,7 +40,7 @@ const AsidePanel: FC<IAsidePanel> = (props) => {
       <hr className={styles.line}/>
 
       <div className={styles.element}>
-        <SearchInput callback={(value) => ''}/>
+        <SearchInput extClass={styles.search} callback={(value) => ''}/>
       </div>
 
       <hr className={styles.line}/>

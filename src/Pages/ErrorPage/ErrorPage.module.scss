@@ -1,0 +1,12 @@
+@use '/src/Styles/Mixins' as *;
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+  @include mixin--Center;
+
+  svg {
+    height: 30vmin;
+    width: 100%;
+  }
+}

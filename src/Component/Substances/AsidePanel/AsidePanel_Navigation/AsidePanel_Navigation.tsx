@@ -15,10 +15,11 @@ import RouteGoService from "../../../../Services/Stores/Routes/Route.services";
 import ButtonStandard from "../../../Atoms/ButtonStandard/ButtonStandard";
 import {RequireOnlyOne} from "../../../../Libs/Types/RequireOnlyOne";
 import DropMenu from "../../../Molecules/DropMenu/DropMenu";
+import {language} from "../../../../Services/Stores/Language/Language.interface";
 
 type TBasePropNavigateList = {
   id: string;
-  name: string;
+  name: language.ELanguageKey;
   leftImg?: JSX.Element;
   click?: () => void;
   children?: TNavigateList[];
@@ -29,18 +30,18 @@ export type TNavigateList = RequireOnlyOne<TBasePropNavigateList, 'children' | '
 const navigateList: TNavigateList[] = [
   {
     id: '1',
-    name: 'Персонал',
+    name: language.ELanguageKey.PERSONNEL,
     leftImg: <IconPersons/>,
     children: [
       {
         id: '1-1',
-        name: 'Сотрудники',
+        name: language.ELanguageKey.COOPERATOR,
         leftImg: <IconPerson/>,
         click: () => RouteGoService.RouterGo(route.Name.ABOUT),
       },
       {
         id: '1-2',
-        name: 'Чат c коллегами',
+        name: language.ELanguageKey.CHAT_WITH_COLLEAGUES,
         leftImg: <IconChat/>,
         click: () => RouteGoService.RouterGo(route.Name.ABOUT),
       },
@@ -48,18 +49,18 @@ const navigateList: TNavigateList[] = [
   },
   {
     id: '2',
-    name: 'Поставщики',
+    name: language.ELanguageKey.SUPPLIERS,
     leftImg: <IconCompany/>,
     children: [
       {
         id: '2-1',
-        name: 'Информация о компаниях',
+        name: language.ELanguageKey.COMPANY_INFORMATION,
         leftImg: <IconInform/>,
         click: () => RouteGoService.RouterGo(route.Name.ABOUT),
       },
       {
         id: '2-2',
-        name: 'Чат с поставщиками',
+        name: language.ELanguageKey.CHAT_WITH_SUPPLIERS,
         leftImg: <IconChat/>,
         click: () => RouteGoService.RouterGo(route.Name.ABOUT),
       },
@@ -67,24 +68,24 @@ const navigateList: TNavigateList[] = [
   },
   {
     id: '3',
-    name: 'Продукция',
+    name: language.ELanguageKey.PRODUCTS,
     leftImg: <IconProduct/>,
     children: [
       {
         id: '3-1',
-        name: 'Склад',
+        name: language.ELanguageKey.WAREHOUSE,
         leftImg: <IconWarehouse/>,
         click: () => RouteGoService.RouterGo(route.Name.ABOUT),
       },
       {
         id: '3-2',
-        name: 'Поставки',
+        name: language.ELanguageKey.SUPPLIERS,
         leftImg: <IconSupplies/>,
         click: () => RouteGoService.RouterGo(route.Name.ABOUT),
       },
       {
         id: '3-3',
-        name: 'Заявки',
+        name: language.ELanguageKey.REQUEST,
         leftImg: <IconRequest/>,
         click: () => RouteGoService.RouterGo(route.Name.ABOUT),
       },
@@ -93,7 +94,7 @@ const navigateList: TNavigateList[] = [
   },
   {
     id: '4',
-    name: 'Отчеты',
+    name: language.ELanguageKey.REPORTS,
     leftImg: <IconReports/>,
     click: () => RouteGoService.RouterGo(route.Name.ABOUT),
   },

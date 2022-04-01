@@ -1,0 +1,43 @@
+@use '/src/Styles/Mixins' as *;
+
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .element {
+    @include mixin--Center;
+    flex-direction: column;
+    flex: 1;
+
+    .logo {
+      @include mixin--Center;
+      flex-direction: column;
+
+      svg {
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    .main {
+      @include mixin--Center;
+      flex-direction: column;
+      gap: 25px;
+
+      .title {
+        @include mixin--Center;
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+
+    .footer {
+      padding-bottom: 20px;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+}

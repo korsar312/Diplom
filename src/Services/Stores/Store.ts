@@ -1,18 +1,21 @@
 import {StoreRouter} from "./StoreRouter";
-import {BasketController} from "./Basket/Basket.controller";
 import {SettingController} from "./Settings/Setting.controller";
+import {UsersController} from "./Users/Users.controller";
+import {LanguageController} from "./Language/Language.controller";
 
 class RootStore {
-    public routeStore: StoreRouter;
-    public basketStore: BasketController;
-    public settingStore: SettingController;
+  public routeStore: StoreRouter;
+  public settingStore: SettingController;
+  public usersStore: UsersController;
+  public languageStore: LanguageController;
 
-    constructor() {
-        this.routeStore = new StoreRouter();
-        this.basketStore = new BasketController(this);
-        this.settingStore = new SettingController(this);
+  constructor() {
+    this.routeStore = new StoreRouter();
+    this.settingStore = new SettingController(this);
+    this.usersStore = new UsersController(this);
+    this.languageStore = new LanguageController(this);
 
-    }
+  }
 }
 
 const rootStore = new RootStore();

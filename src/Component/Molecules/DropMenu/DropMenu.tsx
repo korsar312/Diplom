@@ -2,9 +2,10 @@ import React, {FC, useState} from 'react';
 import styles from './DropMenu.module.scss';
 import ButtonStandard from "../../Atoms/ButtonStandard/ButtonStandard";
 import {ReactComponent as IconArrow} from "../../../Assets/icon/icon_arrow.svg";
+import {language} from "../../../Services/Stores/Language/Language.interface";
 
 interface iDropMenu {
-  title: string
+  title: language.ELanguageKey
   children: JSX.Element
   iconLeft?: JSX.Element
   extClass?: string
@@ -33,10 +34,11 @@ const DropMenu: FC<iDropMenu> = (props) => {
         log={{element: DropMenu.name}}
         iconRight={{
           icon: <IconArrow/>,
-          extClass: `${styles.arrow} ${isShowListBtn ? styles.btnOn : ''}`
+          extClass: `${styles.arrow} ${isShowListBtn ? styles.panelOn : ''}`
         }}
         iconLeft={{icon: iconLeft}}
         extClass={styles.btn}
+        textStyle={"normal_small"}
       />
       <div
         className={`

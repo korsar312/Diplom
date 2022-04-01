@@ -1,0 +1,61 @@
+@use '/src/Styles/Variables' as *;
+
+
+.wrapper {
+  transition: $transition;
+}
+
+//=========== СТИЛЬ ТЕКСТА ===========\\
+
+.style_ {
+
+  &standard {
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  &normal_small {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &fat_small {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  &fat_extraBig {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 42px;
+    letter-spacing: -0.02em;
+  }
+
+}
+
+//=========== ЦВЕТ ТЕКСТА ===========\\
+
+.color_ {
+
+  &standard {
+    color: var(--color__black1)
+  }
+
+  &red {
+    color: var(--color__red2);
+  }
+
+  &white {
+    color: var(--color__black10);
+  }
+
+  &blue {
+    color: var(--color__blue2);
+  }
+
+  &skyblue {
+    color: var(--color__skyblue2);
+  }
+
+}

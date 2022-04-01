@@ -3,7 +3,7 @@ import type RootStore from "../Store";
 import {setting} from "./Setting.interface";
 
 export class SettingController {
-  private theme: setting.theme = setting.theme.LIGHT
+  private theme: setting.theme = setting.theme.DARK
   private readonly rootStore: typeof RootStore;
 
   constructor(rootStore: typeof RootStore) {

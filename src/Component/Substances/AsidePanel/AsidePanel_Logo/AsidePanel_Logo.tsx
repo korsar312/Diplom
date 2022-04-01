@@ -5,7 +5,7 @@ import ButtonStandard from "../../../Atoms/ButtonStandard/ButtonStandard";
 import {ReactComponent as IconShift} from "../../../../Assets/icon/icon_shift.svg";
 
 interface IAsidePanel_Logo {
-  setShowPanel: (value: boolean) => void
+  setShowPanel: (isShow: boolean) => void
   isShowPanel: boolean
 }
 

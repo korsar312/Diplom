@@ -2,15 +2,19 @@ import React, {FC} from 'react';
 import styles from './ButtonStandard.module.scss'
 import RestApi from "../../../Services/RestApi/RestApi";
 import {rest} from "../../../Services/RestApi/RestApi.interface";
+import Text, {TTextStyle} from "../Text/Text";
+import {language} from "../../../Services/Stores/Language/Language.interface";
 
 interface IButtonStandard {
   click: () => void
-  title?: string
-  color?: "red" | "white" | "blue" | "skyBlue"
+  title?: language.ELanguageKey
+  color?: "red" | "black" | "blue" | "skyBlue"
+  textStyle?: TTextStyle
   extClass?: string
   iconLeft?: TIcon
   iconRight?: TIcon
   isNoPadding?: boolean
+  isDisabled?: boolean
   log?: rest.TlogAction
 }
 
@@ -24,14 +28,27 @@ type TIcon = {
  * @param props.click - функция onClick по кнопке
  * @param props.title - отображаемое имя кнопки
  * @param props.color - цвет кнопки
+ * @param props.textStyle - стиль текста кнопки
  * @param props.extClass - дополнительный CSS класс
  * @param props.iconLeft - иконка для левой стороны
  * @param props.iconRight - иконка для правой стороны
  * @param props.isNoPadding - убрать внутренний отступ
+ * @param props.disabled - неактивность кнопки
  * @param props.log - логирование
  */
 const ButtonStandard: FC<IButtonStandard> = (props) => {
-  const {click, title, color, extClass = '', iconLeft, iconRight, isNoPadding, log} = props
+  const {
+    click,
+    title,
+    color,
+    textStyle,
+    extClass = '',
+    iconLeft,
+    iconRight,
+    isNoPadding,
+    isDisabled,
+    log
+  } = props
 
   function clickHandler() {
     RestApi.logAction({
@@ -41,16 +58,27 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
       comment: `кнопка ${title || (iconLeft || iconRight)?.icon?.type.render.name || 'не определена'}`,
       ...log,
     })
+
     click()
   }
 
   return (
     <button
+      type={"button"}
+      disabled={isDisabled}
       onClick={clickHandler}
-      className={`${styles.wrapper} ${color ? styles[`color_${color}`] : ''} ${extClass} ${isNoPadding ? styles.noPadding : ''}`}
+      className={`
+        ${styles.wrapper} 
+        ${color ? styles[`color_${color}`] : ''} 
+        ${extClass} ${isNoPadding ? styles.noPadding : ''}
+      `}
     >
       {iconLeft?.icon && <span className={iconLeft.extClass || ''}>{iconLeft.icon}</span>}
-      <span className={styles.text}>{title}</span>
+      {title && <Text
+          userStyle={textStyle}
+          userColor={color ? "white" : undefined}
+          text={title}
+      />}
       {iconRight?.icon && <span className={iconRight.extClass || ''}>{iconRight.icon}</span>}
     </button>
   );

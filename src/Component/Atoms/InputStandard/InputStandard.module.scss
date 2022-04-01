@@ -6,11 +6,11 @@ $input_indent: 10px;
 .wrapper {
   display: flex;
   gap: $input_indent;
-  padding: $input_indent;
+  padding: $input_indent * 1.3 $input_indent;
   border-radius: 6px;
   align-items: center;
   transition: $transition;
-  background: var(--color__black7);
+  background: var(--color__black10);
 
   svg {
     transition: $transition;
@@ -26,6 +26,7 @@ $input_indent: 10px;
     outline: none;
     caret-color: var(--color__black1);
     color: var(--color__black1);
+    font-size: 16px;
   }
 }
 

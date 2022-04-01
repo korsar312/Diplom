@@ -1,18 +1,14 @@
 @use '/src/Styles/Variables' as *;
 
+$border_color: var(--color__black1);
+
 .wrapper {
   display: flex;
   flex-direction: column;
-  border-left: 1px solid rgba(var(--color__black1), 0);
 
   .btn {
     border-bottom-left-radius: 0;
-
-    span {
-      font-size: 14px;
-      font-weight: 500;
-      text-align: left;
-    }
+    justify-content: space-between;
   }
 
   .motherWrapper {
@@ -43,32 +39,27 @@
     }
   }
 
-  .btnOn {
+  .panelOn {
     transform: rotateZ(90deg);
   }
 
 
   @keyframes dropDown {
     0% {
-      border-left: 1px solid rgba(var(--color__black1), 100);
+      border-left: 1px solid rgba(var(--color__blue3), 1);
     }
-    20% {
-      border-left: 1px solid rgba(var(--color__black1), 0);
-
-    }
-
-    100% {
-      border-left: 1px solid rgba(var(--color__black1), 0);
+    15% {
+      border-left: 1px solid rgba(var(--color__blue3), 0);
     }
   }
 
   @keyframes dropUp {
     0% {
-      border-left: 1px solid rgba(var(--color__black1), 0);
+      border-left: 1px solid rgba(var(--color__blue3), 0);
     }
 
     100% {
-      border-left: 1px solid rgba(var(--color__black1), 100);
+      border-left: 1px solid rgba(var(--color__blue3), 1);
     }
   }
 

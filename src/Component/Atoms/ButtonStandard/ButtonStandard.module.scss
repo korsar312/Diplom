@@ -9,6 +9,7 @@
   background: none;
   cursor: pointer;
   gap: 5px;
+  transition: $transition;
 
   span {
     transition: $transition;
@@ -19,37 +20,42 @@
     }
   }
 
-
-  .text {
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 18px;
-    flex: 1;
-    transition: $transition;
-    color: var(--color__black1);
+  &:disabled {
+    opacity: 0.4;
+    cursor: auto;
   }
 }
 
 
 .color_ {
   &red {
-    background: var(--color__red2);
-    color: var(--color__black1)
+    background: var(--color__red1);
   }
 
   &blue {
-    background: var(--color__blue2);
-    color: var(--color__black1)
+    background: var(--color__blue1);
   }
 
   &skyBlue {
-    background: var(--color__skyblue2);
-    color: var(--color__black1)
+    background: var(--color__skyblue1);
   }
 
-  &white {
+  &black {
     background: var(--color__black1);
-    color: var(--color__black1)
+  }
+}
+
+.textAlign_ {
+  &center {
+    text-align: center;
+  }
+
+  &left {
+    text-align: left;
+  }
+
+  &right {
+    text-align: right;
   }
 }
 

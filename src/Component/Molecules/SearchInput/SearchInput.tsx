@@ -1,11 +1,11 @@
 import React, {FC} from 'react';
-import styles from "./SearchInput.module.scss"
 import InputStandard from "../../Atoms/InputStandard/InputStandard";
 import {ReactComponent as IconSearch} from "../../../Assets/icon/icon_search.svg";
+import {language} from "../../../Services/Stores/Language/Language.interface";
 
 interface ISearchInput {
-    callback: (value: string) => void
-    extClass?: string
+  callback: (value: string) => void
+  extClass?: string
 }
 
 /**
@@ -14,15 +14,15 @@ interface ISearchInput {
  * @param props.extClass - дополнительный CSS класс
  */
 const SearchInput: FC<ISearchInput> = (props) => {
-    const {callback, extClass = ''} = props
+  const {callback, extClass = ''} = props
 
-    return <InputStandard
-        callback={callback}
-        extClass={`${styles.wrapper} ${extClass}`}
-        iconLeft={<IconSearch/>}
-        placeholder="Поиск"
-        log={{element: SearchInput.name}}
-    />
+  return <InputStandard
+    callback={callback}
+    extClass={`${extClass}`}
+    iconLeft={{icon: <IconSearch/>}}
+    placeholder={language.ELanguageKey.SEARCH}
+    log={{element: SearchInput.name}}
+  />
 }
 
 export default SearchInput;

@@ -6,24 +6,26 @@ const AboutPage = lazy(() => import("../../../Pages/AboutPage/AboutPage"));
 const ErrorPage = lazy(() => import("../../../Pages/ErrorPage/ErrorPage"));
 
 export const routePath: route.IRoute[] = [
-    {
-        path: "/",
-        name: route.Name.MAIN,
-        element: MainPage,
-        layout: '',
-    },
-    {
-        path: "/about",
-        name: route.Name.ABOUT,
-        element: AboutPage,
-        layout: '',
-    },
-    {
-        path: "*",
-        name: route.Name.ERROR,
-        element: ErrorPage,
-        layout: '',
-    },
+  {
+    path: "/",
+    name: route.Name.MAIN,
+    element: MainPage,
+    layout: '',
+    isPrivate: true
+  },
+  {
+    path: "/about",
+    name: route.Name.ABOUT,
+    element: AboutPage,
+    layout: '',
+    isPrivate: true
+  },
+  {
+    path: "*",
+    name: route.Name.ERROR,
+    element: ErrorPage,
+    layout: '',
+  },
 ];
 
 export const getRoutes = () => routePath;
