@@ -4,6 +4,8 @@ import {ReactComponent as IconAvatar} from "./../../../Assets/icon/icon_avatar.s
 import {ReactComponent as IconSetting} from "./../../../Assets/icon/icon_setting.svg";
 import ButtonStandard from "../../Atoms/ButtonStandard/ButtonStandard";
 import Avatar from "../../Atoms/Avatar/Avatar";
+import Text from "../../Atoms/Text/Text";
+import {language} from "../../../Services/Stores/Language/Language.interface";
 
 interface IUserPanel {
   click?: () => void
@@ -44,7 +46,7 @@ const UserPanel: FC<IUserPanel> = (props) => {
       <div className={styles.infoWrapper}>
         <div className={styles.title}>{`${person.name} ${person.surname}`}</div>
         <div className={styles.subtitle}>{person.position}</div>
-        {person.isOnline && <div className={styles.status}>• online</div>}
+        {person.isOnline && <div className={styles.status}><Text userStyle={"normal_small"} userColor={"green"} text={language.ELanguageKey.ONLINE}/></div>}
       </div>
       {click && <ButtonStandard
           isNoPadding={true}

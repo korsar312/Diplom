@@ -20,6 +20,7 @@ $input_indent: 10px;
   }
 
   .input {
+    transition: $transition;
     background: none;
     border: none;
     width: calc(100% - #{$input_indent});

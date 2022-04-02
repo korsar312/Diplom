@@ -2,9 +2,11 @@ import React, {FC} from 'react';
 import styles from './Text.module.scss'
 import {language} from "../../../Services/Stores/Language/Language.interface";
 import rootStore from "../../../Services/Stores/Store";
+import {RequireOnlyOne} from "../../../Libs/Types/RequireOnlyOne";
 
 interface IText {
-  text: language.ELanguageKey
+  text?: language.ELanguageKey
+  textString?: string
   userStyle?: TTextStyle
   userColor?: TTextColor
   extClass?: string
@@ -19,18 +21,22 @@ export type TTextStyle =
 export type TTextColor =
   'red' |
   'blue' |
+  'green' |
   'white' |
   'skyblue'
+
+type TNavigateList = RequireOnlyOne<IText, 'text' | 'textString'>
 
 /**
  * Текст
  * @param props.text - текст
+ * @param props.textString - текст строкой без перевода (Только имена и подобное)
  * @param props.userStyle - шаблонный стиль текста
  * @param props.userColor - шаблонный цвет текста
  * @param props.extClass - дополнительный CSS класс
  */
-const Text: FC<IText> = (props) => {
-  const {text, userStyle = 'standard', userColor = 'standard', extClass = ''} = props
+const Text: FC<TNavigateList> = (props) => {
+  const {text, textString, userStyle = 'standard', userColor = 'standard', extClass = ''} = props
 
   function wordTranslate(word: language.ELanguageKey) {
     return rootStore.languageStore.getText(word)
@@ -44,7 +50,7 @@ const Text: FC<IText> = (props) => {
         ${styles['color_' + userColor]}
       `}
     >
-      {wordTranslate(text)}
+      {text ? wordTranslate(text) : textString}
     </span>
   );
 };

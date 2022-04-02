@@ -13,6 +13,10 @@ export class LanguageController {
       EN: 'Wrong login or password',
       RU: 'Неверный логин или пароль',
     },
+    [language.ELanguageKey.ONLINE]: {
+      EN: 'Online',
+      RU: 'Онлайн',
+    },
     [language.ELanguageKey.COPYRIGHT]: {
       EN: '©All rights reserved',
       RU: '©Все права защищены',

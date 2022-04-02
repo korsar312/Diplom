@@ -77,6 +77,7 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
       {title && <Text
           userStyle={textStyle}
           userColor={color ? "white" : undefined}
+          extClass={styles.text}
           text={title}
       />}
       {iconRight?.icon && <span className={iconRight.extClass || ''}>{iconRight.icon}</span>}

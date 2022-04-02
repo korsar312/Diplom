@@ -10,6 +10,7 @@ export namespace language {
 
   export enum ELanguageKey {
     SING_INING = 'SING_INING',
+    ONLINE = 'ONLINE',
     INVALID_PASSWORD = 'INVALID_PASSWORD',
     SING_IN = 'SING_IN',
     METEOR = 'METEOR',
