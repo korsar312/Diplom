@@ -94,7 +94,7 @@ const LoginForm: FC<ILoginForm> = (props) => {
 
         <div className={styles.aboveInput}>
           <div><Text userStyle={"fat_small"} text={language.ELanguageKey.PASSWORD}/></div>
-          <div><Text userStyle={"fat_small"} userColor={"skyblue"} text={language.ELanguageKey.FORGET_PASSWORD_KA}/>
+          <div><Text userStyle={"fat_small"} userColor={"skyblue"} text={language.ELanguageKey.FORGET_PASSWORD_DES_KA}/>
           </div>
         </div>
 

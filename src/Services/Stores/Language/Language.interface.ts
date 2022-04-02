@@ -31,7 +31,7 @@ export namespace language {
     ERROR = 'ERROR',
     SEARCH = 'SEARCH',
     COPYRIGHT = 'COPYRIGHT',
-    FORGET_PASSWORD_KA = 'FORGET_PASSWORD_KA',
+    FORGET_PASSWORD_DES_KA = 'FORGET_PASSWORD_DES_KA',
   }
 
   export enum ELanguageType {

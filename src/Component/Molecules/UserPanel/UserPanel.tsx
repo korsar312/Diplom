@@ -6,28 +6,15 @@ import ButtonStandard from "../../Atoms/ButtonStandard/ButtonStandard";
 import Avatar from "../../Atoms/Avatar/Avatar";
 import Text from "../../Atoms/Text/Text";
 import {language} from "../../../Services/Stores/Language/Language.interface";
+import {users} from "../../../Services/Stores/Users/Users.interface";
 
 interface IUserPanel {
   click?: () => void
-  person?: TPerson
+  person?: users.TPerson | null
 }
 
 //TODO когда начну рест делать нужно перекинуть это в Services а ту фигню ниже вообще удалить а то что сверху убрать ?
-type TPerson = {
-  name: string
-  surname: string
-  position?: string
-  image?: any
-  isOnline?: boolean
-}
 
-const persona: TPerson = {
-  image: 'https://wl-adme.cf.tsp.li/resize/728x/jpg/828/489/b2756c5cdd8b6216f063d69448.jpg',
-  isOnline: true,
-  position: 'Старший менеджер',
-  surname: 'Мразь',
-  name: 'Иван',
-}
 
 /**
  * Панель пользователя
@@ -35,18 +22,18 @@ const persona: TPerson = {
  * @param props.person - объект с данными человека
  */
 const UserPanel: FC<IUserPanel> = (props) => {
-  const {click, person = persona} = props
+  const {click, person} = props
 
   return (
     <div className={styles.wrapper}>
       <Avatar>
-        {person.image ? <img className={styles.image} src={person.image} alt='Аватар'/> : <IconAvatar/>}
+        {person?.image ? <img className={styles.image} src={person.image} alt='Аватар'/> : <IconAvatar/>}
       </Avatar>
 
       <div className={styles.infoWrapper}>
-        <div className={styles.title}>{`${person.name} ${person.surname}`}</div>
-        <div className={styles.subtitle}>{person.position}</div>
-        {person.isOnline && <div className={styles.status}><Text userStyle={"normal_small"} userColor={"green"} text={language.ELanguageKey.ONLINE}/></div>}
+        <div className={styles.title}>{`${person?.name} ${person?.surname}`}</div>
+        <div className={styles.subtitle}>{person?.position}</div>
+        {person?.isOnline && <div className={styles.status}><Text userStyle={"normal_small"} userColor={"green"} text={language.ELanguageKey.ONLINE}/></div>}
       </div>
       {click && <ButtonStandard
           isNoPadding={true}

@@ -6,11 +6,10 @@
   bottom: 0;
   width: 100%;
   display: flex;
-  background: var(--color__black7);
+  background: rgb(var(--color__black7));
   transition: $transition;
 
   .content, .main {
-    width: 100%;
     width: 100%;
     height: 100%;
   }
@@ -26,6 +25,5 @@
       transition: opacity 250ms ease-in;
     }
   }
-
 }
 

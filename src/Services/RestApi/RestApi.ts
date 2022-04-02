@@ -1,5 +1,6 @@
 import {getStringCurrentTime} from "../../Libs/Utils/getStringCurrentTime";
 import {rest} from "./RestApi.interface";
+import {users} from "../Stores/Users/Users.interface";
 
 class RestApi {
   private URL: string = 'https://jsonplaceholder.typicode.com/'
@@ -43,7 +44,14 @@ class RestApi {
         callback?.(false, error)
       })
       .then((json) => {
-        callback?.(true, '', json)
+        const persona: users.TPerson = {
+          image: 'https://wl-adme.cf.tsp.li/resize/728x/jpg/828/489/b2756c5cdd8b6216f063d69448.jpg',
+          isOnline: true,
+          position: 'Старший менеджер',
+          surname: 'Мразь',
+          name: 'Иван',
+        }
+        callback?.(true, '', persona)
       })
 
   }

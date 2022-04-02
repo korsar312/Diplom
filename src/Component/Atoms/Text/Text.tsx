@@ -14,6 +14,7 @@ interface IText {
 
 export type TTextStyle =
   'standard' |
+  'light_small' |
   'fat_small' |
   'fat_extraBig' |
   'normal_small'

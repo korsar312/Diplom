@@ -12,6 +12,10 @@ export class UsersController {
     this.rootStore = rootStore;
   }
 
+  public get getCurrentUser() {
+    return this.currentUser
+  }
+
   public get isAuthorized() {
     return Boolean(this.currentUser);
   }

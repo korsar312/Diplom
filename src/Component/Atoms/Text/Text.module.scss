@@ -14,6 +14,11 @@
     font-size: 16px;
   }
 
+  &light_small {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
   &normal_small {
     font-size: 14px;
     font-weight: 500;
@@ -39,27 +44,27 @@
 .color_ {
 
   &standard {
-    color: var(--color__black1)
+    color:  rgb(var(--color__black1))
   }
 
   &red {
-    color: var(--color__red2);
+    color:  rgb(var(--color__red2));
   }
 
   &white {
-    color: var(--color__black10);
+    color:  rgb(var(--color__black10));
   }
 
   &green {
-    color: var(--color__green2);
+    color:  rgb(var(--color__green2));
   }
 
   &blue {
-    color: var(--color__blue2);
+    color:  rgb(var(--color__blue2));
   }
 
   &skyblue {
-    color: var(--color__skyblue2);
+    color:  rgb(var(--color__skyblue2));
   }
 
 }

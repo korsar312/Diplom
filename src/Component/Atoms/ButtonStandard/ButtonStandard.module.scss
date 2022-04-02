@@ -16,7 +16,7 @@
 
     svg {
       transition: $transition;
-      fill: var(--color__black1)
+      fill:  rgb(var(--color__black1))
     }
   }
 
@@ -32,19 +32,22 @@
 
 .color_ {
   &red {
-    background: var(--color__red1);
+    background: rgb(var(--color__red1));
   }
 
   &blue {
-    background: var(--color__blue1);
+    background:  rgb(var(--color__blue1));
   }
 
   &skyBlue {
-    background: var(--color__skyblue1);
+    background:  rgb(var(--color__skyblue1));
   }
 
   &black {
-    background: var(--color__black1);
+    background:  rgb(var(--color__black1));
+    span{
+      color:  rgb(var(--color__black10));
+    }
   }
 }
 

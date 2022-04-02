@@ -38,7 +38,7 @@ const DropMenu: FC<iDropMenu> = (props) => {
         }}
         iconLeft={{icon: iconLeft}}
         extClass={styles.btn}
-        textStyle={"normal_small"}
+        textStyle={"light_small"}
       />
       <div
         className={`

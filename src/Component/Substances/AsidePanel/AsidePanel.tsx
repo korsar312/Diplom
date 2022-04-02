@@ -34,7 +34,7 @@ const AsidePanel: FC<IAsidePanel> = (props) => {
       <hr className={styles.line}/>
 
       <div className={styles.element}>
-        <UserPanel click={switchTheme}/>
+        <UserPanel person={rootStore.usersStore.getCurrentUser} click={switchTheme}/>
       </div>
 
       <hr className={styles.line}/>

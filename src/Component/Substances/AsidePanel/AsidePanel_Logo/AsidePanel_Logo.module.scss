@@ -6,7 +6,7 @@
   justify-content: space-between;
 
   .logo {
-    color: var(--color__black1);
+    color: rgb(var(--color__black1));
     font-weight: 900;
     font-size: 18px;
     margin: 0;
@@ -17,7 +17,7 @@
 
   .logoWrapperBtn {
     transition: $transition;
-    background: var(--color__asaid);
+    background: rgb(var(--color__asaid));
     padding: 5px;
     border-radius: 0 50% 50% 0;
 

@@ -120,6 +120,7 @@ const AsidePanel_Navigation: FC = () => {
       return <React.Fragment key={navObj.id}>
         <ButtonStandard
           extClass={`${styles.btn}`}
+          textStyle={"light_small"}
           title={navObj.name}
           click={navObj.click}
           log={{element: AsidePanel_Navigation.name}}

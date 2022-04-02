@@ -1,133 +1,133 @@
 .light-theme {
-  --color__black1: #181C32;
-  --color__black2: #3F4254;
-  --color__black3: #5E6278;
-  --color__black4: #7E8299;
-  --color__black5: #A1A5B7;
-  --color__black6: #B5B5C3;
-  --color__black7: #E4E6EF;
-  --color__black8: #EFF2F5;
-  --color__black9: #F5F8FA;
-  --color__black10: #F5F8FA;
+  --color__black1: 24,28,50;
+  --color__black2: 63,66,84;
+  --color__black3: 94,98,120;
+  --color__black4: 126,130,153;
+  --color__black5: 161,165,183;
+  --color__black6: 181,181,195;
+  --color__black7: 228,230,239;
+  --color__black8: 239,242,245;
+  --color__black9: 245,248,250;
+  --color__black10: 255,255,255;
 
-  --color__red1: #D9214E;
-  --color__red2: #F1416C;
-  --color__red3: #FFF5F8;
+  --color__red1: 217,33,78;
+  --color__red2: 241,65,108;
+  --color__red3: 255,245,248;
 
-  --color__lightGreen1: #47BE7D;
-  --color__lightGreen2: #50CD89;
-  --color__lightGreen3: #E8FFF3;
+  --color__lightGreen1: 71,190,125;
+  --color__lightGreen2: 80,205,137;
+  --color__lightGreen3: 232,255,243;
 
-  --color__skyblue1: #0095E8;
-  --color__skyblue2: #009EF6;
-  --color__skyblue3: #ECF8FF;
+  --color__skyblue1: 0,149,232;
+  --color__skyblue2: 0,158,246;
+  --color__skyblue3: 236,248,255;
 
-  --color__purple1: #5014D0;
-  --color__purple2: #7239EA;
-  --color__purple3: #F8F5FF;
+  --color__purple1: 80,20,208;
+  --color__purple2: 114,57,234;
+  --color__purple3: 248,245,255;
 
-  --color__yellow1: #F1BC00;
-  --color__yellow2: #FFC700;
-  --color__yellow3: #FFF8DD;
+  --color__yellow1: 241,188,0;
+  --color__yellow2: 255,199,0;
+  --color__yellow3: 255,248,221;
 
-  --color__orange1: #F69B11;
-  --color__orange2: #FFA621;
-  --color__orange3: #FFF5E7;
+  --color__orange1: 246,155,17;
+  --color__orange2: 255,166,33;
+  --color__orange3: 255,245,231;
 
-  --color__turquoise1: #00AFAF;
-  --color__turquoise2: #04C8C8;
-  --color__turquoise3: #DCFDFD;
+  --color__turquoise1: 0,175,175;
+  --color__turquoise2: 4,200,200;
+  --color__turquoise3: 220,253,253;
 
-  --color__blue1: #4A7DFF;
-  --color__blue2: #366CF9;
-  --color__blue3: #F1F5FF;
+  --color__blue1: 74,125,255;
+  --color__blue2: 54,108,249;
+  --color__blue3: 241,245,255;
 
-  --color__maroon1: #58244B;
-  --color__maroon2: #663259;
-  --color__maroon3: #FBF1F8;
+  --color__maroon1: 88,36,75;
+  --color__maroon2: 102,50,89;
+  --color__maroon3: 251,241,248;
 
-  --color__green1: #2BA579;
-  --color__green2: #4AB58E;
-  --color__green3: #DFF1EB;
+  --color__green1: 43,165,121;
+  --color__green2: 74,181,142;
+  --color__green3: 223,241,235;
 
-  --color__ultramarine1: #3F3CE1;
-  --color__ultramarine2: #5F5CF1;
-  --color__ultramarine3: #F0EFFF;
+  --color__ultramarine1: 63,60,225;
+  --color__ultramarine2: 95,92,241;
+  --color__ultramarine3: 240,239,255;
 
-  --color__brown1: #98654F;
-  --color__brown1: #AA7762;
-  --color__brown1: #D2C9C5;
+  --color__brown1: 152,101,79;
+  --color__brown1: 170,119,98;
+  --color__brown1: 210,201,197;
 
-  --color__sapphire1: #1B2CCF;
-  --color__sapphire2: #3445E5;
-  --color__sapphire3: #F1F3FF;
+  --color__sapphire1: 27,44,207;
+  --color__sapphire2: 52,69,229;
+  --color__sapphire3: 241,243,255;
 
   --color__asaid: var(--color__black10);
 }
 
 .dark-theme {
-  --color__black1: #FFFFFF;
-  --color__black2: #9A9AB0;
-  --color__black3: #92929F;
-  --color__black4: #6D6D80;
-  --color__black5: #4C4C66;
-  --color__black6: #474761;
-  --color__black7: #323248;
-  --color__black8: #2B2B40;
-  --color__black9: #262639;
-  --color__black10: #1E1E2D;
+  --color__black1: 255,255,255;
+  --color__black2: 154,154,176;
+  --color__black3: 146,146,159;
+  --color__black4: 109,109,128;
+  --color__black5: 76,76,102;
+  --color__black6: 71,71,97;
+  --color__black7: 50,50,72;
+  --color__black8: 43,43,64;
+  --color__black9: 38,38,57;
+  --color__black10: 30,30,45;
 
-  --color__red1: #EE2D41;
-  --color__red2: #F64E60;
-  --color__red3: #3A2434;
+  --color__red1: 238,45,65;
+  --color__red2: 246,78,96;
+  --color__red3: 58,36,52;
 
-  --color__lightGreen1: #04AA77;
-  --color__lightGreen2: #0BB783;
-  --color__lightGreen3: #1C3238;
+  --color__lightGreen1: 4,170,119;
+  --color__lightGreen2: 11,183,131;
+  --color__lightGreen3: 28,50,56;
 
-  --color__skyblue1: #187DE4;
-  --color__skyblue2: #3699FF;
-  --color__skyblue3: #212E48;
+  --color__skyblue1: 24,125,228;
+  --color__skyblue2: 54,153,255;
+  --color__skyblue3: 33,46,72;
 
-  --color__purple1: #7337EE;
-  --color__purple2: #8950FC;
-  --color__purple3: #2F264F;
+  --color__purple1: 115,55,238;
+  --color__purple2: 137,80,252;
+  --color__purple3: 47,38,79;
 
-  --color__yellow1: #EE9D01;
-  --color__yellow2: #FFA800;
-  --color__yellow3: #392F28;
+  --color__yellow1: 238,157,1;
+  --color__yellow2: 255,168,0;
+  --color__yellow3: 57,47,40;
 
-  --color__orange1: #E05417;
-  --color__orange2: #EF6327;
-  --color__orange3: #39272C;
+  --color__orange1: 224,84,23;
+  --color__orange2: 239,99,39;
+  --color__orange3: 57,39,44;
 
-  --color__turquoise1: #0BB7AF;
-  --color__turquoise2: #1BC5BD;
-  --color__turquoise3: #1C3833;
+  --color__turquoise1: 11,183,175;
+  --color__turquoise2: 27,197,189;
+  --color__turquoise3: 28,56,51;
 
-  --color__blue1: #4A7DFF;
-  --color__blue2: #6993FF;
-  --color__blue3: #E1E9FF;
+  --color__blue1: 74,125,255;
+  --color__blue2: 105,147,255;
+  --color__blue3: 225,233,255;
 
-  --color__maroon1: #58244B;
-  --color__maroon2: #663259;
-  --color__maroon3: #2E2237;
+  --color__maroon1: 88,36,75;
+  --color__maroon2: 102,50,89;
+  --color__maroon3: 46,34,55;
 
-  --color__green1: #2BA579;
-  --color__green2: #4AB58E;
-  --color__green3: #DFF1EB;
+  --color__green1: 43,165,121;
+  --color__green2: 74,181,142;
+  --color__green3: 223,241,235;
 
-  --color__ultramarine1: #3F3CE1;
-  --color__ultramarine2: #5F5CF1;
-  --color__ultramarine3: #F0EFFF;
+  --color__ultramarine1: 63,60,225;
+  --color__ultramarine2: 95,92,241;
+  --color__ultramarine3: 240,239,255;
 
-  --color__brown1: #98654F;
-  --color__brown1: #AA7762;
-  --color__brown1: #D2C9C5;
+  --color__brown1: 152,101,79;
+  --color__brown1: 170,119,98;
+  --color__brown1: 210,201,197;
 
-  --color__sapphire1: #1B2CCF;
-  --color__sapphire2: #3445E5;
-  --color__sapphire3: #F1F3FF;
+  --color__sapphire1: 27,44,207;
+  --color__sapphire2: 52,69,229;
+  --color__sapphire3: 241,243,255;
 
   --color__asaid: var(--color__black10);
 }

@@ -4,7 +4,7 @@ $panel_width: 265px;
 $panel_padding_vert: 15px;
 
 .wrapper {
-  background: var(--color__asaid);
+  background: rgb(var(--color__asaid));
   padding: $panel_padding_vert 0;
   transition: $transition;
   min-width: $panel_width;
@@ -15,7 +15,7 @@ $panel_padding_vert: 15px;
 
 
   .line {
-    border: 1px solid var(--color__black7);
+    border: 1px solid rgb(var(--color__black7));
     margin: 15px 0;
     transition: $transition;
   }
@@ -29,7 +29,7 @@ $panel_padding_vert: 15px;
   }
 
   .search {
-    background: var(--color__black7);
+    background: rgb(var(--color__black7));
   }
 }
 

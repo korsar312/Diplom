@@ -1,6 +1,6 @@
 @use '/src/Styles/Variables' as *;
 
-$border_color: var(--color__black1);
+$border_color:  rgb(var(--color__black1));
 
 .wrapper {
   display: flex;
@@ -46,20 +46,20 @@ $border_color: var(--color__black1);
 
   @keyframes dropDown {
     0% {
-      border-left: 1px solid rgba(var(--color__blue3), 1);
+      border-left: 1px solid rgba(var(--color__black4), 1);
     }
     15% {
-      border-left: 1px solid rgba(var(--color__blue3), 0);
+      border-left: 1px solid rgba(var(--color__black4), 0);
     }
   }
 
   @keyframes dropUp {
     0% {
-      border-left: 1px solid rgba(var(--color__blue3), 0);
+      border-left: 1px solid rgba(var(--color__black4), 0);
     }
 
     100% {
-      border-left: 1px solid rgba(var(--color__blue3), 1);
+      border-left: 1px solid rgba(var(--color__black4), 1);
     }
   }
 

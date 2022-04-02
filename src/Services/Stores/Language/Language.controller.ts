@@ -93,12 +93,12 @@ export class LanguageController {
       EN: 'Search',
       RU: 'Поиск',
     },
-    [language.ELanguageKey.FORGET_PASSWORD_KA]: {
+    [language.ELanguageKey.FORGET_PASSWORD_DES_KA]: {
       EN: 'Forget password?',
       RU: 'Забыли пароль?',
     },
   }
-  private currentLanguage: language.ELanguageType = ELanguageType.RU
+  private currentLanguage: language.ELanguageType = ELanguageType.EN
   private readonly rootStore: typeof RootStore;
 
   constructor(rootStore: typeof RootStore) {

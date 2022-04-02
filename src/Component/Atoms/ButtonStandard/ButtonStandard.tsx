@@ -4,6 +4,7 @@ import RestApi from "../../../Services/RestApi/RestApi";
 import {rest} from "../../../Services/RestApi/RestApi.interface";
 import Text, {TTextStyle} from "../Text/Text";
 import {language} from "../../../Services/Stores/Language/Language.interface";
+import rootStore from "../../../Services/Stores/Store";
 
 interface IButtonStandard {
   click: () => void
@@ -76,7 +77,6 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
       {iconLeft?.icon && <span className={iconLeft.extClass || ''}>{iconLeft.icon}</span>}
       {title && <Text
           userStyle={textStyle}
-          userColor={color ? "white" : undefined}
           extClass={styles.text}
           text={title}
       />}
