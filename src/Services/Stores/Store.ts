@@ -1,9 +1,9 @@
-import {StoreRouter} from "./StoreRouter";
+import {StoreRouter} from "../Routes/StoreRouter";
 import {SettingController} from "./Settings/Setting.controller";
 import {UsersController} from "./Users/Users.controller";
 import {LanguageController} from "./Language/Language.controller";
 
-class RootStore {
+export class RootStore {
   public routeStore: StoreRouter;
   public settingStore: SettingController;
   public usersStore: UsersController;
@@ -17,6 +17,3 @@ class RootStore {
 
   }
 }
-
-const rootStore = new RootStore();
-export default rootStore;

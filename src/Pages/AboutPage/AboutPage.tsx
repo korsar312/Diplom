@@ -1,13 +1,13 @@
 import React from 'react';
-import RouteGoService from "../../Services/Stores/Routes/Route.services"
-import {route} from "../../Services/Stores/Routes/Route.interfaces";
+import {route} from "../../Services/Routes/Route.interfaces";
+import services from "../../Services/Services";
 
 /**
  * Страница о проекте
  */
 const AboutPage = () => {
   const toMainPage = () => {
-    RouteGoService.RouterGo(route.Name.MAIN, undefined, AboutPage.name)
+    services.route.RouterGo(route.Name.MAIN, undefined, AboutPage.name)
   }
 
   return (

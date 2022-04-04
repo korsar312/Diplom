@@ -1,6 +1,6 @@
 import {makeAutoObservable} from "mobx";
-import type RootStore from "../Store";
 import {language} from "./Language.interface";
+import services from "../../Services";
 import ELanguageType = language.ELanguageType;
 
 export class LanguageController {
@@ -57,17 +57,21 @@ export class LanguageController {
       EN: 'Suppliers',
       RU: 'Поставщики',
     },
-    [language.ELanguageKey.COMPANY_INFORMATION]: {
-      EN: 'Company information',
-      RU: 'Информация о компаниях',
+    [language.ELanguageKey.PRODUCTS_SUPPLIERS]: {
+      EN: 'Product suppliers',
+      RU: 'Продукция поставщиков',
+    },
+    [language.ELanguageKey.COMPANY_PRODUCTS]: {
+      EN: 'Company products',
+      RU: 'Продукция компании',
     },
     [language.ELanguageKey.CHAT_WITH_SUPPLIERS]: {
       EN: 'Chat with suppliers',
       RU: 'Чат с поставщиками',
     },
     [language.ELanguageKey.PRODUCTS]: {
-      EN: 'Password',
-      RU: 'Products',
+      EN: 'Products',
+      RU: 'Продукция',
     },
     [language.ELanguageKey.WAREHOUSE]: {
       EN: 'Warehouse',
@@ -99,17 +103,32 @@ export class LanguageController {
     },
   }
   private currentLanguage: language.ELanguageType = ELanguageType.EN
-  private readonly rootStore: typeof RootStore;
+  private readonly rootStore: typeof services.store;
 
-  constructor(rootStore: typeof RootStore) {
+  constructor(rootStore: typeof services.store) {
     makeAutoObservable(this);
     this.rootStore = rootStore;
   }
 
+  /**
+   * Устанавливает языковую модель
+   * @params language - язык
+   */
   public set setCurrentLanguage(language: language.ELanguageType) {
     this.currentLanguage = language
   }
 
+  /**
+   * Возвращает текущую языковую модель
+   */
+  public get getCurrentLanguage() {
+    return this.currentLanguage
+  }
+
+  /**
+   * Возвращает выбранное предложение для текущей языковой модели
+   * @params wordKey - выбранное предложение
+   */
   public getText(wordKey: language.ELanguageKey) {
     return this.language[wordKey][this.currentLanguage]
   }
