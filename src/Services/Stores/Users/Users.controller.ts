@@ -4,6 +4,7 @@ import services from "../../Services";
 
 export class UsersController {
   private currentUser: users.TPerson | null = null
+  private company: users.TCompany | null = null
 
   private readonly rootStore: typeof services.store;
 

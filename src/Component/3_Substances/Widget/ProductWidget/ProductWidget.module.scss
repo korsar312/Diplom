@@ -1,0 +1,18 @@
+.wrapper {
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .btn {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

@@ -9,9 +9,11 @@
   background: rgb(var(--color__black7));
   transition: $transition;
 
-  .content, .main {
+  .content {
     width: 100%;
     height: 100%;
+    padding: 20px 40px;
+
   }
 
   .transition {

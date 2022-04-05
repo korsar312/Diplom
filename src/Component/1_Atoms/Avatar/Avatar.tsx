@@ -7,6 +7,7 @@ interface IAvatar {
   click?: () => void
   log?: rest.TlogAction
   extClass?: string
+  isBorder?: boolean
   children?: JSX.Element
 }
 
@@ -15,10 +16,11 @@ interface IAvatar {
  * @param props.click - функция onClick по кнопке
  * @param props.log - логирование
  * @param props.extClass - дополнительный CSS класс
+ * @param props.isBorder - изпользуется ли обводка
  * @param props.children - картинка в JSX
  */
 const Avatar: FC<IAvatar> = (props) => {
-  const {click, log, extClass = '', children} = props
+  const {click, log, isBorder, extClass = '', children} = props
 
   function clickHandler() {
     if (!click) return
@@ -34,7 +36,14 @@ const Avatar: FC<IAvatar> = (props) => {
   }
 
   return (
-    <div className={`${styles.wrapper} ${extClass}`} onClick={clickHandler}>
+    <div
+      className={`
+        ${styles.wrapper} 
+        ${isBorder ? styles.border : ''}
+        ${extClass}
+    `}
+      onClick={clickHandler}
+    >
       {children}
     </div>
   );

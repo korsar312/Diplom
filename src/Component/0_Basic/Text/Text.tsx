@@ -2,19 +2,19 @@ import React, {FC} from 'react';
 import styles from './Text.module.scss'
 import {language} from "../../../Services/Stores/Language/Language.interface";
 import services from "../../../Services/Services";
-import {OneOfTwo} from "../../../Types/Types";
 import {observer} from "mobx-react";
 
 interface IText {
-  text?: language.ELanguageKey
-  textString?: string
+  text: language.ELanguageKey
   userStyle?: TTextStyle
   userColor?: TTextColor
+  caseWord?: TModeReturnWord
   extClass?: string
 }
 
 export type TTextStyle =
   'standard' |
+  'fat_extraSmall' |
   'light_small' |
   'fat_small' |
   'fat_big' |
@@ -28,7 +28,8 @@ export type TTextColor =
   'white' |
   'skyblue'
 
-type TNavigateList = OneOfTwo<IText, 'text' | 'textString'>
+
+type TModeReturnWord = 'CAPITAL' | 'SMALL'
 
 /**
  * Текст
@@ -36,13 +37,26 @@ type TNavigateList = OneOfTwo<IText, 'text' | 'textString'>
  * @param props.textString - текст строкой без перевода (Только имена и подобное)
  * @param props.userStyle - шаблонный стиль текста
  * @param props.userColor - шаблонный цвет текста
+ * @param props.caseWord - выбор регистра текста
  * @param props.extClass - дополнительный CSS класс
  */
-const Text: FC<TNavigateList> = (props) => {
-  const {text, textString, userStyle = 'standard', userColor = 'standard', extClass = ''} = props
+const Text: FC<IText> = (props) => {
+  const {text, userStyle = 'standard', userColor = 'standard', extClass = '', caseWord} = props
 
   function wordTranslate(word: language.ELanguageKey) {
-    return services.store.languageStore.getText(word)
+    const wordTranslate = services.store.languageStore.getText(word)
+
+    if (caseWord) {
+      switch (caseWord) {
+        case 'CAPITAL':
+          return wordTranslate.toUpperCase()
+        case 'SMALL':
+          return wordTranslate.toLowerCase()
+      }
+
+    } else {
+      return wordTranslate
+    }
   }
 
   return (
@@ -53,7 +67,7 @@ const Text: FC<TNavigateList> = (props) => {
         ${styles['color_' + userColor]}
       `}
     >
-      {text ? wordTranslate(text) : textString}
+      {wordTranslate(text)}
     </span>
   );
 };

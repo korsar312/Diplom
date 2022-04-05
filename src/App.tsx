@@ -37,7 +37,7 @@ const App = () => {
     <div className={styles.content}>
       <Header/>
       <Suspense fallback={''}>
-        <main className={styles.main}>
+        <main>
           <Routes>
             {routePath.filter(route => !route.isPrivate || isAuthorized).map((
                 {name, element: Element, path, ...rest}) => (

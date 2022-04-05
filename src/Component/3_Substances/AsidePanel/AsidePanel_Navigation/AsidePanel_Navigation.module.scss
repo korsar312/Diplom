@@ -5,10 +5,11 @@
   flex-direction: column;
   gap: 10px;
   overflow: overlay;
-  height: calc(100vh - 242px);
+  height: calc(100vh - 260px);
 
   .btn {
     text-align: left;
+
     button {
       span {
         text-align: left;

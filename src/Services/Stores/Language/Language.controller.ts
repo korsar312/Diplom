@@ -101,6 +101,22 @@ export class LanguageController {
       EN: 'Forget password?',
       RU: 'Забыли пароль?',
     },
+    [language.ELanguageKey.PRICE]: {
+      EN: 'Price',
+      RU: 'Цена',
+    },
+    [language.ELanguageKey.CONVENTIONAL_UNIT]: {
+      EN: 'Conventional unit',
+      RU: 'Условные единицы',
+    },
+    [language.ELanguageKey.STATUS]: {
+      EN: 'Status',
+      RU: 'Статус',
+    },
+    [language.ELanguageKey.ACTION]: {
+      EN: 'Action',
+      RU: 'Действие',
+    },
   }
   private currentLanguage: language.ELanguageType = ELanguageType.EN
   private readonly rootStore: typeof services.store;

@@ -33,6 +33,10 @@ export namespace language {
     SEARCH = 'SEARCH',
     COPYRIGHT = 'COPYRIGHT',
     FORGET_PASSWORD_DES_KA = 'FORGET_PASSWORD_DES_KA',
+    PRICE = 'PRICE',
+    CONVENTIONAL_UNIT = 'CONVENTIONAL_UNIT',
+    STATUS = 'STATUS',
+    ACTION = 'ACTION',
   }
 
   export enum ELanguageType {
