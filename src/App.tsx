@@ -9,6 +9,7 @@ import {observer} from "mobx-react";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import services from "./Services/Services";
 import Preloader from "./Component/1_Atoms/Preloader/Preloader";
+import ModalActivator from "./Services/Stores/Modal/ModalActivator";
 
 type TPreloaderContext = {
   isShow: boolean
@@ -63,6 +64,7 @@ const App = () => {
             {isEntered ? authorizedRender : <LoginPage/>}
           </div>
         </HashRouter>
+        <ModalActivator/>
         <Preloader isShow={isShowPreloader}/>
       </PreloaderContext.Provider>
     </div>

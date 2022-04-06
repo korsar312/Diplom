@@ -54,7 +54,7 @@ export class RestApi {
           accessory: '34',
           image: 'https://wl-adme.cf.tsp.li/resize/728x/jpg/828/489/b2756c5cdd8b6216f063d69448.jpg',
           isOnline: true,
-          position: 'Старший менеджер',
+          position: 'Ст. менеджер',
           surname: 'Мразь',
           name: 'Иван',
         }
@@ -73,29 +73,47 @@ export class RestApi {
         callback?.(false, error)
       })
       .then((json) => {
-        const product: product.TProduct[] = [
+        const productsToSell: product.TProduct[] = [
           {
-            name: 'носки',
-            analogue: [],
-            conventionalUnit: '1л',
-            id: '123',
+            name: 'Оспамокс',
+            analogue: ['123'],
+            conventionalUnit: 'Упаковка',
+            id: '321',
             company: [],
             industry: 'Мануфактурия',
-            price: 12,
+            price: [
+              {
+                price: 800,
+                currency: product.TCurrency.DOLLAR
+              },
+              {
+                price: 60000,
+                currency: product.TCurrency.RUBLE
+              },
+            ],
             property: [{sad: 'asd'}]
           },
           {
-            name: 'носки',
-            analogue: [],
-            conventionalUnit: '1л',
+            name: 'Амоксил',
+            analogue: ['321'],
+            conventionalUnit: 'Упаковка',
             id: '123',
             company: [],
             industry: 'Мануфактурия',
-            price: 12,
+            price: [
+              {
+                price: 1000,
+                currency: product.TCurrency.DOLLAR
+              },
+              {
+                price: 80000,
+                currency: product.TCurrency.RUBLE
+              },
+            ],
             property: [{sad: 'asd'}]
           }]
 
-        callback?.(true, '', product)
+        callback?.(true, '', productsToSell)
       })
       .catch((error) => {
         callback?.(false, error)

@@ -1,12 +1,14 @@
-import React, {FC, useContext, useEffect, useState} from 'react';
+import React, {FC, useContext, useEffect} from 'react';
 import styles from './ProductWidget.module.scss'
 import WidgetWrapper from "../../../1_Atoms/WidgetWrapper/WidgetWrapper";
 import {language} from "../../../../Services/Stores/Language/Language.interface";
 import services from "../../../../Services/Services";
-import {product} from "../../../../Services/Stores/Products/Products.interface";
 import WidgetBody, {TUnitWidgetTable} from "../../../2_Molecules/WidgetBody/WidgetBody";
 import {PreloaderContext} from "../../../../App";
 import WidgetHead from "../../../2_Molecules/WidgetHead/WidgetHead";
+import Text from "../../../0_Basic/Text/Text";
+import {observer} from "mobx-react";
+import {product} from "../../../../Services/Stores/Products/Products.interface";
 
 interface IProductWidget {
   extClass?: string
@@ -21,21 +23,12 @@ const ProductWidget: FC<IProductWidget> = (props) => {
   const {extClass = ''} = props
 
   const showPreloader = useContext(PreloaderContext)
-  const [products, setProducts] = useState<product.TProduct[] | null>(null)
-
-  const createPropertyForTable: TUnitWidgetTable = {
-    head: [language.ELanguageKey.ONLINE, language.ELanguageKey.SEARCH, language.ELanguageKey.SEARCH, language.ELanguageKey.SEARCH],
-    body: products?.map(el => ({
-      content: [<>{el.name}</>, <>{el.id}</>, <>{el.id}</>, <>{el.id}</>]
-    })) || [{content: [<></>]}]
-  }
+  const products = services.store.productsStore.getProducts
 
   useEffect(() => {
-    const productTemp = services.store.productsStore.getProducts
 
-    if (productTemp) {
-      setProducts(productTemp)
-    } else {
+
+    if (!products) {
       showPreloader.setIsShow(true)
 
       services.rest.RestApi.getProduct((isOk, error, data) => {
@@ -43,8 +36,29 @@ const ProductWidget: FC<IProductWidget> = (props) => {
         showPreloader.setIsShow(false)
       })
     }
-
   }, [])
+
+  const createPropertyForTable: TUnitWidgetTable = {
+    head: [
+      language.ELanguageKey.PRODUCTS,
+      language.ELanguageKey.PRICE,
+      language.ELanguageKey.CONVENTIONAL_UNIT,
+    ],
+    body: products?.map(el => ({
+      id: el.id,
+      content: [
+        <Text key={el.id + el.name} text={el.name}/>,
+
+        <>{el.price.map(price => (
+          <div key={price.price + price.currency}>
+            <Text text={`${price.price} ${product.OCurrencyIcon[price.currency]}`}/>
+          </div>
+        ))}</>,
+
+        <Text key={el.id + el.conventionalUnit} text={el.conventionalUnit}/>,
+      ]
+    })) || [{content: [<>Не найденно</>], id: ''}]
+  }
 
   return (
     <WidgetWrapper>
@@ -57,4 +71,4 @@ const ProductWidget: FC<IProductWidget> = (props) => {
   )
 };
 
-export default ProductWidget;
+export default observer(ProductWidget);

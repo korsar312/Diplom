@@ -14,6 +14,11 @@
     font-size: 16px;
   }
 
+  &light_extraSmall {
+    font-size: 12px;
+    font-weight: 400;
+  }
+
   &fat_extraSmall {
     font-size: 12px;
     font-weight: 600;
@@ -65,6 +70,10 @@
 
   &white {
     color: rgb(var(--color__black10));
+  }
+
+  &grey {
+    color: rgb(var(--color__black2));
   }
 
   &green {

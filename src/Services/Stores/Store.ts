@@ -3,6 +3,7 @@ import {SettingController} from "./Settings/Setting.controller";
 import {UsersController} from "./Users/Users.controller";
 import {LanguageController} from "./Language/Language.controller";
 import {ProductsController} from "./Products/Products.controller";
+import {ModalsController} from "./Modal/Modal.controller";
 
 export class RootStore {
   public routeStore: StoreRouter;
@@ -10,6 +11,8 @@ export class RootStore {
   public usersStore: UsersController;
   public productsStore: ProductsController;
   public languageStore: LanguageController;
+  public modalStore: ModalsController;
+
 
   constructor() {
     this.routeStore = new StoreRouter();
@@ -17,6 +20,7 @@ export class RootStore {
     this.usersStore = new UsersController(this);
     this.productsStore = new ProductsController(this);
     this.languageStore = new LanguageController(this);
+    this.modalStore = new ModalsController(this);
 
   }
 }

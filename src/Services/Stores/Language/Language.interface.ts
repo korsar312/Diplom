@@ -37,6 +37,8 @@ export namespace language {
     CONVENTIONAL_UNIT = 'CONVENTIONAL_UNIT',
     STATUS = 'STATUS',
     ACTION = 'ACTION',
+    TOTAL_FOUND = 'TOTAL_FOUND',
+    CURRENCY = 'CURRENCY',
   }
 
   export enum ELanguageType {

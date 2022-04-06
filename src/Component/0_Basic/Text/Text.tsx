@@ -5,15 +5,18 @@ import services from "../../../Services/Services";
 import {observer} from "mobx-react";
 
 interface IText {
-  text: language.ELanguageKey
+  text: TText
   userStyle?: TTextStyle
   userColor?: TTextColor
   caseWord?: TModeReturnWord
   extClass?: string
 }
 
+type TText = language.ELanguageKey | number | string
+
 export type TTextStyle =
   'standard' |
+  'light_extraSmall' |
   'fat_extraSmall' |
   'light_small' |
   'fat_small' |
@@ -26,6 +29,7 @@ export type TTextColor =
   'blue' |
   'green' |
   'white' |
+  'grey' |
   'skyblue'
 
 
@@ -33,7 +37,8 @@ type TModeReturnWord = 'CAPITAL' | 'SMALL'
 
 /**
  * Текст
- * @param props.text - текст
+ * @param props.textTranslate - текст с переводом
+ * @param props.text - текст как есть (строкой)
  * @param props.textString - текст строкой без перевода (Только имена и подобное)
  * @param props.userStyle - шаблонный стиль текста
  * @param props.userColor - шаблонный цвет текста
@@ -43,8 +48,10 @@ type TModeReturnWord = 'CAPITAL' | 'SMALL'
 const Text: FC<IText> = (props) => {
   const {text, userStyle = 'standard', userColor = 'standard', extClass = '', caseWord} = props
 
-  function wordTranslate(word: language.ELanguageKey) {
-    const wordTranslate = services.store.languageStore.getText(word)
+  function wordTranslate(word: TText): string {
+    const wordTranslate = String(
+      (word in language.ELanguageKey) ? services.store.languageStore.getText(word as language.ELanguageKey) : word
+    )
 
     if (caseWord) {
       switch (caseWord) {

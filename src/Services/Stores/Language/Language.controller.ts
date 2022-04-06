@@ -117,6 +117,14 @@ export class LanguageController {
       EN: 'Action',
       RU: 'Действие',
     },
+    [language.ELanguageKey.TOTAL_FOUND]: {
+      EN: 'Total Found',
+      RU: 'Всего найдено',
+    },
+    [language.ELanguageKey.CURRENCY]: {
+      EN: 'Currency',
+      RU: 'Валюта',
+    },
   }
   private currentLanguage: language.ELanguageType = ELanguageType.EN
   private readonly rootStore: typeof services.store;

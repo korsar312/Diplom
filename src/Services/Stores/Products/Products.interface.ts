@@ -3,10 +3,10 @@ export namespace product {
   export type TProduct = {
     id: string
     name: string
-    price: number
+    price: TPrice[]
     conventionalUnit: string | number
     company: string[]
-    analogue: TProduct[]
+    analogue: string[]
     industry: string
     property?: TProperty[]
   }
@@ -14,6 +14,25 @@ export namespace product {
 
   type TProperty = {
     [key in string]: string
+  }
+
+  type TPrice = {
+    price: number,
+    currency: TCurrency
+  }
+
+  export enum TCurrency {
+    RUBLE = 'RUBLE',
+    DOLLAR = 'DOLLAR'
+  }
+
+  type TCurrencyIcon = {
+    [key in TCurrency]: string
+  }
+
+  export const OCurrencyIcon: TCurrencyIcon = {
+    DOLLAR: '$',
+    RUBLE: '₽'
   }
 
 }

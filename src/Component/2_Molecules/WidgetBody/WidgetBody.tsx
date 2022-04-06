@@ -15,6 +15,7 @@ export type TUnitWidgetTable = {
 
 type TBody = {
   content: JSX.Element[]
+  id: string
 }
 
 /**
@@ -25,7 +26,7 @@ type TBody = {
 const WidgetBody: FC<IWidgetBody> = (props) => {
   const {extClass = '', table} = props
 
-  const header = table.head.map(el => <div className={styles.sell}>
+  const header = table.head.map(el => <div key={el} className={styles.sell}>
     <Text
       userStyle={'fat_extraSmall'}
       text={el}
@@ -33,8 +34,11 @@ const WidgetBody: FC<IWidgetBody> = (props) => {
     />
   </div>)
 
-  const body = table.body.map(el => <div className={styles.row}>{el.content.map(cont => <div
-    className={styles.sell}>{cont}</div>)}</div>)
+  const body = table.body.map(el => {
+    return <div key={el.id} className={styles.row}>{el.content.map(rowEl => {
+      return <div key={rowEl.key} className={styles.sell}>{rowEl}</div>
+    })}</div>
+  })
 
   return <div className={`${styles.wrapper} ${extClass}`}>
     <div className={styles.head}>{header}</div>

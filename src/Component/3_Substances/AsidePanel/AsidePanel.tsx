@@ -1,11 +1,13 @@
 import React, {FC, useState} from 'react';
 import styles from './AsidePanel.module.scss'
-import UserPanel from "../../2_Molecules/UserPanel/UserPanel";
+import UnitPanel from "../../2_Molecules/UnitPanel/UnitPanel";
 import SearchInput from "../../2_Molecules/SearchInput/SearchInput";
 import AsidePanel_Logo from "./AsidePanel_Logo/AsidePanel_Logo";
 import AsidePanel_Navigation from "./AsidePanel_Navigation/AsidePanel_Navigation";
-import {setting} from "../../../Services/Stores/Settings/Setting.interface";
 import services from "../../../Services/Services";
+import {modals} from "../../../Services/Stores/Modal/Modal.interface";
+import {language} from "../../../Services/Stores/Language/Language.interface";
+
 
 interface IAsidePanel {
   extClass?: string
@@ -17,11 +19,12 @@ interface IAsidePanel {
  */
 const AsidePanel: FC<IAsidePanel> = (props) => {
   const {extClass} = props
+  const person = services.store.usersStore.getCurrentUser
 
   const [isShowPanel, setIsShowPanel] = useState(true)
 
-  const switchTheme = () => {
-    services.store.settingStore.setTheme = services.store.settingStore.isLightTheme ? setting.theme.DARK : setting.theme.LIGHT
+  function openModalSettingUser() {
+    services.store.modalStore.setShowModal(modals.EModal.userSetting, true)
   }
 
   return (
@@ -34,7 +37,13 @@ const AsidePanel: FC<IAsidePanel> = (props) => {
       <hr className={styles.line}/>
 
       <div className={styles.element}>
-        <UserPanel person={services.store.usersStore.getCurrentUser} click={switchTheme}/>
+        <UnitPanel
+          click={openModalSettingUser}
+          image={person?.image}
+          topText={person ? `${person.name} ${person.surname}` : "Гость"}
+          middleText={person?.position}
+          bottomText={person?.isOnline ? language.ELanguageKey.ONLINE : undefined}
+        />
       </div>
 
       <hr className={styles.line}/>

@@ -32,7 +32,8 @@ const LoginPage = () => {
         </div>
       </div>
       <div className={styles.element}>
-        <div className={styles.footer}><Text userStyle={"fat_small"} text={language.ELanguageKey.COPYRIGHT}/></div>
+        <div className={styles.footer}><Text userStyle={"fat_small"} text={language.ELanguageKey.COPYRIGHT}/>
+        </div>
       </div>
     </div>
   );
