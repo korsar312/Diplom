@@ -7,9 +7,9 @@ import Avatar from "../../1_Atoms/Avatar/Avatar";
 import Text from "../../0_Basic/Text/Text";
 import {language} from "../../../Services/Stores/Language/Language.interface";
 
-interface IUnitPanel {
+interface IUnitPanel { //==================================== СДЕЛАТЬ КАРТИНКИ ДЛЯ ВСЕГО!!
   click?: () => void
-  image?: string
+  image?: string | JSX.Element
   topText: string | language.ELanguageKey
   middleText?: string | language.ELanguageKey
   bottomText?: string | language.ELanguageKey
@@ -26,9 +26,12 @@ const UnitPanel: FC<IUnitPanel> = (props) => {
 
   return (
     <div className={styles.wrapper}>
-      <Avatar>
-        {image ? <img className={styles.image} src={image} alt='Аватар'/> : <IconAvatar/>}
-      </Avatar>
+      {typeof image === 'string' ? (
+        <Avatar>
+          {image ? <img className={styles.image} src={image} alt='Аватар'/> : <IconAvatar/>}
+        </Avatar>
+      ) : image
+      }
 
       <div className={styles.infoWrapper}>
 

@@ -6,7 +6,7 @@ export namespace users {
     surname: string
     position?: string
     isOnline: boolean
-    image?: any
+    image?: string
     accessory: string
   }
 

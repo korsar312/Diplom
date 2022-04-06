@@ -125,6 +125,22 @@ export class LanguageController {
       EN: 'Currency',
       RU: 'Валюта',
     },
+    [language.ELanguageKey.EXIT]: {
+      EN: 'Exit',
+      RU: 'Выход',
+    },
+    [language.ELanguageKey.SECURITY]: {
+      EN: 'Security',
+      RU: 'Безопасность',
+    },
+    [language.ELanguageKey.SETTINGS]: {
+      EN: 'Settings',
+      RU: 'Настройки',
+    },
+    [language.ELanguageKey.GENERAL]: {
+      EN: 'General',
+      RU: 'Общее',
+    },
   }
   private currentLanguage: language.ELanguageType = ELanguageType.EN
   private readonly rootStore: typeof services.store;

@@ -1,6 +1,9 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import styles from './ModalSettingUser.module.scss'
 import ModalWindow from '../../../0_Basic/ModalWindow/ModalWindow';
+import {ModalSettingUserList} from "./ModalSettingUser.list";
+import UnitPanel from "../../../2_Molecules/UnitPanel/UnitPanel";
+import {ReactComponent as IconSetting} from "./../../../../Assets/icon/icon_setting.svg";
 
 interface IModalSettingUser {
   extClass?: string
@@ -8,6 +11,7 @@ interface IModalSettingUser {
   onClose: () => void
 }
 
+const settingList = ModalSettingUserList
 
 /**
  * Модальное окно настройки для текущего пользователя
@@ -18,6 +22,9 @@ interface IModalSettingUser {
 const ModalSettingUser: FC<IModalSettingUser> = (props) => {
   const {extClass = '', isShow, onClose} = props
 
+  const [currentSetting, setCurrentSetting] = useState(settingList[0])
+
+
   return (
     <ModalWindow click={onClose} isShow={isShow} log={{element: ModalSettingUser.name}}>
       <div className={`${styles.wrapper} ${extClass}`}>
@@ -27,21 +34,17 @@ const ModalSettingUser: FC<IModalSettingUser> = (props) => {
         </div>
         <div className={styles.body}>
           <div className={styles.category}>
-            <div>Объщее</div>
-            <div>Настройки</div>
-            <div>Безопасность</div>
-            <div>Выход</div>
+            {settingList.map(setting => (
+              <UnitPanel
+                click={() => setCurrentSetting(setting)}
+                image={<IconSetting/>}
+                topText={setting.title}
+                middleText={setting.title}
+              />
+            ))}
           </div>
           <div>
-            <div>Настройки</div>
-            <div>
-              <div>Смена темы</div>
-              <div>On Off</div>
-            </div>
-            <div>
-              <div>Смена языка</div>
-              <div>On Off</div>
-            </div>
+            {currentSetting.content}
           </div>
         </div>
       </div>
