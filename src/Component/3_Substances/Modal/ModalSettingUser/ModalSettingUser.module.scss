@@ -1,23 +1,37 @@
-@use '/src/Styles/Mixins' as *;
+@use '/src/Styles/Variables' as *;
 
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
   .head {
-    display: flex;
-    justify-content: space-between;
   }
 
   .body {
     display: flex;
-    gap: 10px;
+
+    .unitPanel {
+      gap: 2px;
+
+      svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
 
     .category {
-      width: 130px;
-      padding-right: 10px;
-      border-right: 1px solid red;
-
+      width: 200px;
+      border-right: 1px solid rgb(var(--color__black7));
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      padding-right: $padding_modal_window;
+      margin-right: $padding_modal_window;
+      gap: 10px;
+    }
+
+    .content {
+      width: 400px;
     }
   }
 }

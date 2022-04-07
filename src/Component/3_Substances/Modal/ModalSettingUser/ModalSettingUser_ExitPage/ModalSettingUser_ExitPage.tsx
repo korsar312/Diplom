@@ -13,7 +13,7 @@ const ModalSettingUser_ExitPage: FC<IModalSettingUser_ExitPage> = (props) => {
   const {extClass = '',} = props
 
   return (
-    <div></div>
+    <div>Exit Page</div>
 
   );
 };

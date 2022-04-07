@@ -7,31 +7,37 @@ import Avatar from "../../1_Atoms/Avatar/Avatar";
 import Text from "../../0_Basic/Text/Text";
 import {language} from "../../../Services/Stores/Language/Language.interface";
 
-interface IUnitPanel { //==================================== СДЕЛАТЬ КАРТИНКИ ДЛЯ ВСЕГО!!
+interface IUnitPanel {
   click?: () => void
   image?: string | JSX.Element
   topText: string | language.ELanguageKey
   middleText?: string | language.ELanguageKey
   bottomText?: string | language.ELanguageKey
+  extClass?: string
 }
-
 
 /**
  * Панель чего-либо
- * @param props.click - функция onClick по панели
- * @param props.person - объект с данными человека
+ * @param props.click - функция onClick
+ * @param props.image - иконка слева
+ * @param props.topText - текст сверху
+ * @param props.middleText - текст по середине
+ * @param props.bottomText - текст снизу
+ * @param props.extClass - дополнительный CSS класс
  */
 const UnitPanel: FC<IUnitPanel> = (props) => {
-  const {click, image, topText, middleText, bottomText} = props
+  const {click, image, topText, middleText, bottomText, extClass = ''} = props
 
   return (
-    <div className={styles.wrapper}>
-      {typeof image === 'string' ? (
-        <Avatar>
-          {image ? <img className={styles.image} src={image} alt='Аватар'/> : <IconAvatar/>}
-        </Avatar>
-      ) : image
-      }
+    <div className={`${styles.wrapper} ${extClass}`}>
+      <Avatar>
+        {image ?
+          (typeof image === 'string' ?
+            <img className={styles.image} src={image} alt='Аватар'/> :
+            image) :
+          <IconAvatar/>}
+      </Avatar>
+
 
       <div className={styles.infoWrapper}>
 

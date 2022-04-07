@@ -13,7 +13,7 @@ const ModalSettingUser_GeneralPage: FC<IModalSettingUser_GeneralPage> = (props) 
   const {extClass = '',} = props
 
   return (
-    <div></div>
+    <div>General Page</div>
 
   );
 };

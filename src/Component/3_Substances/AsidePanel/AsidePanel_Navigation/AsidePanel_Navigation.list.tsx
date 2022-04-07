@@ -22,7 +22,7 @@ type TBasePropNavigateList = {
   children?: TNavigateList[];
 }
 
-export type TNavigateList = OneOfTwo<TBasePropNavigateList, 'children' | 'click'>
+type TNavigateList = OneOfTwo<TBasePropNavigateList, 'children' | 'click'>
 
 export const navLink: TNavigateList[] = [
   {

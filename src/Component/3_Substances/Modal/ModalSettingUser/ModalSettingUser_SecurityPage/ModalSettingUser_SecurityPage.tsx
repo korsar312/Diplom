@@ -13,7 +13,7 @@ const ModalSettingUser_SecurityPage: FC<IModalSettingUser_SecurityPage> = (props
   const {extClass = '',} = props
 
   return (
-    <div></div>
+    <div>Security Page</div>
 
   );
 };

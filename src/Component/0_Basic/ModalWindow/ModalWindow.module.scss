@@ -8,15 +8,16 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(var(--color__black10), 0.5);
+  background: rgba(var(--color__black10), 0.6);
   transition: $transition;
   @include mixin--Center;
 
   .content {
+    transition: $transition;
     background: rgb(var(--color__black10));
-    padding: 20px 25px;
+    padding: $padding_modal_window;
     border-radius: $border-radius * 2;
-    border: 2px ridge rgb(var(--color__black2));
+    border: 2px ridge rgb(var(--color__black5));
   }
 }
 
@@ -28,4 +29,8 @@
 .windowClose {
   opacity: 0;
   visibility: hidden;
+
+  .content {
+    transform: scale(0.3)
+  }
 }

@@ -141,6 +141,23 @@ export class LanguageController {
       EN: 'General',
       RU: 'Общее',
     },
+    [language.ELanguageKey.BASIC_SETTINGS]: {
+      EN: 'Basic setting',
+      RU: 'Основные настройки',
+    }, [language.ELanguageKey.ADVANCED_SETTINGS]: {
+      EN: 'Advanced setting',
+      RU: 'Расширенный настройки',
+    }, [language.ELanguageKey.ACCOUNT_SECURITY_SETTINGS]: {
+      EN: 'Account security setting',
+      RU: 'Настройка безопасности учетной записи',
+    }, [language.ELanguageKey.LOGOUT_OPTIONS]: {
+      EN: 'Logout options',
+      RU: 'Варианты выхода из учетной записи',
+    },
+    [language.ELanguageKey.USER_SETTINGS]: {
+      EN: 'User settings',
+      RU: 'Настройки пользователя',
+    },
   }
   private currentLanguage: language.ELanguageType = ELanguageType.EN
   private readonly rootStore: typeof services.store;

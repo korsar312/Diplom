@@ -26,13 +26,12 @@ export namespace product {
     DOLLAR = 'DOLLAR'
   }
 
-  type TCurrencyIcon = {
-    [key in TCurrency]: string
-  }
-
   export const OCurrencyIcon: TCurrencyIcon = {
     DOLLAR: '$',
     RUBLE: '₽'
   }
 
+  type TCurrencyIcon = {
+    [key in TCurrency]: string
+  }
 }

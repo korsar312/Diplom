@@ -3,7 +3,9 @@ import styles from './ModalSettingUser.module.scss'
 import ModalWindow from '../../../0_Basic/ModalWindow/ModalWindow';
 import {ModalSettingUserList} from "./ModalSettingUser.list";
 import UnitPanel from "../../../2_Molecules/UnitPanel/UnitPanel";
-import {ReactComponent as IconSetting} from "./../../../../Assets/icon/icon_setting.svg";
+import ButtonStandard from "../../../1_Atoms/ButtonStandard/ButtonStandard";
+import Text from "../../../0_Basic/Text/Text";
+import {language} from "../../../../Services/Stores/Language/Language.interface";
 
 interface IModalSettingUser {
   extClass?: string
@@ -28,22 +30,31 @@ const ModalSettingUser: FC<IModalSettingUser> = (props) => {
   return (
     <ModalWindow click={onClose} isShow={isShow} log={{element: ModalSettingUser.name}}>
       <div className={`${styles.wrapper} ${extClass}`}>
+
         <div className={styles.head}>
-          <div>титул</div>
-          <div>кнопки</div>
+          <Text text={language.ELanguageKey.USER_SETTINGS} userStyle={'fat_big'} userColor={'grey'}/>
         </div>
+
         <div className={styles.body}>
           <div className={styles.category}>
             {settingList.map(setting => (
-              <UnitPanel
+              <ButtonStandard
+                key={setting.title}
                 click={() => setCurrentSetting(setting)}
-                image={<IconSetting/>}
-                topText={setting.title}
-                middleText={setting.title}
-              />
+                isNoPadding={true}
+                color={currentSetting === setting ? 'grey' : undefined}
+                log={{element: ModalSettingUser.name, comment: `Кнопка ${setting.title}`}}
+              >
+                <UnitPanel
+                  image={setting.image}
+                  topText={setting.title}
+                  middleText={setting.description}
+                  extClass={styles.unitPanel}
+                />
+              </ButtonStandard>
             ))}
           </div>
-          <div>
+          <div className={styles.content}>
             {currentSetting.content}
           </div>
         </div>

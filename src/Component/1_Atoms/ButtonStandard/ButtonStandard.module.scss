@@ -16,15 +16,20 @@
 
     svg {
       transition: $transition;
-      fill:  rgb(var(--color__black1))
+      fill: rgb(var(--color__black1))
     }
+  }
+
+  .content {
+    width: 100%;
   }
 
   &:disabled {
     opacity: 0.4;
     cursor: auto;
   }
-  .text{
+
+  .text {
     flex: 1
   }
 }
@@ -36,17 +41,22 @@
   }
 
   &blue {
-    background:  rgb(var(--color__blue1));
+    background: rgb(var(--color__blue1));
   }
 
   &skyBlue {
-    background:  rgb(var(--color__skyblue1));
+    background: rgb(var(--color__skyblue1));
+  }
+
+  &grey {
+    background: rgb(var(--color__black7));
   }
 
   &black {
-    background:  rgb(var(--color__black1));
-    span{
-      color:  rgb(var(--color__black10));
+    background: rgb(var(--color__black1));
+
+    span {
+      color: rgb(var(--color__black10));
     }
   }
 }

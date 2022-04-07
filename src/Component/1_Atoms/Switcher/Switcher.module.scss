@@ -1,0 +1,46 @@
+@use '/src/Styles/Variables' as *;
+
+$size_circle: 15px;
+$padding_row: 4px;
+$switch_width: 45px;
+
+.wrapper {
+  width: $switch_width;
+  height: $size_circle;
+  padding: $padding_row 0;
+  position: relative;
+
+  border-radius: $size_circle;
+  transition: $transition;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    transition: $transition;
+
+    width: $size_circle;
+    height: $size_circle;
+    border-radius: 50%;
+    background: rgb(var(--color__black8));
+  }
+}
+
+.switchOn {
+  background: rgb(var(--color__green1));
+
+  &::after {
+    content: '';
+    left: $switch_width - $padding_row - $size_circle;
+  }
+}
+
+.switchOff {
+  background: rgb(var(--color__black5));
+
+  &::after {
+    content: '';
+    left: $padding_row;
+  }
+}
+

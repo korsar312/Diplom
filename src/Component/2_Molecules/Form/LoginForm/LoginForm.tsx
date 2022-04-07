@@ -25,7 +25,7 @@ function validate(val: TInputValue) {
 }
 
 /**
- * Инпут поиска
+ * Логин форма
  * @param props.extClass - дополнительный CSS класс
  * @param props.successfulLogin - событие при успешном входе
  * @param props.defaultValue - значения формы по умолчанию

@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import styles from "./AsidePanel_Navigation.module.scss";
 import ButtonStandard from "../../../1_Atoms/ButtonStandard/ButtonStandard";
 import DropMenu from "../../../2_Molecules/DropMenu/DropMenu";
-import {navLink, TNavigateList} from "./AsidePanel_Navigation.list";
+import {navLink} from "./AsidePanel_Navigation.list";
 
 const navForManager = navLink
 
@@ -11,7 +11,7 @@ const navForManager = navLink
  */
 const AsidePanel_Navigation: FC = () => {
 
-  function recursRenderButton(navObj: TNavigateList): JSX.Element {
+  function recursRenderButton(navObj: typeof navLink[number]): JSX.Element {
     if (navObj.children) {
       return <React.Fragment key={navObj.id}>
         <DropMenu

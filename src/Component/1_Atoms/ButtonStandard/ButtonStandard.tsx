@@ -8,13 +8,14 @@ import services from "../../../Services/Services";
 interface IButtonStandard {
   click: () => void
   title?: language.ELanguageKey
-  color?: "red" | "black" | "blue" | "skyBlue"
+  color?: TButtonColor
   textStyle?: TTextStyle
   extClass?: string
   iconLeft?: TIcon
   iconRight?: TIcon
   isNoPadding?: boolean
   isDisabled?: boolean
+  children?: JSX.Element
   log?: rest.TlogAction
 }
 
@@ -22,6 +23,8 @@ type TIcon = {
   icon: JSX.Element | undefined
   extClass?: string
 }
+
+type TButtonColor = "red" | "black" | "blue" | "skyBlue" | 'grey'
 
 /**
  * Основная кнопка
@@ -34,6 +37,7 @@ type TIcon = {
  * @param props.iconRight - иконка для правой стороны
  * @param props.isNoPadding - убрать внутренний отступ
  * @param props.disabled - неактивность кнопки
+ * @param props.children - jsx контент кнопки
  * @param props.log - логирование
  */
 const ButtonStandard: FC<IButtonStandard> = (props) => {
@@ -47,6 +51,7 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
     iconRight,
     isNoPadding,
     isDisabled,
+    children,
     log
   } = props
 
@@ -70,7 +75,8 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
       className={`
         ${styles.wrapper} 
         ${color ? styles[`color_${color}`] : ''} 
-        ${extClass} ${isNoPadding ? styles.noPadding : ''}
+        ${extClass} 
+        ${isNoPadding ? styles.noPadding : ''}
       `}
     >
       {iconLeft?.icon && <span className={iconLeft.extClass || ''}>{iconLeft.icon}</span>}
@@ -80,6 +86,7 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
           text={title}
       />}
       {iconRight?.icon && <span className={iconRight.extClass || ''}>{iconRight.icon}</span>}
+      {children && <div className={styles.content}>{children}</div>}
     </button>
   );
 };
