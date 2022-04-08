@@ -20,6 +20,9 @@ const AsidePanelNavigation: FC<IAsidePanelNavigation> = (props) => {
   function recursFilter(obj: typeof navigate): typeof navigate[] {
 
     return obj.reduce((acc, cur)=>{
+      if(cur.children){//использовать SPLISE
+
+      }
       // @ts-ignore
       cur.name.toLowerCase().includes(filter) && acc.push(cur)
       return acc
