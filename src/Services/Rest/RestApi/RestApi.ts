@@ -73,12 +73,12 @@ export class RestApi {
         callback?.(false, error)
       })
       .then((json) => {
-        const productsToSell: product.TProduct[] = [
-          {
+
+        const productsToSell: product.TProductHashMap = {
+          '321': {
             name: 'Оспамокс',
             analogue: ['123'],
             conventionalUnit: 'Упаковка',
-            id: '321',
             company: [],
             industry: 'Мануфактурия',
             price: [
@@ -93,11 +93,10 @@ export class RestApi {
             ],
             property: [{sad: 'asd'}]
           },
-          {
+          '123': {
             name: 'Амоксил',
             analogue: ['321'],
             conventionalUnit: 'Упаковка',
-            id: '123',
             company: [],
             industry: 'Мануфактурия',
             price: [
@@ -111,7 +110,8 @@ export class RestApi {
               },
             ],
             property: [{sad: 'asd'}]
-          }]
+          }
+        }
 
         callback?.(true, '', productsToSell)
       })

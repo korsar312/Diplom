@@ -1,17 +1,33 @@
 import React, {FC} from 'react';
-import styles from "./AsidePanel_Navigation.module.scss";
+import styles from "./AsidePanelNavigation.module.scss";
 import ButtonStandard from "../../../1_Atoms/ButtonStandard/ButtonStandard";
 import DropMenu from "../../../2_Molecules/DropMenu/DropMenu";
-import {navLink} from "./AsidePanel_Navigation.list";
+import {navLink} from "./AsidePanelNavigation.list";
 
-const navForManager = navLink
+interface IAsidePanelNavigation {
+  filter?: string
+}
 
 /**
  * Навигация для боковой панели
+ * @param props.navigate - объект навигации
  */
-const AsidePanel_Navigation: FC = () => {
+const AsidePanelNavigation: FC<IAsidePanelNavigation> = (props) => {
+  const {filter = ''} = props
 
-  function recursRenderButton(navObj: typeof navLink[number]): JSX.Element {
+  const navigate = filter ? navLink : navLink
+
+  function recursFilter(obj: typeof navigate): typeof navigate[] {
+
+    return obj.reduce((acc, cur)=>{
+      // @ts-ignore
+      cur.name.toLowerCase().includes(filter) && acc.push(cur)
+      return acc
+    },[])
+  }
+
+
+    function recursRenderButton(navObj: typeof navigate[number]): JSX.Element {
     if (navObj.children) {
       return <React.Fragment key={navObj.id}>
         <DropMenu
@@ -29,7 +45,7 @@ const AsidePanel_Navigation: FC = () => {
           textStyle={"light_small"}
           title={navObj.name}
           click={navObj.click}
-          log={{element: AsidePanel_Navigation.name}}
+          log={{element: AsidePanelNavigation.name}}
           iconLeft={{icon: navObj.leftImg || undefined}}
         />
       </React.Fragment>
@@ -38,9 +54,9 @@ const AsidePanel_Navigation: FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      {navForManager.map(el => recursRenderButton(el))}
+      {navigate.map(el => recursRenderButton(el))}
     </div>
   );
 };
 
-export default AsidePanel_Navigation;
+export default AsidePanelNavigation;

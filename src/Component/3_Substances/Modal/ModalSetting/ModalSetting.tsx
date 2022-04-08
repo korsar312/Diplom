@@ -1,38 +1,45 @@
 import React, {FC, useState} from 'react';
-import styles from './ModalSettingUser.module.scss'
+import styles from './ModalSetting.module.scss'
 import ModalWindow from '../../../0_Basic/ModalWindow/ModalWindow';
-import {ModalSettingUserList} from "./ModalSettingUser.list";
 import UnitPanel from "../../../2_Molecules/UnitPanel/UnitPanel";
 import ButtonStandard from "../../../1_Atoms/ButtonStandard/ButtonStandard";
 import Text from "../../../0_Basic/Text/Text";
 import {language} from "../../../../Services/Stores/Language/Language.interface";
 
-interface IModalSettingUser {
+interface IModalSetting {
   extClass?: string
   isShow: boolean
-  onClose: () => void
+  onClose?: () => void
+  settingList: TModalSetting[]
+  title: language.ELanguageKey
 }
 
-const settingList = ModalSettingUserList
+type TModalSetting = {
+  title: language.ELanguageKey
+  image: JSX.Element
+  description: language.ELanguageKey
+  content: JSX.Element
+}
 
 /**
- * Модальное окно настройки для текущего пользователя
+ * Модальное окно настройки
  * @param props.extClass - дополнительный CSS класс
  * @param props.isShow - показ модального окна
  * @param props.onClose - функция для закрытия окна
+ * @param props.settingList - объект для рендера
+ * @param props.title - имя окна настроек
  */
-const ModalSettingUser: FC<IModalSettingUser> = (props) => {
-  const {extClass = '', isShow, onClose} = props
+const ModalSetting: FC<IModalSetting> = (props) => {
+  const {extClass = '', isShow, onClose, settingList, title} = props
 
   const [currentSetting, setCurrentSetting] = useState(settingList[0])
 
-
   return (
-    <ModalWindow click={onClose} isShow={isShow} log={{element: ModalSettingUser.name}}>
+    <ModalWindow click={onClose} isShow={isShow} log={{element: ModalSetting.name}}>
       <div className={`${styles.wrapper} ${extClass}`}>
 
         <div className={styles.head}>
-          <Text text={language.ELanguageKey.USER_SETTINGS} userStyle={'fat_big'} userColor={'grey'}/>
+          <Text text={title} userStyle={'fat_big'} userColor={'grey'}/>
         </div>
 
         <div className={styles.body}>
@@ -43,7 +50,7 @@ const ModalSettingUser: FC<IModalSettingUser> = (props) => {
                 click={() => setCurrentSetting(setting)}
                 isNoPadding={true}
                 color={currentSetting === setting ? 'grey' : undefined}
-                log={{element: ModalSettingUser.name, comment: `Кнопка ${setting.title}`}}
+                log={{element: ModalSetting.name, comment: `Кнопка ${setting.title}`}}
               >
                 <UnitPanel
                   image={setting.image}
@@ -64,4 +71,4 @@ const ModalSettingUser: FC<IModalSettingUser> = (props) => {
   );
 };
 
-export default ModalSettingUser;
+export default ModalSetting;

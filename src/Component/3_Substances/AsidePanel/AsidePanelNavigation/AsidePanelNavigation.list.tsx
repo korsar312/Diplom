@@ -46,8 +46,8 @@ export const navLink: TNavigateList[] = [
   },
   {
     id: '2',
-    name: language.ELanguageKey.SUPPLIERS,
-    leftImg: <IconCompany/>,
+    name: language.ELanguageKey.PRODUCTS,
+    leftImg: <IconProduct/>,
     children: [
       {
         id: '2-1',
@@ -65,12 +65,12 @@ export const navLink: TNavigateList[] = [
   },
   {
     id: '3',
-    name: language.ELanguageKey.PRODUCTS,
-    leftImg: <IconProduct/>,
+    name: language.ELanguageKey.MY_COMPANY,
+    leftImg: <IconCompany/>,
     children: [
       {
         id: '3-1',
-        name: language.ELanguageKey.COMPANY_PRODUCTS,
+        name: language.ELanguageKey.PRODUCTS,
         leftImg: <IconSupplies/>,
         click: () => services.route.RouterGo(route.Name.ABOUT),
       },

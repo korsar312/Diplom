@@ -30,18 +30,19 @@ const UnitPanel: FC<IUnitPanel> = (props) => {
 
   return (
     <div className={`${styles.wrapper} ${extClass}`}>
-      <Avatar>
-        {image ?
-          (typeof image === 'string' ?
-            <img className={styles.image} src={image} alt='Аватар'/> :
-            image) :
-          <IconAvatar/>}
-      </Avatar>
-
+      <div className={styles.image}>
+        <Avatar>
+          {image ?
+            (typeof image === 'string' ?
+              <img src={image} alt='Аватар'/> :
+              image) :
+            <IconAvatar/>}
+        </Avatar>
+      </div>
 
       <div className={styles.infoWrapper}>
 
-        <div className={styles.topText}>
+        <div>
           <Text
             userStyle={"normal_small"}
             text={topText}
@@ -49,7 +50,7 @@ const UnitPanel: FC<IUnitPanel> = (props) => {
         </div>
 
         {middleText && (
-          <div className={styles.middleText}>
+          <div>
             <Text
               userStyle={"light_extraSmall"}
               userColor={"grey"}
@@ -59,7 +60,7 @@ const UnitPanel: FC<IUnitPanel> = (props) => {
         )}
 
         {bottomText && (
-          <div className={styles.bottomText}>
+          <div>
             <Text
               userStyle={"light_extraSmall"}
               userColor={"green"}

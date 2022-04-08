@@ -5,7 +5,7 @@ export class StoreRouter {
 
   /**
    * Устанавливает хук useNavigation в переменную
-   * @params history - выбранное предложение из списка
+   * @params history - сам хук
    */
   public setHistory(history: NavigateFunction) {
     this.navigation = history;
@@ -13,7 +13,6 @@ export class StoreRouter {
 
   /**
    * Получаем хук useNavigation из переменной
-   * @params history - выбранное предложение из списка
    */
   public getNavigation() {
     return this.navigation as NavigateFunction;

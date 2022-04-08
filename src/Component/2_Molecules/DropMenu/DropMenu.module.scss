@@ -5,6 +5,7 @@ $border_color: rgb(var(--color__black1));
 .wrapper {
   display: flex;
   flex-direction: column;
+  position: relative;
 
   .btn {
     justify-content: space-between;
@@ -17,6 +18,11 @@ $border_color: rgb(var(--color__black1));
   .motherWrapper {
     transition: $transition;
     padding-top: 10px;
+  }
+
+  .motherWrapperAbsolute {
+    position: absolute;
+    top: 35px
   }
 
   .isClose {
@@ -32,7 +38,7 @@ $border_color: rgb(var(--color__black1));
   }
 
   .motherPadding {
-    padding-left: 15px;
+    padding-left: 10px;
   }
 
   .arrow {

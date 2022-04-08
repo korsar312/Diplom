@@ -7,7 +7,7 @@ import services from "../../../Services/Services";
 
 interface IButtonStandard {
   click: () => void
-  title?: language.ELanguageKey
+  title?: language.ELanguageKey | string | number
   color?: TButtonColor
   textStyle?: TTextStyle
   extClass?: string
@@ -79,13 +79,13 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
         ${isNoPadding ? styles.noPadding : ''}
       `}
     >
-      {iconLeft?.icon && <span className={iconLeft.extClass || ''}>{iconLeft.icon}</span>}
+      {iconLeft?.icon && <span className={`${styles.icon} ${iconLeft.extClass || ''}`}>{iconLeft.icon}</span>}
       {title && <Text
           userStyle={textStyle}
           extClass={styles.text}
           text={title}
       />}
-      {iconRight?.icon && <span className={iconRight.extClass || ''}>{iconRight.icon}</span>}
+      {iconRight?.icon && <span className={`${styles.icon} ${iconRight.extClass || ''}`}>{iconRight.icon}</span>}
       {children && <div className={styles.content}>{children}</div>}
     </button>
   );

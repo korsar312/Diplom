@@ -4,7 +4,7 @@ import WidgetWrapper from "../../../1_Atoms/WidgetWrapper/WidgetWrapper";
 import {users} from "../../../../Services/Stores/Users/Users.interface";
 
 interface ICompanyWidget {
-  company: users.TCompany
+  company: users.TPersonHashMap
   extClass?: string
 }
 

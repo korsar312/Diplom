@@ -21,6 +21,7 @@
     }
 
     .category {
+      transition: $transition;
       width: 200px;
       border-right: 1px solid rgb(var(--color__black7));
       display: flex;
@@ -31,7 +32,7 @@
     }
 
     .content {
-      width: 400px;
+      width: 300px;
     }
   }
 }

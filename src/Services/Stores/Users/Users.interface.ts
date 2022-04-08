@@ -10,8 +10,11 @@ export namespace users {
     accessory: string
   }
 
-  export type TCompany = {
-    id: string
+  export type TPersonHashMap = {
+    [key in string]: TCompany
+  }
+
+  type TCompany = {
     name: string
     subtitle?: string
     industry: string[]  //не могу передать объект, так как это будет цикл (компания -> продукт -> компания -> ...)

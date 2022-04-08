@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import styles from './WidgetBody.module.scss'
-import {language} from "../../../Services/Stores/Language/Language.interface";
-import Text from "../../0_Basic/Text/Text";
+import {language} from "../../../../Services/Stores/Language/Language.interface";
+import Text from "../../../0_Basic/Text/Text";
 
 interface IWidgetBody {
   extClass?: string

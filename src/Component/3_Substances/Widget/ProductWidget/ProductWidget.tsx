@@ -3,9 +3,9 @@ import styles from './ProductWidget.module.scss'
 import WidgetWrapper from "../../../1_Atoms/WidgetWrapper/WidgetWrapper";
 import {language} from "../../../../Services/Stores/Language/Language.interface";
 import services from "../../../../Services/Services";
-import WidgetBody, {TUnitWidgetTable} from "../../../2_Molecules/WidgetBody/WidgetBody";
+import WidgetBody, {TUnitWidgetTable} from "../../../2_Molecules/Widget/WidgetBody/WidgetBody";
 import {PreloaderContext} from "../../../../App";
-import WidgetHead from "../../../2_Molecules/WidgetHead/WidgetHead";
+import WidgetHead from "../../../2_Molecules/Widget/WidgetHead/WidgetHead";
 import Text from "../../../0_Basic/Text/Text";
 import {observer} from "mobx-react";
 import {product} from "../../../../Services/Stores/Products/Products.interface";
@@ -44,18 +44,18 @@ const ProductWidget: FC<IProductWidget> = (props) => {
       language.ELanguageKey.PRICE,
       language.ELanguageKey.CONVENTIONAL_UNIT,
     ],
-    body: products?.map(el => ({
-      id: el.id,
+    body: Object.entries(products || {})?.map(el => ({
+      id: el[0],
       content: [
-        <Text key={el.id + el.name} text={el.name}/>,
+        <Text key={el[0] + el[1].name} text={el[1].name}/>,
 
-        <>{el.price.map(price => (
+        <>{el[1].price.map(price => (
           <div key={price.price + price.currency}>
             <Text text={`${price.price} ${product.OCurrencyIcon[price.currency]}`}/>
           </div>
         ))}</>,
 
-        <Text key={el.id + el.conventionalUnit} text={el.conventionalUnit}/>,
+        <Text key={el[0] + el[1].conventionalUnit} text={el[1].conventionalUnit}/>,
       ]
     })) || [{content: [<>Не найденно</>], id: ''}]
   }

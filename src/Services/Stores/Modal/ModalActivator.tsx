@@ -1,4 +1,4 @@
-import ModalSettingUser from "../../../Component/3_Substances/Modal/ModalSettingUser/ModalSettingUser";
+import ModalSettingUser from "../../../Component/3_Substances/Modal/ModalSetting/ModalSettingUser/ModalSettingUser";
 import services from "../../Services";
 import {observer} from "mobx-react";
 import {modals} from "./Modal.interface";
@@ -9,14 +9,17 @@ import {modals} from "./Modal.interface";
 const ModalActivator = () => {
   const showModal = services.store.modalStore
 
-  const showSettingUser = showModal.getShowModal(modals.EModal.userSetting)
+  const showSetting = (modal: modals.EModal) => showModal.getShowModal(modal)
 
-  function closeSettingUser() {
-    showModal.setShowModal(modals.EModal.userSetting, false)
+  function closeSettingUser(modal: modals.EModal) {
+    showModal.setShowModal(modal, false)
   }
 
   return <>
-    <ModalSettingUser isShow={showSettingUser} onClose={closeSettingUser}/>
+    <ModalSettingUser
+      isShow={showSetting(modals.EModal.userSetting)}
+      onClose={() => closeSettingUser(modals.EModal.userSetting)}
+    />
   </>;
 };
 

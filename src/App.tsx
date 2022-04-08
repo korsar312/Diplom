@@ -39,6 +39,7 @@ const App = () => {
       <Header/>
       <Suspense fallback={''}>
         <main>
+
           <Routes>
             {routePath.filter(route => !route.isPrivate || isAuthorized).map((
                 {name, element: Element, path, ...rest}) => (
@@ -51,6 +52,7 @@ const App = () => {
               )
             )}
           </Routes>
+
         </main>
       </Suspense>
     </div>

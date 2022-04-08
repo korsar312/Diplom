@@ -3,7 +3,7 @@ import services from "../../Services";
 import {product} from "./Products.interface";
 
 export class ProductsController {
-  private products: product.TProduct[] | null = null
+  private products: product.TProductHashMap | null = null
 
   private readonly rootStore: typeof services.store;
 
@@ -24,7 +24,7 @@ export class ProductsController {
    * Устанавливает продукты
    * @params person - продукты
    */
-  public set setProducts(product: product.TProduct[]) {
+  public set setProducts(product: product.TProductHashMap) {
     this.products = product
   }
 }

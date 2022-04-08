@@ -1,7 +1,10 @@
 export namespace product {
 
-  export type TProduct = {
-    id: string
+  export type TProductHashMap = {
+    [key in string]: TProduct
+  }
+
+  type TProduct = {
     name: string
     price: TPrice[]
     conventionalUnit: string | number

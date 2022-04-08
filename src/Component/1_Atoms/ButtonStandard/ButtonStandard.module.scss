@@ -11,6 +11,11 @@
   gap: 5px;
   transition: $transition;
 
+
+  .icon {
+    @include mixin--Center;
+  }
+
   span {
     transition: $transition;
 

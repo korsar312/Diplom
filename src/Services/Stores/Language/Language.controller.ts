@@ -158,6 +158,18 @@ export class LanguageController {
       EN: 'User settings',
       RU: 'Настройки пользователя',
     },
+    [language.ELanguageKey.ENABLE_LIGHT_THEME]: {
+      EN: 'Enable light theme',
+      RU: 'Включить светлую тему',
+    },
+    [language.ELanguageKey.CHANGE_LANGUAGE]: {
+      EN: 'Change language',
+      RU: 'Сменить язык',
+    },
+    [language.ELanguageKey.MY_COMPANY]: {
+      EN: 'My company',
+      RU: 'Моя компания',
+    },
   }
   private currentLanguage: language.ELanguageType = ELanguageType.EN
   private readonly rootStore: typeof services.store;

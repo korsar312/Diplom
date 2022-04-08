@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './LoginPage.module.scss'
 import {ReactComponent as IconLogo} from "../../Assets/icon/icon_logo.svg";
 import {observer} from "mobx-react";
-import LoginForm from "../../Component/2_Molecules/Form/LoginForm/LoginForm";
+import LoginForm from "../../Component/3_Substances/Form/LoginForm/LoginForm";
 import {language} from "../../Services/Stores/Language/Language.interface";
 import Text from "../../Component/0_Basic/Text/Text";
 

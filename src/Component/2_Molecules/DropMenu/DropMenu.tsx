@@ -5,11 +5,12 @@ import {ReactComponent as IconArrow} from "../../../Assets/icon/icon_arrow.svg";
 import {language} from "../../../Services/Stores/Language/Language.interface";
 
 interface iDropMenu {
-  title: language.ELanguageKey
+  title: language.ELanguageKey | string | number
   children: JSX.Element
   iconLeft?: JSX.Element
   extClass?: string
   isPaddingOn?: boolean
+  isAbsolute?: boolean
 }
 
 /**
@@ -19,9 +20,10 @@ interface iDropMenu {
  * @param props.iconLeft - иконка для левой стороны
  * @param props.extClass - дополнительный CSS класс
  * @param props.isPaddingOn - Нужен ли отступ
+ * @param props.isAbsolute - влияет ли дочерний элемени на css поток
  */
 const DropMenu: FC<iDropMenu> = (props) => {
-  const {title, children, iconLeft, extClass = '', isPaddingOn} = props
+  const {title, children, iconLeft, extClass = '', isPaddingOn, isAbsolute} = props
 
   const [isShowListBtn, setIsShowListBtn] = useState(false)
 
@@ -42,9 +44,10 @@ const DropMenu: FC<iDropMenu> = (props) => {
       />
       <div
         className={`
-        ${styles.motherWrapper} 
-        ${isShowListBtn ? styles.isOpen : styles.isClose}
-        ${isPaddingOn ? styles.motherPadding : ''}
+          ${styles.motherWrapper} 
+          ${isShowListBtn ? styles.isOpen : styles.isClose}
+          ${isPaddingOn ? styles.motherPadding : ''}
+          ${isAbsolute ? styles.motherWrapperAbsolute : ''}
         `}
       >
         {children}

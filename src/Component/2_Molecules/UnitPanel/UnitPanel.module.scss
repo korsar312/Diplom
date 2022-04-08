@@ -11,14 +11,17 @@
   display: flex;
   gap: 14px;
   text-align: left;
+  align-items: center;
+
+  .image {
+    @include mixin--Center
+  }
+
+  .infoWrapper {
+    flex: 1;
+  }
 }
 
-
-.infoWrapper {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: space-around;
-}
 
 .btn {
   @include mixin--Center;
