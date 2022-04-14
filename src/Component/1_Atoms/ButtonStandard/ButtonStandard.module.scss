@@ -39,6 +39,10 @@
   }
 }
 
+.btnHover:hover {
+  background: rgba(var(--color__black6), 0.4);
+}
+
 
 .color_ {
   &red {

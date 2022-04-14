@@ -4,7 +4,6 @@ import services from "../../Services";
 
 export class UsersController {
   private currentUser: users.TPerson | null = null
-  private company: users.TPersonHashMap | null = null
 
   private readonly rootStore: typeof services.store;
 
@@ -21,17 +20,31 @@ export class UsersController {
   }
 
   /**
-   * Возвращает true при входе пользователя (даже без логина)
+   * Возвращает true при входе пользователя или гостя
    */
   public get isEntered() {
     return Boolean(this.currentUser);
   }
 
   /**
+   * Возвращает true при входе пользователя
+   */
+  public get isAuthorized() {
+    return Boolean(this.currentUser?.id);
+  }
+
+  /**
+   * Возвращает id компании к которой принадлежит
+   */
+  public get getIdMyCompany() {
+    return this.currentUser?.accessory
+  }
+
+  /**
    * Устанавливает текущего пользователя
    * @params person - пользователь
    */
-  public set setCurrentUser(person: users.TPerson) {
+  public set setCurrentUser(person: users.TPerson | null) {
     this.currentUser = person
   }
 }

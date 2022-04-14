@@ -14,7 +14,7 @@ interface IModalSetting {
   title: language.ELanguageKey
 }
 
-type TModalSetting = {
+export type TModalSetting = {
   title: language.ELanguageKey
   image: JSX.Element
   description: language.ELanguageKey
@@ -50,6 +50,7 @@ const ModalSetting: FC<IModalSetting> = (props) => {
                 click={() => setCurrentSetting(setting)}
                 isNoPadding={true}
                 color={currentSetting === setting ? 'grey' : undefined}
+                isHover={true}
                 log={{element: ModalSetting.name, comment: `Кнопка ${setting.title}`}}
               >
                 <UnitPanel

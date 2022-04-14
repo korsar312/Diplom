@@ -53,17 +53,9 @@ export class LanguageController {
       EN: 'Chat with colleagues',
       RU: 'Чат c коллегами',
     },
-    [language.ELanguageKey.SUPPLIERS]: {
-      EN: 'Suppliers',
-      RU: 'Поставщики',
-    },
     [language.ELanguageKey.PRODUCTS_SUPPLIERS]: {
       EN: 'Product suppliers',
       RU: 'Продукция поставщиков',
-    },
-    [language.ELanguageKey.COMPANY_PRODUCTS]: {
-      EN: 'Company products',
-      RU: 'Продукция компании',
     },
     [language.ELanguageKey.CHAT_WITH_SUPPLIERS]: {
       EN: 'Chat with suppliers',
@@ -89,10 +81,6 @@ export class LanguageController {
       EN: 'Reports',
       RU: 'Отчеты',
     },
-    [language.ELanguageKey.ERROR]: {
-      EN: 'Error',
-      RU: 'Ошибка',
-    },
     [language.ELanguageKey.SEARCH]: {
       EN: 'Search',
       RU: 'Поиск',
@@ -108,22 +96,6 @@ export class LanguageController {
     [language.ELanguageKey.CONVENTIONAL_UNIT]: {
       EN: 'Conventional unit',
       RU: 'Условные единицы',
-    },
-    [language.ELanguageKey.STATUS]: {
-      EN: 'Status',
-      RU: 'Статус',
-    },
-    [language.ELanguageKey.ACTION]: {
-      EN: 'Action',
-      RU: 'Действие',
-    },
-    [language.ELanguageKey.TOTAL_FOUND]: {
-      EN: 'Total Found',
-      RU: 'Всего найдено',
-    },
-    [language.ELanguageKey.CURRENCY]: {
-      EN: 'Currency',
-      RU: 'Валюта',
     },
     [language.ELanguageKey.EXIT]: {
       EN: 'Exit',
@@ -169,6 +141,26 @@ export class LanguageController {
     [language.ELanguageKey.MY_COMPANY]: {
       EN: 'My company',
       RU: 'Моя компания',
+    },
+    [language.ELanguageKey.MANAGEMENT]: {
+      EN: 'Management',
+      RU: 'Управление',
+    },
+    [language.ELanguageKey.IMPORT]: {
+      EN: 'Import',
+      RU: 'Импорт',
+    },
+    [language.ELanguageKey.EXPORT]: {
+      EN: 'Export',
+      RU: 'Экспорт',
+    },
+    [language.ELanguageKey.COMPANIES]: {
+      EN: 'Companies',
+      RU: 'Компании',
+    },
+    [language.ELanguageKey.COMPANY]: {
+      EN: 'Company',
+      RU: 'Компания',
     },
   }
   private currentLanguage: language.ELanguageType = ELanguageType.EN

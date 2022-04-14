@@ -1,14 +1,14 @@
 import React, {FC} from 'react';
 import {language} from "../../../../../Services/Stores/Language/Language.interface";
 import ModalSettingUserGeneralPage from "./ModalSettingUserGeneralPage/ModalSettingUserGeneralPage";
-import ModalSettingUser_SettingPage from "./ModalSettingUserSettingPage/ModalSettingUserSettingPage";
+import ModalSettingUserSettingPage from "./ModalSettingUserSettingPage/ModalSettingUserSettingPage";
 import ModalSettingUserSecurityPage from "./ModalSettingUserSecurityPage/ModalSettingUserSecurityPage";
 import ModalSettingUserExitPage from "./ModalSettingUserExitPage/ModalSettingUserExitPage";
 import {ReactComponent as IconLogout} from "../../../../../Assets/icon/icon_logout.svg";
 import {ReactComponent as IconSecurity} from "../../../../../Assets/icon/icon_security.svg";
 import {ReactComponent as IconTune} from "../../../../../Assets/icon/icon_tune.svg";
 import {ReactComponent as IconHome} from "../../../../../Assets/icon/icon_home.svg";
-import ModalSetting from "../ModalSetting";
+import ModalSetting, {TModalSetting} from "../ModalSetting";
 
 interface IModalSettingUser {
   extClass?: string
@@ -16,7 +16,7 @@ interface IModalSettingUser {
   onClose: () => void
 }
 
-const ModalSettingUserList = [
+const ModalSettingUserList: TModalSetting[] = [
   {
     title: language.ELanguageKey.GENERAL,
     image: <IconHome/>,
@@ -27,7 +27,7 @@ const ModalSettingUserList = [
     title: language.ELanguageKey.SETTINGS,
     image: <IconTune/>,
     description: language.ELanguageKey.ADVANCED_SETTINGS,
-    content: <ModalSettingUser_SettingPage/>
+    content: <ModalSettingUserSettingPage/>
   },
   {
     title: language.ELanguageKey.SECURITY,

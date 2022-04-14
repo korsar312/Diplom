@@ -1,10 +1,12 @@
 import React, {FC} from 'react';
 import styles from './CompanyWidget.module.scss'
 import WidgetWrapper from "../../../1_Atoms/WidgetWrapper/WidgetWrapper";
-import {users} from "../../../../Services/Stores/Users/Users.interface";
+import WidgetHead from "../../../2_Molecules/Widget/WidgetHead/WidgetHead";
+import {language} from "../../../../Services/Stores/Language/Language.interface";
+import {companies} from "../../../../Services/Stores/Companies/Companies.interface";
 
 interface ICompanyWidget {
-  company: users.TPersonHashMap
+  company: companies.TCompaniesHashMap
   extClass?: string
 }
 
@@ -15,27 +17,34 @@ interface ICompanyWidget {
  */
 const CompanyWidget: FC<ICompanyWidget> = (props) => {
   const {company, extClass = ''} = props
+
+  // const renderBody: TUnitWidgetTable = {
+  //   head: [
+  //     language.ELanguageKey.COMPANY,
+  //     language.ELanguageKey.PRICE,
+  //     language.ELanguageKey.CONVENTIONAL_UNIT,
+  //   ],
+  //   body: Object.entries(products || {})?.map(el => ({
+  //     id: el[0],
+  //     content: [
+  //       <Text key={el[0] + el[1].name} text={el[1].name}/>,
+  //
+  //       <>{el[1].price.map(price => (
+  //         <div key={price.price + price.currency}>
+  //           <Text text={`${price.price} ${product.OCurrencyIcon[price.currency]}`}/>
+  //         </div>
+  //       ))}</>,
+  //
+  //       <Text key={el[0] + el[1].conventionalUnit} text={el[1].conventionalUnit}/>,
+  //     ]
+  //   }))
+  // }
+
   return (
     <WidgetWrapper>
-      <div className={styles.wrapper}>
-        <div className={styles.header}>
-          <div>
-            <div>титул</div>
-            <div>субтитул</div>
-          </div>
-          <div>
-            фильтр поиск и тд
-          </div>
-        </div>
-
-        <table className={styles.content}>
-          <thead className={styles.headTable}>
-
-          </thead>
-          <tbody className={styles.bodyTable}>
-
-          </tbody>
-        </table>
+      <div className={`${styles.wrapper} ${extClass}`}>
+        <WidgetHead title={language.ELanguageKey.PRODUCTS}/>
+        {/*<WidgetBody table={}/>*/}
       </div>
 
     </WidgetWrapper>

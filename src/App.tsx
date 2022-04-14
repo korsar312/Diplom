@@ -23,9 +23,7 @@ const App = () => {
 
   const theme = services.store.settingStore.isLightTheme
   const isEntered = services.store.usersStore.isEntered
-
-  //TODO поменять на с isEntered на isAuthorized
-  const isAuthorized = services.store.usersStore.isEntered
+  const isAuthorized = services.store.usersStore.isAuthorized
 
   const valuePreloaderContext: TPreloaderContext = {
     setIsShow: setIsShopPreloader,

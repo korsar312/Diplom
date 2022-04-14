@@ -1,6 +1,8 @@
 @use '/src/Styles/Mixins' as *;
 
 .wrapper {
-
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 

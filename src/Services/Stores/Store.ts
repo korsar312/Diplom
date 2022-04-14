@@ -4,6 +4,7 @@ import {UsersController} from "./Users/Users.controller";
 import {LanguageController} from "./Language/Language.controller";
 import {ProductsController} from "./Products/Products.controller";
 import {ModalsController} from "./Modal/Modal.controller";
+import {CompaniesController} from "./Companies/Companies.controller";
 
 export class RootStore {
   public routeStore: StoreRouter;
@@ -12,7 +13,7 @@ export class RootStore {
   public productsStore: ProductsController;
   public languageStore: LanguageController;
   public modalStore: ModalsController;
-
+  public companyStore: CompaniesController
 
   constructor() {
     this.routeStore = new StoreRouter();
@@ -21,6 +22,6 @@ export class RootStore {
     this.productsStore = new ProductsController(this);
     this.languageStore = new LanguageController(this);
     this.modalStore = new ModalsController(this);
-
+    this.companyStore = new CompaniesController(this)
   }
 }

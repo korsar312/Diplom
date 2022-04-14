@@ -17,6 +17,7 @@ interface IButtonStandard {
   isDisabled?: boolean
   children?: JSX.Element
   log?: rest.TlogAction
+  isHover?: boolean
 }
 
 type TIcon = {
@@ -39,6 +40,7 @@ type TButtonColor = "red" | "black" | "blue" | "skyBlue" | 'grey'
  * @param props.disabled - неактивность кнопки
  * @param props.children - jsx контент кнопки
  * @param props.log - логирование
+ * @param props.isHover - выделение при наведении
  */
 const ButtonStandard: FC<IButtonStandard> = (props) => {
   const {
@@ -52,7 +54,8 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
     isNoPadding,
     isDisabled,
     children,
-    log
+    log,
+    isHover,
   } = props
 
   function clickHandler() {
@@ -74,6 +77,7 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
       onClick={clickHandler}
       className={`
         ${styles.wrapper} 
+        ${isHover ? styles.btnHover : ''}
         ${color ? styles[`color_${color}`] : ''} 
         ${extClass} 
         ${isNoPadding ? styles.noPadding : ''}
