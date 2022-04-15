@@ -7,6 +7,7 @@ import AsidePanelNavigation from './AsidePanelNavigation/AsidePanelNavigation';
 import services from '../../../Services/Services';
 import { modals } from '../../../Services/Stores/Modal/Modal.interface';
 import { language } from '../../../Services/Stores/Language/Language.interface';
+import Line from '../../1_Atoms/Line/Line';
 
 interface IAsidePanel {
 	extClass?: string;
@@ -40,7 +41,7 @@ const AsidePanel: FC<IAsidePanel> = (props) => {
 				/>
 			</div>
 
-			<hr className={styles.line} />
+			<Line extClass={styles.line} />
 
 			<div className={styles.element}>
 				<UnitPanel
@@ -52,13 +53,13 @@ const AsidePanel: FC<IAsidePanel> = (props) => {
 				/>
 			</div>
 
-			<hr className={styles.line} />
+			<Line extClass={styles.line} />
 
 			<div className={styles.element}>
 				<SearchInput extClass={styles.search} callback={(value) => setFilterLink(value)} />
 			</div>
 
-			<hr className={styles.line} />
+			<Line extClass={styles.line} />
 
 			<nav className={styles.elementHalfPadding}>
 				<AsidePanelNavigation filter={filterLink} />
