@@ -1,11 +1,11 @@
-import React, {FC} from 'react';
-import styles from './Preloader.module.scss'
-import ModalWindow from "../../0_Basic/ModalWindow/ModalWindow";
+import React, { FC } from 'react';
+import styles from './Preloader.module.scss';
+import ModalWindow from '../../0_Basic/ModalWindow/ModalWindow';
 
 interface IPreloader {
-  isShow: boolean
-  extClass?: string
-  isFullScreen?: boolean
+	isShow: boolean;
+	extClass?: string;
+	isFullScreen?: boolean;
 }
 
 /**
@@ -15,23 +15,23 @@ interface IPreloader {
  * @param props.fullScreen - прелаодер на полный экран
  */
 const Preloader: FC<IPreloader> = (props) => {
-  const {isShow, extClass = '', isFullScreen} = props
+	const { isShow, extClass = '', isFullScreen } = props;
 
-  if (isFullScreen) {
-    return (
-      <div className={`${styles.wrapper} ${extClass}`}>
-        <div className={styles.preloader}/>
-      </div>
-    )
-  }
+	if (isFullScreen) {
+		return (
+			<div className={`${styles.wrapper} ${extClass}`}>
+				<div className={styles.preloader} />
+			</div>
+		);
+	}
 
-  return (
-    <ModalWindow isShow={isShow} dontUseStyleContent={true}>
-      <div className={`${styles.wrapper} ${extClass}`}>
-        <div className={styles.preloader}/>
-      </div>
-    </ModalWindow>
-  );
+	return (
+		<ModalWindow isShow={isShow} dontUseStyleContent={true}>
+			<div className={`${styles.wrapper} ${extClass}`}>
+				<div className={styles.preloader} />
+			</div>
+		</ModalWindow>
+	);
 };
 
 export default Preloader;

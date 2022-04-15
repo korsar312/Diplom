@@ -1,33 +1,30 @@
-@use '/src/Styles/Variables' as *;
-@use '/src/Styles/Mixins' as *;
+@use "/src/Styles/Variables" as *;
+@use "/src/Styles/Mixins" as *;
+
 
 .wrapper {
-  @include mixin--Center;
-  justify-content: space-between;
-
-  .logo {
-    margin: 0;
-    display: flex;
-    gap: 4px;
-    transition: $transition;
-  }
-
-  .logoWrapperBtn {
-    transition: $transition;
-    background: rgb(var(--color__asaid));
-    padding: 5px;
-    border-radius: 0 50% 50% 0;
-
-    button {
-      transition: $transition;
-    }
-  }
-
-  .logoWrapperBtnOn {
-    transform: translateX(50px);
-
-    button {
-      transform: scaleX(-1)
-    }
-  }
+	@include mixin--Center;
+	justify-content: space-between;
+	
+	.logo {
+		display: flex;
+		margin: 0;
+		transition: $transition;
+		gap: 4px;
+	}
+	
+	.logoWrapperBtn {
+		padding: 5px;
+		transition: $transition;
+		border-radius: 0 50% 50% 0;
+		background: rgb(var(--color__asaid));
+		
+		button { transition: $transition }
+	}
+	
+	.logoWrapperBtnOn {
+		transform: translateX(50px);
+		
+		button { transform: scaleX(-1) }
+	}
 }

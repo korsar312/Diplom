@@ -1,19 +1,18 @@
-@use '/src/Styles/Variables' as *;
+@use "/src/Styles/Variables" as *;
+
 
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  overflow: overlay;
-  height: calc(100vh - 260px);
-
-  .btn {
-    text-align: left;
-
-    button {
-      span {
-        text-align: left;
-      }
-    }
-  }
+	display: flex;
+	overflow: overlay;
+	flex-direction: column;
+	height: calc(100vh - 260px);
+	gap: 10px;
+	
+	.btn {
+		text-align: left;
+		
+		button {
+			span { text-align: left }
+		}
+	}
 }

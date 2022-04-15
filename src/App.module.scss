@@ -1,17 +1,18 @@
-@use '/src/Styles/Variables' as *;
+@use "/src/Styles/Variables" as *;
+
 
 .wrapper {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  background: rgb(var(--color__black7));
-  transition: $transition;
-
-  .content {
-    width: 100%;
-    height: 100%;
-    padding: 20px 40px;
-  }
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	display: flex;
+	background: rgb(var(--color__black7));
+	transition: $transition;
+	
+	.content {
+		width: 100%;
+		height: 100%;
+		padding: 20px 40px;
+	}
 }

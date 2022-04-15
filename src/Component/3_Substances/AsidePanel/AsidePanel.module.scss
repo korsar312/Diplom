@@ -1,48 +1,49 @@
-@use '/src/Styles/Variables' as *;
+@use "/src/Styles/Variables" as *;
+
 
 $panel_width: 265px;
 $panel_padding_vert: 15px;
 
 .wrapper {
-  background: rgb(var(--color__asaid));
-  padding: $panel_padding_vert 0;
-  transition: $transition;
-  min-width: $panel_width;
-  width: $panel_width;
-  position: relative;
-  top: 0;
-  bottom: 0;
-
-
-  .line {
-    border: 1px solid rgb(var(--color__black7));
-    margin: 15px 0;
-    transition: $transition;
-  }
-
-  .element {
-    padding: 0 24px;
-  }
-
-  .elementHalfPadding {
-    padding: 0 10px;
-  }
-
-  .search {
-    background: rgb(var(--color__black7));
-  }
+	position: relative;
+	top: 0;
+	bottom: 0;
+	width: $panel_width;
+	min-width: $panel_width;
+	padding: $panel_padding_vert 0;
+	transition: $transition;
+	background: rgb(var(--color__asaid));
+	
+	
+	.line {
+		margin: 15px 0;
+		transition: $transition;
+		border: 1px solid rgb(var(--color__black7));
+	}
+	
+	.element {
+		padding: 0 24px;
+	}
+	
+	.elementHalfPadding {
+		padding: 0 10px;
+	}
+	
+	.search {
+		background: rgb(var(--color__black7));
+	}
 }
 
 
 .show_ {
-  &on {
-    left: 0;
-  }
-
-  &off {
-    left: - $panel_width;
-    margin-right: - $panel_width;
-  }
+	&on {
+		left: 0;
+	}
+	
+	&off {
+		left: - $panel_width;
+		margin-right: - $panel_width;
+	}
 }
 
 

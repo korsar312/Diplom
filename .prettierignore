@@ -1,0 +1,10 @@
+node_modules/
+.yarn/
+.gitignore
+.env
+*.pnp
+*.svg
+*.css
+*.scss
+yarn-error.log
+

@@ -1,10 +1,11 @@
-@use '/src/Styles/Variables' as *;
+@use "/src/Styles/Variables" as *;
+
 
 $widget-radius: 12px;
 
 .wrapper {
-  border-radius: $widget-radius;
-  padding: 26px 29px;
-  background: rgb(var(--color__black10));
-  transition: $transition;
+	padding: 26px 29px;
+	transition: $transition;
+	border-radius: $widget-radius;
+	background: rgb(var(--color__black10));
 }

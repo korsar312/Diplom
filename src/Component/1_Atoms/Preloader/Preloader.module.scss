@@ -1,40 +1,38 @@
-@use '/src/Styles/Variables' as *;
-@use '/src/Styles/Mixins' as *;
+@use "/src/Styles/Variables" as *;
+@use "/src/Styles/Mixins" as *;
+
 
 .wrapper {
-  transition: $transition;
-
-  .preloader {
-    display: inline-block;
-    width: 80px;
-    height: 80px;
-    transition: $transition;
-
-    &:after {
-      transition: $transition;
-      content: " ";
-      display: block;
-      width: 64px;
-      height: 64px;
-      margin: 8px;
-      border-radius: 50%;
-      border: 6px solid rgb(var(--color__black1));
-      border-color: rgb(var(--color__black1)) transparent rgb(var(--color__black1)) transparent;
-      animation: lds-dual-ring 1.2s linear infinite;
-    }
-
-    @keyframes lds-dual-ring {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-  }
+	transition: $transition;
+	
+	.preloader {
+		display: inline-block;
+		width: 80px;
+		height: 80px;
+		transition: $transition;
+		
+		&:after {
+			display: block;
+			width: 64px;
+			height: 64px;
+			margin: 8px;
+			content: " ";
+			transition: $transition;
+			animation: lds-dual-ring 1.2s linear infinite;
+			border: 6px solid rgb(var(--color__black1));
+			border-color: rgb(var(--color__black1)) transparent rgb(var(--color__black1)) transparent;
+			border-radius: 50%;
+		}
+		
+		@keyframes lds-dual-ring {
+			0% { transform: rotate(0deg) }
+			100% { transform: rotate(360deg) }
+		}
+	}
 }
 
+
 .PreloaderVisibleOff {
-  visibility: hidden;
-  opacity: 0;
+	visibility: hidden;
+	opacity: 0;
 }

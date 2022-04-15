@@ -1,122 +1,124 @@
-import {rest} from "./RestApi.interface";
-import {users} from "../../Stores/Users/Users.interface";
-import services from "../../Services";
-import {product} from "../../Stores/Products/Products.interface";
+import { rest } from './RestApi.interface';
+import { users } from '../../Stores/Users/Users.interface';
+import services from '../../Services';
+import { product } from '../../Stores/Products/Products.interface';
 
 export class RestApi {
-  private URL: string = 'https://jsonplaceholder.typicode.com/'
+	private URL: string = 'https://jsonplaceholder.typicode.com/';
 
-  /**
-   * Логирование
-   * @param currentPage страница с которой вызван logAction (main, about ...)
-   * @param element элемент, что вызвал logAction (ButtonStandard ...)
-   * @param action действие, что вызвало logAction (нажатие, переход ...)
-   * @param data важные переменные для logAction (props, arguments ...)
-   * @param comment комментарии
-   */
-  public logAction({currentPage, element, action, data, comment}: rest.TlogAction) {
-    const log = Object.entries({currentPage, element, action, comment}).filter(el => el[1])
-    log.push(['time', services.util.getStringCurrentTime()])
+	/**
+	 * Логирование
+	 * @param currentPage страница с которой вызван logAction (main, about ...)
+	 * @param element элемент, что вызвал logAction (ButtonStandard ...)
+	 * @param action действие, что вызвало logAction (нажатие, переход ...)
+	 * @param data важные переменные для logAction (props, arguments ...)
+	 * @param comment комментарии
+	 */
+	public logAction({ currentPage, element, action, data, comment }: rest.TlogAction) {
+		const log = Object.entries({ currentPage, element, action, comment }).filter((el) => el[1]);
+		log.push(['time', services.util.getStringCurrentTime()]);
 
-    return console.log(log.map(el => `${el[0]}: ${(el[1])}`))
-  }
+		console.log(log.map((el) => `${el[0]}: ${el[1]}`));
+	}
 
-  /**
-   * Вход
-   * @param login имя
-   * @param password пароль
-   * @param callback функция, запускающаяся после ответа сервера
-   */
+	/**
+	 * Вход
+	 * @param login имя
+	 * @param password пароль
+	 * @param callback функция, запускающаяся после ответа сервера
+	 */
+	public login(
+		login: string,
+		password: string,
+		callback?: (isOk?: boolean, error?: any, data?: any) => void
+	) {
+		fetch(`${this.URL}posts`, {
+			method: 'POST',
+			body: JSON.stringify({
+				title: 'foo',
+				body: 'bar',
+				userId: 1,
+			}),
+			headers: {
+				'Content-type': 'application/json; charset=UTF-8',
+			},
+		})
+			.then((response) => response.json())
+			.catch((error) => {
+				callback?.(false, error);
+			})
+			.then((json) => {
+				if (login !== '11' || password !== '11') {
+					throw 'errorAuthentication';
+				}
 
-  public login(login: string, password: string, callback?: (isOk?: boolean, error?: any, data?: any) => void) {
-    fetch(`${this.URL}posts`, {
-      method: 'POST',
-      body: JSON.stringify({
-        title: 'foo',
-        body: 'bar',
-        userId: 1,
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-      .then((response) => response.json())
-      .catch((error) => {
-        callback?.(false, error)
-      })
-      .then((json) => {
-        if (login !== '11' || password !== '11') {
-          throw "errorAuthentication"
-        }
+				const persona: users.TPerson = {
+					id: '123213',
+					accessory: '34',
+					image: 'https://wl-adme.cf.tsp.li/resize/728x/jpg/828/489/b2756c5cdd8b6216f063d69448.jpg',
+					isOnline: true,
+					position: 'Ст. менеджер',
+					surname: 'Мразь',
+					name: 'Иван',
+				};
 
-        const persona: users.TPerson = {
-          id: '123213',
-          accessory: '34',
-          image: 'https://wl-adme.cf.tsp.li/resize/728x/jpg/828/489/b2756c5cdd8b6216f063d69448.jpg',
-          isOnline: true,
-          position: 'Ст. менеджер',
-          surname: 'Мразь',
-          name: 'Иван',
-        }
+				callback?.(true, '', persona);
+			})
+			.catch((error) => {
+				callback?.(false, error);
+			});
+	}
 
-        callback?.(true, '', persona)
-      })
-      .catch((error) => {
-        callback?.(false, error)
-      })
-  }
+	public getProduct(callback?: (isOk?: boolean, error?: any, data?: any) => void) {
+		fetch(`${this.URL}posts`)
+			.then((response) => response.json())
+			.catch((error) => {
+				callback?.(false, error);
+			})
+			.then((json) => {
+				const productsToSell: product.TProductHashMap = {
+					'321': {
+						name: 'Оспамокс',
+						analogue: ['123'],
+						conventionalUnit: 'Упаковка',
+						company: [],
+						industry: 'Мануфактурия',
+						price: [
+							{
+								price: 800,
+								currency: product.TCurrency.DOLLAR,
+							},
+							{
+								price: 60000,
+								currency: product.TCurrency.RUBLE,
+							},
+						],
+						property: [{ sad: 'asd' }],
+					},
+					'123': {
+						name: 'Амоксил',
+						analogue: ['321'],
+						conventionalUnit: 'Упаковка',
+						company: [],
+						industry: 'Мануфактурия',
+						price: [
+							{
+								price: 1000,
+								currency: product.TCurrency.DOLLAR,
+							},
+							{
+								price: 80000,
+								currency: product.TCurrency.RUBLE,
+							},
+						],
+						property: [{ sad: 'asd' }],
+					},
+				};
 
-  public getProduct(callback?: (isOk?: boolean, error?: any, data?: any) => void) {
-    fetch(`${this.URL}posts`)
-      .then((response) => response.json())
-      .catch((error) => {
-        callback?.(false, error)
-      })
-      .then((json) => {
-
-        const productsToSell: product.TProductHashMap = {
-          '321': {
-            name: 'Оспамокс',
-            analogue: ['123'],
-            conventionalUnit: 'Упаковка',
-            company: [],
-            industry: 'Мануфактурия',
-            price: [
-              {
-                price: 800,
-                currency: product.TCurrency.DOLLAR
-              },
-              {
-                price: 60000,
-                currency: product.TCurrency.RUBLE
-              },
-            ],
-            property: [{sad: 'asd'}]
-          },
-          '123': {
-            name: 'Амоксил',
-            analogue: ['321'],
-            conventionalUnit: 'Упаковка',
-            company: [],
-            industry: 'Мануфактурия',
-            price: [
-              {
-                price: 1000,
-                currency: product.TCurrency.DOLLAR
-              },
-              {
-                price: 80000,
-                currency: product.TCurrency.RUBLE
-              },
-            ],
-            property: [{sad: 'asd'}]
-          }
-        }
-
-        callback?.(true, '', productsToSell)
-      })
-      .catch((error) => {
-        callback?.(false, error)
-      })
-  }
+				callback?.(true, '', productsToSell);
+			})
+			.catch((error) => {
+				callback?.(false, error);
+			});
+	}
 }

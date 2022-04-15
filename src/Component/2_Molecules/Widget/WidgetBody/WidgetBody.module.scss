@@ -1,38 +1,37 @@
-@use '/src/Styles/Variables' as *;
+@use "/src/Styles/Variables" as *;
+
 
 $padding_header: 15px;
 
 .wrapper {
-  width: 100%;
-  transition: $transition;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-
-  .head {
-    transition: $transition;
-    background: rgb(var(--color__black7));
-    border-radius: $border-radius;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-
-    .sell:first-child {
-      margin-left: 10px;
-      margin-right: -10px;
-    }
-  }
-
-  .body {
-    .row {
-      display: flex;
-    }
-  }
-
-  .sell {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	transition: $transition;
+	gap: 20px;
+	
+	.head {
+		display: flex;
+		justify-content: space-between;
+		padding: 10px 0;
+		transition: $transition;
+		border-radius: $border-radius;
+		background: rgb(var(--color__black7));
+		
+		.sell:first-child {
+			margin-right: -10px;
+			margin-left: 10px;
+		}
+	}
+	
+	.body {
+		.row { display: flex }
+	}
+	
+	.sell {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		justify-content: flex-start;
+	}
 }

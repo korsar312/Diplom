@@ -6,135 +6,136 @@ $border-radius_btn: 6px;
 $padding_modal_window: 20px;
 
 .light-theme {
-  --color__black1: 24, 28, 50;
-  --color__black2: 63, 66, 84;
-  --color__black3: 94, 98, 120;
-  --color__black4: 126, 130, 153;
-  --color__black5: 161, 165, 183;
-  --color__black6: 181, 181, 195;
-  --color__black7: 228, 230, 239;
-  --color__black8: 239, 242, 245;
-  --color__black9: 245, 248, 250;
-  --color__black10: 255, 255, 255;
-
-  --color__red1: 217, 33, 78;
-  --color__red2: 241, 65, 108;
-  --color__red3: 255, 245, 248;
-
-  --color__lightGreen1: 71, 190, 125;
-  --color__lightGreen2: 80, 205, 137;
-  --color__lightGreen3: 232, 255, 243;
-
-  --color__skyblue1: 0, 149, 232;
-  --color__skyblue2: 0, 158, 246;
-  --color__skyblue3: 236, 248, 255;
-
-  --color__purple1: 80, 20, 208;
-  --color__purple2: 114, 57, 234;
-  --color__purple3: 248, 245, 255;
-
-  --color__yellow1: 241, 188, 0;
-  --color__yellow2: 255, 199, 0;
-  --color__yellow3: 255, 248, 221;
-
-  --color__orange1: 246, 155, 17;
-  --color__orange2: 255, 166, 33;
-  --color__orange3: 255, 245, 231;
-
-  --color__turquoise1: 0, 175, 175;
-  --color__turquoise2: 4, 200, 200;
-  --color__turquoise3: 220, 253, 253;
-
-  --color__blue1: 74, 125, 255;
-  --color__blue2: 54, 108, 249;
-  --color__blue3: 241, 245, 255;
-
-  --color__maroon1: 88, 36, 75;
-  --color__maroon2: 102, 50, 89;
-  --color__maroon3: 251, 241, 248;
-
-  --color__green1: 43, 165, 121;
-  --color__green2: 74, 181, 142;
-  --color__green3: 223, 241, 235;
-
-  --color__ultramarine1: 63, 60, 225;
-  --color__ultramarine2: 95, 92, 241;
-  --color__ultramarine3: 240, 239, 255;
-
-  --color__brown1: 152, 101, 79;
-  --color__brown1: 170, 119, 98;
-  --color__brown1: 210, 201, 197;
-
-  --color__sapphire1: 27, 44, 207;
-  --color__sapphire2: 52, 69, 229;
-  --color__sapphire3: 241, 243, 255;
-
-  --color__asaid: var(--color__black10);
+	--color__black1: 24, 28, 50;
+	--color__black2: 63, 66, 84;
+	--color__black3: 94, 98, 120;
+	--color__black4: 126, 130, 153;
+	--color__black5: 161, 165, 183;
+	--color__black6: 181, 181, 195;
+	--color__black7: 228, 230, 239;
+	--color__black8: 239, 242, 245;
+	--color__black9: 245, 248, 250;
+	--color__black10: 255, 255, 255;
+	
+	--color__red1: 217, 33, 78;
+	--color__red2: 241, 65, 108;
+	--color__red3: 255, 245, 248;
+	
+	--color__lightGreen1: 71, 190, 125;
+	--color__lightGreen2: 80, 205, 137;
+	--color__lightGreen3: 232, 255, 243;
+	
+	--color__skyblue1: 0, 149, 232;
+	--color__skyblue2: 0, 158, 246;
+	--color__skyblue3: 236, 248, 255;
+	
+	--color__purple1: 80, 20, 208;
+	--color__purple2: 114, 57, 234;
+	--color__purple3: 248, 245, 255;
+	
+	--color__yellow1: 241, 188, 0;
+	--color__yellow2: 255, 199, 0;
+	--color__yellow3: 255, 248, 221;
+	
+	--color__orange1: 246, 155, 17;
+	--color__orange2: 255, 166, 33;
+	--color__orange3: 255, 245, 231;
+	
+	--color__turquoise1: 0, 175, 175;
+	--color__turquoise2: 4, 200, 200;
+	--color__turquoise3: 220, 253, 253;
+	
+	--color__blue1: 74, 125, 255;
+	--color__blue2: 54, 108, 249;
+	--color__blue3: 241, 245, 255;
+	
+	--color__maroon1: 88, 36, 75;
+	--color__maroon2: 102, 50, 89;
+	--color__maroon3: 251, 241, 248;
+	
+	--color__green1: 43, 165, 121;
+	--color__green2: 74, 181, 142;
+	--color__green3: 223, 241, 235;
+	
+	--color__ultramarine1: 63, 60, 225;
+	--color__ultramarine2: 95, 92, 241;
+	--color__ultramarine3: 240, 239, 255;
+	
+	--color__brown1: 152, 101, 79;
+	--color__brown1: 170, 119, 98;
+	--color__brown1: 210, 201, 197;
+	
+	--color__sapphire1: 27, 44, 207;
+	--color__sapphire2: 52, 69, 229;
+	--color__sapphire3: 241, 243, 255;
+	
+	--color__asaid: var(--color__black10);
 }
 
+
 .dark-theme {
-  --color__black1: 255, 255, 255;
-  --color__black2: 154, 154, 176;
-  --color__black3: 146, 146, 159;
-  --color__black4: 109, 109, 128;
-  --color__black5: 76, 76, 102;
-  --color__black6: 71, 71, 97;
-  --color__black7: 50, 50, 72;
-  --color__black8: 43, 43, 64;
-  --color__black9: 38, 38, 57;
-  --color__black10: 30, 30, 45;
-
-  --color__red1: 238, 45, 65;
-  --color__red2: 246, 78, 96;
-  --color__red3: 58, 36, 52;
-
-  --color__lightGreen1: 4, 170, 119;
-  --color__lightGreen2: 11, 183, 131;
-  --color__lightGreen3: 28, 50, 56;
-
-  --color__skyblue1: 24, 125, 228;
-  --color__skyblue2: 54, 153, 255;
-  --color__skyblue3: 33, 46, 72;
-
-  --color__purple1: 115, 55, 238;
-  --color__purple2: 137, 80, 252;
-  --color__purple3: 47, 38, 79;
-
-  --color__yellow1: 238, 157, 1;
-  --color__yellow2: 255, 168, 0;
-  --color__yellow3: 57, 47, 40;
-
-  --color__orange1: 224, 84, 23;
-  --color__orange2: 239, 99, 39;
-  --color__orange3: 57, 39, 44;
-
-  --color__turquoise1: 11, 183, 175;
-  --color__turquoise2: 27, 197, 189;
-  --color__turquoise3: 28, 56, 51;
-
-  --color__blue1: 74, 125, 255;
-  --color__blue2: 105, 147, 255;
-  --color__blue3: 225, 233, 255;
-
-  --color__maroon1: 88, 36, 75;
-  --color__maroon2: 102, 50, 89;
-  --color__maroon3: 46, 34, 55;
-
-  --color__green1: 43, 165, 121;
-  --color__green2: 74, 181, 142;
-  --color__green3: 223, 241, 235;
-
-  --color__ultramarine1: 63, 60, 225;
-  --color__ultramarine2: 95, 92, 241;
-  --color__ultramarine3: 240, 239, 255;
-
-  --color__brown1: 152, 101, 79;
-  --color__brown1: 170, 119, 98;
-  --color__brown1: 210, 201, 197;
-
-  --color__sapphire1: 27, 44, 207;
-  --color__sapphire2: 52, 69, 229;
-  --color__sapphire3: 241, 243, 255;
-
-  --color__asaid: var(--color__black10);
+	--color__black1: 255, 255, 255;
+	--color__black2: 154, 154, 176;
+	--color__black3: 146, 146, 159;
+	--color__black4: 109, 109, 128;
+	--color__black5: 76, 76, 102;
+	--color__black6: 71, 71, 97;
+	--color__black7: 50, 50, 72;
+	--color__black8: 43, 43, 64;
+	--color__black9: 38, 38, 57;
+	--color__black10: 30, 30, 45;
+	
+	--color__red1: 238, 45, 65;
+	--color__red2: 246, 78, 96;
+	--color__red3: 58, 36, 52;
+	
+	--color__lightGreen1: 4, 170, 119;
+	--color__lightGreen2: 11, 183, 131;
+	--color__lightGreen3: 28, 50, 56;
+	
+	--color__skyblue1: 24, 125, 228;
+	--color__skyblue2: 54, 153, 255;
+	--color__skyblue3: 33, 46, 72;
+	
+	--color__purple1: 115, 55, 238;
+	--color__purple2: 137, 80, 252;
+	--color__purple3: 47, 38, 79;
+	
+	--color__yellow1: 238, 157, 1;
+	--color__yellow2: 255, 168, 0;
+	--color__yellow3: 57, 47, 40;
+	
+	--color__orange1: 224, 84, 23;
+	--color__orange2: 239, 99, 39;
+	--color__orange3: 57, 39, 44;
+	
+	--color__turquoise1: 11, 183, 175;
+	--color__turquoise2: 27, 197, 189;
+	--color__turquoise3: 28, 56, 51;
+	
+	--color__blue1: 74, 125, 255;
+	--color__blue2: 105, 147, 255;
+	--color__blue3: 225, 233, 255;
+	
+	--color__maroon1: 88, 36, 75;
+	--color__maroon2: 102, 50, 89;
+	--color__maroon3: 46, 34, 55;
+	
+	--color__green1: 43, 165, 121;
+	--color__green2: 74, 181, 142;
+	--color__green3: 223, 241, 235;
+	
+	--color__ultramarine1: 63, 60, 225;
+	--color__ultramarine2: 95, 92, 241;
+	--color__ultramarine3: 240, 239, 255;
+	
+	--color__brown1: 152, 101, 79;
+	--color__brown1: 170, 119, 98;
+	--color__brown1: 210, 201, 197;
+	
+	--color__sapphire1: 27, 44, 207;
+	--color__sapphire2: 52, 69, 229;
+	--color__sapphire3: 241, 243, 255;
+	
+	--color__asaid: var(--color__black10);
 }

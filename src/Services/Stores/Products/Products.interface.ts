@@ -1,40 +1,38 @@
 export namespace product {
+	export type TProductHashMap = {
+		[key in string]: TProduct;
+	};
 
-  export type TProductHashMap = {
-    [key in string]: TProduct
-  }
+	type TProduct = {
+		name: string;
+		price: TPrice[];
+		conventionalUnit: string | number;
+		company: string[];
+		analogue: string[];
+		industry: string;
+		property?: TProperty[];
+	};
 
-  type TProduct = {
-    name: string
-    price: TPrice[]
-    conventionalUnit: string | number
-    company: string[]
-    analogue: string[]
-    industry: string
-    property?: TProperty[]
-  }
+	type TProperty = {
+		[key in string]: string;
+	};
 
+	type TPrice = {
+		price: number;
+		currency: TCurrency;
+	};
 
-  type TProperty = {
-    [key in string]: string
-  }
+	export enum TCurrency {
+		RUBLE = 'RUBLE',
+		DOLLAR = 'DOLLAR',
+	}
 
-  type TPrice = {
-    price: number,
-    currency: TCurrency
-  }
+	export const OCurrencyIcon: TCurrencyIcon = {
+		DOLLAR: '$',
+		RUBLE: '₽',
+	};
 
-  export enum TCurrency {
-    RUBLE = 'RUBLE',
-    DOLLAR = 'DOLLAR'
-  }
-
-  export const OCurrencyIcon: TCurrencyIcon = {
-    DOLLAR: '$',
-    RUBLE: '₽'
-  }
-
-  type TCurrencyIcon = {
-    [key in TCurrency]: string
-  }
+	type TCurrencyIcon = {
+		[key in TCurrency]: string;
+	};
 }

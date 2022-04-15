@@ -1,19 +1,15 @@
 import React from 'react';
-import {useParams} from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
-type TCooperatorPage = 'id'
+type TCooperatorPage = 'id';
 
 /**
  * Страница сотрудников выбранной копмании
  */
 const CooperatorPage = () => {
-  const {id} = useParams<TCooperatorPage>()
+	const { id } = useParams<TCooperatorPage>();
 
-  return (
-    <div>
-
-    </div>
-  );
+	return <div></div>;
 };
 
 export default CooperatorPage;

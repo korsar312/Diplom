@@ -1,13 +1,13 @@
-import {FC, useState} from "react";
-import services from "../../../Services/Services";
-import {rest} from "../../../Services/Rest/RestApi/RestApi.interface";
-import styles from './Switcher.module.scss'
+import { FC, useState } from 'react';
+import services from '../../../Services/Services';
+import { rest } from '../../../Services/Rest/RestApi/RestApi.interface';
+import styles from './Switcher.module.scss';
 
 interface ISwitcher {
-  click: (val: boolean, change: (val: boolean) => void) => void
-  extClass?: string
-  log?: rest.TlogAction
-  defaultValue: boolean
+	click: (val: boolean, change: (val: boolean) => void) => void;
+	extClass?: string;
+	log?: rest.TlogAction;
+	defaultValue: boolean;
 }
 
 /**
@@ -18,39 +18,39 @@ interface ISwitcher {
  * @param props.defaultValue - значение по умолчанию
  */
 const Switcher: FC<ISwitcher> = (props) => {
-  const {click, extClass = '', log, defaultValue} = props
+	const { click, extClass = '', log, defaultValue } = props;
 
-  const [switcherMode, setSwitcherMode] = useState(defaultValue)
+	const [switcherMode, setSwitcherMode] = useState(defaultValue);
 
-  function clickHandler() {
-    services.rest.RestApi.logAction({
-      element: Switcher.name,
-      action: `Переключение ${switcherMode}`,
-      data: props,
-      ...log,
-    })
+	function clickHandler() {
+		services.rest.RestApi.logAction({
+			element: Switcher.name,
+			action: `Переключение ${switcherMode}`,
+			data: props,
+			...log,
+		});
 
-    switch (click.length) {
-      case 1:
-        click(!switcherMode, () => '')
-        setSwitcherMode((value) => !value)
-        break
-      case 2:
-        click(switcherMode, setSwitcherMode)
-        break
-    }
+		switch (click.length) {
+			case 1:
+				click(!switcherMode, () => '');
+				setSwitcherMode((value) => !value);
+				break;
+			case 2:
+				click(switcherMode, setSwitcherMode);
+				break;
+		}
+	}
 
-  }
-
-  return (
-    <div
-      className={`
+	return (
+		<div
+			className={`
         ${styles.wrapper} 
         ${extClass} 
         ${switcherMode ? styles.switchOn : styles.switchOff}
       `}
-      onClick={clickHandler}/>
-  );
+			onClick={clickHandler}
+		/>
+	);
 };
 
 export default Switcher;

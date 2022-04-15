@@ -1,9 +1,9 @@
-import React, {FC} from 'react';
-import styles from './WidgetWrapper.module.scss'
+import React, { FC } from 'react';
+import styles from './WidgetWrapper.module.scss';
 
 interface IWidgetWrapper {
-  extClass?: string
-  children: JSX.Element
+	extClass?: string;
+	children: JSX.Element;
 }
 
 /**
@@ -12,12 +12,8 @@ interface IWidgetWrapper {
  * @param props.children - содержимое виджета
  */
 const WidgetWrapper: FC<IWidgetWrapper> = (props) => {
-  const {extClass = '', children} = props
-  return (
-    <div className={`${styles.wrapper} ${extClass}`}>
-      {children}
-    </div>
-  );
+	const { extClass = '', children } = props;
+	return <div className={`${styles.wrapper} ${extClass}`}>{children}</div>;
 };
 
 export default WidgetWrapper;

@@ -1,34 +1,31 @@
-@use '/src/Styles/Variables' as *;
-@use '/src/Styles/Mixins' as *;
+@use "/src/Styles/Variables" as *;
+@use "/src/Styles/Mixins" as *;
 
 
 .topText, .middleText, .bottomText {
-  width: 100%;
-  transition: $transition;
+	width: 100%;
+	transition: $transition;
 }
 
+
 .wrapper {
-  display: flex;
-  gap: 14px;
-  text-align: left;
-  align-items: center;
-
-  .image {
-    @include mixin--Center
-  }
-
-  .infoWrapper {
-    flex: 1;
-  }
+	display: flex;
+	align-items: center;
+	text-align: left;
+	gap: 14px;
+	
+	.image { @include mixin--Center }
+	
+	.infoWrapper { flex: 1 }
 }
 
 
 .btn {
-  @include mixin--Center;
-
-  svg {
-    width: 25px;
-    height: 25px;
-  }
+	@include mixin--Center;
+	
+	svg {
+		width: 25px;
+		height: 25px;
+	}
 }
 

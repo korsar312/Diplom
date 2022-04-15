@@ -1,36 +1,36 @@
-@use '/src/Styles/Variables' as *;
-@use '/src/Styles/Mixins' as *;
+@use "/src/Styles/Variables" as *;
+@use "/src/Styles/Mixins" as *;
 
 
 .wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: rgba(var(--color__black10), 0.6);
-  transition: $transition;
-  @include mixin--Center;
-
-  .content {
-    transition: $transition;
-    background: rgb(var(--color__black10));
-    padding: $padding_modal_window;
-    border-radius: $border-radius * 2;
-    border: 2px ridge rgb(var(--color__black5));
-  }
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	transition: $transition;
+	background: rgba(var(--color__black10), 0.6);
+	@include mixin--Center;
+	
+	.content {
+		padding: $padding_modal_window;
+		transition: $transition;
+		border: 2px ridge rgb(var(--color__black5));
+		border-radius: $border-radius * 2;
+		background: rgb(var(--color__black10));
+	}
 }
+
 
 .windowOpen {
-  opacity: 1;
-  visibility: visible;
+	visibility: visible;
+	opacity: 1;
 }
 
-.windowClose {
-  opacity: 0;
-  visibility: hidden;
 
-  .content {
-    transform: scale(0.3)
-  }
+.windowClose {
+	visibility: hidden;
+	opacity: 0;
+	
+	.content { transform: scale(0.3) }
 }
