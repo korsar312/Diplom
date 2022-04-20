@@ -1,31 +1,62 @@
 @use "/src/Styles/Mixins" as *;
 @use "/src/Styles/Variables" as *;
 
-
-$size_avatar: 50px;
-
 .wrapper {
 	@include mixin--Center;
 	overflow: hidden;
-	width: $size_avatar;
-	min-width: $size_avatar;
-	height: $size_avatar;
-	min-height: $size_avatar;
-	border-radius: 6px;
+	transition: $transition;
 	
-	img {
-		min-width: $size_avatar;
-		min-height: $size_avatar;
+	img,
+	svg {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
 	
 	svg {
 		transition: $transition;
-		fill: rgb(var(--color__black5))
+		fill: rgb(var(--color__black5));
 	}
 }
-
 
 .border {
 	box-sizing: border-box;
 	border: 2px solid rgb(var(--color__black2));
+}
+
+.size_ {
+	&big {
+		$size_avatar: 200px;
+		
+		width: $size_avatar;
+		height: $size_avatar;
+	}
+	
+	&normal {
+		$size_avatar: 100px;
+		
+		width: $size_avatar;
+		height: $size_avatar;
+	}
+	
+	&small {
+		$size_avatar: 50px;
+		
+		width: $size_avatar;
+		height: $size_avatar;
+	}
+}
+
+.circle_ {
+	&none {
+		border-radius: 0;
+	}
+	
+	&small {
+		border-radius: $border-radius;
+	}
+	
+	&full {
+		border-radius: 50%;
+	}
 }

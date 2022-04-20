@@ -21,7 +21,7 @@ const SearchInput: FC<ISearchInput> = (props) => {
 			callback={callback}
 			extClass={`${extClass}`}
 			iconLeft={{ icon: <IconSearch /> }}
-			placeholder={language.ELanguageKey.SEARCH}
+			placeholder={language.allLanguageWord.SEARCH}
 			log={{ element: SearchInput.name }}
 		/>
 	);

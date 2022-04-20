@@ -4,6 +4,7 @@ import services from '../../Services';
 
 export class CompaniesController {
 	private company: companies.TCompaniesHashMap | null = null;
+	private myCompany: companies.TCompany | null = null;
 
 	private readonly rootStore: typeof services.store;
 
@@ -15,7 +16,7 @@ export class CompaniesController {
 	/**
 	 * Возвращает все копмании
 	 */
-	public get isEntered() {
+	public get getAllCompany() {
 		return this.company;
 	}
 
@@ -23,7 +24,22 @@ export class CompaniesController {
 	 * Устанавливает список компаний
 	 * @params company - компании
 	 */
-	public set setCurrentUser(company: companies.TCompaniesHashMap | null) {
+	public set setAllCompany(company: companies.TCompaniesHashMap | null) {
 		this.company = company;
+	}
+
+	/**
+	 * Возвращает компанию юзера
+	 */
+	public get getMyCompany() {
+		return this.myCompany;
+	}
+
+	/**
+	 * Устанавливает компанию юзера
+	 * @params company - компания
+	 */
+	public set setMyCompany(company: companies.TCompany | null) {
+		this.myCompany = company;
 	}
 }

@@ -43,7 +43,7 @@ const CompanyWidget: FC<ICompanyWidget> = (props) => {
 	return (
 		<WidgetWrapper>
 			<div className={`${styles.wrapper} ${extClass}`}>
-				<WidgetHead title={language.ELanguageKey.PRODUCTS} />
+				<WidgetHead title={language.allLanguageWord.PRODUCTS} />
 				{/*<WidgetBody table={}/>*/}
 			</div>
 		</WidgetWrapper>

@@ -1,13 +1,20 @@
+import { companies } from '../Companies/Companies.interface';
+
 export namespace language {
 	export type TLanguage = {
-		[key in ELanguageKey]: TWord;
+		[key in TAllLanguageWord]: TWord;
 	};
 
 	type TWord = {
 		[key in ELanguageType]: string;
 	};
 
-	export enum ELanguageKey {
+	export enum ELanguageType {
+		RU = 'RU',
+		EN = 'EN',
+	}
+
+	enum ELanguageSimpleWord {
 		CHAT_WITH_COLLEAGUES = 'CHAT_WITH_COLLEAGUES',
 		CHAT_WITH_SUPPLIERS = 'CHAT_WITH_SUPPLIERS',
 		CONVENTIONAL_UNIT = 'CONVENTIONAL_UNIT',
@@ -48,10 +55,13 @@ export namespace language {
 		EXPORT = 'EXPORT',
 		COMPANIES = 'COMPANIES',
 		COMPANY = 'COMPANY',
+		CHOOSE_LOGO = 'CHOOSE_LOGO',
 	}
 
-	export enum ELanguageType {
-		RU = 'RU',
-		EN = 'EN',
-	}
+	export const allLanguageWord = {
+		...ELanguageSimpleWord,
+		...companies.EEconomyBranch,
+	};
+
+	export type TAllLanguageWord = keyof typeof allLanguageWord;
 }

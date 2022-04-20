@@ -24,27 +24,27 @@ interface IModalSettingUser {
  */
 const ModalSettingUserList: TModalSetting[] = [
 	{
-		title: language.ELanguageKey.GENERAL,
+		title: language.allLanguageWord.GENERAL,
 		image: <IconHome />,
-		description: language.ELanguageKey.BASIC_SETTINGS,
+		description: language.allLanguageWord.BASIC_SETTINGS,
 		content: <ModalSettingUserGeneralPage />,
 	},
 	{
-		title: language.ELanguageKey.SETTINGS,
+		title: language.allLanguageWord.SETTINGS,
 		image: <IconTune />,
-		description: language.ELanguageKey.ADVANCED_SETTINGS,
+		description: language.allLanguageWord.ADVANCED_SETTINGS,
 		content: <ModalSettingUserSettingPage />,
 	},
 	{
-		title: language.ELanguageKey.SECURITY,
+		title: language.allLanguageWord.SECURITY,
 		image: <IconSecurity />,
-		description: language.ELanguageKey.ACCOUNT_SECURITY_SETTINGS,
+		description: language.allLanguageWord.ACCOUNT_SECURITY_SETTINGS,
 		content: <ModalSettingUserSecurityPage />,
 	},
 	{
-		title: language.ELanguageKey.EXIT,
+		title: language.allLanguageWord.EXIT,
 		image: <IconLogout />,
-		description: language.ELanguageKey.LOGOUT_OPTIONS,
+		description: language.allLanguageWord.LOGOUT_OPTIONS,
 		content: <ModalSettingUserExitPage />,
 	},
 ];
@@ -61,7 +61,7 @@ const ModalSettingUser: FC<IModalSettingUser> = (props) => {
 	return (
 		<ModalSetting
 			extClass={extClass}
-			title={language.ELanguageKey.USER_SETTINGS}
+			title={language.allLanguageWord.USER_SETTINGS}
 			isShow={isShow}
 			onClose={onClose}
 			settingList={ModalSettingUserList}

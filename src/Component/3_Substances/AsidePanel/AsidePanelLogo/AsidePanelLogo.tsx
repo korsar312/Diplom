@@ -31,13 +31,10 @@ const AsidePanelLogo: FC<IAsidePanelLogo> = (props) => {
 			<figure onClick={changeLanguage} className={styles.logo}>
 				<IconLogo />
 				<figcaption>
-					<Text userStyle={'fat_big'} text={language.ELanguageKey.METEOR} />
+					<Text userStyle={'fat_big'} text={language.allLanguageWord.METEOR} />
 				</figcaption>
 			</figure>
-			<div
-				className={`${styles.logoWrapperBtn} ${
-					isShowPanel ? '' : styles.logoWrapperBtnOn
-				}`}>
+			<div className={`${styles.logoWrapperBtn} ${isShowPanel ? '' : styles.logoWrapperBtnOn}`}>
 				<ButtonStandard
 					click={click}
 					isNoPadding={true}

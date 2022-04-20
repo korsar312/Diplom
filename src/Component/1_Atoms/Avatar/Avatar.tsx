@@ -8,7 +8,9 @@ interface IAvatar {
 	log?: rest.TlogAction;
 	extClass?: string;
 	isBorder?: boolean;
-	children?: JSX.Element;
+	children: JSX.Element;
+	size?: 'big' | 'normal' | 'small';
+	circle?: 'none' | 'small' | 'full';
 }
 
 /**
@@ -18,9 +20,18 @@ interface IAvatar {
  * @param props.extClass - дополнительный CSS класс
  * @param props.isBorder - изпользуется ли обводка
  * @param props.children - картинка в JSX
+ * @param props.size - размер аватара
  */
 const Avatar: FC<IAvatar> = (props) => {
-	const { click, log, isBorder, extClass = '', children } = props;
+	const {
+		click,
+		log,
+		isBorder,
+		extClass = '',
+		children,
+		size = 'normal',
+		circle = 'small',
+	} = props;
 
 	function clickHandler() {
 		if (!click) return;
@@ -37,12 +48,14 @@ const Avatar: FC<IAvatar> = (props) => {
 
 	return (
 		<div
+			onClick={clickHandler}
 			className={`
-        ${styles.wrapper} 
-        ${isBorder ? styles.border : ''}
-        ${extClass}
-    `}
-			onClick={clickHandler}>
+            ${styles.wrapper} 
+            ${isBorder ? styles.border : ''}
+            ${extClass}
+            ${styles[`size_${size}`]}
+            ${styles[`circle_${circle}`]}
+        `}>
 			{children}
 		</div>
 	);

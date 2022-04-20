@@ -9,15 +9,19 @@ interface IInput {
 	iconLeft?: TIcon;
 	iconRight?: TIcon;
 	extClass?: string;
-	placeholder?: language.ELanguageKey;
+	placeholder?: language.TAllLanguageWord;
 	type?: HTMLInputTypeAttribute;
 	log?: rest.TlogAction;
+	defaultValue?: string | number;
+	color?: TInputColor;
 }
 
 type TIcon = {
 	icon: JSX.Element | undefined;
 	extClass?: string;
 };
+
+type TInputColor = 'red' | 'black' | 'blue' | 'skyBlue' | 'grey';
 
 /**
  * Основной инпут
@@ -28,9 +32,10 @@ type TIcon = {
  * @param props.placeholder - плейсхолдер
  * @param props.type - тип инпута
  * @param props.log - логирование
+ * @param props.defaultValue - значение по умолчанию
  */
 const InputStandard: FC<IInput> = (props) => {
-	const { callback, iconLeft, iconRight, extClass = '', placeholder, type, log } = props;
+	const { callback, iconLeft, iconRight, extClass = '', placeholder, type, log, defaultValue } = props;
 
 	function handleChange(event: { target: { value: string } }) {
 		services.rest.RestApi.logAction({
@@ -63,6 +68,7 @@ const InputStandard: FC<IInput> = (props) => {
 				onBlur={() => handleIsFocus(false)}
 				type={type}
 				className={styles.input}
+				defaultValue={defaultValue}
 			/>
 			{iconRight && <span className={iconRight.extClass}>{iconRight.icon}</span>}
 		</div>

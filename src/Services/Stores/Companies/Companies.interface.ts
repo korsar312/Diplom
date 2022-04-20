@@ -3,26 +3,56 @@ export namespace companies {
 		[key in string]: TCompany;
 	};
 
-	type TCompany = {
+	export type TCompany = {
 		name: string;
 		subtitle?: string;
-		industry: string[];
-		products: string[];
+		avatar?: string;
+		economyBranch: EEconomyBranch;
+		allProducts: string[];
+		exportProduct: string[];
 		requisites: TRequisites;
 		description: string;
 		personal: string[];
 	};
 
+	export enum EEconomyBranch {
+		INDUSTRY = 'INDUSTRY',
+		AGRICULTURE = 'AGRICULTURE',
+		FORESTRY = 'FORESTRY',
+		CONSTRUCTION = 'CONSTRUCTION',
+		OTHER = 'OTHER',
+		AGRICULTURAL_SERVICE = 'AGRICULTURAL_SERVICE',
+		TRANSPORT = 'TRANSPORT',
+		CONNECTION = 'CONNECTION',
+		TRADE_AND_CATERING = 'TRADE_AND_CATERING',
+		LOGISTICS_AND_SALES = 'LOGISTICS_AND_SALES',
+		BLANKS = 'BLANKS',
+		INFORMATION_AND_COMPUTING_SERVICES = 'INFORMATION_AND_COMPUTING_SERVICES',
+		OPERATIONS_WITH_REAL_ESTATE = 'OPERATIONS_WITH_REAL_ESTATE',
+		GENERAL_COMMERCIAL_ACTIVITIES = 'GENERAL_COMMERCIAL_ACTIVITIES',
+		GEOLOGY = 'GEOLOGY',
+		HOUSING = 'HOUSING',
+		UTILITIES = 'UTILITIES',
+		NON_PRODUCTIVE_TYPES = 'NON_PRODUCTIVE_TYPES',
+		HEALTH = 'HEALTH',
+		EDUCATION = 'EDUCATION',
+		CULTURE = 'CULTURE',
+		SCIENCE = 'SCIENCE',
+		FINANCE = 'FINANCE',
+		CONTROL = 'CONTROL',
+		PUBLIC_ASSOCIATIONS = 'PUBLIC_ASSOCIATIONS',
+	}
+
 	type TRequisites = {
 		address: TAddressCompany;
-		other: TRequisitesOther;
+		other?: TRequisitesOther;
 	};
 
 	type TAddressCompany = {
-		index: number;
-		country: string;
-		city: string;
-		other: string;
+		index?: number;
+		country?: string;
+		city?: string;
+		other?: string;
 	};
 
 	type TRequisitesOther = {

@@ -11,13 +11,13 @@ interface IModalSetting {
 	isShow: boolean;
 	onClose?: () => void;
 	settingList: TModalSetting[];
-	title: language.ELanguageKey;
+	title: language.TAllLanguageWord;
 }
 
 export type TModalSetting = {
-	title: language.ELanguageKey;
+	title: language.TAllLanguageWord;
 	image: JSX.Element;
-	description: language.ELanguageKey;
+	description: language.TAllLanguageWord;
 	content: JSX.Element;
 };
 

@@ -5,8 +5,8 @@ import Text from '../../../0_Basic/Text/Text';
 
 interface IWidgetHead {
 	extClass?: string;
-	title: language.ELanguageKey;
-	subtitle?: language.ELanguageKey;
+	title: language.TAllLanguageWord;
+	subtitle?: language.TAllLanguageWord;
 	extBtn?: JSX.Element;
 }
 

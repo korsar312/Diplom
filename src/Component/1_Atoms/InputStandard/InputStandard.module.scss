@@ -1,7 +1,6 @@
 @use "/src/Styles/Variables" as *;
 @use "/src/Styles/Mixins" as *;
 
-
 $input_indent: 10px;
 
 .wrapper {
@@ -10,7 +9,6 @@ $input_indent: 10px;
 	padding: $input_indent * 1.3 $input_indent;
 	transition: $transition;
 	border-radius: 6px;
-	background: rgb(var(--color__black10));
 	gap: $input_indent;
 	
 	svg {
@@ -32,3 +30,28 @@ $input_indent: 10px;
 	}
 }
 
+.color_ {
+	&red {
+		background: rgb(var(--color__red1));
+	}
+	
+	&blue {
+		background: rgb(var(--color__blue1));
+	}
+	
+	&skyBlue {
+		background: rgb(var(--color__skyblue1));
+	}
+	
+	&grey {
+		background: rgb(var(--color__black7));
+	}
+	
+	&black {
+		background: rgb(var(--color__black1));
+		
+		span {
+			color: rgb(var(--color__black10));
+		}
+	}
+}

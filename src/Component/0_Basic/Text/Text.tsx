@@ -12,7 +12,7 @@ interface IText {
 	extClass?: string;
 }
 
-type TText = language.ELanguageKey | number | string;
+type TText = language.TAllLanguageWord | number | string;
 
 export type TTextStyle =
 	| 'standard'
@@ -43,8 +43,8 @@ const Text: FC<IText> = (props) => {
 
 	function wordTranslate(word: TText): string {
 		const wordTranslate = String(
-			word in language.ELanguageKey
-				? services.store.languageStore.getText(word as language.ELanguageKey)
+			word in language.allLanguageWord
+				? services.store.languageStore.getText(word as language.TAllLanguageWord)
 				: word
 		);
 

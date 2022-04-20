@@ -9,7 +9,7 @@ interface IWidgetBody {
 }
 
 export type TUnitWidgetTable = {
-	head: language.ELanguageKey[];
+	head: language.TAllLanguageWord[];
 	body: TBody[];
 };
 

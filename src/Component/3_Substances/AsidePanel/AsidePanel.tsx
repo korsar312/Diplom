@@ -30,15 +30,9 @@ const AsidePanel: FC<IAsidePanel> = (props) => {
 	}
 
 	return (
-		<aside
-			className={`${styles.wrapper} ${
-				isShowPanel ? styles.show_on : styles.show_off
-			} ${extClass}`}>
+		<aside className={`${styles.wrapper} ${isShowPanel ? styles.show_on : styles.show_off} ${extClass}`}>
 			<div className={styles.element}>
-				<AsidePanelLogo
-					click={() => setIsShowPanel((val) => !val)}
-					isShowPanel={isShowPanel}
-				/>
+				<AsidePanelLogo click={() => setIsShowPanel((val) => !val)} isShowPanel={isShowPanel} />
 			</div>
 
 			<Line extClass={styles.line} />
@@ -49,7 +43,7 @@ const AsidePanel: FC<IAsidePanel> = (props) => {
 					image={person?.image}
 					topText={person ? `${person.name} ${person.surname}` : 'Гость'}
 					middleText={person?.position}
-					bottomText={person?.isOnline ? language.ELanguageKey.ONLINE : undefined}
+					bottomText={person?.isOnline ? language.allLanguageWord.ONLINE : undefined}
 				/>
 			</div>
 

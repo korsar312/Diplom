@@ -1,172 +1,275 @@
 import { makeAutoObservable } from 'mobx';
 import { language } from './Language.interface';
 import services from '../../Services';
-import ELanguageType = language.ELanguageType;
 
 export class LanguageController {
 	private readonly language: language.TLanguage = {
-		[language.ELanguageKey.METEOR]: {
+		METEOR: {
 			EN: 'Meteor',
 			RU: 'Метеор',
 		},
-		[language.ELanguageKey.INVALID_PASSWORD]: {
+		INVALID_PASSWORD: {
 			EN: 'Wrong login or password',
 			RU: 'Неверный логин или пароль',
 		},
-		[language.ELanguageKey.ONLINE]: {
+		ONLINE: {
 			EN: 'Online',
 			RU: 'Онлайн',
 		},
-		[language.ELanguageKey.COPYRIGHT]: {
+		COPYRIGHT: {
 			EN: '©All rights reserved',
 			RU: '©Все права защищены',
 		},
-		[language.ELanguageKey.SING_INING]: {
+		SING_INING: {
 			EN: 'Sing in',
 			RU: 'Войдите',
 		},
-		[language.ELanguageKey.SING_IN]: {
+		SING_IN: {
 			EN: 'Sing in',
 			RU: 'Вход',
 		},
-		[language.ELanguageKey.OR_CREATE_ACC]: {
+		OR_CREATE_ACC: {
 			EN: 'Or create an Account',
 			RU: 'Или создайте Аккаунт',
 		},
-		[language.ELanguageKey.LOGIN]: {
+		LOGIN: {
 			EN: 'Login',
 			RU: 'Логин',
 		},
-		[language.ELanguageKey.PASSWORD]: {
+		PASSWORD: {
 			EN: 'Password',
 			RU: 'Пароль',
 		},
-		[language.ELanguageKey.PERSONNEL]: {
+		PERSONNEL: {
 			EN: 'Personnel',
 			RU: 'Персонал',
 		},
-		[language.ELanguageKey.COOPERATOR]: {
+		COOPERATOR: {
 			EN: 'Cooperator',
 			RU: 'Сотрудники',
 		},
-		[language.ELanguageKey.CHAT_WITH_COLLEAGUES]: {
+		CHAT_WITH_COLLEAGUES: {
 			EN: 'Chat with colleagues',
 			RU: 'Чат c коллегами',
 		},
-		[language.ELanguageKey.PRODUCTS_SUPPLIERS]: {
+		PRODUCTS_SUPPLIERS: {
 			EN: 'Product suppliers',
 			RU: 'Продукция поставщиков',
 		},
-		[language.ELanguageKey.CHAT_WITH_SUPPLIERS]: {
+		CHAT_WITH_SUPPLIERS: {
 			EN: 'Chat with suppliers',
 			RU: 'Чат с поставщиками',
 		},
-		[language.ELanguageKey.PRODUCTS]: {
+		PRODUCTS: {
 			EN: 'Products',
 			RU: 'Продукция',
 		},
-		[language.ELanguageKey.WAREHOUSE]: {
+		WAREHOUSE: {
 			EN: 'Warehouse',
 			RU: 'Склад',
 		},
-		[language.ELanguageKey.SUPPLIES]: {
+		SUPPLIES: {
 			EN: 'Supplies',
 			RU: 'Поставки',
 		},
-		[language.ELanguageKey.REQUEST]: {
+		REQUEST: {
 			EN: 'Request',
 			RU: 'Заявки',
 		},
-		[language.ELanguageKey.REPORTS]: {
+		REPORTS: {
 			EN: 'Reports',
 			RU: 'Отчеты',
 		},
-		[language.ELanguageKey.SEARCH]: {
+		SEARCH: {
 			EN: 'Search',
 			RU: 'Поиск',
 		},
-		[language.ELanguageKey.FORGET_PASSWORD_DES_KA]: {
+		FORGET_PASSWORD_DES_KA: {
 			EN: 'Forget password?',
 			RU: 'Забыли пароль?',
 		},
-		[language.ELanguageKey.PRICE]: {
+		PRICE: {
 			EN: 'Price',
 			RU: 'Цена',
 		},
-		[language.ELanguageKey.CONVENTIONAL_UNIT]: {
+		CONVENTIONAL_UNIT: {
 			EN: 'Conventional unit',
 			RU: 'Условные единицы',
 		},
-		[language.ELanguageKey.EXIT]: {
+		EXIT: {
 			EN: 'Exit',
 			RU: 'Выход',
 		},
-		[language.ELanguageKey.SECURITY]: {
+		SECURITY: {
 			EN: 'Security',
 			RU: 'Безопасность',
 		},
-		[language.ELanguageKey.SETTINGS]: {
+		SETTINGS: {
 			EN: 'Settings',
 			RU: 'Настройки',
 		},
-		[language.ELanguageKey.GENERAL]: {
+		GENERAL: {
 			EN: 'General',
 			RU: 'Общее',
 		},
-		[language.ELanguageKey.BASIC_SETTINGS]: {
+		BASIC_SETTINGS: {
 			EN: 'Basic setting',
 			RU: 'Основные настройки',
 		},
-		[language.ELanguageKey.ADVANCED_SETTINGS]: {
+		ADVANCED_SETTINGS: {
 			EN: 'Advanced setting',
 			RU: 'Расширенный настройки',
 		},
-		[language.ELanguageKey.ACCOUNT_SECURITY_SETTINGS]: {
+		ACCOUNT_SECURITY_SETTINGS: {
 			EN: 'Account security setting',
 			RU: 'Настройка безопасности учетной записи',
 		},
-		[language.ELanguageKey.LOGOUT_OPTIONS]: {
+		LOGOUT_OPTIONS: {
 			EN: 'Logout options',
 			RU: 'Варианты выхода из учетной записи',
 		},
-		[language.ELanguageKey.USER_SETTINGS]: {
+		USER_SETTINGS: {
 			EN: 'User settings',
 			RU: 'Настройки пользователя',
 		},
-		[language.ELanguageKey.ENABLE_LIGHT_THEME]: {
+		ENABLE_LIGHT_THEME: {
 			EN: 'Enable light theme',
 			RU: 'Включить светлую тему',
 		},
-		[language.ELanguageKey.CHANGE_LANGUAGE]: {
+		CHANGE_LANGUAGE: {
 			EN: 'Change language',
 			RU: 'Сменить язык',
 		},
-		[language.ELanguageKey.MY_COMPANY]: {
+		MY_COMPANY: {
 			EN: 'My company',
 			RU: 'Моя компания',
 		},
-		[language.ELanguageKey.MANAGEMENT]: {
+		MANAGEMENT: {
 			EN: 'Management',
 			RU: 'Управление',
 		},
-		[language.ELanguageKey.IMPORT]: {
+		IMPORT: {
 			EN: 'Import',
 			RU: 'Импорт',
 		},
-		[language.ELanguageKey.EXPORT]: {
+		EXPORT: {
 			EN: 'Export',
 			RU: 'Экспорт',
 		},
-		[language.ELanguageKey.COMPANIES]: {
+		COMPANIES: {
 			EN: 'Companies',
 			RU: 'Компании',
 		},
-		[language.ELanguageKey.COMPANY]: {
+		COMPANY: {
 			EN: 'Company',
 			RU: 'Компания',
 		},
+		INDUSTRY: {
+			EN: 'Industry',
+			RU: 'Промышленность',
+		},
+		AGRICULTURE: {
+			EN: 'Agriculture',
+			RU: 'Сельское хозяйство',
+		},
+		FORESTRY: {
+			EN: 'Forestry',
+			RU: 'Лесное хозяйство',
+		},
+		CONSTRUCTION: {
+			EN: 'Construction',
+			RU: 'Строительство',
+		},
+		OTHER: {
+			EN: 'Other activities in the sphere of material production',
+			RU: 'Прочие виды деятельности сферы материального производства',
+		},
+		AGRICULTURAL_SERVICE: {
+			EN: 'Agricultural service',
+			RU: 'Обслуживание сельского хозяйства',
+		},
+		TRANSPORT: {
+			EN: 'Transport',
+			RU: 'Транспорт',
+		},
+		CONNECTION: {
+			EN: 'Connection',
+			RU: 'Связь',
+		},
+		TRADE_AND_CATERING: {
+			EN: 'Trade and catering',
+			RU: 'Торговля и общественное питание',
+		},
+		LOGISTICS_AND_SALES: {
+			EN: 'Logistics and sales',
+			RU: 'Материально-техническое снабжение и сбыт',
+		},
+		BLANKS: {
+			EN: 'Blanks',
+			RU: 'Заготовки',
+		},
+		INFORMATION_AND_COMPUTING_SERVICES: {
+			EN: 'Information and Computing Services',
+			RU: 'Информационно-вычислительное обслуживание',
+		},
+		OPERATIONS_WITH_REAL_ESTATE: {
+			EN: 'Operations with real estate',
+			RU: 'Операции с недвижимым имуществом',
+		},
+		GENERAL_COMMERCIAL_ACTIVITIES: {
+			EN: 'General commercial activities to ensure the functioning of the market',
+			RU: 'Общая коммерческая деятельность по обеспечению функционирования рынка',
+		},
+		GEOLOGY: {
+			EN: 'Geology and exploration of subsoil, geodetic and hydrometeorological services',
+			RU: 'Геология и разведка недр, геодезическая и гидрометеорологическая службы',
+		},
+		HOUSING: {
+			EN: 'Housing',
+			RU: 'Жилищное хозяйство',
+		},
+		UTILITIES: {
+			EN: 'Utilities',
+			RU: 'Коммунальное хозяйство',
+		},
+		NON_PRODUCTIVE_TYPES: {
+			EN: 'Non-productive types of consumer services for the population',
+			RU: 'Непроизводственные виды бытового обслуживания населения',
+		},
+		HEALTH: {
+			EN: 'Health, physical culture and social security',
+			RU: 'Здравоохранение, физическая культура и социальное обеспечение',
+		},
+		EDUCATION: {
+			EN: 'public education',
+			RU: 'Народное образование',
+		},
+		CULTURE: {
+			EN: 'Culture and art',
+			RU: 'Культура и искусство',
+		},
+		SCIENCE: {
+			EN: 'Science and scientific service',
+			RU: 'Наука и научное обслуживание',
+		},
+		FINANCE: {
+			EN: 'Finance, credit, insurance, pensions',
+			RU: 'Финансы, кредит, страхование, пенсионное обеспечение',
+		},
+		CONTROL: {
+			EN: 'Control',
+			RU: 'Управление',
+		},
+		PUBLIC_ASSOCIATIONS: {
+			EN: 'Public associations',
+			RU: 'Общественные объединения',
+		},
+		CHOOSE_LOGO: {
+			EN: 'Choose a logo',
+			RU: 'Выбрать логотип',
+		},
 	};
-	private currentLanguage: language.ELanguageType = ELanguageType.EN;
+	private currentLanguage: language.ELanguageType = language.ELanguageType.EN;
 	private readonly rootStore: typeof services.store;
 
 	constructor(rootStore: typeof services.store) {
@@ -193,7 +296,7 @@ export class LanguageController {
 	 * Возвращает выбранное предложение для текущей языковой модели
 	 * @params wordKey - выбранное предложение
 	 */
-	public getText(wordKey: language.ELanguageKey) {
+	public getText(wordKey: language.TAllLanguageWord) {
 		return this.language[wordKey][this.currentLanguage];
 	}
 }

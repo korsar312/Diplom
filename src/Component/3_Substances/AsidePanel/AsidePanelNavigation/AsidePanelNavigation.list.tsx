@@ -17,7 +17,7 @@ import { OneOfTwo } from '../../../../Types/Types';
 
 type TBasePropNavigateList = {
 	id: string;
-	name: language.ELanguageKey;
+	name: language.TAllLanguageWord;
 	leftImg?: JSX.Element;
 	click?: () => void;
 	children?: TNavigateList[];
@@ -28,12 +28,12 @@ type TNavigateList = OneOfTwo<TBasePropNavigateList, 'children' | 'click'>;
 export const navLink: TNavigateList[] = [
 	{
 		id: '1',
-		name: language.ELanguageKey.MY_COMPANY,
+		name: language.allLanguageWord.MY_COMPANY,
 		leftImg: <IconCompany />,
 		children: [
 			{
 				id: '1-1',
-				name: language.ELanguageKey.COOPERATOR,
+				name: language.allLanguageWord.COOPERATOR,
 				leftImg: <IconPersons />,
 				click: () =>
 					services.route.RouterGo(route.Name.COMPANY_PERSONNEL, {
@@ -42,7 +42,7 @@ export const navLink: TNavigateList[] = [
 			},
 			{
 				id: '1-2',
-				name: language.ELanguageKey.MANAGEMENT,
+				name: language.allLanguageWord.MANAGEMENT,
 				leftImg: <IconSettings />,
 				click: () => services.route.RouterGo(route.Name.MANAGEMENT),
 			},
@@ -50,18 +50,18 @@ export const navLink: TNavigateList[] = [
 	},
 	{
 		id: '2',
-		name: language.ELanguageKey.IMPORT,
+		name: language.allLanguageWord.IMPORT,
 		leftImg: <IconImport />,
 		children: [
 			{
 				id: '2-1',
-				name: language.ELanguageKey.COMPANIES,
+				name: language.allLanguageWord.COMPANIES,
 				leftImg: <IconInform />,
 				click: () => services.route.RouterGo(route.Name.COMPANIES),
 			},
 			{
 				id: '2-2',
-				name: language.ELanguageKey.PRODUCTS,
+				name: language.allLanguageWord.PRODUCTS,
 				leftImg: <IconProduct />,
 				click: () => services.route.RouterGo(route.Name.IMPORT_PRODUCTS),
 			},
@@ -69,30 +69,30 @@ export const navLink: TNavigateList[] = [
 	},
 	{
 		id: '3',
-		name: language.ELanguageKey.EXPORT,
+		name: language.allLanguageWord.EXPORT,
 		leftImg: <IconExport />,
 		children: [
 			{
 				id: '3-1',
-				name: language.ELanguageKey.PRODUCTS,
+				name: language.allLanguageWord.PRODUCTS,
 				leftImg: <IconProduct />,
 				click: () => services.route.RouterGo(route.Name.EXPORT_PRODUCTS),
 			},
 			{
 				id: '3-2',
-				name: language.ELanguageKey.SUPPLIES,
+				name: language.allLanguageWord.SUPPLIES,
 				leftImg: <IconAuto />,
 				click: () => services.route.RouterGo(route.Name.SUPPLIES),
 			},
 			{
 				id: '3-3',
-				name: language.ELanguageKey.WAREHOUSE,
+				name: language.allLanguageWord.WAREHOUSE,
 				leftImg: <IconWarehouse />,
 				click: () => services.route.RouterGo(route.Name.WAREHOUSE),
 			},
 			{
 				id: '3-4',
-				name: language.ELanguageKey.REQUEST,
+				name: language.allLanguageWord.REQUEST,
 				leftImg: <IconRequest />,
 				click: () => services.route.RouterGo(route.Name.REQUEST),
 			},
@@ -100,7 +100,7 @@ export const navLink: TNavigateList[] = [
 	},
 	{
 		id: '4',
-		name: language.ELanguageKey.REPORTS,
+		name: language.allLanguageWord.REPORTS,
 		leftImg: <IconReports />,
 		click: () => services.route.RouterGo(route.Name.REPORTS),
 	},

@@ -1,7 +1,6 @@
 @use "/src/Styles/Variables" as *;
 @use "/src/Styles/Mixins" as *;
 
-
 .wrapper {
 	@include mixin--Center;
 	padding: 8px 19px;
@@ -12,57 +11,76 @@
 	background: none;
 	gap: 5px;
 	
-	
-	.icon { @include mixin--Center }
+	.icon {
+		@include mixin--Center;
+	}
 	
 	span {
 		transition: $transition;
 		
 		svg {
 			transition: $transition;
-			fill: rgb(var(--color__black1))
+			fill: rgb(var(--color__black1));
 		}
 	}
 	
-	.content { width: 100% }
+	.content {
+		width: 100%;
+	}
 	
 	&:disabled {
 		cursor: auto;
 		opacity: 0.4;
 	}
 	
-	.text { flex: 1 }
+	.text {
+		flex: 1;
+	}
 }
 
-
-.btnHover:hover { background: rgba(var(--color__black6), 0.4) }
-
+.btnHover:hover {
+	background: rgba(var(--color__black6), 0.4);
+}
 
 .color_ {
-	&red { background: rgb(var(--color__red1))}
+	&red {
+		background: rgb(var(--color__red1));
+	}
 	
-	&blue {background: rgb(var(--color__blue1))}
+	&blue {
+		background: rgb(var(--color__blue1));
+	}
 	
-	&skyBlue { background: rgb(var(--color__skyblue1))}
+	&skyBlue {
+		background: rgb(var(--color__skyblue1));
+	}
 	
-	&grey { background: rgb(var(--color__black7)); }
+	&grey {
+		background: rgb(var(--color__black7));
+	}
 	
 	&black {
 		background: rgb(var(--color__black1));
 		
-		span { color: rgb(var(--color__black10)); }
+		span {
+			color: rgb(var(--color__black10));
+		}
 	}
 }
 
-
 .textAlign_ {
-	&center { text-align: center; }
+	&center {
+		text-align: center;
+	}
 	
-	&left { text-align: left; }
+	&left {
+		text-align: left;
+	}
 	
-	&right { text-align: right; }
+	&right {
+		text-align: right;
+	}
 }
-
 
 .noPadding {
 	padding: 0;

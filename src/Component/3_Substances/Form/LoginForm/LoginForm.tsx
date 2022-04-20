@@ -40,7 +40,7 @@ const LoginForm: FC<ILoginForm> = (props) => {
 		pass: defaultValue?.log || '',
 	});
 	const [isValid, setIsValid] = useState(validate(inputValue.current));
-	const [isError, setError] = useState<language.ELanguageKey | ''>('');
+	const [isError, setError] = useState<language.TAllLanguageWord | ''>('');
 
 	const preloaderContext = useContext(PreloaderContext);
 
@@ -69,7 +69,7 @@ const LoginForm: FC<ILoginForm> = (props) => {
 					services.store.usersStore.setCurrentUser = data;
 					successfulLogin && successfulLogin();
 				} else {
-					setError(language.ELanguageKey.INVALID_PASSWORD);
+					setError(language.allLanguageWord.INVALID_PASSWORD);
 				}
 				preloaderContext.setIsShow(false);
 			}
@@ -81,7 +81,7 @@ const LoginForm: FC<ILoginForm> = (props) => {
 			<div className={styles.inputWrapper}>
 				<div className={styles.input}>
 					<div>
-						<Text userStyle={'fat_small'} text={language.ELanguageKey.LOGIN} />
+						<Text userStyle={'fat_small'} text={language.allLanguageWord.LOGIN} />
 					</div>
 
 					<InputStandard
@@ -93,13 +93,13 @@ const LoginForm: FC<ILoginForm> = (props) => {
 				<div className={styles.input}>
 					<div className={styles.aboveInput}>
 						<div>
-							<Text userStyle={'fat_small'} text={language.ELanguageKey.PASSWORD} />
+							<Text userStyle={'fat_small'} text={language.allLanguageWord.PASSWORD} />
 						</div>
 						<div>
 							<Text
 								userStyle={'fat_small'}
 								userColor={'skyblue'}
-								text={language.ELanguageKey.FORGET_PASSWORD_DES_KA}
+								text={language.allLanguageWord.FORGET_PASSWORD_DES_KA}
 							/>
 						</div>
 					</div>
@@ -123,7 +123,7 @@ const LoginForm: FC<ILoginForm> = (props) => {
 						textStyle={'fat_small'}
 						color={'black'}
 						click={clickHandler}
-						title={language.ELanguageKey.SING_IN}
+						title={language.allLanguageWord.SING_IN}
 						log={{ element: LoginForm.name }}
 						isDisabled={!isValid}
 					/>

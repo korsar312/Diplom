@@ -5,7 +5,7 @@ import { ReactComponent as IconArrow } from '../../../Assets/icon/icon_arrow.svg
 import { language } from '../../../Services/Stores/Language/Language.interface';
 
 interface iDropMenu {
-	title: language.ELanguageKey | string | number;
+	title: language.TAllLanguageWord | string | number;
 	children: JSX.Element;
 	iconLeft?: JSX.Element;
 	extClass?: string;

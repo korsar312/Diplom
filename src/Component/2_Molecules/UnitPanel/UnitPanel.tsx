@@ -10,9 +10,9 @@ import { language } from '../../../Services/Stores/Language/Language.interface';
 interface IUnitPanel {
 	click?: () => void;
 	image?: string | JSX.Element;
-	topText: string | language.ELanguageKey;
-	middleText?: string | language.ELanguageKey;
-	bottomText?: string | language.ELanguageKey;
+	topText: string | language.TAllLanguageWord;
+	middleText?: string | language.TAllLanguageWord;
+	bottomText?: string | language.TAllLanguageWord;
 	extClass?: string;
 }
 
@@ -31,16 +31,8 @@ const UnitPanel: FC<IUnitPanel> = (props) => {
 	return (
 		<div className={`${styles.wrapper} ${extClass}`}>
 			<div className={styles.image}>
-				<Avatar>
-					{image ? (
-						typeof image === 'string' ? (
-							<img src={image} alt="Аватар" />
-						) : (
-							image
-						)
-					) : (
-						<IconAvatar />
-					)}
+				<Avatar size={'small'}>
+					{image ? typeof image === 'string' ? <img src={image} alt="Аватар" /> : image : <IconAvatar />}
 				</Avatar>
 			</div>
 
@@ -57,11 +49,7 @@ const UnitPanel: FC<IUnitPanel> = (props) => {
 
 				{bottomText && (
 					<div>
-						<Text
-							userStyle={'light_extraSmall'}
-							userColor={'green'}
-							text={bottomText}
-						/>
+						<Text userStyle={'light_extraSmall'} userColor={'green'} text={bottomText} />
 					</div>
 				)}
 			</div>

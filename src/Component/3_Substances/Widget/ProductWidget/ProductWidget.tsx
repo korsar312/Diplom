@@ -28,8 +28,7 @@ const ProductWidget: FC<IProductWidget> = (props) => {
 		if (!products) {
 			showPreloader.setIsShow(true);
 
-			services.rest.RestApi.getProduct((isOk, error, data) => {
-				if (isOk) services.store.productsStore.setProducts = data;
+			services.rest.RestApi.getProduct(() => {
 				showPreloader.setIsShow(false);
 			});
 		}
@@ -37,9 +36,9 @@ const ProductWidget: FC<IProductWidget> = (props) => {
 
 	const createPropertyForTable: TUnitWidgetTable = {
 		head: [
-			language.ELanguageKey.PRODUCTS,
-			language.ELanguageKey.PRICE,
-			language.ELanguageKey.CONVENTIONAL_UNIT,
+			language.allLanguageWord.PRODUCTS,
+			language.allLanguageWord.PRICE,
+			language.allLanguageWord.CONVENTIONAL_UNIT,
 		],
 		body: Object.entries(products || {})?.map((el) => ({
 			id: el[0],
@@ -49,9 +48,7 @@ const ProductWidget: FC<IProductWidget> = (props) => {
 				<>
 					{el[1].price.map((price) => (
 						<div key={price.price + price.currency}>
-							<Text
-								text={`${price.price} ${product.OCurrencyIcon[price.currency]}`}
-							/>
+							<Text text={`${price.price} ${product.OCurrencyIcon[price.currency]}`} />
 						</div>
 					))}
 				</>,
@@ -64,7 +61,7 @@ const ProductWidget: FC<IProductWidget> = (props) => {
 	return (
 		<WidgetWrapper>
 			<div className={`${styles.wrapper} ${extClass}`}>
-				<WidgetHead title={language.ELanguageKey.PRODUCTS} />
+				<WidgetHead title={language.allLanguageWord.PRODUCTS} />
 				<WidgetBody table={createPropertyForTable} />
 			</div>
 		</WidgetWrapper>
