@@ -1,6 +1,5 @@
 @use "/src/Styles/Variables" as *;
 
-
 $panel_width: 265px;
 $panel_padding_vert: 15px;
 
@@ -14,7 +13,6 @@ $panel_padding_vert: 15px;
 	transition: $transition;
 	background: rgb(var(--color__asaid));
 	
-	
 	.line {
 		margin: 15px 0;
 	}
@@ -26,12 +24,7 @@ $panel_padding_vert: 15px;
 	.elementHalfPadding {
 		padding: 0 10px;
 	}
-	
-	.search {
-		background: rgb(var(--color__black7));
-	}
 }
-
 
 .show_ {
 	&on {
@@ -39,12 +32,7 @@ $panel_padding_vert: 15px;
 	}
 	
 	&off {
-		left: - $panel_width;
-		margin-right: - $panel_width;
+		left: -$panel_width;
+		margin-right: -$panel_width;
 	}
 }
-
-
-
-
-

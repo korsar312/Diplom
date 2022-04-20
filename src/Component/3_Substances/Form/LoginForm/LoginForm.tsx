@@ -33,7 +33,7 @@ function validate(val: TInputValue) {
  * @param props.isVisibleBtn - показ кнопки вход
  */
 const LoginForm: FC<ILoginForm> = (props) => {
-	const { extClass, successfulLogin, valuesForm, defaultValue, isVisibleBtn = true } = props;
+	const { extClass = '', successfulLogin, valuesForm, defaultValue, isVisibleBtn = true } = props;
 
 	const inputValue = useRef<TInputValue>({
 		log: defaultValue?.log || '',
@@ -88,6 +88,7 @@ const LoginForm: FC<ILoginForm> = (props) => {
 						callback={setLogin}
 						extClass={`${styles.wrapper} ${extClass}`}
 						log={{ element: LoginForm.name }}
+						color={'lightGrey'}
 					/>
 				</div>
 				<div className={styles.input}>
@@ -108,6 +109,7 @@ const LoginForm: FC<ILoginForm> = (props) => {
 						callback={setPassword}
 						extClass={`${styles.wrapper} ${extClass}`}
 						log={{ element: LoginForm.name }}
+						color={'lightGrey'}
 					/>
 				</div>
 				{isError && (

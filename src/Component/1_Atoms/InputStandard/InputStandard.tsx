@@ -21,7 +21,7 @@ type TIcon = {
 	extClass?: string;
 };
 
-type TInputColor = 'red' | 'black' | 'blue' | 'skyBlue' | 'grey';
+type TInputColor = 'red' | 'black' | 'blue' | 'skyBlue' | 'grey' | 'lightGrey';
 
 /**
  * Основной инпут
@@ -35,7 +35,7 @@ type TInputColor = 'red' | 'black' | 'blue' | 'skyBlue' | 'grey';
  * @param props.defaultValue - значение по умолчанию
  */
 const InputStandard: FC<IInput> = (props) => {
-	const { callback, iconLeft, iconRight, extClass = '', placeholder, type, log, defaultValue } = props;
+	const { callback, iconLeft, iconRight, extClass = '', placeholder, type, log, defaultValue, color } = props;
 
 	function handleChange(event: { target: { value: string } }) {
 		services.rest.RestApi.logAction({
@@ -59,7 +59,7 @@ const InputStandard: FC<IInput> = (props) => {
 	}
 
 	return (
-		<div className={`${styles.wrapper} ${extClass}`}>
+		<div className={`${styles.wrapper} ${extClass} ${color ? styles[`color_${color}`] : ''}`}>
 			{iconLeft && <span className={iconLeft.extClass}>{iconLeft.icon}</span>}
 			<input
 				placeholder={placeholder}

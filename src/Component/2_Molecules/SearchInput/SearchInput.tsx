@@ -19,7 +19,8 @@ const SearchInput: FC<ISearchInput> = (props) => {
 	return (
 		<InputStandard
 			callback={callback}
-			extClass={`${extClass}`}
+			extClass={extClass}
+			color={'grey'}
 			iconLeft={{ icon: <IconSearch /> }}
 			placeholder={language.allLanguageWord.SEARCH}
 			log={{ element: SearchInput.name }}

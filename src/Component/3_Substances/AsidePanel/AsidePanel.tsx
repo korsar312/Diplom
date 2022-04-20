@@ -50,7 +50,7 @@ const AsidePanel: FC<IAsidePanel> = (props) => {
 			<Line extClass={styles.line} />
 
 			<div className={styles.element}>
-				<SearchInput extClass={styles.search} callback={(value) => setFilterLink(value)} />
+				<SearchInput callback={(value) => setFilterLink(value)} />
 			</div>
 
 			<Line extClass={styles.line} />
