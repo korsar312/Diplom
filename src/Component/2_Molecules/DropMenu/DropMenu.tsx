@@ -2,12 +2,12 @@ import React, { FC, useState } from 'react';
 import styles from './DropMenu.module.scss';
 import ButtonStandard from '../../1_Atoms/ButtonStandard/ButtonStandard';
 import { ReactComponent as IconArrow } from '../../../Assets/icon/icon_arrow.svg';
-import { language } from '../../../Services/Stores/Language/Language.interface';
+import { language } from '../../../Services/Language/Language.interface';
 
 interface iDropMenu {
 	title: language.TAllLanguageWord | string | number;
 	children: JSX.Element;
-	iconLeft?: JSX.Element;
+	iconLeft?: FC<React.SVGProps<SVGSVGElement>>;
 	extClass?: string;
 	isPaddingOn?: boolean;
 	isAbsolute?: boolean;
@@ -35,7 +35,7 @@ const DropMenu: FC<iDropMenu> = (props) => {
 				click={() => setIsShowListBtn((val) => !val)}
 				log={{ element: DropMenu.name }}
 				iconRight={{
-					icon: <IconArrow />,
+					icon: IconArrow,
 					extClass: `${styles.arrow} ${isShowListBtn ? styles.panelOn : ''}`,
 				}}
 				iconLeft={{ icon: iconLeft }}

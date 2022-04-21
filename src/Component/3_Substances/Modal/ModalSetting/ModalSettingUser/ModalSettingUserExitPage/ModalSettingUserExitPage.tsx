@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './ModalSettingUserExitPage.module.scss';
-import { language } from '../../../../../../Services/Stores/Language/Language.interface';
+import { language } from '../../../../../../Services/Language/Language.interface';
 import ButtonStandard from '../../../../../1_Atoms/ButtonStandard/ButtonStandard';
 import services from '../../../../../../Services/Services';
 import { modals } from '../../../../../../Services/Stores/Modal/Modal.interface';

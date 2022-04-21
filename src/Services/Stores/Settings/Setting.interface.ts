@@ -3,4 +3,9 @@ export namespace setting {
 		'LIGHT' = 'LIGHT',
 		'DARK' = 'DARK',
 	}
+
+	export enum ELanguageType {
+		RU = 'RU',
+		EN = 'EN',
+	}
 }

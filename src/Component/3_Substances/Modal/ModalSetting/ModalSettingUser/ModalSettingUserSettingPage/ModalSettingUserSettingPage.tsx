@@ -2,10 +2,11 @@ import React, { FC } from 'react';
 import Text from '../../../../../0_Basic/Text/Text';
 import services from '../../../../../../Services/Services';
 import styles from './ModalSettingUserSettingPage.module.scss';
-import { language } from '../../../../../../Services/Stores/Language/Language.interface';
+import { language } from '../../../../../../Services/Language/Language.interface';
 import DropMenu from '../../../../../2_Molecules/DropMenu/DropMenu';
 import ButtonStandard from '../../../../../1_Atoms/ButtonStandard/ButtonStandard';
 import { observer } from 'mobx-react';
+import { setting } from '../../../../../../Services/Stores/Settings/Setting.interface';
 
 interface IModalSettingUserSettingPage {
 	extClass?: string;
@@ -18,21 +19,21 @@ interface IModalSettingUserSettingPage {
 const ModalSettingUserSettingPage: FC<IModalSettingUserSettingPage> = (props) => {
 	const { extClass = '' } = props;
 
-	const currentLanguage = services.store.languageStore.getCurrentLanguage;
+	const currentLanguage = services.store.settingStore.getCurrentLanguage;
 
-	const renderLanguage = Object.keys(language.ELanguageType).map((language) => {
+	const renderLanguage = Object.keys(setting.ELanguageType).map((language) => {
 		return (
 			<ButtonStandard
 				key={language}
-				click={() => setLanguage(language as language.ELanguageType)}
+				click={() => setLanguage(language as setting.ELanguageType)}
 				color={currentLanguage === language ? 'grey' : undefined}
 				title={language}
 			/>
 		);
 	});
 
-	function setLanguage(language: language.ELanguageType) {
-		services.store.languageStore.setCurrentLanguage = language;
+	function setLanguage(language: setting.ELanguageType) {
+		services.store.settingStore.setCurrentLanguage = language;
 	}
 
 	return (

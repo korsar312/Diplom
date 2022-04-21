@@ -18,51 +18,15 @@ const ModalSettingUserSecurityPage: FC<IModalSettingUserSecurityPage> = (props) 
 
 	return (
 		<div className={`${styles.wrapper} ${extClass}`}>
-			<ButtonStandard
-				click={() => setIsShowChangeMenu(true)}
-				iconLeft={{ icon: <IconTune /> }}
-				isHover={true}
-			/>
-			<ButtonStandard
-				click={() => setIsShowChangeMenu(true)}
-				iconLeft={{ icon: <IconTune /> }}
-				isHover={true}
-			/>
-			<ButtonStandard
-				click={() => setIsShowChangeMenu(true)}
-				iconLeft={{ icon: <IconTune /> }}
-				isHover={true}
-			/>
-			<ButtonStandard
-				click={() => setIsShowChangeMenu(true)}
-				iconLeft={{ icon: <IconTune /> }}
-				isHover={true}
-			/>
-			<ButtonStandard
-				click={() => setIsShowChangeMenu(true)}
-				iconLeft={{ icon: <IconTune /> }}
-				isHover={true}
-			/>
-			<ButtonStandard
-				click={() => setIsShowChangeMenu(true)}
-				iconLeft={{ icon: <IconTune /> }}
-				isHover={true}
-			/>
-			<ButtonStandard
-				click={() => setIsShowChangeMenu(true)}
-				iconLeft={{ icon: <IconTune /> }}
-				isHover={true}
-			/>
-			<ButtonStandard
-				click={() => setIsShowChangeMenu(true)}
-				iconLeft={{ icon: <IconTune /> }}
-				isHover={true}
-			/>
-			<ButtonStandard
-				click={() => setIsShowChangeMenu(true)}
-				iconLeft={{ icon: <IconTune /> }}
-				isHover={true}
-			/>
+			<ButtonStandard click={() => setIsShowChangeMenu(true)} iconLeft={{ icon: IconTune }} isHover={true} />
+			<ButtonStandard click={() => setIsShowChangeMenu(true)} iconLeft={{ icon: IconTune }} isHover={true} />
+			<ButtonStandard click={() => setIsShowChangeMenu(true)} iconLeft={{ icon: IconTune }} isHover={true} />
+			<ButtonStandard click={() => setIsShowChangeMenu(true)} iconLeft={{ icon: IconTune }} isHover={true} />
+			<ButtonStandard click={() => setIsShowChangeMenu(true)} iconLeft={{ icon: IconTune }} isHover={true} />
+			<ButtonStandard click={() => setIsShowChangeMenu(true)} iconLeft={{ icon: IconTune }} isHover={true} />
+			<ButtonStandard click={() => setIsShowChangeMenu(true)} iconLeft={{ icon: IconTune }} isHover={true} />
+			<ButtonStandard click={() => setIsShowChangeMenu(true)} iconLeft={{ icon: IconTune }} isHover={true} />
+			<ButtonStandard click={() => setIsShowChangeMenu(true)} iconLeft={{ icon: IconTune }} isHover={true} />
 		</div>
 	);
 };

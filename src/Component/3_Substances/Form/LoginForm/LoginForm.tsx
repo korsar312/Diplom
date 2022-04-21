@@ -1,7 +1,7 @@
 import React, { FC, useContext, useRef, useState } from 'react';
 import InputStandard from '../../../1_Atoms/InputStandard/InputStandard';
 import styles from './LoginForm.module.scss';
-import { language } from '../../../../Services/Stores/Language/Language.interface';
+import { language } from '../../../../Services/Language/Language.interface';
 import Text from '../../../0_Basic/Text/Text';
 import ButtonStandard from '../../../1_Atoms/ButtonStandard/ButtonStandard';
 import services from '../../../../Services/Services';
@@ -88,7 +88,7 @@ const LoginForm: FC<ILoginForm> = (props) => {
 						callback={setLogin}
 						extClass={`${styles.wrapper} ${extClass}`}
 						log={{ element: LoginForm.name }}
-						color={'lightGrey'}
+						color={'wight'}
 					/>
 				</div>
 				<div className={styles.input}>
@@ -109,7 +109,7 @@ const LoginForm: FC<ILoginForm> = (props) => {
 						callback={setPassword}
 						extClass={`${styles.wrapper} ${extClass}`}
 						log={{ element: LoginForm.name }}
-						color={'lightGrey'}
+						color={'wight'}
 					/>
 				</div>
 				{isError && (

@@ -17,11 +17,6 @@
 	
 	span {
 		transition: $transition;
-		
-		svg {
-			transition: $transition;
-			fill: rgb(var(--color__black1));
-		}
 	}
 	
 	.content {
@@ -40,32 +35,6 @@
 
 .btnHover:hover {
 	background: rgba(var(--color__black6), 0.4);
-}
-
-.color_ {
-	&red {
-		background: rgb(var(--color__red1));
-	}
-	
-	&blue {
-		background: rgb(var(--color__blue1));
-	}
-	
-	&skyBlue {
-		background: rgb(var(--color__skyblue1));
-	}
-	
-	&grey {
-		background: rgb(var(--color__black7));
-	}
-	
-	&black {
-		background: rgb(var(--color__black1));
-		
-		span {
-			color: rgb(var(--color__black10));
-		}
-	}
 }
 
 .textAlign_ {

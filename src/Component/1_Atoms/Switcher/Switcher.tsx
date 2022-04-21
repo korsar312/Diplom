@@ -11,7 +11,7 @@ interface ISwitcher {
 }
 
 /**
- * Свитчер
+ * Тумблер
  * @param props.click - функция onClick по кнопке
  * @param props.extClass - дополнительный CSS класс
  * @param props.log - логирование

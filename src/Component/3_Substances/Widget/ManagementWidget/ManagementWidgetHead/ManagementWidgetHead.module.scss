@@ -1,0 +1,31 @@
+.wrapper {
+	display: flex;
+	gap: 20px;
+	
+	.btn {
+		position: absolute;
+		opacity: 0.7;
+	}
+	
+	.namingCompany {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		gap: 10px;
+		
+		.input {
+			width: 100%;
+		}
+		
+		.title,
+		.subtitle {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			
+			.titleWrapper {
+				padding: 14px 12px;
+			}
+		}
+	}
+}

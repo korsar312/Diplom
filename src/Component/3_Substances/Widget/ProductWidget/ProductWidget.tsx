@@ -1,7 +1,7 @@
 import React, { FC, useContext, useEffect } from 'react';
 import styles from './ProductWidget.module.scss';
 import WidgetWrapper from '../../../1_Atoms/WidgetWrapper/WidgetWrapper';
-import { language } from '../../../../Services/Stores/Language/Language.interface';
+import { language } from '../../../../Services/Language/Language.interface';
 import services from '../../../../Services/Services';
 import WidgetBody, { TUnitWidgetTable } from '../../../2_Molecules/Widget/WidgetBody/WidgetBody';
 import { PreloaderContext } from '../../../../App';

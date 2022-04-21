@@ -1,4 +1,5 @@
-import { companies } from '../Companies/Companies.interface';
+import { companies } from '../Stores/Companies/Companies.interface';
+import { setting } from '../Stores/Settings/Setting.interface';
 
 export namespace language {
 	export type TLanguage = {
@@ -6,13 +7,8 @@ export namespace language {
 	};
 
 	type TWord = {
-		[key in ELanguageType]: string;
+		[key in setting.ELanguageType]: string;
 	};
-
-	export enum ELanguageType {
-		RU = 'RU',
-		EN = 'EN',
-	}
 
 	enum ELanguageSimpleWord {
 		CHAT_WITH_COLLEAGUES = 'CHAT_WITH_COLLEAGUES',

@@ -1,38 +1,26 @@
 import React, { FC } from 'react';
 import styles from './Text.module.scss';
-import { language } from '../../../Services/Stores/Language/Language.interface';
+import defaultStyles from './../../../Styles/DefaultStyles/DefaultStyles.module.scss';
+import { language } from '../../../Services/Language/Language.interface';
 import services from '../../../Services/Services';
 import { observer } from 'mobx-react';
+import { defaultStyle } from '../../../Styles/DefaultStyles/DefaultStyles.type';
 
 interface IText {
 	text: TText;
-	userStyle?: TTextStyle;
-	userColor?: TTextColor;
+	userStyle?: defaultStyle.TTextStyle;
+	userColor?: defaultStyle.TColor;
 	caseWord?: TModeReturnWord;
 	extClass?: string;
 }
 
 type TText = language.TAllLanguageWord | number | string;
 
-export type TTextStyle =
-	| 'standard'
-	| 'light_extraSmall'
-	| 'fat_extraSmall'
-	| 'light_small'
-	| 'fat_small'
-	| 'fat_big'
-	| 'fat_extraBig'
-	| 'normal_small';
-
-export type TTextColor = 'red' | 'blue' | 'green' | 'white' | 'grey' | 'skyblue';
-
 type TModeReturnWord = 'CAPITAL' | 'SMALL';
 
 /**
  * Текст
- * @param props.textTranslate - текст с переводом
- * @param props.text - текст как есть (строкой)
- * @param props.textString - текст строкой без перевода (Только имена и подобное)
+ * @param props.text - текст
  * @param props.userStyle - шаблонный стиль текста
  * @param props.userColor - шаблонный цвет текста
  * @param props.caseWord - выбор регистра текста
@@ -43,9 +31,7 @@ const Text: FC<IText> = (props) => {
 
 	function wordTranslate(word: TText): string {
 		const wordTranslate = String(
-			word in language.allLanguageWord
-				? services.store.languageStore.getText(word as language.TAllLanguageWord)
-				: word
+			word in language.allLanguageWord ? services.language.getText(word as language.TAllLanguageWord) : word
 		);
 
 		if (caseWord) {
@@ -65,8 +51,8 @@ const Text: FC<IText> = (props) => {
 			className={`
         ${styles.wrapper} 
         ${extClass} 
-        ${styles['style_' + userStyle]}
-        ${styles['color_' + userColor]}
+        ${defaultStyles['style_' + userStyle]}
+        ${defaultStyles['color_' + userColor]}
       `}>
 			{wordTranslate(text)}
 		</span>

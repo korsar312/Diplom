@@ -1,0 +1,9 @@
+@use "/src/Styles/Variables" as *;
+@use "/src/Styles/Mixins" as *;
+
+.wrapper {
+	svg {
+		transition: $transition;
+		fill: rgb(var(--color__black1));
+	}
+}

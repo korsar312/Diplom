@@ -5,11 +5,12 @@ import { ReactComponent as IconSetting } from './../../../Assets/icon/icon_setti
 import ButtonStandard from '../../1_Atoms/ButtonStandard/ButtonStandard';
 import Avatar from '../../1_Atoms/Avatar/Avatar';
 import Text from '../../0_Basic/Text/Text';
-import { language } from '../../../Services/Stores/Language/Language.interface';
+import { language } from '../../../Services/Language/Language.interface';
+import IconWrapper from '../../0_Basic/IconWrapper/IconWrapper';
 
 interface IUnitPanel {
 	click?: () => void;
-	image?: string | JSX.Element;
+	image?: string | FC<React.SVGProps<SVGSVGElement>>;
 	topText: string | language.TAllLanguageWord;
 	middleText?: string | language.TAllLanguageWord;
 	bottomText?: string | language.TAllLanguageWord;
@@ -32,7 +33,15 @@ const UnitPanel: FC<IUnitPanel> = (props) => {
 		<div className={`${styles.wrapper} ${extClass}`}>
 			<div className={styles.image}>
 				<Avatar size={'small'}>
-					{image ? typeof image === 'string' ? <img src={image} alt="Аватар" /> : image : <IconAvatar />}
+					{image ? (
+						typeof image === 'string' ? (
+							<img src={image} alt="Аватар" />
+						) : (
+							<IconWrapper Icon={image} />
+						)
+					) : (
+						<IconWrapper Icon={IconAvatar} />
+					)}
 				</Avatar>
 			</div>
 
@@ -58,7 +67,7 @@ const UnitPanel: FC<IUnitPanel> = (props) => {
 					isNoPadding={true}
 					extClass={styles.btn}
 					click={click}
-					iconLeft={{ icon: <IconSetting /> }}
+					iconLeft={{ icon: IconSetting }}
 					log={{ element: UnitPanel.name }}
 				/>
 			)}

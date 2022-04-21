@@ -4,6 +4,7 @@ import services from '../../Services';
 
 export class SettingController {
 	private theme: setting.theme = setting.theme.DARK;
+	private currentLanguage: setting.ELanguageType = setting.ELanguageType.EN;
 	private readonly rootStore: typeof services.store;
 
 	constructor(rootStore: typeof services.store) {
@@ -24,5 +25,20 @@ export class SettingController {
 	 */
 	public set setTheme(theme: setting.theme) {
 		this.theme = theme;
+	}
+
+	/**
+	 * Устанавливает языковую модель
+	 * @params language - язык
+	 */
+	public set setCurrentLanguage(language: setting.ELanguageType) {
+		this.currentLanguage = language;
+	}
+
+	/**
+	 * Возвращает текущую языковую модель
+	 */
+	public get getCurrentLanguage() {
+		return this.currentLanguage;
 	}
 }

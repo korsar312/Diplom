@@ -11,14 +11,15 @@ import { ReactComponent as IconSettings } from '../../../../Assets/icon/icon_set
 import { ReactComponent as IconImport } from '../../../../Assets/icon/icon_import.svg';
 import { ReactComponent as IconExport } from '../../../../Assets/icon/icon_export.svg';
 
-import { language } from '../../../../Services/Stores/Language/Language.interface';
+import { language } from '../../../../Services/Language/Language.interface';
 import services from '../../../../Services/Services';
 import { OneOfTwo } from '../../../../Types/Types';
+import React, { FC } from 'react';
 
 type TBasePropNavigateList = {
 	id: string;
 	name: language.TAllLanguageWord;
-	leftImg?: JSX.Element;
+	leftImg?: FC<React.SVGProps<SVGSVGElement>>;
 	click?: () => void;
 	children?: TNavigateList[];
 };
@@ -29,12 +30,12 @@ export const navLink: TNavigateList[] = [
 	{
 		id: '1',
 		name: language.allLanguageWord.MY_COMPANY,
-		leftImg: <IconCompany />,
+		leftImg: IconCompany,
 		children: [
 			{
 				id: '1-1',
 				name: language.allLanguageWord.COOPERATOR,
-				leftImg: <IconPersons />,
+				leftImg: IconPersons,
 				click: () =>
 					services.route.RouterGo(route.Name.COMPANY_PERSONNEL, {
 						id: services.store.usersStore.getIdMyCompany,
@@ -43,7 +44,7 @@ export const navLink: TNavigateList[] = [
 			{
 				id: '1-2',
 				name: language.allLanguageWord.MANAGEMENT,
-				leftImg: <IconSettings />,
+				leftImg: IconSettings,
 				click: () => services.route.RouterGo(route.Name.MANAGEMENT),
 			},
 		],
@@ -51,18 +52,18 @@ export const navLink: TNavigateList[] = [
 	{
 		id: '2',
 		name: language.allLanguageWord.IMPORT,
-		leftImg: <IconImport />,
+		leftImg: IconImport,
 		children: [
 			{
 				id: '2-1',
 				name: language.allLanguageWord.COMPANIES,
-				leftImg: <IconInform />,
+				leftImg: IconInform,
 				click: () => services.route.RouterGo(route.Name.COMPANIES),
 			},
 			{
 				id: '2-2',
 				name: language.allLanguageWord.PRODUCTS,
-				leftImg: <IconProduct />,
+				leftImg: IconProduct,
 				click: () => services.route.RouterGo(route.Name.IMPORT_PRODUCTS),
 			},
 		],
@@ -70,30 +71,30 @@ export const navLink: TNavigateList[] = [
 	{
 		id: '3',
 		name: language.allLanguageWord.EXPORT,
-		leftImg: <IconExport />,
+		leftImg: IconExport,
 		children: [
 			{
 				id: '3-1',
 				name: language.allLanguageWord.PRODUCTS,
-				leftImg: <IconProduct />,
+				leftImg: IconProduct,
 				click: () => services.route.RouterGo(route.Name.EXPORT_PRODUCTS),
 			},
 			{
 				id: '3-2',
 				name: language.allLanguageWord.SUPPLIES,
-				leftImg: <IconAuto />,
+				leftImg: IconAuto,
 				click: () => services.route.RouterGo(route.Name.SUPPLIES),
 			},
 			{
 				id: '3-3',
 				name: language.allLanguageWord.WAREHOUSE,
-				leftImg: <IconWarehouse />,
+				leftImg: IconWarehouse,
 				click: () => services.route.RouterGo(route.Name.WAREHOUSE),
 			},
 			{
 				id: '3-4',
 				name: language.allLanguageWord.REQUEST,
-				leftImg: <IconRequest />,
+				leftImg: IconRequest,
 				click: () => services.route.RouterGo(route.Name.REQUEST),
 			},
 		],
@@ -101,7 +102,7 @@ export const navLink: TNavigateList[] = [
 	{
 		id: '4',
 		name: language.allLanguageWord.REPORTS,
-		leftImg: <IconReports />,
+		leftImg: IconReports,
 		click: () => services.route.RouterGo(route.Name.REPORTS),
 	},
 ];

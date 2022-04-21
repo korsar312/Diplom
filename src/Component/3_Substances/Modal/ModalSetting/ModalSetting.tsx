@@ -4,7 +4,7 @@ import ModalWindow from '../../../0_Basic/ModalWindow/ModalWindow';
 import UnitPanel from '../../../2_Molecules/UnitPanel/UnitPanel';
 import ButtonStandard from '../../../1_Atoms/ButtonStandard/ButtonStandard';
 import Text from '../../../0_Basic/Text/Text';
-import { language } from '../../../../Services/Stores/Language/Language.interface';
+import { language } from '../../../../Services/Language/Language.interface';
 
 interface IModalSetting {
 	extClass?: string;
@@ -16,7 +16,7 @@ interface IModalSetting {
 
 export type TModalSetting = {
 	title: language.TAllLanguageWord;
-	image: JSX.Element;
+	image: FC<React.SVGProps<SVGSVGElement>>;
 	description: language.TAllLanguageWord;
 	content: JSX.Element;
 };

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './WidgetHead.module.scss';
-import { language } from '../../../../Services/Stores/Language/Language.interface';
+import { language } from '../../../../Services/Language/Language.interface';
 import Text from '../../../0_Basic/Text/Text';
 
 interface IWidgetHead {

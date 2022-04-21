@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { language } from '../../../../../../Services/Stores/Language/Language.interface';
+import { language } from '../../../../../../Services/Language/Language.interface';
 import services from '../../../../../../Services/Services';
 import styles from '../ModalSettingUserSettingPage/ModalSettingUserSettingPage.module.scss';
 import Text from '../../../../../0_Basic/Text/Text';

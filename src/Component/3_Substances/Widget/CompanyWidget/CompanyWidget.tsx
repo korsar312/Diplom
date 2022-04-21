@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import styles from './CompanyWidget.module.scss';
 import WidgetWrapper from '../../../1_Atoms/WidgetWrapper/WidgetWrapper';
 import WidgetHead from '../../../2_Molecules/Widget/WidgetHead/WidgetHead';
-import { language } from '../../../../Services/Stores/Language/Language.interface';
+import { language } from '../../../../Services/Language/Language.interface';
 import { companies } from '../../../../Services/Stores/Companies/Companies.interface';
 
 interface ICompanyWidget {

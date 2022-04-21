@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import InputStandard from '../../1_Atoms/InputStandard/InputStandard';
 import { ReactComponent as IconSearch } from '../../../Assets/icon/icon_search.svg';
-import { language } from '../../../Services/Stores/Language/Language.interface';
+import { language } from '../../../Services/Language/Language.interface';
 
 interface ISearchInput {
 	callback: (value: string) => void;
@@ -21,7 +21,7 @@ const SearchInput: FC<ISearchInput> = (props) => {
 			callback={callback}
 			extClass={extClass}
 			color={'grey'}
-			iconLeft={{ icon: <IconSearch /> }}
+			iconLeft={{ icon: IconSearch }}
 			placeholder={language.allLanguageWord.SEARCH}
 			log={{ element: SearchInput.name }}
 		/>

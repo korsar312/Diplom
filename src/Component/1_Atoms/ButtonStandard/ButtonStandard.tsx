@@ -1,15 +1,18 @@
 import React, { FC } from 'react';
 import styles from './ButtonStandard.module.scss';
+import defaultStyles from './../../../Styles/DefaultStyles/DefaultStyles.module.scss';
 import { rest } from '../../../Services/Rest/RestApi/RestApi.interface';
-import Text, { TTextStyle } from '../../0_Basic/Text/Text';
-import { language } from '../../../Services/Stores/Language/Language.interface';
+import Text from '../../0_Basic/Text/Text';
+import { language } from '../../../Services/Language/Language.interface';
 import services from '../../../Services/Services';
+import IconWrapper from '../../0_Basic/IconWrapper/IconWrapper';
+import { defaultStyle } from '../../../Styles/DefaultStyles/DefaultStyles.type';
 
 interface IButtonStandard {
 	click: () => void;
 	title?: language.TAllLanguageWord | string | number;
-	color?: TButtonColor;
-	textStyle?: TTextStyle;
+	color?: defaultStyle.TBackgroundColor;
+	textStyle?: defaultStyle.TTextStyle;
 	extClass?: string;
 	iconLeft?: TIcon;
 	iconRight?: TIcon;
@@ -21,11 +24,9 @@ interface IButtonStandard {
 }
 
 type TIcon = {
-	icon: JSX.Element | undefined;
+	icon: FC<React.SVGProps<SVGSVGElement>> | undefined;
 	extClass?: string;
 };
-
-type TButtonColor = 'red' | 'black' | 'blue' | 'skyBlue' | 'grey';
 
 /**
  * Основная кнопка
@@ -47,7 +48,7 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
 		click,
 		title,
 		color,
-		textStyle,
+		textStyle = 'standard',
 		extClass = '',
 		iconLeft,
 		iconRight,
@@ -63,7 +64,7 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
 			element: ButtonStandard.name,
 			action: 'Нажатие',
 			data: props,
-			comment: `кнопка ${title || (iconLeft || iconRight)?.icon?.type.render.name || 'не определена'}`,
+			comment: `кнопка ${title || (iconLeft || iconRight)?.icon?.name || 'не определена'}`,
 			...log,
 		});
 
@@ -76,15 +77,19 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
 			disabled={isDisabled}
 			onClick={clickHandler}
 			className={`
-        ${styles.wrapper} 
-        ${isHover ? styles.btnHover : ''}
-        ${color ? styles[`color_${color}`] : ''} 
-        ${extClass} 
-        ${isNoPadding ? styles.noPadding : ''}
-      `}>
-			{iconLeft?.icon && <span className={`${styles.icon} ${iconLeft.extClass || ''}`}>{iconLeft.icon}</span>}
+		        ${styles.wrapper} 
+		        ${isHover ? styles.btnHover : ''}
+		        ${color ? defaultStyles[`backgroundColor_${color}`] : ''} 
+		        ${extClass} 
+		        ${isNoPadding ? styles.noPadding : ''}
+		    `}>
+			{iconLeft?.icon && (
+				<IconWrapper extClass={`${styles.icon} ${iconLeft.extClass || ''}`} Icon={iconLeft.icon} />
+			)}
 			{title && <Text userStyle={textStyle} extClass={styles.text} text={title} />}
-			{iconRight?.icon && <span className={`${styles.icon} ${iconRight.extClass || ''}`}>{iconRight.icon}</span>}
+			{iconRight?.icon && (
+				<IconWrapper extClass={`${styles.icon} ${iconRight.extClass || ''}`} Icon={iconRight.icon} />
+			)}
 			{children && <div className={styles.content}>{children}</div>}
 		</button>
 	);

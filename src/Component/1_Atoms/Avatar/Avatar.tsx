@@ -21,21 +21,12 @@ interface IAvatar {
  * @param props.isBorder - изпользуется ли обводка
  * @param props.children - картинка в JSX
  * @param props.size - размер аватара
+ * @param props.circle - округлость
  */
 const Avatar: FC<IAvatar> = (props) => {
-	const {
-		click,
-		log,
-		isBorder,
-		extClass = '',
-		children,
-		size = 'normal',
-		circle = 'small',
-	} = props;
+	const { click, log, isBorder, extClass = '', children, size = 'normal', circle = 'small' } = props;
 
 	function clickHandler() {
-		if (!click) return;
-
 		services.rest.RestApi.logAction({
 			element: Avatar.name,
 			action: 'Нажатие',
@@ -43,7 +34,7 @@ const Avatar: FC<IAvatar> = (props) => {
 			...log,
 		});
 
-		click();
+		click?.();
 	}
 
 	return (

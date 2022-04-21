@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { language } from '../../../../../Services/Stores/Language/Language.interface';
+import { language } from '../../../../../Services/Language/Language.interface';
 import ModalSettingUserGeneralPage from './ModalSettingUserGeneralPage/ModalSettingUserGeneralPage';
 import ModalSettingUserSettingPage from './ModalSettingUserSettingPage/ModalSettingUserSettingPage';
 import ModalSettingUserSecurityPage from './ModalSettingUserSecurityPage/ModalSettingUserSecurityPage';
@@ -25,25 +25,25 @@ interface IModalSettingUser {
 const ModalSettingUserList: TModalSetting[] = [
 	{
 		title: language.allLanguageWord.GENERAL,
-		image: <IconHome />,
+		image: IconHome,
 		description: language.allLanguageWord.BASIC_SETTINGS,
 		content: <ModalSettingUserGeneralPage />,
 	},
 	{
 		title: language.allLanguageWord.SETTINGS,
-		image: <IconTune />,
+		image: IconTune,
 		description: language.allLanguageWord.ADVANCED_SETTINGS,
 		content: <ModalSettingUserSettingPage />,
 	},
 	{
 		title: language.allLanguageWord.SECURITY,
-		image: <IconSecurity />,
+		image: IconSecurity,
 		description: language.allLanguageWord.ACCOUNT_SECURITY_SETTINGS,
 		content: <ModalSettingUserSecurityPage />,
 	},
 	{
 		title: language.allLanguageWord.EXIT,
-		image: <IconLogout />,
+		image: IconLogout,
 		description: language.allLanguageWord.LOGOUT_OPTIONS,
 		content: <ModalSettingUserExitPage />,
 	},
