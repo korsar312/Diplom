@@ -1,5 +1,7 @@
 export namespace rest {
-	export type TCallback = (isOk?: boolean, error?: any, data?: any) => void;
+	export type TCallback<T> = (isOk: boolean, error: any, data: TData<T>) => void;
+
+	type TData<T> = T | null;
 
 	export type TLogAction = {
 		currentPage?: string;

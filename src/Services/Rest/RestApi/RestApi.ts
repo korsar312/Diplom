@@ -1,76 +1,9 @@
 import { rest } from './RestApi.interface';
-import { users } from '../../Stores/Users/Users.interface';
 import services from '../../Services';
-import { product } from '../../Stores/Products/Products.interface';
+import { myCompany, persona, productsToSell } from './RestApi.TempMockJSON';
 import { companies } from '../../Stores/Companies/Companies.interface';
-
-const productsToSell: product.TProductHashMap = {
-	'321': {
-		name: 'Оспамокс',
-		analogue: ['123'],
-		conventionalUnit: 'Упаковка',
-		company: [],
-		industry: 'Мануфактурия',
-		price: [
-			{
-				price: 800,
-				currency: product.TCurrency.DOLLAR,
-			},
-			{
-				price: 60000,
-				currency: product.TCurrency.RUBLE,
-			},
-		],
-		property: [{ sad: 'asd' }],
-	},
-	'123': {
-		name: 'Амоксил',
-		analogue: ['321'],
-		conventionalUnit: 'Упаковка',
-		company: [],
-		industry: 'Мануфактурия',
-		price: [
-			{
-				price: 1000,
-				currency: product.TCurrency.DOLLAR,
-			},
-			{
-				price: 80000,
-				currency: product.TCurrency.RUBLE,
-			},
-		],
-		property: [{ sad: 'asd' }],
-	},
-};
-
-const myCompany: companies.TCompany = {
-	name: 'Рога и копыта',
-	subtitle: 'Поможем Вам с нашими проблеммами',
-	economyBranch: companies.EEconomyBranch.INDUSTRY,
-	allProducts: ['123'],
-	exportProduct: ['123'],
-	avatar: 'https://cdn-icons-png.flaticon.com/512/1387/1387539.png',
-	requisites: {
-		address: {
-			index: 127591,
-			country: 'Россия',
-			city: 'Москва',
-		},
-	},
-	description:
-		'съешь ещё этих мягких французских булок, да выпей чаю, съешь ещё этих мягких французских булок, да выпей чаю, съешь ещё этих мягких французских булок, да выпей чаю',
-	personal: ['123213', '123213345', '1232132342'],
-};
-
-const persona: users.TPerson = {
-	id: '123213',
-	accessory: '34',
-	image: 'https://wl-adme.cf.tsp.li/resize/728x/jpg/828/489/b2756c5cdd8b6216f063d69448.jpg',
-	isOnline: true,
-	position: 'Ст. менеджер',
-	surname: 'Мразь',
-	name: 'Иван',
-};
+import { product } from '../../Stores/Products/Products.interface';
+import { users } from '../../Stores/Users/Users.interface';
 
 export class RestApi {
 	/**
@@ -94,50 +27,82 @@ export class RestApi {
 	 * @param password пароль
 	 * @param callback функция, запускающаяся после ответа сервера
 	 */
-	public login(login: string, password: string, callback?: rest.TCallback) {
-		new Promise((resolve, reject) => {
+	public login(login: string, password: string, callback?: rest.TCallback<users.TPerson>) {
+		new Promise((resolve: (value: users.TPerson) => void, reject) => {
 			setTimeout(() => {
 				if (login !== '11' || password !== '11') {
-					return reject();
+					return reject(new Error('unauthorised'));
 				} else {
 					return resolve(persona);
 				}
 			}, 1000);
 		})
 			.then((response) => {
+				this.logAction({
+					action: 'API success',
+					data: { login, password },
+					comment: `Успешный вход пользователя ${response.id}`,
+				});
+
 				callback?.(true, '', response);
 			})
 			.catch((error) => {
-				callback?.(false, error);
+				this.logAction({
+					action: 'API reject',
+					data: { login, password },
+					comment: `Ошибка входа пользователя ${error}`,
+				});
+
+				callback?.(false, error, null);
 			});
 	}
 
-	public getProduct(callback?: rest.TCallback) {
-		new Promise((resolve) => {
+	public getProduct(callback?: rest.TCallback<product.TProductHashMap>) {
+		new Promise((resolve: (value: product.TProductHashMap) => void) => {
 			setTimeout(() => {
 				return resolve(productsToSell);
 			}, 1000);
 		})
 			.then((response) => {
+				this.logAction({
+					action: 'API success',
+					comment: `Успешнное получение всего списка товаров`,
+				});
+
 				callback?.(true, '', response);
 			})
 			.catch((error) => {
-				callback?.(false, error);
+				this.logAction({
+					action: 'API reject',
+					comment: `Ошибка при получении всего списка товаров ${error}`,
+				});
+
+				callback?.(false, error, null);
 			});
 	}
 
-	public getMyCompany(callback?: (isOk?: boolean, error?: any, data?: any) => void) {
-		new Promise((resolve) => {
+	public getMyCompany(callback?: rest.TCallback<companies.TCompany>) {
+		new Promise((resolve: (value: companies.TCompany) => void) => {
 			setTimeout(() => {
 				return resolve(myCompany);
 			}, 1000);
 		})
 			.then((response) => {
-				services.store.companyStore.setMyCompany = myCompany;
+				this.logAction({
+					action: 'API success',
+					comment: `Успешнное получение компании юзера`,
+				});
+
+				services.store.companyStore.setMyCompany = response;
 				callback?.(true, '', response);
 			})
 			.catch((error) => {
-				callback?.(false, error);
+				this.logAction({
+					action: 'API reject',
+					comment: `Ошибка при получении компании юзера ${error}`,
+				});
+
+				callback?.(false, error, null);
 			});
 	}
 }
