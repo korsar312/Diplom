@@ -1,6 +1,8 @@
-import { product } from '../../Stores/Products/Products.interface';
-import { companies } from '../../Stores/Companies/Companies.interface';
-import { users } from '../../Stores/Users/Users.interface';
+import {product} from '../../Stores/Products/Products.interface';
+import {companies} from '../../Stores/Companies/Companies.interface';
+import {users} from '../../Stores/Users/Users.interface';
+
+//TODO УДАЛИТЬ К ХЕРАМ ЭТО
 
 export const productsToSell: product.TProductHashMap = {
 	'321': {

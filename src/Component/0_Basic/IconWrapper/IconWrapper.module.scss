@@ -3,6 +3,7 @@
 
 .wrapper {
 	svg {
+		user-select: none;
 		transition: $transition;
 		fill: rgb(var(--color__black1));
 	}

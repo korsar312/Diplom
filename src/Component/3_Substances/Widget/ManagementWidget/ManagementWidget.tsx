@@ -7,6 +7,7 @@ import { observer } from 'mobx-react';
 import ManagementWidgetHead from './ManagementWidgetHead/ManagementWidgetHead';
 import ManagementWidgetBody from './ManagementWidgetBody/ManagementWidgetBody';
 import ManagementWidgetFoot from './ManagementWidgetFoot/ManagementWidgetFoot';
+import { companies } from '../../../../Services/Stores/Companies/Companies.interface';
 
 interface IManagementWidget {
 	extClass?: string;
@@ -16,6 +17,7 @@ interface IManagementWidget {
  * Виджет управления компанией
  * @param props.extClass - дополнительный CSS класс
  */
+type qwe<T> = { [day in keyof companies.TCompany]: T };
 
 const ManagementWidget: FC<IManagementWidget> = (props) => {
 	const { extClass = '' } = props;
@@ -26,6 +28,12 @@ const ManagementWidget: FC<IManagementWidget> = (props) => {
 		myCompany || services.rest.RestApi.getMyCompany();
 		// eslint-disable-next-line
 	}, []);
+
+	function saveConfig(key: keyof companies.TCompany, val: qwe<typeof key>) {
+		//services.store.companyStore.setMyCompany = { ...myCompany, [key]: val };
+	}
+
+	//saveConfig('avatar', 123);
 
 	const downloadingMyCompany = <></>;
 
