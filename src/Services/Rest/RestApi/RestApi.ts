@@ -73,8 +73,6 @@ const persona: users.TPerson = {
 };
 
 export class RestApi {
-	private URL: string = 'https://jsonplaceholder.typicode.com/';
-
 	/**
 	 * Логирование
 	 * @param currentPage страница с которой вызван logAction (main, about ...)
@@ -96,46 +94,32 @@ export class RestApi {
 	 * @param password пароль
 	 * @param callback функция, запускающаяся после ответа сервера
 	 */
-	public login(login: string, password: string, callback?: (isOk?: boolean, error?: any, data?: any) => void) {
-		fetch(`${this.URL}posts`, {
-			method: 'POST',
-			body: JSON.stringify({
-				title: 'foo',
-				body: 'bar',
-				userId: 1,
-			}),
-			headers: {
-				'Content-type': 'application/json; charset=UTF-8',
-			},
-		})
-			.then((response) => response.json())
-			.catch((error) => {
-				callback?.(false, error);
-			})
-			.then((json) => {
-				console.log(json);
+	public login(login: string, password: string, callback?: rest.TCallback) {
+		new Promise((resolve, reject) => {
+			setTimeout(() => {
 				if (login !== '11' || password !== '11') {
-					throw new Error('qwe');
+					return reject();
+				} else {
+					return resolve(persona);
 				}
-
-				callback?.(true, '', persona);
+			}, 1000);
+		})
+			.then((response) => {
+				callback?.(true, '', response);
 			})
 			.catch((error) => {
 				callback?.(false, error);
 			});
 	}
 
-	public getProduct(callback?: (isOk?: boolean, error?: any, data?: any) => void) {
-		fetch(`${this.URL}posts`)
-			.then((response) => response.json())
-			.catch((error) => {
-				callback?.(false, error);
-			})
-			.then((json) => {
-				console.log(json);
-
-				services.store.productsStore.setProducts = productsToSell;
-				callback?.(true, '', productsToSell);
+	public getProduct(callback?: rest.TCallback) {
+		new Promise((resolve) => {
+			setTimeout(() => {
+				return resolve(productsToSell);
+			}, 1000);
+		})
+			.then((response) => {
+				callback?.(true, '', response);
 			})
 			.catch((error) => {
 				callback?.(false, error);
@@ -143,16 +127,14 @@ export class RestApi {
 	}
 
 	public getMyCompany(callback?: (isOk?: boolean, error?: any, data?: any) => void) {
-		fetch(`${this.URL}posts`)
-			.then((response) => response.json())
-			.catch((error) => {
-				callback?.(false, error);
-			})
-			.then((json) => {
-				console.log(json);
-
+		new Promise((resolve) => {
+			setTimeout(() => {
+				return resolve(myCompany);
+			}, 1000);
+		})
+			.then((response) => {
 				services.store.companyStore.setMyCompany = myCompany;
-				callback?.(true, '', myCompany);
+				callback?.(true, '', response);
 			})
 			.catch((error) => {
 				callback?.(false, error);
