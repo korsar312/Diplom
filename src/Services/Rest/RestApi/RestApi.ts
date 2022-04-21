@@ -83,7 +83,7 @@ export class RestApi {
 	 * @param data важные переменные для logAction (props, arguments ...)
 	 * @param comment комментарии
 	 */
-	public logAction({ currentPage, element, action, data, comment }: rest.TlogAction) {
+	public logAction({ currentPage, element, action, data, comment }: rest.TLogAction) {
 		const log = Object.entries({ currentPage, element, action, comment }).filter((el) => el[1]);
 		log.push(['time', services.util.getStringCurrentTime()]);
 
@@ -113,8 +113,9 @@ export class RestApi {
 				callback?.(false, error);
 			})
 			.then((json) => {
+				console.log(json);
 				if (login !== '11' || password !== '11') {
-					throw 'errorAuthentication';
+					throw new Error('qwe');
 				}
 
 				callback?.(true, '', persona);
@@ -131,6 +132,8 @@ export class RestApi {
 				callback?.(false, error);
 			})
 			.then((json) => {
+				console.log(json);
+
 				services.store.productsStore.setProducts = productsToSell;
 				callback?.(true, '', productsToSell);
 			})
@@ -146,6 +149,8 @@ export class RestApi {
 				callback?.(false, error);
 			})
 			.then((json) => {
+				console.log(json);
+
 				services.store.companyStore.setMyCompany = myCompany;
 				callback?.(true, '', myCompany);
 			})

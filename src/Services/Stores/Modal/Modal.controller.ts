@@ -14,22 +14,22 @@ export class ModalsController {
 		this.rootStore = rootStore;
 	}
 
-	/**
-	 * Возвращает статус всех модальных окон
-	 */
-	public get getShowModalAll() {
-		return this.showModal;
-	}
+	// /**
+	//  * Возвращает статус всех модальных окон
+	//  */
+	// public get getShowModalAll() {
+	// 	return this.showModal;
+	// }
 
-	/**
-	 * Устанавливает статус всех модальных окон
-	 * @params show - отображение
-	 */
-	public set setShowModalAll(show: boolean) {
-		for (let key in this.showModal) {
-			this.showModal[key as modals.EModal] = show;
-		}
-	}
+	// /**
+	//  * Устанавливает статус всех модальных окон
+	//  * @params show - отображение
+	//  */
+	// public set setShowModalAll(show: boolean) {
+	// 	for (let key in this.showModal) {
+	// 		this.showModal[key as modals.EModal] = show;
+	// 	}
+	// }
 
 	/**
 	 * Возвращает статус выбранного окна
@@ -46,10 +46,10 @@ export class ModalsController {
 		this.showModal[window] = show;
 	}
 
-	/**
-	 * Переключает статус выбранного окна
-	 */
-	public switchShowModal(window: modals.EModal) {
-		this.showModal[window] = !this.showModal.userSetting;
-	}
+	// /**
+	//  * Переключает статус выбранного окна
+	//  */
+	// public switchShowModal(window: modals.EModal) {
+	// 	this.showModal[window] = !this.showModal.userSetting;
+	// }
 }

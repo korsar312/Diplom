@@ -36,7 +36,7 @@ const ManagementWidgetHead: FC<IManagementWidgetHead> = (props) => {
 			<div>
 				<Avatar size={'big'} circle={'full'} isBorder={true}>
 					<>
-						<img src={myCompany.avatar} />
+						<img src={myCompany.avatar} alt={'Avatar'} />
 						<ButtonStandard
 							title={language.allLanguageWord.CHOOSE_LOGO}
 							textStyle={'normal_small'}
@@ -55,7 +55,7 @@ const ManagementWidgetHead: FC<IManagementWidgetHead> = (props) => {
 					{isEditField.title ? (
 						<InputStandard
 							extClass={styles.input}
-							callback={(val) => ''}
+							callback={(val) => console.log(val)}
 							defaultValue={myCompany.name}
 							textStyle={'fat_extraBig'}
 							color={'grey'}
@@ -72,7 +72,7 @@ const ManagementWidgetHead: FC<IManagementWidgetHead> = (props) => {
 					</div>
 					{isEditField.subtitle ? (
 						<InputStandard
-							callback={(val) => ''}
+							callback={(val) => console.log(val)}
 							defaultValue={myCompany.subtitle}
 							extClass={styles.input}
 							textStyle={'standard'}

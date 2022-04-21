@@ -14,7 +14,7 @@ interface IManagementWidgetFoot {
 const ManagementWidgetFoot: FC<IManagementWidgetFoot> = (props) => {
 	const { myCompany } = props;
 
-	return <div className={styles.wrapper}></div>;
+	return <div className={styles.wrapper}>{myCompany.name}</div>;
 };
 
 export default ManagementWidgetFoot;

@@ -1,7 +1,11 @@
 import React from 'react';
 
 const SuppliesPage = () => {
-	return <div></div>;
+	return (
+		<div>
+			<></>
+		</div>
+	);
 };
 
 export default SuppliesPage;

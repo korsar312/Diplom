@@ -19,7 +19,7 @@ interface IButtonStandard {
 	isNoPadding?: boolean;
 	isDisabled?: boolean;
 	children?: JSX.Element;
-	log?: rest.TlogAction;
+	log?: rest.TLogAction;
 	isHover?: boolean;
 }
 

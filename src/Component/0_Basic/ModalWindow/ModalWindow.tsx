@@ -9,7 +9,7 @@ interface IModalWindow {
 	extClass?: string;
 	children: JSX.Element;
 	dontUseStyleContent?: boolean;
-	log?: rest.TlogAction;
+	log?: rest.TLogAction;
 }
 
 /**
@@ -44,9 +44,7 @@ const ModalWindow: FC<IModalWindow> = (props) => {
         ${extClass} 
         ${isShow ? styles.windowOpen : styles.windowClose}
       `}>
-			<div
-				onClick={(e) => e.stopPropagation()}
-				className={dontUseStyleContent ? '' : styles.content}>
+			<div onClick={(e) => e.stopPropagation()} className={dontUseStyleContent ? '' : styles.content}>
 				{children}
 			</div>
 		</div>

@@ -9,7 +9,7 @@ type TCooperatorPage = 'id';
 const CooperatorPage = () => {
 	const { id } = useParams<TCooperatorPage>();
 
-	return <div></div>;
+	return <div>{id}</div>;
 };
 
 export default CooperatorPage;

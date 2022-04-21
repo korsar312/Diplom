@@ -8,6 +8,8 @@ export class WebSocketApi {
 		this.socket = new WebSocket('wss://javascript.info/article/websocket/demo/hello');
 
 		this.socket.onopen = function (event) {
+			console.log(event);
+
 			console.log('[open] Соединение установлено');
 		};
 
@@ -17,9 +19,7 @@ export class WebSocketApi {
 
 		this.socket.onclose = function (event) {
 			if (event.wasClean) {
-				console.log(
-					`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`
-				);
+				console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
 			} else {
 				console.log('[close] Соединение прервано');
 			}
@@ -38,7 +38,7 @@ export class WebSocketApi {
 		this.socket.send(`${method}, ${JSON.stringify(param)}`);
 	}
 
-	private switcher(wsString: WSS.massage) {
+	switcher(wsString: WSS.massage) {
 		switch (wsString.type) {
 			default:
 				services.rest.RestApi.logAction({

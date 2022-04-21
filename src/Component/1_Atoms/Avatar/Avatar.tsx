@@ -5,7 +5,7 @@ import services from '../../../Services/Services';
 
 interface IAvatar {
 	click?: () => void;
-	log?: rest.TlogAction;
+	log?: rest.TLogAction;
 	extClass?: string;
 	isBorder?: boolean;
 	children: JSX.Element;

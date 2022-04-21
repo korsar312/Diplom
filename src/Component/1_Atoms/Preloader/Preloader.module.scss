@@ -16,7 +16,7 @@
 			content: " ";
 			transition: $transition;
 			animation: lds-dual-ring 1.2s linear infinite;
-			border: 6px solid rgb(var(--color__black1));
+			border: 6px solid;
 			border-color: rgb(var(--color__black1)) transparent rgb(var(--color__black1)) transparent;
 			border-radius: 50%;
 		}

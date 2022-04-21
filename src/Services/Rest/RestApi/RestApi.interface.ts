@@ -1,5 +1,5 @@
 export namespace rest {
-	export type TlogAction = {
+	export type TLogAction = {
 		currentPage?: string;
 		element?: string;
 		action?: string;

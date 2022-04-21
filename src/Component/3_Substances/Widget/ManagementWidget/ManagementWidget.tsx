@@ -24,6 +24,7 @@ const ManagementWidget: FC<IManagementWidget> = (props) => {
 
 	useEffect(() => {
 		myCompany || services.rest.RestApi.getMyCompany();
+		// eslint-disable-next-line
 	}, []);
 
 	const downloadingMyCompany = <></>;

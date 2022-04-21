@@ -14,7 +14,7 @@ interface IModalSettingUserSecurityPage {
 const ModalSettingUserSecurityPage: FC<IModalSettingUserSecurityPage> = (props) => {
 	const { extClass = '' } = props;
 
-	const [isShowChangeMenu, setIsShowChangeMenu] = useState(false);
+	const [, setIsShowChangeMenu] = useState(false);
 
 	return (
 		<div className={`${styles.wrapper} ${extClass}`}>

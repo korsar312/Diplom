@@ -14,7 +14,7 @@ interface IManagementWidgetBody {
 const ManagementWidgetBody: FC<IManagementWidgetBody> = (props) => {
 	const { myCompany } = props;
 
-	return <div className={styles.wrapper}></div>;
+	return <div className={styles.wrapper}>{myCompany.name}</div>;
 };
 
 export default ManagementWidgetBody;

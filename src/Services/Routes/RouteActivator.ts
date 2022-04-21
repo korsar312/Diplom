@@ -10,6 +10,7 @@ export const RouteActivator = () => {
 
 	useEffect(() => {
 		services.store.routeStore.setHistory(history);
+		// eslint-disable-next-line
 	}, []);
 
 	return null;

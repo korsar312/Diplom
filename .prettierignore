@@ -1,8 +1,0 @@
-node_modules/
-.yarn/
-.gitignore
-.env
-*.pnp
-*.svg
-yarn-error.log
-

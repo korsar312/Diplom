@@ -6,7 +6,7 @@ import styles from './Switcher.module.scss';
 interface ISwitcher {
 	click: (val: boolean, change: (val: boolean) => void) => void;
 	extClass?: string;
-	log?: rest.TlogAction;
+	log?: rest.TLogAction;
 	defaultValue: boolean;
 }
 

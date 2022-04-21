@@ -14,7 +14,7 @@ interface IInput {
 	extClass?: string;
 	placeholder?: language.TAllLanguageWord;
 	type?: HTMLInputTypeAttribute;
-	log?: rest.TlogAction;
+	log?: rest.TLogAction;
 	defaultValue?: string | number;
 	color?: defaultStyle.TBackgroundColor;
 	textStyle?: defaultStyle.TTextStyle;
