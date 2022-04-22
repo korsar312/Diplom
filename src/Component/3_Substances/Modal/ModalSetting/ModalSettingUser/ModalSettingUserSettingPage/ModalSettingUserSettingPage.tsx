@@ -39,7 +39,7 @@ const ModalSettingUserSettingPage: FC<IModalSettingUserSettingPage> = (props) =>
 	return (
 		<div className={`${styles.wrapper} ${extClass}`}>
 			<div className={styles.row}>
-				<Text userStyle={'fat_small'} text={language.allLanguageWord.CHANGE_LANGUAGE} />
+				<Text userStyle={'fat_small'} text={language.ELanguageSimpleWord.CHANGE_LANGUAGE} />
 				<DropMenu title={currentLanguage} isAbsolute={true} isPaddingOn={true}>
 					<>{renderLanguage}</>
 				</DropMenu>

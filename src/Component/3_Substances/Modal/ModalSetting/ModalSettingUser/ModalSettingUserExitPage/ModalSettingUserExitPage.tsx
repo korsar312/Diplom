@@ -26,7 +26,7 @@ const ModalSettingUserExitPage: FC<IModalSettingUserExitPage> = (props) => {
 			<div className={styles.row}>
 				<ButtonStandard
 					click={logOut}
-					title={language.allLanguageWord.EXIT}
+					title={language.ELanguageSimpleWord.EXIT}
 					color={'grey'}
 					textStyle={'fat_small'}
 				/>

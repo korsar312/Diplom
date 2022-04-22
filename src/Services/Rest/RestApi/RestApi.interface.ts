@@ -1,5 +1,5 @@
 export namespace rest {
-	export type TCallback<T> = (isOk: boolean, error: any, data: TData<T>) => void;
+	export type TCallback<T> = (isOk: boolean, error: any, data: TData<T> | null) => void;
 
 	type TData<T> = T | null;
 

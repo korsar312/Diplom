@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './LoginPage.module.scss';
-import { ReactComponent as IconLogo } from '../../Assets/icon/icon_logo.svg';
-import { observer } from 'mobx-react';
+import {ReactComponent as IconLogo} from '../../Assets/icon/icon_logo.svg';
+import {observer} from 'mobx-react';
 import LoginForm from '../../Component/3_Substances/Form/LoginForm/LoginForm';
-import { language } from '../../Services/Language/Language.interface';
+import {language} from '../../Services/Language/Language.interface';
 import Text from '../../Component/0_Basic/Text/Text';
 
 /**
@@ -16,7 +16,7 @@ const LoginPage = () => {
 				<figure className={styles.logo}>
 					<IconLogo />
 					<figcaption>
-						<Text userColor={'red'} userStyle={'fat_extraBig'} text={language.allLanguageWord.METEOR} />
+						<Text userColor={'red'} userStyle={'fat_extraBig'} text={language.ELanguageSimpleWord.METEOR} />
 					</figcaption>
 				</figure>
 			</div>
@@ -24,10 +24,10 @@ const LoginPage = () => {
 				<div className={styles.main}>
 					<div className={styles.title}>
 						<div>
-							<Text userStyle={'fat_extraBig'} text={language.allLanguageWord.SING_INING} />
+							<Text userStyle={'fat_extraBig'} text={language.ELanguageSimpleWord.SING_INING} />
 						</div>
 						<div>
-							<Text userColor={'skyblue'} text={language.allLanguageWord.OR_CREATE_ACC} />
+							<Text userColor={'skyblue'} text={language.ELanguageSimpleWord.OR_CREATE_ACC} />
 						</div>
 					</div>
 					<div>
@@ -37,7 +37,7 @@ const LoginPage = () => {
 			</div>
 			<div className={styles.element}>
 				<div className={styles.footer}>
-					<Text userStyle={'fat_small'} text={language.allLanguageWord.COPYRIGHT} />
+					<Text userStyle={'fat_small'} text={language.ELanguageSimpleWord.COPYRIGHT} />
 				</div>
 			</div>
 		</div>

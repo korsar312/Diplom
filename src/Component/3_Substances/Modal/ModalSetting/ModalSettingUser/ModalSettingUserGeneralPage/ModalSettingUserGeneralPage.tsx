@@ -26,7 +26,7 @@ const ModalSettingUserGeneralPage: FC<IModalSettingUserGeneralPage> = (props) =>
 	return (
 		<div className={`${styles.wrapper} ${extClass}`}>
 			<div className={styles.row}>
-				<Text userStyle={'fat_small'} text={language.allLanguageWord.ENABLE_LIGHT_THEME} />
+				<Text userStyle={'fat_small'} text={language.ELanguageSimpleWord.ENABLE_LIGHT_THEME} />
 				<Switcher click={switchTheme} defaultValue={theme} log={{ comment: 'переключение темы' }} />
 			</div>
 		</div>

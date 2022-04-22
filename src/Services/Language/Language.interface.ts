@@ -10,7 +10,7 @@ export namespace language {
 		[key in setting.ELanguageType]: string;
 	};
 
-	enum ELanguageSimpleWord {
+	export enum ELanguageSimpleWord {
 		CHAT_WITH_COLLEAGUES = 'CHAT_WITH_COLLEAGUES',
 		CHAT_WITH_SUPPLIERS = 'CHAT_WITH_SUPPLIERS',
 		CONVENTIONAL_UNIT = 'CONVENTIONAL_UNIT',
@@ -54,9 +54,13 @@ export namespace language {
 		CHOOSE_LOGO = 'CHOOSE_LOGO',
 	}
 
-	export const allLanguageWord = {
-		...ELanguageSimpleWord,
+	export const ELanguageEconomyWord = {
 		...companies.EEconomyBranch,
+	};
+
+	const allLanguageWord = {
+		...ELanguageSimpleWord,
+		...ELanguageEconomyWord,
 	};
 
 	export type TAllLanguageWord = keyof typeof allLanguageWord;

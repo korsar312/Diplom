@@ -22,7 +22,7 @@ const SearchInput: FC<ISearchInput> = (props) => {
 			extClass={extClass}
 			color={'grey'}
 			iconLeft={{ icon: IconSearch }}
-			placeholder={language.allLanguageWord.SEARCH}
+			placeholder={language.ELanguageSimpleWord.SEARCH}
 			log={{ element: SearchInput.name }}
 		/>
 	);

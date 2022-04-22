@@ -32,13 +32,14 @@ const ProductWidget: FC<IProductWidget> = (props) => {
 				showPreloader.setIsShow(false);
 			});
 		}
+		// eslint-disable-next-line
 	}, []);
 
 	const createPropertyForTable: TUnitWidgetTable = {
 		head: [
-			language.allLanguageWord.PRODUCTS,
-			language.allLanguageWord.PRICE,
-			language.allLanguageWord.CONVENTIONAL_UNIT,
+			language.ELanguageSimpleWord.PRODUCTS,
+			language.ELanguageSimpleWord.PRICE,
+			language.ELanguageSimpleWord.CONVENTIONAL_UNIT,
 		],
 		body: Object.entries(products || {})?.map((el) => ({
 			id: el[0],
@@ -61,7 +62,7 @@ const ProductWidget: FC<IProductWidget> = (props) => {
 	return (
 		<WidgetWrapper>
 			<div className={`${styles.wrapper} ${extClass}`}>
-				<WidgetHead title={language.allLanguageWord.PRODUCTS} />
+				<WidgetHead title={language.ELanguageSimpleWord.PRODUCTS} />
 				<WidgetBody table={createPropertyForTable} />
 			</div>
 		</WidgetWrapper>

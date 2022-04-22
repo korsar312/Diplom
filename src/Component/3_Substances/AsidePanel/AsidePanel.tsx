@@ -43,7 +43,7 @@ const AsidePanel: FC<IAsidePanel> = (props) => {
 					image={person?.image}
 					topText={person ? `${person.name} ${person.surname}` : 'Гость'}
 					middleText={person?.position}
-					bottomText={person?.isOnline ? language.allLanguageWord.ONLINE : undefined}
+					bottomText={person?.isOnline ? language.ELanguageSimpleWord.ONLINE : undefined}
 				/>
 			</div>
 

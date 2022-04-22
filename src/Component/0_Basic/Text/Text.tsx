@@ -31,7 +31,7 @@ const Text: FC<IText> = (props) => {
 
 	function wordTranslate(word: TText): string {
 		const wordTranslate = String(
-			word in language.allLanguageWord ? services.language.getText(word as language.TAllLanguageWord) : word
+			word in language.ELanguageSimpleWord ? services.language.getText(word as language.TAllLanguageWord) : word
 		);
 
 		if (caseWord) {

@@ -22,7 +22,7 @@ export class RestApi {
 	}
 
 	/**
-	 * Вход
+	 * Вход и запись пользователя в стор
 	 * @param login имя
 	 * @param password пароль
 	 * @param callback функция, запускающаяся после ответа сервера
@@ -57,6 +57,10 @@ export class RestApi {
 			});
 	}
 
+	/**
+	 * Получить все товары и записать в стор
+	 * @param callback функция, запускающаяся после ответа сервера
+	 */
 	public getProduct(callback?: rest.TCallback<product.TProductHashMap>) {
 		new Promise((resolve: (value: product.TProductHashMap) => void) => {
 			setTimeout(() => {
@@ -81,6 +85,10 @@ export class RestApi {
 			});
 	}
 
+	/**
+	 * Получить компанию юзера и записать в стор
+	 * @param callback функция, запускающаяся после ответа сервера
+	 */
 	public getMyCompany(callback?: rest.TCallback<companies.TCompany>) {
 		new Promise((resolve: (value: companies.TCompany) => void) => {
 			setTimeout(() => {
@@ -100,6 +108,36 @@ export class RestApi {
 				this.logAction({
 					action: 'API reject',
 					comment: `Ошибка при получении компании юзера ${error}`,
+				});
+
+				callback?.(false, error, null);
+			});
+	}
+
+	/**
+	 * Отправка изменений компанию юзера на сервер
+	 * @param company обновленная компания юзера для отправки на сервер
+	 * @param callback функция, запускающаяся после ответа сервера
+	 */
+	public setMyCompany(company: companies.TCompany, callback?: rest.TCallback<null>) {
+		new Promise((resolve: (value: null) => void) => {
+			setTimeout(() => {
+				company.name.toLowerCase();
+				return resolve(null);
+			}, 1000);
+		})
+			.then((response) => {
+				this.logAction({
+					action: 'API success',
+					comment: `Успешнное изменение компании юзера на сервере`,
+				});
+
+				callback?.(true, '', response);
+			})
+			.catch((error) => {
+				this.logAction({
+					action: 'API reject',
+					comment: `Ошибка при изменение компании юзера на сервере ${error}`,
 				});
 
 				callback?.(false, error, null);
