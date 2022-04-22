@@ -1,2 +1,23 @@
 .wrapper {
+	.productFieldWrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		
+		.productWrapper {
+			display: flex;
+			
+			.product {
+			}
+		}
+		
+		.productButton {
+			display: flex;
+			justify-content: space-between;
+			
+			.btn {
+				width: 100%;
+			}
+		}
+	}
 }

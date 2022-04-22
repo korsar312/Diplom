@@ -17,7 +17,7 @@ export const dictionary: language.TLanguage = {
 		EN: '©All rights reserved',
 		RU: '©Все права защищены',
 	},
-	SING_INING: {
+	COME_IN: {
 		EN: 'Sing in',
 		RU: 'Войдите',
 	},
@@ -218,7 +218,7 @@ export const dictionary: language.TLanguage = {
 		RU: 'Общая коммерческая деятельность по обеспечению функционирования рынка',
 	},
 	GEOLOGY: {
-		EN: 'Geology and exploration of subsoil, geodetic and hydrometeorological services',
+		EN: 'Geology and exploration of subsoil, geodetic and hydro meteorological services',
 		RU: 'Геология и разведка недр, геодезическая и гидрометеорологическая службы',
 	},
 	HOUSING: {
@@ -264,5 +264,9 @@ export const dictionary: language.TLanguage = {
 	CHOOSE_LOGO: {
 		EN: 'Choose a logo',
 		RU: 'Выбрать логотип',
+	},
+	ADD_PRODUCT: {
+		EN: 'Add a product',
+		RU: 'Добавить продукт',
 	},
 };

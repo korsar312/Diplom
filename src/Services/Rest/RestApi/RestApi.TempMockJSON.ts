@@ -1,45 +1,29 @@
 import {product} from '../../Stores/Products/Products.interface';
 import {companies} from '../../Stores/Companies/Companies.interface';
-import {users} from '../../Stores/Users/Users.interface';
+import {users} from '../../Stores/Users/Users.interface'; //TODO УДАЛИТЬ К ХЕРАМ ВСЁ ЭТО
 
-//TODO УДАЛИТЬ К ХЕРАМ ЭТО
+//TODO УДАЛИТЬ К ХЕРАМ ВСЁ ЭТО
 
 export const productsToSell: product.TProductHashMap = {
 	'321': {
-		name: 'Оспамокс',
+		id: '321',
+		image: 'https://w7.pngwing.com/pngs/888/66/png-transparent-gold-nugget-metal-ore-gold-dust-gold-rock-desktop-wallpaper.png',
+		name: 'Золотая руда',
 		analogue: ['123'],
-		conventionalUnit: 'Упаковка',
+		conventionalUnit: 'тонна',
 		company: [],
 		industry: 'Мануфактурия',
-		price: [
-			{
-				price: 800,
-				currency: product.TCurrency.DOLLAR,
-			},
-			{
-				price: 60000,
-				currency: product.TCurrency.RUBLE,
-			},
-		],
-		property: [{ sad: 'asd' }],
+		property: [['Чистота', '99%']],
 	},
 	'123': {
-		name: 'Амоксил',
+		id: '123',
+		image: 'https://w7.pngwing.com/pngs/83/795/png-transparent-base-metal-copper-ore-mineral-iron-ore-gold-rock-material.png',
+		name: 'Медная руда',
 		analogue: ['321'],
-		conventionalUnit: 'Упаковка',
+		conventionalUnit: 'тонна',
 		company: [],
 		industry: 'Мануфактурия',
-		price: [
-			{
-				price: 1000,
-				currency: product.TCurrency.DOLLAR,
-			},
-			{
-				price: 80000,
-				currency: product.TCurrency.RUBLE,
-			},
-		],
-		property: [{ sad: 'asd' }],
+		property: [['Чистота', '99%']],
 	},
 };
 

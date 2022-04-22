@@ -6,6 +6,8 @@ import Text from '../../../../0_Basic/Text/Text';
 import WidgetWrapper from '../../../../1_Atoms/WidgetWrapper/WidgetWrapper';
 import ButtonStandard from '../../../../1_Atoms/ButtonStandard/ButtonStandard';
 import { language } from '../../../../../Services/Language/Language.interface';
+import services from '../../../../../Services/Services';
+import { observer } from 'mobx-react';
 
 interface IManagementWidgetBody {
 	myCompany: companies.TCompany;
@@ -20,24 +22,45 @@ interface IManagementWidgetBody {
 const ManagementWidgetBody: FC<IManagementWidgetBody> = (props) => {
 	const { myCompany } = props;
 
+	function productArr() {
+		const allProduct = services.store.productsStore.getProducts;
+		if (!allProduct) {
+			services.rest.RestApi.getProduct();
+		} else {
+			return myCompany.allProducts.map((productId) => allProduct[productId]);
+		}
+		return [];
+	}
+
 	return (
 		<div className={styles.wrapper}>
-			<div>
-				<WidgetWrapper color={'grey'}>
-					<>
-						<div>21</div>
-						<div>
-							<ButtonStandard
-								click={() => ''}
-								color={'blue'}
-								textStyle={'fat_small'}
-								title={language.ELanguageSimpleWord.ACCOUNT_SECURITY_SETTINGS}
-							/>
-						</div>
-					</>
-				</WidgetWrapper>
-				{/*<Text text={myCompany.allProducts.join('')} />*/}
-			</div>
+			<WidgetWrapper extClass={styles.productFieldWrapper} color={'grey'}>
+				<>
+					<div className={styles.productWrapper}>
+						{productArr().map((product) => (
+							<div className={styles.product} key={product.id}>
+								<ButtonStandard click={() => ''} color={'wight'}>
+									<>
+										<div>1</div>
+										<div>
+											<Text text={product.name} />
+										</div>
+									</>
+								</ButtonStandard>
+							</div>
+						))}
+					</div>
+					<div className={styles.productButton}>
+						<ButtonStandard
+							click={() => ''}
+							color={'blue'}
+							textStyle={'fat_small'}
+							title={language.ELanguageSimpleWord.ADD_PRODUCT}
+							extClass={styles.btn}
+						/>
+					</div>
+				</>
+			</WidgetWrapper>
 			<div>
 				<Text text={myCompany.economyBranch} />
 			</div>
@@ -51,4 +74,4 @@ const ManagementWidgetBody: FC<IManagementWidgetBody> = (props) => {
 	);
 };
 
-export default ManagementWidgetBody;
+export default observer(ManagementWidgetBody);

@@ -47,11 +47,13 @@ const ManagementWidget: FC<IManagementWidget> = (props) => {
 
 		if (myCompany) {
 			preloader.setIsShow(true);
-			services.store.companyStore.setMyCompany = myCompany ? { ...myCompany, ...val } : null;
-			myCompany &&
-				services.rest.RestApi.setMyCompany(myCompany, () => {
-					preloader.setIsShow(false);
-				});
+
+			services.rest.RestApi.setMyCompany(myCompany, (isOk) => {
+				if (isOk) {
+					services.store.companyStore.setMyCompany = myCompany ? { ...myCompany, ...val } : null;
+				}
+				preloader.setIsShow(false);
+			});
 		}
 	}
 

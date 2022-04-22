@@ -73,6 +73,7 @@ export class RestApi {
 					comment: `Успешнное получение всего списка товаров`,
 				});
 
+				services.store.productsStore.setProducts = response;
 				callback?.(true, '', response);
 			})
 			.catch((error) => {

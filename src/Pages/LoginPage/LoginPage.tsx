@@ -24,7 +24,7 @@ const LoginPage = () => {
 				<div className={styles.main}>
 					<div className={styles.title}>
 						<div>
-							<Text userStyle={'fat_extraBig'} text={language.ELanguageSimpleWord.SING_INING} />
+							<Text userStyle={'fat_extraBig'} text={language.ELanguageSimpleWord.COME_IN} />
 						</div>
 						<div>
 							<Text userColor={'skyblue'} text={language.ELanguageSimpleWord.OR_CREATE_ACC} />

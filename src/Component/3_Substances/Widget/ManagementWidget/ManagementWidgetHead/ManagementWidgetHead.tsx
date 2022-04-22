@@ -7,7 +7,6 @@ import { language } from '../../../../../Services/Language/Language.interface';
 import InputStandard from '../../../../1_Atoms/InputStandard/InputStandard';
 import { ReactComponent as IconEdit } from './../../../../../Assets/icon/icon_edit.svg';
 import { ReactComponent as IconDone } from './../../../../../Assets/icon/icon_done.svg';
-import IconWrapper from '../../../../0_Basic/IconWrapper/IconWrapper';
 import { companies } from '../../../../../Services/Stores/Companies/Companies.interface';
 import { types } from '../../../../../Types/Types';
 
@@ -59,14 +58,22 @@ const ManagementWidgetHead: FC<IManagementWidgetHead> = (props) => {
 				</Avatar>
 			</div>
 			<div className={styles.namingCompany}>
-				<div className={styles.title}>
-					<div>
-						{isEditField.name ? (
-							<IconWrapper Icon={IconDone} onClick={() => handleChangeSuccess('name')} />
-						) : (
-							<IconWrapper Icon={IconEdit} onClick={() => switchEditField('name')} />
-						)}
-					</div>
+				<div className={styles.nameRow}>
+					{isEditField.name ? (
+						<ButtonStandard
+							isNoPadding={true}
+							click={() => handleChangeSuccess('name')}
+							iconLeft={{ icon: IconDone }}
+							log={{ element: ManagementWidgetHead.name }}
+						/>
+					) : (
+						<ButtonStandard
+							isNoPadding={true}
+							click={() => switchEditField('name')}
+							iconLeft={{ icon: IconEdit }}
+							log={{ element: ManagementWidgetHead.name }}
+						/>
+					)}
 					{isEditField.name ? (
 						<InputStandard
 							callback={(val) => (inputValues.current.name = val)}
@@ -77,16 +84,26 @@ const ManagementWidgetHead: FC<IManagementWidgetHead> = (props) => {
 						/>
 					) : (
 						<div className={styles.titleWrapper}>
-							<Text userStyle={'fat_extraBig'} text={myCompany.name} />
+							<Text userStyle={'fat_extraBig'} text={inputValues.current.name || ''} />
 						</div>
 					)}
 				</div>
-				<div className={styles.subtitle}>
+				<div className={styles.nameRow}>
 					<div>
 						{isEditField.subtitle ? (
-							<IconWrapper Icon={IconDone} onClick={() => handleChangeSuccess('subtitle')} />
+							<ButtonStandard
+								isNoPadding={true}
+								click={() => handleChangeSuccess('subtitle')}
+								iconLeft={{ icon: IconDone }}
+								log={{ element: ManagementWidgetHead.name }}
+							/>
 						) : (
-							<IconWrapper Icon={IconEdit} onClick={() => switchEditField('subtitle')} />
+							<ButtonStandard
+								isNoPadding={true}
+								click={() => switchEditField('subtitle')}
+								iconLeft={{ icon: IconEdit }}
+								log={{ element: ManagementWidgetHead.name }}
+							/>
 						)}
 					</div>
 					{isEditField.subtitle ? (
@@ -99,7 +116,7 @@ const ManagementWidgetHead: FC<IManagementWidgetHead> = (props) => {
 						/>
 					) : (
 						<div className={styles.titleWrapper}>
-							<Text userStyle={'standard'} text={myCompany.subtitle || ''} />
+							<Text userStyle={'standard'} text={inputValues.current.subtitle || ''} />
 						</div>
 					)}
 				</div>

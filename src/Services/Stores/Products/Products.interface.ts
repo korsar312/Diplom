@@ -4,8 +4,9 @@ export namespace product {
 	};
 
 	type TProduct = {
+		id: string;
+		image: string;
 		name: string;
-		price: TPrice[];
 		conventionalUnit: string | number;
 		company: string[];
 		analogue: string[];
@@ -13,26 +14,5 @@ export namespace product {
 		property?: TProperty[];
 	};
 
-	type TProperty = {
-		[key in string]: string;
-	};
-
-	type TPrice = {
-		price: number;
-		currency: TCurrency;
-	};
-
-	export enum TCurrency {
-		RUBLE = 'RUBLE',
-		DOLLAR = 'DOLLAR',
-	}
-
-	export const OCurrencyIcon: TCurrencyIcon = {
-		DOLLAR: '$',
-		RUBLE: '₽',
-	};
-
-	type TCurrencyIcon = {
-		[key in TCurrency]: string;
-	};
+	type TProperty = [string, string];
 }
