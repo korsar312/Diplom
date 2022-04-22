@@ -30,10 +30,10 @@ const ManagementWidget: FC<IManagementWidget> = (props) => {
 	}, []);
 
 	function saveConfig(key: keyof companies.TCompany, val: qwe<typeof key>) {
-		//services.store.companyStore.setMyCompany = { ...myCompany, [key]: val };
+		services.store.companyStore.setMyCompany = { ...myCompany, [key]: val };
 	}
 
-	//saveConfig('avatar', 123);
+	saveConfig('avatar', 123);
 
 	const downloadingMyCompany = <></>;
 
