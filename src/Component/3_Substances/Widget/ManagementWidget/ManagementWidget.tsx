@@ -68,7 +68,7 @@ const ManagementWidget: FC<IManagementWidget> = (props) => {
 
 						<Line extClass={styles.line} />
 
-						<ManagementWidgetBody myCompany={myCompany} savaConfig={saveConfig} />
+						<ManagementWidgetBody myCompany={myCompany} saveConfig={saveConfig} />
 
 						<Line extClass={styles.line} />
 

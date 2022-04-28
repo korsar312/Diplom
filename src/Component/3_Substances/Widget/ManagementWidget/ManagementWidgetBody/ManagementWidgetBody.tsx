@@ -8,10 +8,11 @@ import ButtonStandard from '../../../../1_Atoms/ButtonStandard/ButtonStandard';
 import { language } from '../../../../../Services/Language/Language.interface';
 import services from '../../../../../Services/Services';
 import { observer } from 'mobx-react';
+import DropMenu from "../../../../2_Molecules/DropMenu/DropMenu";
 
 interface IManagementWidgetBody {
 	myCompany: companies.TCompany;
-	savaConfig: (val: types.TChangeObject<companies.TCompany>) => void;
+	saveConfig: (val: types.TChangeObject<companies.TCompany>) => void;
 }
 
 /**
@@ -63,6 +64,9 @@ const ManagementWidgetBody: FC<IManagementWidgetBody> = (props) => {
 			</WidgetWrapper>
 			<div>
 				<Text text={myCompany.economyBranch} />
+				<DropMenu title={language.ELanguageSimpleWord.ADVANCED_SETTINGS}>
+                    <div>{Object.keys(language.ELanguageEconomyWord).map(el=><ButtonStandard click={()=>''} title={el}/>)}</div>
+				</DropMenu>
 			</div>
 			<div>
 				<Text text={myCompany.description} />
