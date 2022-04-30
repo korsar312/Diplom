@@ -43,7 +43,7 @@ export class RestApi {
 					data: { login, password },
 					comment: `Успешный вход пользователя ${response.id}`,
 				});
-
+				services.store.usersStore.setCurrentUser = response;
 				callback?.(true, '', response);
 			})
 			.catch((error) => {

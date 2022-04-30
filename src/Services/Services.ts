@@ -3,6 +3,7 @@ import { RouteGoService } from './Routes/Route.services';
 import { Utils } from './Libs/Utils/Utils';
 import { Rest } from './Rest/Rest';
 import { LanguageController } from './Language/Language.controller';
+import { LocalStorageController } from './LocalStorage/LocalStorage.controller';
 
 class Services {
 	public store: RootStore;
@@ -10,6 +11,7 @@ class Services {
 	public route: RouteGoService;
 	public util: Utils;
 	public language: LanguageController;
+	public localStorage: LocalStorageController;
 
 	constructor() {
 		this.store = new RootStore();
@@ -17,6 +19,7 @@ class Services {
 		this.route = new RouteGoService();
 		this.util = new Utils();
 		this.language = new LanguageController();
+		this.localStorage = new LocalStorageController();
 	}
 }
 

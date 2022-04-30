@@ -6,6 +6,7 @@ import Text from '../../../0_Basic/Text/Text';
 import ButtonStandard from '../../../1_Atoms/ButtonStandard/ButtonStandard';
 import services from '../../../../Services/Services';
 import { PreloaderContext } from '../../../../App';
+import { types } from '../../../../Types/Types';
 
 interface ILoginForm {
 	extClass?: string;
@@ -13,11 +14,13 @@ interface ILoginForm {
 	defaultValue?: TInputValue;
 	valuesForm?: (val: TInputValue) => void;
 	isVisibleBtn?: boolean;
+	isVisibleCheckBox?: boolean;
 }
 
 type TInputValue = {
 	log: string;
 	pass: string;
+	autoSingIn: boolean;
 };
 
 function validate(val: TInputValue) {
@@ -31,26 +34,30 @@ function validate(val: TInputValue) {
  * @param props.defaultValue - значения формы по умолчанию
  * @param props.valuesForm - текущие значения
  * @param props.isVisibleBtn - показ кнопки вход
+ * @param props.isVisibleCheckBox - показ чекбокса с запоминанием пользователя
  */
 const LoginForm: FC<ILoginForm> = (props) => {
-	const { extClass = '', successfulLogin, valuesForm, defaultValue, isVisibleBtn = true } = props;
+	const {
+		extClass = '',
+		successfulLogin,
+		valuesForm,
+		defaultValue,
+		isVisibleBtn = true,
+		isVisibleCheckBox = true,
+	} = props;
 
 	const inputValue = useRef<TInputValue>({
 		log: defaultValue?.log || '',
 		pass: defaultValue?.log || '',
+		autoSingIn: false,
 	});
 	const [isValid, setIsValid] = useState(validate(inputValue.current));
 	const [isError, setError] = useState<language.TAllLanguageWord | ''>('');
 
 	const preloaderContext = useContext(PreloaderContext);
 
-	function setLogin(val: string) {
-		inputValue.current.log = val;
-		validAndCallback();
-	}
-
-	function setPassword(val: string) {
-		inputValue.current.pass = val;
+	function setLoginData(userInput: types.TChangeObject<TInputValue>) {
+		inputValue.current = { ...inputValue.current, ...userInput };
 		validAndCallback();
 	}
 
@@ -61,19 +68,20 @@ const LoginForm: FC<ILoginForm> = (props) => {
 
 	function clickHandler() {
 		preloaderContext.setIsShow(true);
-		services.rest.RestApi.login(
-			inputValue.current.log || '',
-			inputValue.current.pass || '',
-			(isOk, error, data) => {
-				if (isOk) {
-					services.store.usersStore.setCurrentUser = data;
-					successfulLogin && successfulLogin();
-				} else {
-					setError(language.ELanguageSimpleWord.INVALID_PASSWORD);
+		services.rest.RestApi.login(inputValue.current.log || '', inputValue.current.pass || '', (isOk) => {
+			if (isOk) {
+				if (inputValue.current.autoSingIn) {
+					services.localStorage.enabledAutSingIn = {
+						login: inputValue.current.log,
+						password: inputValue.current.pass,
+					};
 				}
-				preloaderContext.setIsShow(false);
+				successfulLogin && successfulLogin();
+			} else {
+				setError(language.ELanguageSimpleWord.INVALID_PASSWORD);
 			}
-		);
+			preloaderContext.setIsShow(false);
+		});
 	}
 
 	return (
@@ -85,7 +93,7 @@ const LoginForm: FC<ILoginForm> = (props) => {
 					</div>
 
 					<InputStandard
-						callback={setLogin}
+						callback={(value) => setLoginData({ log: value })}
 						extClass={`${styles.wrapper} ${extClass}`}
 						log={{ element: LoginForm.name }}
 						color={'wight'}
@@ -106,11 +114,27 @@ const LoginForm: FC<ILoginForm> = (props) => {
 					</div>
 
 					<InputStandard
-						callback={setPassword}
+						callback={(value) => setLoginData({ pass: value })}
 						extClass={`${styles.wrapper} ${extClass}`}
 						log={{ element: LoginForm.name }}
 						color={'wight'}
 					/>
+
+					{isVisibleCheckBox && (
+						<div>
+							<InputStandard
+								type={'checkbox'}
+								callback={() => setLoginData({ autoSingIn: !inputValue.current.autoSingIn })}
+								extClass={`${styles.wrapper} ${extClass}`}
+								log={{ element: LoginForm.name }}
+							/>
+							<Text
+								userStyle={'fat_small'}
+								userColor={'skyblue'}
+								text={language.ELanguageSimpleWord.REMEMBER_USER_KA}
+							/>
+						</div>
+					)}
 				</div>
 				{isError && (
 					<div>

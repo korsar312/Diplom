@@ -269,4 +269,8 @@ export const dictionary: language.TLanguage = {
 		EN: 'Add a product',
 		RU: 'Добавить продукт',
 	},
+	REMEMBER_USER_KA: {
+		EN: 'Remember user?',
+		RU: 'Запомнить пользователя?',
+	},
 };

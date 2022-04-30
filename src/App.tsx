@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import { routePath } from './Services/Routes/Route.path';
 import { RouteActivator } from './Services/Routes/RouteActivator';
@@ -28,10 +28,26 @@ const App = () => {
 	const isEntered = services.store.usersStore.isEntered;
 	const isAuthorized = services.store.usersStore.isAuthorized;
 
+	useEffect(() => {
+		autoLogin();
+	}, []);
+
 	const valuePreloaderContext: TPreloaderContext = {
 		setIsShow: setIsShopPreloader,
 		isShow: isShowPreloader,
 	};
+
+	function autoLogin() {
+		if (!services.localStorage.isAutoSingIn) return;
+
+		const login = services.localStorage.getLogin;
+		if (login) {
+			services.store.usersStore.setCurrentUser = {
+				name: 'Ожидание...',
+			};
+			services.rest.RestApi.login(login.login, login.password);
+		}
+	}
 
 	const authorizedRender = (
 		<>
@@ -58,9 +74,7 @@ const App = () => {
 		<div id="App" className={theme ? 'light-theme' : 'dark-theme'}>
 			<PreloaderContext.Provider value={valuePreloaderContext}>
 				<HashRouter>
-					<div className={styles.wrapper}>
-						{isEntered ? authorizedRender : <LoginPage />}
-					</div>
+					<div className={styles.wrapper}>{isEntered ? authorizedRender : <LoginPage />}</div>
 				</HashRouter>
 				<ModalActivator />
 				<Preloader isShow={isShowPreloader} />

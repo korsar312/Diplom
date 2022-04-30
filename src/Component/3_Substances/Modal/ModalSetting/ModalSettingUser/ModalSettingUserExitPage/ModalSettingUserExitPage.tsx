@@ -17,6 +17,7 @@ const ModalSettingUserExitPage: FC<IModalSettingUserExitPage> = (props) => {
 	const { extClass = '' } = props;
 
 	function logOut() {
+		services.localStorage.disabledAutSingIn();
 		services.store.modalStore.setShowModal(modals.EModal.userSetting, false);
 		services.store.usersStore.setCurrentUser = null;
 	}

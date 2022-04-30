@@ -1,11 +1,11 @@
 export namespace users {
 	export type TPerson = {
-		id: string;
+		id?: string;
 		name: string;
-		surname: string;
+		surname?: string;
 		position?: string;
-		isOnline: boolean;
+		isOnline?: boolean;
 		image?: string;
-		accessory: string;
+		accessory?: string;
 	};
 }
