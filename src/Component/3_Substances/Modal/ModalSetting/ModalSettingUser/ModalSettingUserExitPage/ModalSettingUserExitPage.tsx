@@ -4,6 +4,7 @@ import { language } from '../../../../../../Services/Language/Language.interface
 import ButtonStandard from '../../../../../1_Atoms/ButtonStandard/ButtonStandard';
 import services from '../../../../../../Services/Services';
 import { modals } from '../../../../../../Services/Stores/Modal/Modal.interface';
+import Text from '../../../../../0_Basic/Text/Text';
 
 interface IModalSettingUserExitPage {
 	extClass?: string;
@@ -25,12 +26,9 @@ const ModalSettingUserExitPage: FC<IModalSettingUserExitPage> = (props) => {
 	return (
 		<div className={`${styles.wrapper} ${extClass}`}>
 			<div className={styles.row}>
-				<ButtonStandard
-					click={logOut}
-					title={language.ELanguageSimpleWord.EXIT}
-					color={'grey'}
-					textStyle={'fat_small'}
-				/>
+				<ButtonStandard click={logOut} color={'grey'}>
+					<Text text={language.ELanguageSimpleWord.EXIT} userStyle={'fat_small'} />
+				</ButtonStandard>
 			</div>
 		</div>
 	);

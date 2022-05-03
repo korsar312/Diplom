@@ -273,4 +273,8 @@ export const dictionary: language.TLanguage = {
 		EN: 'Remember user?',
 		RU: 'Запомнить пользователя?',
 	},
+	COMPANY_PRODUCT: {
+		EN: 'Production of the company',
+		RU: 'Продукция компании',
+	},
 };

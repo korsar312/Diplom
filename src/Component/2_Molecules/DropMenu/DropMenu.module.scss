@@ -7,54 +7,71 @@ $border_color: rgb(var(--color__black1));
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	
-	.btn { justify-content: space-between }
-	
-	.btnOpen { border-bottom-left-radius: 0 }
-	
+
+	.btn {
+		justify-content: space-between;
+		text-align: left;
+	}
+
+	.btnOpen {
+		border-bottom-left-radius: 0
+	}
+
 	.motherWrapper {
 		padding-top: 10px;
 		transition: $transition;
 	}
-	
+
 	.motherWrapperAbsolute {
 		position: absolute;
 		top: 35px
 	}
-	
+
 	.isClose {
 		max-height: 0;
 		transform: scale(0);
 		animation: dropDown forwards 1s;
 	}
-	
+
 	.isOpen {
 		max-height: 100vh;
 		transform: scale(1);
 		animation: dropUp forwards 0.7s 0.5s;
 	}
-	
-	.motherPadding { padding-left: 10px }
-	
+
+	.motherPadding {
+		padding-left: 10px
+	}
+
 	.arrow {
 		svg {
 			width: 12px;
 			height: 12px;
 		}
 	}
-	
-	.panelOn { transform: rotateZ(90deg) }
-	
-	
+
+	.panelOn {
+		transform: rotateZ(90deg)
+	}
+
+
 	@keyframes dropDown {
-		0% { border-left: 1px solid rgba(var(--color__black6), 1) }
-		15% { border-left: 1px solid rgba(var(--color__black6), 0) }
+		0% {
+			border-left: 1px solid rgba(var(--color__black6), 1)
+		}
+		15% {
+			border-left: 1px solid rgba(var(--color__black6), 0)
+		}
 	}
-	
+
 	@keyframes dropUp {
-		0% { border-left: 1px solid rgba(var(--color__black6), 0) }
-		100% { border-left: 1px solid rgba(var(--color__black6), 1) }
+		0% {
+			border-left: 1px solid rgba(var(--color__black6), 0)
+		}
+		100% {
+			border-left: 1px solid rgba(var(--color__black6), 1)
+		}
 	}
-	
+
 }
 

@@ -3,7 +3,7 @@ export namespace product {
 		[key in string]: TProduct;
 	};
 
-	type TProduct = {
+	export type TProduct = {
 		id: string;
 		image: string;
 		name: string;

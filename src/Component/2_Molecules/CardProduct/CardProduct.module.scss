@@ -1,0 +1,18 @@
+@use "/src/Styles/Variables" as *;
+@use "/src/Styles/Mixins" as *;
+
+.wrapper {
+	border-radius: $border-radius;
+
+	.content {
+		padding: 10px;
+		@include mixin--Center;
+		flex-direction: column;
+		gap: 5px;
+		border-radius: $border-radius;
+	}
+
+	.btnGroup {
+
+	}
+}

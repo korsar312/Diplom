@@ -7,6 +7,7 @@ import ButtonStandard from '../../../1_Atoms/ButtonStandard/ButtonStandard';
 import services from '../../../../Services/Services';
 import { PreloaderContext } from '../../../../App';
 import { types } from '../../../../Types/Types';
+import Switcher from '../../../1_Atoms/Switcher/Switcher';
 
 interface ILoginForm {
 	extClass?: string;
@@ -119,23 +120,22 @@ const LoginForm: FC<ILoginForm> = (props) => {
 						log={{ element: LoginForm.name }}
 						color={'wight'}
 					/>
-
-					{isVisibleCheckBox && (
-						<div>
-							<InputStandard
-								type={'checkbox'}
-								callback={() => setLoginData({ autoSingIn: !inputValue.current.autoSingIn })}
-								extClass={`${styles.wrapper} ${extClass}`}
-								log={{ element: LoginForm.name }}
-							/>
-							<Text
-								userStyle={'fat_small'}
-								userColor={'skyblue'}
-								text={language.ELanguageSimpleWord.REMEMBER_USER_KA}
-							/>
-						</div>
-					)}
 				</div>
+
+				{isVisibleCheckBox && (
+					<div className={styles.rememberWrapper}>
+						<Text
+							userStyle={'fat_small'}
+							userColor={'grey'}
+							text={language.ELanguageSimpleWord.REMEMBER_USER_KA}
+						/>
+						<Switcher
+							click={(value) => setLoginData({ autoSingIn: value })}
+							defaultValue={inputValue.current.autoSingIn}
+						/>
+					</div>
+				)}
+
 				{isError && (
 					<div>
 						<Text userColor={'red'} text={isError} />
@@ -146,13 +146,12 @@ const LoginForm: FC<ILoginForm> = (props) => {
 			{isVisibleBtn && (
 				<div className={styles.btn}>
 					<ButtonStandard
-						textStyle={'fat_small'}
 						color={'black'}
 						click={clickHandler}
-						title={language.ELanguageSimpleWord.SING_IN}
 						log={{ element: LoginForm.name }}
-						isDisabled={!isValid}
-					/>
+						isDisabled={!isValid}>
+						<Text text={language.ELanguageSimpleWord.SING_IN} userStyle={'fat_small'} />
+					</ButtonStandard>
 				</div>
 			)}
 		</form>

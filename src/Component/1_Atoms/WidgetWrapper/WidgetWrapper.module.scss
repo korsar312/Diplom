@@ -1,9 +1,6 @@
-@use "/src/Styles/Variables" as *;
-
 $widget-radius: 12px;
 
 .wrapper {
 	padding: 26px 29px;
-	transition: $transition;
 	border-radius: $widget-radius;
 }

@@ -47,13 +47,9 @@ const ManagementWidgetHead: FC<IManagementWidgetHead> = (props) => {
 				<Avatar size={'big'} circle={'full'} isBorder={true}>
 					<>
 						<img src={myCompany.avatar} alt={'Avatar'} />
-						<ButtonStandard
-							title={language.ELanguageSimpleWord.CHOOSE_LOGO}
-							textStyle={'normal_small'}
-							click={() => ''}
-							color={'black'}
-							extClass={styles.btn}
-						/>
+						<ButtonStandard click={() => ''} color={'black'} extClass={styles.btn}>
+							<Text text={language.ELanguageSimpleWord.CHOOSE_LOGO} userStyle={'normal_small'} />
+						</ButtonStandard>
 					</>
 				</Avatar>
 			</div>

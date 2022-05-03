@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
 import styles from './Line.module.scss';
+import { defaultStyle } from '../../../Styles/DefaultStyles/DefaultStyles.type';
+import defaultStyles from './../../../Styles/DefaultStyles/DefaultStyles.module.scss';
 
 interface ILine {
 	extClass?: string;
 	width?: number;
 	isRadius?: boolean;
-	color?: TLineColor;
+	color?: defaultStyle.TBackgroundColor;
 }
-
-type TLineColor = 'red' | 'black' | 'blue' | 'skyBlue' | 'grey';
 
 /**
  * Разделитель / линия
@@ -26,7 +26,7 @@ const Line: FC<ILine> = (props) => {
 				${styles.wrapper}
 				${extClass}
 				${isRadius ? styles.radius : ''}
-				${color ? styles[`color_${color}`] : ''} 
+				${color ? defaultStyles[`backgroundColor_${color}`] : ''} 
 			`}
 		/>
 	);

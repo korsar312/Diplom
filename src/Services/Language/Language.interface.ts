@@ -54,6 +54,7 @@ export namespace language {
 		CHOOSE_LOGO = 'CHOOSE_LOGO',
 		ADD_PRODUCT = 'ADD_PRODUCT',
 		REMEMBER_USER_KA = 'REMEMBER_USER_KA',
+		COMPANY_PRODUCT = 'COMPANY_PRODUCT',
 	}
 
 	export const ELanguageEconomyWord = {

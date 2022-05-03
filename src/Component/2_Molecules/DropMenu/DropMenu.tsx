@@ -3,6 +3,7 @@ import styles from './DropMenu.module.scss';
 import ButtonStandard from '../../1_Atoms/ButtonStandard/ButtonStandard';
 import { ReactComponent as IconArrow } from '../../../Assets/icon/icon_arrow.svg';
 import { language } from '../../../Services/Language/Language.interface';
+import Text from '../../0_Basic/Text/Text';
 
 interface iDropMenu {
 	title: language.TAllLanguageWord | string | number;
@@ -31,17 +32,17 @@ const DropMenu: FC<iDropMenu> = (props) => {
 		<div className={`${styles.wrapper} ${extClass}`}>
 			<ButtonStandard
 				color={isShowListBtn ? 'blue' : undefined}
-				title={title}
 				click={() => setIsShowListBtn((val) => !val)}
-				log={{ element: DropMenu.name }}
+				log={{ element: DropMenu.name, comment: `Кнопка ${title} нажата` }}
 				iconRight={{
 					icon: IconArrow,
 					extClass: `${styles.arrow} ${isShowListBtn ? styles.panelOn : ''}`,
 				}}
 				iconLeft={{ icon: iconLeft }}
-				extClass={`${styles.btn} ${isShowListBtn ? styles.btnOpen : ''}`}
-				textStyle={'light_small'}
-			/>
+				extClass={`${styles.btn} ${isShowListBtn ? styles.btnOpen : ''}`}>
+				<Text text={title} userStyle={'light_small'} />
+			</ButtonStandard>
+
 			<div
 				className={`
           ${styles.motherWrapper} 

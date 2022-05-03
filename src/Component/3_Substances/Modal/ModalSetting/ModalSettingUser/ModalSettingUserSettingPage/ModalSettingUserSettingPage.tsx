@@ -26,9 +26,9 @@ const ModalSettingUserSettingPage: FC<IModalSettingUserSettingPage> = (props) =>
 			<ButtonStandard
 				key={language}
 				click={() => setLanguage(language as setting.ELanguageType)}
-				color={currentLanguage === language ? 'grey' : undefined}
-				title={language}
-			/>
+				color={currentLanguage === language ? 'grey' : undefined}>
+				<Text text={language} />
+			</ButtonStandard>
 		);
 	});
 

@@ -3,6 +3,7 @@ import styles from './AsidePanelNavigation.module.scss';
 import ButtonStandard from '../../../1_Atoms/ButtonStandard/ButtonStandard';
 import DropMenu from '../../../2_Molecules/DropMenu/DropMenu';
 import { navLink } from './AsidePanelNavigation.list';
+import Text from '../../../0_Basic/Text/Text';
 
 interface IAsidePanelNavigation {
 	filter?: string;
@@ -34,11 +35,7 @@ const AsidePanelNavigation: FC<IAsidePanelNavigation> = (props) => {
 		if (navObj.children) {
 			return (
 				<React.Fragment key={navObj.id}>
-					<DropMenu
-						isPaddingOn={true}
-						iconLeft={navObj.leftImg}
-						title={navObj.name}
-						extClass={styles.btn}>
+					<DropMenu isPaddingOn={true} iconLeft={navObj.leftImg} title={navObj.name} extClass={styles.btn}>
 						<>{navObj.children.map((el) => recursRenderButton(el))}</>
 					</DropMenu>
 				</React.Fragment>
@@ -48,12 +45,11 @@ const AsidePanelNavigation: FC<IAsidePanelNavigation> = (props) => {
 				<React.Fragment key={navObj.id}>
 					<ButtonStandard
 						extClass={`${styles.btn}`}
-						textStyle={'light_small'}
-						title={navObj.name}
 						click={navObj.click}
 						log={{ element: AsidePanelNavigation.name }}
-						iconLeft={{ icon: navObj.leftImg || undefined }}
-					/>
+						iconLeft={{ icon: navObj.leftImg || undefined }}>
+						<Text text={navObj.name} userStyle={'light_small'} />
+					</ButtonStandard>
 				</React.Fragment>
 			);
 		}

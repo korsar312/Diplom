@@ -28,7 +28,7 @@ export class RestApi {
 	 * @param callback функция, запускающаяся после ответа сервера
 	 */
 	public login(login: string, password: string, callback?: rest.TCallback<users.TPerson>) {
-		new Promise((resolve: (value: users.TPerson) => void, reject) => {
+		return new Promise((resolve: (value: users.TPerson) => void, reject) => {
 			setTimeout(() => {
 				if (login !== '11' || password !== '11') {
 					return reject(new Error('unauthorised'));
@@ -43,7 +43,10 @@ export class RestApi {
 					data: { login, password },
 					comment: `Успешный вход пользователя ${response.id}`,
 				});
+
 				services.store.usersStore.setCurrentUser = response;
+				this.getAllData();
+
 				callback?.(true, '', response);
 			})
 			.catch((error) => {
@@ -62,7 +65,7 @@ export class RestApi {
 	 * @param callback функция, запускающаяся после ответа сервера
 	 */
 	public getProduct(callback?: rest.TCallback<product.TProductHashMap>) {
-		new Promise((resolve: (value: product.TProductHashMap) => void) => {
+		return new Promise((resolve: (value: product.TProductHashMap) => void) => {
 			setTimeout(() => {
 				return resolve(productsToSell);
 			}, 1000);
@@ -74,6 +77,7 @@ export class RestApi {
 				});
 
 				services.store.productsStore.setProducts = response;
+
 				callback?.(true, '', response);
 			})
 			.catch((error) => {
@@ -91,7 +95,7 @@ export class RestApi {
 	 * @param callback функция, запускающаяся после ответа сервера
 	 */
 	public getMyCompany(callback?: rest.TCallback<companies.TCompany>) {
-		new Promise((resolve: (value: companies.TCompany) => void) => {
+		return new Promise((resolve: (value: companies.TCompany) => void) => {
 			setTimeout(() => {
 				return resolve(myCompany);
 			}, 1000);
@@ -103,6 +107,7 @@ export class RestApi {
 				});
 
 				services.store.companyStore.setMyCompany = response;
+
 				callback?.(true, '', response);
 			})
 			.catch((error) => {
@@ -121,7 +126,7 @@ export class RestApi {
 	 * @param callback функция, запускающаяся после ответа сервера
 	 */
 	public setMyCompany(company: companies.TCompany, callback?: rest.TCallback<null>) {
-		new Promise((resolve: (value: null) => void) => {
+		return new Promise((resolve: (value: null) => void) => {
 			setTimeout(() => {
 				company.name.toLowerCase();
 				return resolve(null);
@@ -139,6 +144,32 @@ export class RestApi {
 				this.logAction({
 					action: 'API reject',
 					comment: `Ошибка при изменение компании юзера на сервере ${error}`,
+				});
+
+				callback?.(false, error, null);
+			});
+	}
+
+	/**
+	 * Получить все необходимые данные
+	 * @param callback функция, запускающаяся после ответа сервера
+	 */
+	public getAllData(callback?: rest.TCallback<null>) {
+		const promiseArray = [this.getProduct(), this.getMyCompany()];
+
+		Promise.all(promiseArray)
+			.then(() => {
+				this.logAction({
+					action: 'API success',
+					comment: `Успешнное получение всех необходимых данных`,
+				});
+
+				callback?.(true, '', null);
+			})
+			.catch((error) => {
+				this.logAction({
+					action: 'API reject',
+					comment: `Ошибка при получении всех необходимых данных ${error}`,
 				});
 
 				callback?.(false, error, null);

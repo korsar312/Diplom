@@ -41,7 +41,7 @@ const AsidePanel: FC<IAsidePanel> = (props) => {
 				<UnitPanel
 					click={openModalSettingUser}
 					image={person?.image}
-					topText={person ? `${person.name} ${person.surname}` : 'Гость'}
+					topText={person ? `${person.name} ${person.surname ?? ''}` : 'Гость'}
 					middleText={person?.position}
 					bottomText={person?.isOnline ? language.ELanguageSimpleWord.ONLINE : undefined}
 				/>

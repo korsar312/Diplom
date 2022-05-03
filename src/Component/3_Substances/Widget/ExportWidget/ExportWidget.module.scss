@@ -1,0 +1,49 @@
+@use "/src/Styles/Variables" as *;
+@use "/src/Styles/Mixins" as *;
+
+$border-radius: 25px;
+$gapField: 6px 2px;
+$padding: 10px;
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	.title {
+		@include mixin--Center
+	}
+
+	.fieldsWrapper {
+		display: flex;
+		flex-direction: column;
+		gap: $gapField;
+		border-radius: $border-radius;
+		overflow: hidden;
+
+		.fieldTitle {
+			display: flex;
+			gap: $gapField;
+
+			.titleAllProduct, .titleExportProduct {
+				transition: $transition;
+				flex: 1;
+				padding: $padding;
+				@include mixin--Center;
+				text-align: center;
+			}
+		}
+
+		.fieldContent {
+			display: flex;
+			gap: $gapField;
+
+			.field {
+				flex: 1;
+				@include mixin--Center;
+				padding: $padding;
+
+			}
+		}
+	}
+}

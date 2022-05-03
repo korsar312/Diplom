@@ -8,7 +8,7 @@ import ButtonStandard from '../../../../1_Atoms/ButtonStandard/ButtonStandard';
 import { language } from '../../../../../Services/Language/Language.interface';
 import services from '../../../../../Services/Services';
 import { observer } from 'mobx-react';
-import DropMenu from "../../../../2_Molecules/DropMenu/DropMenu";
+import DropMenu from '../../../../2_Molecules/DropMenu/DropMenu';
 
 interface IManagementWidgetBody {
 	myCompany: companies.TCompany;
@@ -52,20 +52,22 @@ const ManagementWidgetBody: FC<IManagementWidgetBody> = (props) => {
 						))}
 					</div>
 					<div className={styles.productButton}>
-						<ButtonStandard
-							click={() => ''}
-							color={'blue'}
-							textStyle={'fat_small'}
-							title={language.ELanguageSimpleWord.ADD_PRODUCT}
-							extClass={styles.btn}
-						/>
+						<ButtonStandard click={() => ''} color={'blue'} extClass={styles.btn}>
+							<Text text={language.ELanguageSimpleWord.ADD_PRODUCT} userStyle={'fat_small'} />
+						</ButtonStandard>
 					</div>
 				</>
 			</WidgetWrapper>
 			<div>
 				<Text text={myCompany.economyBranch} />
 				<DropMenu title={language.ELanguageSimpleWord.ADVANCED_SETTINGS}>
-                    <div>{Object.keys(language.ELanguageEconomyWord).map(el=><ButtonStandard click={()=>''} title={el}/>)}</div>
+					<div>
+						{Object.keys(language.ELanguageEconomyWord).map((el) => (
+							<ButtonStandard click={() => ''}>
+								<Text text={el} />
+							</ButtonStandard>
+						))}
+					</div>
 				</DropMenu>
 			</div>
 			<div>
