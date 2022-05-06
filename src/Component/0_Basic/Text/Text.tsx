@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './Text.module.scss';
 import defaultStyles from './../../../Styles/DefaultStyles/DefaultStyles.module.scss';
-import { language } from '../../../Services/Language/Language.interface';
+import { language } from '../../../Services/System/Language/Language.interface';
 import services from '../../../Services/Services';
 import { observer } from 'mobx-react';
 import { defaultStyle } from '../../../Styles/DefaultStyles/DefaultStyles.type';
@@ -31,7 +31,9 @@ const Text: FC<IText> = (props) => {
 
 	function wordTranslate(word: TText): string {
 		const wordTranslate = String(
-			word in language.ELanguageSimpleWord ? services.language.getText(word as language.TAllLanguageWord) : word
+			word in language.ELanguageSimpleWord
+				? services.system.language.getText(word as language.TAllLanguageWord)
+				: word
 		);
 
 		if (caseWord) {

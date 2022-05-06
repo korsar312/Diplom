@@ -1,3 +1,5 @@
+import { currency } from '../../System/Currency/Currency.interface';
+
 export namespace companies {
 	export type TCompaniesHashMap = {
 		[key in string]: TCompany;
@@ -9,7 +11,7 @@ export namespace companies {
 		avatar?: string;
 		economyBranch: EEconomyBranch;
 		allProducts: string[];
-		exportProduct: string[];
+		exportProduct: TExportProduct[];
 		requisites: TRequisites;
 		description: string;
 		personal: string[];
@@ -42,6 +44,18 @@ export namespace companies {
 		CONTROL = 'CONTROL',
 		PUBLIC_ASSOCIATIONS = 'PUBLIC_ASSOCIATIONS',
 	}
+
+	export type TExportProduct = {
+		idProduct: string;
+		price: TPrice;
+	};
+
+	type TPrice = {
+		[key in keyof typeof currency.ECurrency]?: {
+			currency: key;
+			amount: number;
+		};
+	};
 
 	type TRequisites = {
 		address: TAddressCompany;

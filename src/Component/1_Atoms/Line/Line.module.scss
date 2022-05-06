@@ -1,6 +1,7 @@
 @use "/src/Styles/Variables" as *;
 
 .wrapper {
+	width: 100%;
 	transition: $transition;
 }
 

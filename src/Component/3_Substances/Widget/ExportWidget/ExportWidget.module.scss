@@ -9,40 +9,55 @@ $padding: 10px;
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
-
+	
 	.title {
-		@include mixin--Center
+		@include mixin--Center;
 	}
-
+	
 	.fieldsWrapper {
 		display: flex;
-		flex-direction: column;
-		gap: $gapField;
-		border-radius: $border-radius;
 		overflow: hidden;
-
+		flex-direction: column;
+		border-radius: $border-radius;
+		gap: $gapField;
+		
 		.fieldTitle {
 			display: flex;
 			gap: $gapField;
-
-			.titleAllProduct, .titleExportProduct {
-				transition: $transition;
+			
+			.titleAllProduct,
+			.titleExportProduct {
 				flex: 1;
 				padding: $padding;
+				transition: $transition;
 				@include mixin--Center;
 				text-align: center;
 			}
 		}
-
+		
 		.fieldContent {
 			display: flex;
 			gap: $gapField;
-
+			
 			.field {
+				display: flex;
+				align-items: flex-start;
 				flex: 1;
-				@include mixin--Center;
+				flex-wrap: wrap;
+				justify-content: space-around;
 				padding: $padding;
-
+				gap: 10px;
+				
+				.card {
+					width: 140px;
+				}
+				
+				.btnGroup {
+					display: flex;
+					overflow: hidden;
+					border-radius: 20px;
+					gap: 4px;
+				}
 			}
 		}
 	}

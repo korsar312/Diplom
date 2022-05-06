@@ -38,9 +38,10 @@ const App = () => {
 	};
 
 	function autoLogin() {
-		if (!services.localStorage.isAutoSingIn) return;
+		if (!services.system.repositoryStorage.isAutoSingIn()) return;
 
-		const login = services.localStorage.getLogin;
+		const login = services.system.repositoryStorage.getLogin();
+		console.log(login);
 		if (login) {
 			services.store.usersStore.setCurrentUser = {
 				name: 'Ожидание...',

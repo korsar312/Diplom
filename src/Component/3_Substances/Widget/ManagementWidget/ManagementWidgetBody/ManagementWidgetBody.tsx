@@ -5,7 +5,7 @@ import { types } from '../../../../../Types/Types';
 import Text from '../../../../0_Basic/Text/Text';
 import WidgetWrapper from '../../../../1_Atoms/WidgetWrapper/WidgetWrapper';
 import ButtonStandard from '../../../../1_Atoms/ButtonStandard/ButtonStandard';
-import { language } from '../../../../../Services/Language/Language.interface';
+import { language } from '../../../../../Services/System/Language/Language.interface';
 import services from '../../../../../Services/Services';
 import { observer } from 'mobx-react';
 import DropMenu from '../../../../2_Molecules/DropMenu/DropMenu';

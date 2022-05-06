@@ -1,5 +1,6 @@
-import { companies } from '../Stores/Companies/Companies.interface';
-import { setting } from '../Stores/Settings/Setting.interface';
+import { companies } from '../../Stores/Companies/Companies.interface';
+import { setting } from '../../Stores/Settings/Setting.interface';
+import { currency } from '../Currency/Currency.interface';
 
 export namespace language {
 	export type TLanguage = {
@@ -55,15 +56,24 @@ export namespace language {
 		ADD_PRODUCT = 'ADD_PRODUCT',
 		REMEMBER_USER_KA = 'REMEMBER_USER_KA',
 		COMPANY_PRODUCT = 'COMPANY_PRODUCT',
+		ADD_PRODUCT_TO_EXPORT = 'ADD_PRODUCT_TO_EXPORT',
+		REMOVE_PRODUCT = 'REMOVE_PRODUCT',
+		PRODUCT_INFORM = 'PRODUCT_INFORM',
+		REMOVE_PRODUCT_FROM_EXPORT = 'REMOVE_PRODUCT_FROM_EXPORT',
 	}
 
 	export const ELanguageEconomyWord = {
 		...companies.EEconomyBranch,
 	};
 
+	export const ELanguageCurrencyWord = {
+		...currency.ECurrency,
+	};
+
 	const allLanguageWord = {
 		...ELanguageSimpleWord,
 		...ELanguageEconomyWord,
+		...ELanguageCurrencyWord,
 	};
 
 	export type TAllLanguageWord = keyof typeof allLanguageWord;

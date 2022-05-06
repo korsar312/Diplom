@@ -2,60 +2,46 @@ import React, { FC } from 'react';
 import styles from './CardProduct.module.scss';
 import { product } from '../../../Services/Stores/Products/Products.interface';
 import { defaultStyle } from '../../../Styles/DefaultStyles/DefaultStyles.type';
-import defaultStyles from '../../../Styles/DefaultStyles/DefaultStyles.module.scss';
-import { language } from '../../../Services/Language/Language.interface';
-import ButtonStandard from '../../1_Atoms/ButtonStandard/ButtonStandard';
 import Text from '../../0_Basic/Text/Text';
 import Avatar from '../../1_Atoms/Avatar/Avatar';
 import ContentWrapper from '../../0_Basic/ContentWrapper/ContentWrapper';
+import Line from '../../1_Atoms/Line/Line';
 
 interface ISearchInput {
 	extClass?: string;
 	product: product.TProduct;
 	color?: defaultStyle.TBackgroundColor;
-	btnGroup?: TBtnGroup[];
+	btnGroup?: JSX.Element;
 }
-
-type TBtnGroup = {
-	func: () => void;
-	title: language.TAllLanguageWord;
-	icon: FC<React.SVGProps<SVGSVGElement>>;
-};
 
 /**
  * Карточка товара
  * @param props.extClass - дополнительный CSS класс
  * @param props.product - объект продукт
  * @param props.color - цвет карточки
- * @param props.btnGroup - массив кнопок
+ * @param props.btnGroup - кнопки
  */
 const CardProduct: FC<ISearchInput> = (props) => {
-	const { extClass = '', product, color, btnGroup } = props;
+	const { extClass = '', product, color = 'wight', btnGroup } = props;
 
 	return (
-		<div
-			className={`
-				${styles.wrapper} 
-				${extClass}
-				${color ? defaultStyles[`backgroundColor_${color}`] : ''}
-			`}>
-			<ContentWrapper extClass={styles.content} color={'wight'}>
-				<>
-					<Avatar circle={'full'}>
-						<img src={product.image} alt={'item'} />
-					</Avatar>
-					<Text text={product.name} />
-				</>
-			</ContentWrapper>
+		<ContentWrapper extClass={`${styles.wrapper} ${extClass}`} color={color}>
+			<>
+				<Avatar circle={'full'}>
+					<img src={product.image} alt={'item'} />
+				</Avatar>
 
-			<div className={styles.btnGroup}>
-				{btnGroup?.map((btn) => (
-					<ButtonStandard click={btn.func}>
-						<Text text={btn.title} />
-					</ButtonStandard>
-				))}
-			</div>
-		</div>
+				<Line color={'grey'} width={2} isRadius={true} />
+
+				<div className={styles.text}>
+					<Text text={product.name} />
+				</div>
+
+				<Line color={'grey'} width={2} isRadius={true} />
+
+				<div>{btnGroup}</div>
+			</>
+		</ContentWrapper>
 	);
 };
 

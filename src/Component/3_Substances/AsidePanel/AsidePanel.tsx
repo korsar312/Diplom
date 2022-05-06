@@ -6,7 +6,7 @@ import AsidePanelLogo from './AsidePanelLogo/AsidePanelLogo';
 import AsidePanelNavigation from './AsidePanelNavigation/AsidePanelNavigation';
 import services from '../../../Services/Services';
 import { modals } from '../../../Services/Stores/Modal/Modal.interface';
-import { language } from '../../../Services/Language/Language.interface';
+import { language } from '../../../Services/System/Language/Language.interface';
 import Line from '../../1_Atoms/Line/Line';
 
 interface IAsidePanel {

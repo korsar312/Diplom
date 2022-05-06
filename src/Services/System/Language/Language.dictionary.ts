@@ -277,4 +277,28 @@ export const dictionary: language.TLanguage = {
 		EN: 'Production of the company',
 		RU: 'Продукция компании',
 	},
+	REMOVE_PRODUCT: {
+		EN: 'Remove product',
+		RU: 'Удалить товар',
+	},
+	ADD_PRODUCT_TO_EXPORT: {
+		EN: 'Add product to export',
+		RU: 'Добавить товар для экспорта',
+	},
+	REMOVE_PRODUCT_FROM_EXPORT: {
+		EN: 'Remove product from export',
+		RU: 'Удалить товар из экспорта',
+	},
+	PRODUCT_INFORM: {
+		EN: 'Product information',
+		RU: 'Информация о товаре',
+	},
+	RUBLE: {
+		EN: 'Ruble',
+		RU: 'Рубль',
+	},
+	DOLLAR: {
+		EN: 'Dollar',
+		RU: 'Доллар',
+	},
 };

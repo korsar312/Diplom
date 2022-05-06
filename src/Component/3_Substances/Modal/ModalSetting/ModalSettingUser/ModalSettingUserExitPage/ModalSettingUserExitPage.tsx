@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './ModalSettingUserExitPage.module.scss';
-import { language } from '../../../../../../Services/Language/Language.interface';
+import { language } from '../../../../../../Services/System/Language/Language.interface';
 import ButtonStandard from '../../../../../1_Atoms/ButtonStandard/ButtonStandard';
 import services from '../../../../../../Services/Services';
 import { modals } from '../../../../../../Services/Stores/Modal/Modal.interface';
@@ -18,7 +18,7 @@ const ModalSettingUserExitPage: FC<IModalSettingUserExitPage> = (props) => {
 	const { extClass = '' } = props;
 
 	function logOut() {
-		services.localStorage.disabledAutSingIn();
+		services.system.repositoryStorage.disabledAutSingIn();
 		services.store.modalStore.setShowModal(modals.EModal.userSetting, false);
 		services.store.usersStore.setCurrentUser = null;
 	}

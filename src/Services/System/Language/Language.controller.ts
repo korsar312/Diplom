@@ -1,6 +1,6 @@
 import { language } from './Language.interface';
 import { dictionary } from './Language.dictionary';
-import services from '../Services';
+import services from '../../Services';
 
 export class LanguageController {
 	private readonly language: language.TLanguage = dictionary;

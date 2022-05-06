@@ -10,7 +10,7 @@ import { ReactComponent as IconReports } from '../../../../Assets/icon/icon_repo
 import { ReactComponent as IconSettings } from '../../../../Assets/icon/icon_settings.svg';
 import { ReactComponent as IconImport } from '../../../../Assets/icon/icon_import.svg';
 import { ReactComponent as IconExport } from '../../../../Assets/icon/icon_export.svg';
-import { language } from '../../../../Services/Language/Language.interface';
+import { language } from '../../../../Services/System/Language/Language.interface';
 import services from '../../../../Services/Services';
 import React, { FC } from 'react';
 import { types } from '../../../../Types/Types';

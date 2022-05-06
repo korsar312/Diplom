@@ -5,6 +5,7 @@ import { rest } from '../../../Services/Rest/RestApi/RestApi.interface';
 import services from '../../../Services/Services';
 import IconWrapper from '../../0_Basic/IconWrapper/IconWrapper';
 import { defaultStyle } from '../../../Styles/DefaultStyles/DefaultStyles.type';
+import { language } from '../../../Services/System/Language/Language.interface';
 
 interface IButtonStandard {
 	click: () => void;
@@ -17,6 +18,7 @@ interface IButtonStandard {
 	children?: JSX.Element;
 	log?: rest.TLogAction;
 	isHover?: boolean;
+	alt?: language.TAllLanguageWord;
 }
 
 type TIcon = {
@@ -36,9 +38,22 @@ type TIcon = {
  * @param props.children - jsx контент кнопки
  * @param props.log - логирование
  * @param props.isHover - выделение при наведении
+ * @param props.alt - текст при наведении курсора
  */
 const ButtonStandard: FC<IButtonStandard> = (props) => {
-	const { click, color, extClass = '', iconLeft, iconRight, isNoPadding, isDisabled, children, log, isHover } = props;
+	const {
+		click,
+		color,
+		extClass = '',
+		iconLeft,
+		iconRight,
+		isNoPadding,
+		isDisabled,
+		children,
+		log,
+		isHover,
+		alt,
+	} = props;
 
 	function clickHandler() {
 		services.rest.RestApi.logAction({
@@ -54,6 +69,7 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
 
 	return (
 		<button
+			title={alt && services.system.language.getText(alt)}
 			type={'button'}
 			disabled={isDisabled}
 			onClick={clickHandler}

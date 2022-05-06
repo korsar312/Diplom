@@ -2,7 +2,7 @@ import React, { FC, HTMLInputTypeAttribute } from 'react';
 import styles from './InputStandard.module.scss';
 import defaultStyles from './../../../Styles/DefaultStyles/DefaultStyles.module.scss';
 import { rest } from '../../../Services/Rest/RestApi/RestApi.interface';
-import { language } from '../../../Services/Language/Language.interface';
+import { language } from '../../../Services/System/Language/Language.interface';
 import services from '../../../Services/Services';
 import IconWrapper from '../../0_Basic/IconWrapper/IconWrapper';
 import { defaultStyle } from '../../../Styles/DefaultStyles/DefaultStyles.type';

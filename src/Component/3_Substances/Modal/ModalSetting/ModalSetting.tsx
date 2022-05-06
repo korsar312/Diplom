@@ -4,7 +4,7 @@ import ModalWindow from '../../../0_Basic/ModalWindow/ModalWindow';
 import UnitPanel from '../../../2_Molecules/UnitPanel/UnitPanel';
 import ButtonStandard from '../../../1_Atoms/ButtonStandard/ButtonStandard';
 import Text from '../../../0_Basic/Text/Text';
-import { language } from '../../../../Services/Language/Language.interface';
+import { language } from '../../../../Services/System/Language/Language.interface';
 
 interface IModalSetting {
 	extClass?: string;

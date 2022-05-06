@@ -2,17 +2,17 @@
 @use "/src/Styles/Mixins" as *;
 
 .wrapper {
+	@include mixin--Center;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 10px;
 	border-radius: $border-radius;
-
-	.content {
-		padding: 10px;
+	gap: 10px;
+	
+	.text {
+		overflow: hidden;
+		height: 40px;
+		text-align: center;
 		@include mixin--Center;
-		flex-direction: column;
-		gap: 5px;
-		border-radius: $border-radius;
-	}
-
-	.btnGroup {
-
 	}
 }

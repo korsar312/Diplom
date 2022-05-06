@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import styles from './DropMenu.module.scss';
 import ButtonStandard from '../../1_Atoms/ButtonStandard/ButtonStandard';
 import { ReactComponent as IconArrow } from '../../../Assets/icon/icon_arrow.svg';
-import { language } from '../../../Services/Language/Language.interface';
+import { language } from '../../../Services/System/Language/Language.interface';
 import Text from '../../0_Basic/Text/Text';
 
 interface iDropMenu {

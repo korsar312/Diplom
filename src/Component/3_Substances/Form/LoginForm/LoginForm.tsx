@@ -1,7 +1,7 @@
 import React, { FC, useContext, useRef, useState } from 'react';
 import InputStandard from '../../../1_Atoms/InputStandard/InputStandard';
 import styles from './LoginForm.module.scss';
-import { language } from '../../../../Services/Language/Language.interface';
+import { language } from '../../../../Services/System/Language/Language.interface';
 import Text from '../../../0_Basic/Text/Text';
 import ButtonStandard from '../../../1_Atoms/ButtonStandard/ButtonStandard';
 import services from '../../../../Services/Services';
@@ -72,10 +72,10 @@ const LoginForm: FC<ILoginForm> = (props) => {
 		services.rest.RestApi.login(inputValue.current.log || '', inputValue.current.pass || '', (isOk) => {
 			if (isOk) {
 				if (inputValue.current.autoSingIn) {
-					services.localStorage.enabledAutSingIn = {
+					services.system.repositoryStorage.enabledAutSingIn({
 						login: inputValue.current.log,
 						password: inputValue.current.pass,
-					};
+					});
 				}
 				successfulLogin && successfulLogin();
 			} else {

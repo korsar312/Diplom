@@ -4,7 +4,7 @@ import { ReactComponent as IconLogo } from '../../../../Assets/icon/icon_logo.sv
 import ButtonStandard from '../../../1_Atoms/ButtonStandard/ButtonStandard';
 import { ReactComponent as IconShift } from '../../../../Assets/icon/icon_shift.svg';
 import Text from '../../../0_Basic/Text/Text';
-import { language } from '../../../../Services/Language/Language.interface';
+import { language } from '../../../../Services/System/Language/Language.interface';
 import services from '../../../../Services/Services';
 import { setting } from '../../../../Services/Stores/Settings/Setting.interface';
 
