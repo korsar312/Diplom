@@ -6,6 +6,7 @@ import services from '../../../Services/Services';
 import IconWrapper from '../../0_Basic/IconWrapper/IconWrapper';
 import { defaultStyle } from '../../../Styles/DefaultStyles/DefaultStyles.type';
 import { language } from '../../../Services/System/Language/Language.interface';
+import { observer } from 'mobx-react';
 
 interface IButtonStandard {
 	click: () => void;
@@ -91,4 +92,4 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
 	);
 };
 
-export default ButtonStandard;
+export default observer(ButtonStandard);

@@ -301,4 +301,8 @@ export const dictionary: language.TLanguage = {
 		EN: 'Dollar',
 		RU: 'Доллар',
 	},
+	SET_IMPORT_QUANTITY: {
+		EN: 'Set the number of sales units to import',
+		RU: 'Установить колличество продажных единиц для импорта',
+	},
 };

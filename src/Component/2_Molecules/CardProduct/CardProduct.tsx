@@ -33,8 +33,10 @@ const CardProduct: FC<ISearchInput> = (props) => {
 
 				<Line color={'grey'} width={2} isRadius={true} />
 
-				<div className={styles.text}>
-					<Text text={product.name} />
+				<div className={styles.textWrapper}>
+					<div className={styles.text}>
+						<Text text={product.name} />
+					</div>
 				</div>
 
 				<Line color={'grey'} width={2} isRadius={true} />

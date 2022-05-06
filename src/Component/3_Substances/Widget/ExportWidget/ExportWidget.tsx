@@ -29,6 +29,7 @@ enum EFuncBtn {
 	ADD_ITEM = 'ADD_ITEM',
 	REMOVE_IMPORT_ITEM = 'REMOVE_EXPORT_ITEM',
 	REMOVE_ITEM = 'REMOVE_ITEM',
+	SET_IMPORT_QUANTITY = 'SET_IMPORT_QUANTITY',
 	INFORM_ITEM_EXPORT = 'INFORM_ITEM_EXPORT',
 }
 
@@ -98,6 +99,15 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 			this.color = 'blue';
 		} as any as TBtnConstructor,
 
+		SET_IMPORT_QUANTITY: function (this: TBtn, idProduct: string) {
+			this.alt = language.ELanguageSimpleWord.SET_IMPORT_QUANTITY;
+			this.func = () => {
+				console.log(123);
+			};
+			this.icon = IconInform;
+			this.color = 'grey';
+		} as any as TBtnConstructor,
+
 		REMOVE_ITEM: function (this: TBtn, idProduct: string) {
 			this.alt = language.ELanguageSimpleWord.REMOVE_PRODUCT;
 			this.func = () => {
@@ -132,7 +142,11 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 	}
 
 	function createListExportProductBtn(IdProduct: string) {
-		const arrBtn: EFuncBtn[] = [EFuncBtn.REMOVE_IMPORT_ITEM, EFuncBtn.INFORM_ITEM_EXPORT];
+		const arrBtn: EFuncBtn[] = [
+			EFuncBtn.REMOVE_IMPORT_ITEM,
+			EFuncBtn.INFORM_ITEM_EXPORT,
+			EFuncBtn.SET_IMPORT_QUANTITY,
+		];
 
 		return renderBtn(arrBtn, IdProduct);
 	}
@@ -179,7 +193,6 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 							<>
 								{myCompany?.allProducts?.map((item) => (
 									<CardProduct
-										extClass={styles.card}
 										key={item}
 										product={allProducts[item]}
 										btnGroup={createListAllProductBtn(item)}
@@ -192,7 +205,6 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 							<>
 								{myCompany?.exportProduct?.map((item) => (
 									<CardProduct
-										extClass={styles.card}
 										key={item.idProduct}
 										product={allProducts[item.idProduct]}
 										btnGroup={createListExportProductBtn(item.idProduct)}
