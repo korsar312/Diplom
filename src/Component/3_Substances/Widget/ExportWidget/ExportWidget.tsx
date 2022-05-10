@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import WidgetWrapper from '../../../1_Atoms/WidgetWrapper/WidgetWrapper';
 import styles from './ExportWidget.module.scss';
 import Text from '../../../0_Basic/Text/Text';
@@ -16,6 +16,7 @@ import { defaultStyle } from '../../../../Styles/DefaultStyles/DefaultStyles.typ
 import { companies } from '../../../../Services/Stores/Companies/Companies.interface';
 import { PreloaderContext } from '../../../../App';
 import { currency } from '../../../../Services/System/Currency/Currency.interface';
+import ChoiceModal from '../../../2_Molecules/Modal/ChoiceModal/ChoiceModal';
 
 interface IExportWidget {
 	extClass?: string;
@@ -34,7 +35,7 @@ enum EFuncBtn {
 }
 
 type TBtnConstructor = {
-	new (idProduct: string): TBtn;
+	new(idProduct: string): TBtn;
 };
 
 type TBtn = {
@@ -49,11 +50,13 @@ type TBtn = {
  * @param props.extClass - дополнительный CSS класс
  */
 const ExportWidget: FC<IExportWidget> = (props) => {
-	const { extClass = '' } = props;
+	const {extClass = ''} = props;
 
 	const preloader = useContext(PreloaderContext);
 	const allProducts = services.store.productsStore.getProducts || {};
 	const myCompany = services.store.companyStore.getMyCompany;
+
+	const [modalRemoveProduct, setModalRemoveProduct] = useState<(() => void) | null>(null);
 
 	const BtnGroup: TBtnGroup = {
 		ADD_ITEM: function (this: TBtn, idProduct: string) {
@@ -64,14 +67,13 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 						idProduct,
 						price: {
 							RUBLE: {
-								amount: 200,
 								currency: currency.ECurrency.RUBLE,
 							},
 						},
 					};
 					const newProductArr: companies.TExportProduct[] = [...myCompany.exportProduct, newProduct];
 
-					saveCompany({ ...myCompany, exportProduct: newProductArr });
+					saveCompany({...myCompany, exportProduct: newProductArr});
 				}
 			};
 			this.icon = IconAddExport;
@@ -81,10 +83,12 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 		REMOVE_EXPORT_ITEM: function (this: TBtn, idProduct: string) {
 			this.alt = language.ELanguageSimpleWord.REMOVE_PRODUCT_FROM_EXPORT;
 			this.func = () => {
-				if (myCompany) {
-					const newProductArr = myCompany.exportProduct.filter((el) => el.idProduct !== idProduct);
-					saveCompany({ ...myCompany, exportProduct: newProductArr });
-				}
+				setModalRemoveProduct(() => {
+					if (myCompany) {
+						const newProductArr = myCompany.exportProduct.filter((el) => el.idProduct !== idProduct);
+						saveCompany({...myCompany, exportProduct: newProductArr});
+					}
+				});
 			};
 			this.icon = IconRemoveExport;
 			this.color = 'red';
@@ -111,10 +115,14 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 		REMOVE_ITEM: function (this: TBtn, idProduct: string) {
 			this.alt = language.ELanguageSimpleWord.REMOVE_PRODUCT;
 			this.func = () => {
-				if (myCompany) {
-					const newProductArr = myCompany.allProducts.filter((el) => el !== idProduct);
-					saveCompany({ ...myCompany, allProducts: newProductArr });
-				}
+				setModalRemoveProduct(() => function () {
+					if (myCompany) {
+						const newProductArr = myCompany.allProducts.filter((el) => el !== idProduct);
+						saveCompany({...myCompany, allProducts: newProductArr});
+					}
+				});
+
+
 			};
 			this.icon = IconRemove;
 			this.color = 'red';
@@ -161,8 +169,8 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 							alt={btnGroupElement.alt}
 							key={btnGroupElement.alt}
 							color={btnGroupElement.color}
-							click={() => btnGroupElement.func()}
-							iconRight={{ icon: btnGroupElement.icon }}
+							click={btnGroupElement.func}
+							iconRight={{icon: btnGroupElement.icon}}
 						/>
 					);
 				})}
@@ -173,18 +181,24 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 	return (
 		<WidgetWrapper>
 			<div className={`${styles.wrapper} ${extClass}`}>
+				<ChoiceModal
+					success={modalRemoveProduct || undefined}
+					isShow={!!modalRemoveProduct}
+					onClose={() => setModalRemoveProduct(null)}
+				/>
+
 				<div className={styles.title}>
-					<Text text={language.ELanguageSimpleWord.EXPORT} userStyle={'fat_extraBig'} />
+					<Text text={language.ELanguageSimpleWord.EXPORT} userStyle={'fat_extraBig'}/>
 				</div>
 
 				<div className={styles.fieldsWrapper}>
 					<div className={styles.fieldTitle}>
 						<ContentWrapper color={'green'} extClass={styles.titleAllProduct}>
-							<Text text={language.ELanguageSimpleWord.COMPANY_PRODUCT} userStyle={'fat_big'} />
+							<Text text={language.ELanguageSimpleWord.COMPANY_PRODUCT} userStyle={'fat_big'}/>
 						</ContentWrapper>
 
 						<ContentWrapper color={'blue'} extClass={styles.titleExportProduct}>
-							<Text text={language.ELanguageSimpleWord.EXPORT} userStyle={'fat_big'} />
+							<Text text={language.ELanguageSimpleWord.EXPORT} userStyle={'fat_big'}/>
 						</ContentWrapper>
 					</div>
 

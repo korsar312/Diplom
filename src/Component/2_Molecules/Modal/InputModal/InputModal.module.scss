@@ -1,0 +1,22 @@
+@use "/src/Styles/Mixins" as *;
+
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	.title {
+		@include mixin--Center
+	}
+
+	.btnGroup {
+		display: flex;
+		justify-content: space-between;
+		gap: 15px;
+
+		.btn {
+			width: 100%;
+		}
+	}
+}

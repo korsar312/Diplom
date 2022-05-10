@@ -1,5 +1,5 @@
-@use "/src/Styles/Variables" as *;
-@use "/src/Styles/Mixins" as *;
+@use "../../../Styles/Variables" as *;
+@use "../../../Styles/Mixins" as *;
 
 
 .wrapper {
@@ -11,7 +11,7 @@
 	transition: $transition;
 	background: rgba(var(--color__black10), 0.6);
 	@include mixin--Center;
-	
+
 	.content {
 		padding: $padding_modal_window;
 		transition: $transition;
@@ -31,6 +31,8 @@
 .windowClose {
 	visibility: hidden;
 	opacity: 0;
-	
-	.content { transform: scale(0.3) }
+
+	.content {
+		transform: scale(0.3)
+	}
 }

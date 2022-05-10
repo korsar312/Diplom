@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import styles from './ModalSetting.module.scss';
-import ModalWindow from '../../../0_Basic/ModalWindow/ModalWindow';
+import ModalWindow from '../../../1_Atoms/ModalWindow/ModalWindow';
 import UnitPanel from '../../../2_Molecules/UnitPanel/UnitPanel';
 import ButtonStandard from '../../../1_Atoms/ButtonStandard/ButtonStandard';
 import Text from '../../../0_Basic/Text/Text';

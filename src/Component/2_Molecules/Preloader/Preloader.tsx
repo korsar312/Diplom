@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './Preloader.module.scss';
-import ModalWindow from '../../0_Basic/ModalWindow/ModalWindow';
+import ModalWindow from '../../1_Atoms/ModalWindow/ModalWindow';
 
 interface IPreloader {
 	isShow: boolean;

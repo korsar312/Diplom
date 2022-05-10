@@ -3,7 +3,6 @@ import styles from './DropMenu.module.scss';
 import ButtonStandard from '../../1_Atoms/ButtonStandard/ButtonStandard';
 import { ReactComponent as IconArrow } from '../../../Assets/icon/icon_arrow.svg';
 import { language } from '../../../Services/System/Language/Language.interface';
-import Text from '../../0_Basic/Text/Text';
 
 interface iDropMenu {
 	title: language.TAllLanguageWord | string | number;
@@ -24,7 +23,7 @@ interface iDropMenu {
  * @param props.isAbsolute - влияет ли дочерний элемени на css поток
  */
 const DropMenu: FC<iDropMenu> = (props) => {
-	const { title, children, iconLeft, extClass = '', isPaddingOn, isAbsolute } = props;
+	const {title, children, iconLeft, extClass = '', isPaddingOn, isAbsolute} = props;
 
 	const [isShowListBtn, setIsShowListBtn] = useState(false);
 
@@ -33,15 +32,15 @@ const DropMenu: FC<iDropMenu> = (props) => {
 			<ButtonStandard
 				color={isShowListBtn ? 'blue' : undefined}
 				click={() => setIsShowListBtn((val) => !val)}
-				log={{ element: DropMenu.name, comment: `Кнопка ${title} нажата` }}
+				log={{element: DropMenu.name, comment: `Кнопка ${title} нажата`}}
 				iconRight={{
 					icon: IconArrow,
 					extClass: `${styles.arrow} ${isShowListBtn ? styles.panelOn : ''}`,
 				}}
-				iconLeft={{ icon: iconLeft }}
-				extClass={`${styles.btn} ${isShowListBtn ? styles.btnOpen : ''}`}>
-				<Text text={title} userStyle={'light_small'} />
-			</ButtonStandard>
+				iconLeft={{icon: iconLeft}}
+				extClass={`${styles.btn} ${isShowListBtn ? styles.btnOpen : ''}`}
+				titleObj={{text: title, userStyle: 'light_small'}}
+			/>
 
 			<div
 				className={`

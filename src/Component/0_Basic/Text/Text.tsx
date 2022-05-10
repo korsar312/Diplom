@@ -6,7 +6,7 @@ import services from '../../../Services/Services';
 import { observer } from 'mobx-react';
 import { defaultStyle } from '../../../Styles/DefaultStyles/DefaultStyles.type';
 
-interface IText {
+export interface IText {
 	text: TText;
 	userStyle?: defaultStyle.TTextStyle;
 	userColor?: defaultStyle.TColor;
@@ -51,11 +51,11 @@ const Text: FC<IText> = (props) => {
 	return (
 		<span
 			className={`
-        ${styles.wrapper} 
-        ${extClass} 
-        ${defaultStyles['style_' + userStyle]}
-        ${defaultStyles['color_' + userColor]}
-      `}>
+		        ${styles.wrapper} 
+		        ${extClass} 
+		        ${defaultStyles['style_' + userStyle]}
+		        ${defaultStyles['color_' + userColor]}
+	        `}>
 			{wordTranslate(text)}
 		</span>
 	);

@@ -3,7 +3,6 @@ import styles from './AsidePanelNavigation.module.scss';
 import ButtonStandard from '../../../1_Atoms/ButtonStandard/ButtonStandard';
 import DropMenu from '../../../2_Molecules/DropMenu/DropMenu';
 import { navLink } from './AsidePanelNavigation.list';
-import Text from '../../../0_Basic/Text/Text';
 
 interface IAsidePanelNavigation {
 	filter?: string;
@@ -47,9 +46,9 @@ const AsidePanelNavigation: FC<IAsidePanelNavigation> = (props) => {
 						extClass={`${styles.btn}`}
 						click={navObj.click}
 						log={{ element: AsidePanelNavigation.name }}
-						iconLeft={{ icon: navObj.leftImg || undefined }}>
-						<Text text={navObj.name} userStyle={'light_small'} />
-					</ButtonStandard>
+						iconLeft={{ icon: navObj.leftImg || undefined }}
+						titleObj={{ text: navObj.name, userStyle: 'light_small' }}
+					/>
 				</React.Fragment>
 			);
 		}

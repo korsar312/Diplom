@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import styles from './ButtonStandard.module.scss';
 import defaultStyles from './../../../Styles/DefaultStyles/DefaultStyles.module.scss';
 import { rest } from '../../../Services/Rest/RestApi/RestApi.interface';
@@ -7,16 +7,18 @@ import IconWrapper from '../../0_Basic/IconWrapper/IconWrapper';
 import { defaultStyle } from '../../../Styles/DefaultStyles/DefaultStyles.type';
 import { language } from '../../../Services/System/Language/Language.interface';
 import { observer } from 'mobx-react';
+import Text, { IText } from '../../0_Basic/Text/Text';
 
 interface IButtonStandard {
 	click: () => void;
+	titleObj?: IText;
 	color?: defaultStyle.TBackgroundColor;
 	extClass?: string;
 	iconLeft?: TIcon;
 	iconRight?: TIcon;
 	isNoPadding?: boolean;
 	isDisabled?: boolean;
-	children?: JSX.Element;
+	children?: ReactNode;
 	log?: rest.TLogAction;
 	isHover?: boolean;
 	alt?: language.TAllLanguageWord;
@@ -30,13 +32,14 @@ type TIcon = {
 /**
  * Основная кнопка
  * @param props.click - функция onClick по кнопке
+ * @param props.titleObj - текст кнопки и ее параметры
  * @param props.color - цвет кнопки
  * @param props.extClass - дополнительный CSS класс
  * @param props.iconLeft - иконка для левой стороны
  * @param props.iconRight - иконка для правой стороны
  * @param props.isNoPadding - убрать внутренний отступ
  * @param props.disabled - неактивность кнопки
- * @param props.children - jsx контент кнопки
+ * @param props.children - контент кнопки
  * @param props.log - логирование
  * @param props.isHover - выделение при наведении
  * @param props.alt - текст при наведении курсора
@@ -44,6 +47,7 @@ type TIcon = {
 const ButtonStandard: FC<IButtonStandard> = (props) => {
 	const {
 		click,
+		titleObj,
 		color,
 		extClass = '',
 		iconLeft,
@@ -61,7 +65,7 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
 			element: ButtonStandard.name,
 			action: 'Нажатие',
 			data: props,
-			comment: `кнопка ${(iconLeft || iconRight)?.icon?.name || 'не определена'}`,
+			comment: `кнопка ${titleObj?.text || (iconLeft || iconRight)?.icon || 'не определена'}`,
 			...log,
 		});
 
@@ -84,7 +88,14 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
 			{iconLeft?.icon && (
 				<IconWrapper extClass={`${styles.icon} ${iconLeft.extClass || ''}`} Icon={iconLeft.icon} />
 			)}
-			{children && <div className={styles.content}>{children}</div>}
+
+			{(titleObj?.text || children) && (
+				<div className={styles.content}>
+					{titleObj?.text && <Text {...titleObj} />}
+					<div className={styles.child}>{children}</div>
+				</div>
+			)}
+
 			{iconRight?.icon && (
 				<IconWrapper extClass={`${styles.icon} ${iconRight.extClass || ''}`} Icon={iconRight.icon} />
 			)}

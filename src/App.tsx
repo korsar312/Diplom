@@ -8,7 +8,7 @@ import styles from './App.module.scss';
 import { observer } from 'mobx-react';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import services from './Services/Services';
-import Preloader from './Component/1_Atoms/Preloader/Preloader';
+import Preloader from './Component/2_Molecules/Preloader/Preloader';
 import ModalActivator from './Services/Stores/Modal/ModalActivator';
 
 type TPreloaderContext = {

@@ -149,9 +149,9 @@ const LoginForm: FC<ILoginForm> = (props) => {
 						color={'black'}
 						click={clickHandler}
 						log={{ element: LoginForm.name }}
-						isDisabled={!isValid}>
-						<Text text={language.ELanguageSimpleWord.SING_IN} userStyle={'fat_small'} />
-					</ButtonStandard>
+						isDisabled={!isValid}
+						titleObj={{ text: language.ELanguageSimpleWord.SING_IN, userStyle: 'fat_small' }}
+					/>
 				</div>
 			)}
 		</form>

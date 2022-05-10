@@ -305,4 +305,16 @@ export const dictionary: language.TLanguage = {
 		EN: 'Set the number of sales units to import',
 		RU: 'Установить колличество продажных единиц для импорта',
 	},
+	ARE_YOU_SURE_KA: {
+		EN: 'Are you sure you want to continue?',
+		RU: 'Вы уверены, что хотите продолжить?',
+	},
+	CANCEL: {
+		EN: 'Cancel',
+		RU: 'Отмена',
+	},
+	CONTINUE: {
+		EN: 'Continue',
+		RU: 'Продолжить',
+	},
 };
