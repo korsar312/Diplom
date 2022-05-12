@@ -317,4 +317,8 @@ export const dictionary: language.TLanguage = {
 		EN: 'Continue',
 		RU: 'Продолжить',
 	},
+	ENTER_THE_NUMBER_EXPORT_PRODUCT: {
+		EN: 'Enter the number of units of products that can be sent for export',
+		RU: 'Введите количество единиц продукции, которое возможно отправить на экспорт',
+	},
 };

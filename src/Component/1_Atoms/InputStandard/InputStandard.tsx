@@ -1,4 +1,4 @@
-import React, { FC, HTMLInputTypeAttribute } from 'react';
+import React, { FC, HTMLInputTypeAttribute, useState } from 'react';
 import styles from './InputStandard.module.scss';
 import defaultStyles from './../../../Styles/DefaultStyles/DefaultStyles.module.scss';
 import { rest } from '../../../Services/Rest/RestApi/RestApi.interface';
@@ -19,6 +19,7 @@ interface IInput {
 	color?: defaultStyle.TBackgroundColor;
 	textStyle?: defaultStyle.TTextStyle;
 	textColor?: defaultStyle.TColor;
+	rule?: ((value: string | number) => boolean)[];
 }
 
 type TIcon = {
@@ -39,6 +40,7 @@ type TIcon = {
  * @param props.color - цвет фона инпута
  * @param props.textStyle - стиль текста
  * @param props.textColor - цвет текста
+ * @param props.rule - правила для инпута
  */
 const InputStandard: FC<IInput> = (props) => {
 	const {
@@ -53,17 +55,30 @@ const InputStandard: FC<IInput> = (props) => {
 		color,
 		textStyle = 'standard',
 		textColor = 'standard',
+		rule,
 	} = props;
 
-	function handleChange(event: { target: { value: string } }) {
+	const [valueInput, setValueInput] = useState(defaultValue);
+
+	function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+		const inputting = event.target.value;
+
 		services.rest.RestApi.logAction({
 			element: InputStandard.name,
 			action: 'Ввод',
 			data: props,
-			comment: `введено ${event.target.value}`,
+			comment: `введено ${inputting}`,
 			...log,
 		});
-		callback(event.target.value);
+
+		if (validate(inputting)) {
+			setValueInput(inputting);
+			callback(inputting);
+		}
+	}
+
+	function validate(input: string) {
+		return rule ? rule.every((el) => el(input)) : true;
 	}
 
 	function handleIsFocus(isFocus: boolean) {
@@ -90,7 +105,7 @@ const InputStandard: FC<IInput> = (props) => {
 					${defaultStyles[`style_${textStyle}`]}
 					${defaultStyles[`color_${textColor}`]}
 				`}
-				defaultValue={defaultValue}
+				value={valueInput}
 			/>
 			{iconRight?.icon && <IconWrapper Icon={iconRight.icon} extClass={iconRight.extClass} />}
 		</div>

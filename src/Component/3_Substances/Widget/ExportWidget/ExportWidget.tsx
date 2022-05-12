@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from 'react';
+import React, { FC, useContext, useRef, useState } from 'react';
 import WidgetWrapper from '../../../1_Atoms/WidgetWrapper/WidgetWrapper';
 import styles from './ExportWidget.module.scss';
 import Text from '../../../0_Basic/Text/Text';
@@ -15,8 +15,8 @@ import { ReactComponent as IconInform } from '../../../../Assets/icon/icon_infor
 import { defaultStyle } from '../../../../Styles/DefaultStyles/DefaultStyles.type';
 import { companies } from '../../../../Services/Stores/Companies/Companies.interface';
 import { PreloaderContext } from '../../../../App';
-import { currency } from '../../../../Services/System/Currency/Currency.interface';
-import ChoiceModal from '../../../2_Molecules/Modal/ChoiceModal/ChoiceModal';
+import ContinueModal from '../../../2_Molecules/Modal/ContinueModal/ContinueModal';
+import CreateExportProductModal from './CreateExportProductModal/CreateExportProductModal';
 
 interface IExportWidget {
 	extClass?: string;
@@ -35,7 +35,7 @@ enum EFuncBtn {
 }
 
 type TBtnConstructor = {
-	new(idProduct: string): TBtn;
+	new (idProduct: string): TBtn;
 };
 
 type TBtn = {
@@ -50,31 +50,34 @@ type TBtn = {
  * @param props.extClass - дополнительный CSS класс
  */
 const ExportWidget: FC<IExportWidget> = (props) => {
-	const {extClass = ''} = props;
+	const { extClass = '' } = props;
 
 	const preloader = useContext(PreloaderContext);
 	const allProducts = services.store.productsStore.getProducts || {};
 	const myCompany = services.store.companyStore.getMyCompany;
 
 	const [modalRemoveProduct, setModalRemoveProduct] = useState<(() => void) | null>(null);
+	const [modalAmountExport, setModalCreateExport] = useState<((newExport: companies.TExportProduct) => void) | null>(
+		null
+	);
+
+	const choiceProduct = useRef('');
 
 	const BtnGroup: TBtnGroup = {
 		ADD_ITEM: function (this: TBtn, idProduct: string) {
 			this.alt = language.ELanguageSimpleWord.ADD_PRODUCT_TO_EXPORT;
 			this.func = () => {
-				if (myCompany) {
-					const newProduct: companies.TExportProduct = {
-						idProduct,
-						price: {
-							RUBLE: {
-								currency: currency.ECurrency.RUBLE,
-							},
-						},
-					};
-					const newProductArr: companies.TExportProduct[] = [...myCompany.exportProduct, newProduct];
+				choiceProduct.current = idProduct;
+				setModalCreateExport(
+					(amount: companies.TExportProduct) =>
+						function () {
+							if (myCompany) {
+								const newProductArr: companies.TExportProduct[] = [...myCompany.exportProduct, amount];
 
-					saveCompany({...myCompany, exportProduct: newProductArr});
-				}
+								saveCompany({ ...myCompany, exportProduct: newProductArr });
+							}
+						}
+				);
 			};
 			this.icon = IconAddExport;
 			this.color = 'green';
@@ -83,12 +86,17 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 		REMOVE_EXPORT_ITEM: function (this: TBtn, idProduct: string) {
 			this.alt = language.ELanguageSimpleWord.REMOVE_PRODUCT_FROM_EXPORT;
 			this.func = () => {
-				setModalRemoveProduct(() => {
-					if (myCompany) {
-						const newProductArr = myCompany.exportProduct.filter((el) => el.idProduct !== idProduct);
-						saveCompany({...myCompany, exportProduct: newProductArr});
-					}
-				});
+				setModalRemoveProduct(
+					() =>
+						function () {
+							if (myCompany) {
+								const newProductArr = myCompany.exportProduct.filter(
+									(el) => el.idProduct !== idProduct
+								);
+								saveCompany({ ...myCompany, exportProduct: newProductArr });
+							}
+						}
+				);
 			};
 			this.icon = IconRemoveExport;
 			this.color = 'red';
@@ -115,14 +123,15 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 		REMOVE_ITEM: function (this: TBtn, idProduct: string) {
 			this.alt = language.ELanguageSimpleWord.REMOVE_PRODUCT;
 			this.func = () => {
-				setModalRemoveProduct(() => function () {
-					if (myCompany) {
-						const newProductArr = myCompany.allProducts.filter((el) => el !== idProduct);
-						saveCompany({...myCompany, allProducts: newProductArr});
-					}
-				});
-
-
+				setModalRemoveProduct(
+					() =>
+						function () {
+							if (myCompany) {
+								const newProductArr = myCompany.allProducts.filter((el) => el !== idProduct);
+								saveCompany({ ...myCompany, allProducts: newProductArr });
+							}
+						}
+				);
 			};
 			this.icon = IconRemove;
 			this.color = 'red';
@@ -170,7 +179,7 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 							key={btnGroupElement.alt}
 							color={btnGroupElement.color}
 							click={btnGroupElement.func}
-							iconRight={{icon: btnGroupElement.icon}}
+							iconRight={{ icon: btnGroupElement.icon }}
 						/>
 					);
 				})}
@@ -181,24 +190,30 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 	return (
 		<WidgetWrapper>
 			<div className={`${styles.wrapper} ${extClass}`}>
-				<ChoiceModal
+				<ContinueModal
 					success={modalRemoveProduct || undefined}
 					isShow={!!modalRemoveProduct}
 					onClose={() => setModalRemoveProduct(null)}
 				/>
+				<CreateExportProductModal
+					success={modalAmountExport || undefined}
+					isShow={!!modalAmountExport}
+					onClose={() => setModalCreateExport(null)}
+					idProduct={choiceProduct.current}
+				/>
 
 				<div className={styles.title}>
-					<Text text={language.ELanguageSimpleWord.EXPORT} userStyle={'fat_extraBig'}/>
+					<Text text={language.ELanguageSimpleWord.EXPORT} userStyle={'fat_extraBig'} />
 				</div>
 
 				<div className={styles.fieldsWrapper}>
 					<div className={styles.fieldTitle}>
 						<ContentWrapper color={'green'} extClass={styles.titleAllProduct}>
-							<Text text={language.ELanguageSimpleWord.COMPANY_PRODUCT} userStyle={'fat_big'}/>
+							<Text text={language.ELanguageSimpleWord.COMPANY_PRODUCT} userStyle={'fat_big'} />
 						</ContentWrapper>
 
 						<ContentWrapper color={'blue'} extClass={styles.titleExportProduct}>
-							<Text text={language.ELanguageSimpleWord.EXPORT} userStyle={'fat_big'}/>
+							<Text text={language.ELanguageSimpleWord.EXPORT} userStyle={'fat_big'} />
 						</ContentWrapper>
 					</div>
 

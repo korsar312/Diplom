@@ -64,6 +64,7 @@ export namespace language {
 		ARE_YOU_SURE_KA = 'ARE_YOU_SURE_KA',
 		CANCEL = 'CANCEL',
 		CONTINUE = 'CONTINUE',
+		ENTER_THE_NUMBER_EXPORT_PRODUCT = 'ENTER_THE_NUMBER_EXPORT_PRODUCT',
 	}
 
 	export const ELanguageEconomyWord = {
@@ -74,7 +75,7 @@ export namespace language {
 		...currency.ECurrency,
 	};
 
-	const allLanguageWord = {
+	export const allLanguageWord = {
 		...ELanguageSimpleWord,
 		...ELanguageEconomyWord,
 		...ELanguageCurrencyWord,

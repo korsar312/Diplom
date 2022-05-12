@@ -47,6 +47,7 @@ export namespace companies {
 
 	export type TExportProduct = {
 		idProduct: string;
+		amountExport: number;
 		price: TPrice;
 	};
 

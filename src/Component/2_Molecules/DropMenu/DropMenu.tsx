@@ -3,6 +3,8 @@ import styles from './DropMenu.module.scss';
 import ButtonStandard from '../../1_Atoms/ButtonStandard/ButtonStandard';
 import { ReactComponent as IconArrow } from '../../../Assets/icon/icon_arrow.svg';
 import { language } from '../../../Services/System/Language/Language.interface';
+import { defaultStyle } from '../../../Styles/DefaultStyles/DefaultStyles.type';
+import ContentWrapper from '../../0_Basic/ContentWrapper/ContentWrapper';
 
 interface iDropMenu {
 	title: language.TAllLanguageWord | string | number;
@@ -11,6 +13,7 @@ interface iDropMenu {
 	extClass?: string;
 	isPaddingOn?: boolean;
 	isAbsolute?: boolean;
+	color?: defaultStyle.TBackgroundColor;
 }
 
 /**
@@ -21,37 +24,38 @@ interface iDropMenu {
  * @param props.extClass - дополнительный CSS класс
  * @param props.isPaddingOn - Нужен ли отступ
  * @param props.isAbsolute - влияет ли дочерний элемени на css поток
+ * @param props.color - цвет элемента
  */
 const DropMenu: FC<iDropMenu> = (props) => {
-	const {title, children, iconLeft, extClass = '', isPaddingOn, isAbsolute} = props;
+	const { title, children, iconLeft, extClass = '', isPaddingOn, isAbsolute, color } = props;
 
 	const [isShowListBtn, setIsShowListBtn] = useState(false);
 
 	return (
-		<div className={`${styles.wrapper} ${extClass}`}>
+		<ContentWrapper color={color} extClass={`${styles.wrapper} ${extClass}`}>
 			<ButtonStandard
 				color={isShowListBtn ? 'blue' : undefined}
 				click={() => setIsShowListBtn((val) => !val)}
-				log={{element: DropMenu.name, comment: `Кнопка ${title} нажата`}}
+				log={{ element: DropMenu.name, comment: `Кнопка ${title} нажата` }}
 				iconRight={{
 					icon: IconArrow,
 					extClass: `${styles.arrow} ${isShowListBtn ? styles.panelOn : ''}`,
 				}}
-				iconLeft={{icon: iconLeft}}
+				iconLeft={{ icon: iconLeft }}
 				extClass={`${styles.btn} ${isShowListBtn ? styles.btnOpen : ''}`}
-				titleObj={{text: title, userStyle: 'light_small'}}
+				titleObj={{ text: title, userStyle: 'light_small' }}
 			/>
 
 			<div
 				className={`
-          ${styles.motherWrapper} 
-          ${isShowListBtn ? styles.isOpen : styles.isClose}
-          ${isPaddingOn ? styles.motherPadding : ''}
-          ${isAbsolute ? styles.motherWrapperAbsolute : ''}
-        `}>
+			          ${styles.motherWrapper} 
+			          ${isShowListBtn ? styles.isOpen : styles.isClose}
+			          ${isPaddingOn ? styles.motherPadding : ''}
+			          ${isAbsolute ? styles.motherWrapperAbsolute : ''}
+			        `}>
 				{children}
 			</div>
-		</div>
+		</ContentWrapper>
 	);
 };
 

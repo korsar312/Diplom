@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import styles from './ContentWrapper.module.scss';
 import { defaultStyle } from '../../../Styles/DefaultStyles/DefaultStyles.type';
 import defaultStyles from '../../../Styles/DefaultStyles/DefaultStyles.module.scss';
 
 interface IContentWrapper {
 	extClass?: string;
-	children: JSX.Element;
+	children: ReactNode;
 	color?: defaultStyle.TBackgroundColor;
 	isInline?: boolean;
 }

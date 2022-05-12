@@ -1,16 +1,20 @@
-import React, { FC } from 'react';
+import React, { FC, useRef } from 'react';
 import styles from './InputModal.module.scss';
 import ModalWindow from '../../../1_Atoms/ModalWindow/ModalWindow';
 import { language } from '../../../../Services/System/Language/Language.interface';
 import Text from '../../../0_Basic/Text/Text';
 import services from '../../../../Services/Services';
+import InputStandard from '../../../1_Atoms/InputStandard/InputStandard';
+import ButtonStandard from '../../../1_Atoms/ButtonStandard/ButtonStandard';
 
 interface IInputModal {
-	title?: language.TAllLanguageWord;
+	title: language.TAllLanguageWord;
 	isShow: boolean;
 	extClass?: string;
-	success?: () => void;
+	success?: (value: string) => void;
 	onClose?: () => void;
+	defaultValue?: string;
+	rule?: ((value: string | number) => boolean)[];
 }
 
 /**
@@ -22,7 +26,9 @@ interface IInputModal {
  * @param props.onClose - закрыть модальное окно
  */
 const InputModal: FC<IInputModal> = (props) => {
-	const { title = language.ELanguageSimpleWord.ARE_YOU_SURE_KA, isShow, extClass = '', success, onClose } = props;
+	const { title, isShow, extClass = '', success, onClose, defaultValue = '', rule } = props;
+
+	const inputValue = useRef(defaultValue);
 
 	function handleSuccess() {
 		services.rest.RestApi.logAction({
@@ -32,7 +38,7 @@ const InputModal: FC<IInputModal> = (props) => {
 			comment: `Подтверждение модального окна: ${title}`,
 		});
 
-		success?.();
+		success?.(inputValue.current);
 		onClose?.();
 	}
 
@@ -53,8 +59,31 @@ const InputModal: FC<IInputModal> = (props) => {
 				<div className={styles.title}>
 					<Text text={title} />
 				</div>
+
+				<InputStandard
+					color={'grey'}
+					callback={(value) => (inputValue.current = value)}
+					defaultValue={defaultValue}
+					rule={rule}
+				/>
+
 				<div className={styles.btnGroup}>
-					<div className={styles.btn}>{/*<InputStandard callback={}*/}</div>
+					<div className={styles.btn}>
+						<ButtonStandard
+							extClass={styles.btn}
+							click={handleClose}
+							titleObj={{ text: language.ELanguageSimpleWord.CANCEL }}
+							color={'blue'}
+						/>
+					</div>
+					<div className={styles.btn}>
+						<ButtonStandard
+							extClass={styles.btn}
+							color={'green'}
+							click={handleSuccess}
+							titleObj={{ text: language.ELanguageSimpleWord.CONTINUE }}
+						/>
+					</div>
 				</div>
 			</div>
 		</ModalWindow>

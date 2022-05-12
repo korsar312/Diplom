@@ -1,0 +1,46 @@
+@use "/src/Styles/Variables" as *;
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	max-width: 500px;
+	gap: 20px;
+	
+	.title {
+		text-align: center;
+	}
+	
+	.content {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		gap: 10px;
+		
+		.amount {
+			flex: 1;
+		}
+		
+		.currencyGroup {
+			display: flex;
+			flex-direction: column;
+			padding: 5px;
+			background: rgb(var(--color__black7));
+			gap: 10px;
+			
+			.currency {
+				width: 100%;
+				text-align: left;
+			}
+		}
+	}
+	
+	.btnGroup {
+		display: flex;
+		justify-content: space-between;
+		gap: 10px;
+		
+		.btn {
+			width: 100%;
+		}
+	}
+}

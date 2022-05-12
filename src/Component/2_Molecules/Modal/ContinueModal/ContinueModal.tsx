@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
-import styles from './ChoiceModal.module.scss';
+import styles from './ContinueModal.module.scss';
 import ModalWindow from '../../../1_Atoms/ModalWindow/ModalWindow';
 import { language } from '../../../../Services/System/Language/Language.interface';
 import Text from '../../../0_Basic/Text/Text';
 import ButtonStandard from '../../../1_Atoms/ButtonStandard/ButtonStandard';
 import services from '../../../../Services/Services';
 
-interface IChoiceModal {
+interface IContinueModal {
 	title?: language.TAllLanguageWord;
 	isShow: boolean;
 	extClass?: string;
@@ -22,12 +22,12 @@ interface IChoiceModal {
  * @param props.success - функция при нажатии на 'продолжить'
  * @param props.onClose - закрыть модальное окно
  */
-const ChoiceModal: FC<IChoiceModal> = (props) => {
+const ContinueModal: FC<IContinueModal> = (props) => {
 	const { title = language.ELanguageSimpleWord.ARE_YOU_SURE_KA, isShow, extClass = '', success, onClose } = props;
 
 	function handleSuccess() {
 		services.rest.RestApi.logAction({
-			element: ChoiceModal.name,
+			element: ContinueModal.name,
 			action: 'Подтверждение',
 			data: props,
 			comment: `Подтверждение модального окна: ${title}`,
@@ -39,7 +39,7 @@ const ChoiceModal: FC<IChoiceModal> = (props) => {
 
 	function handleClose() {
 		services.rest.RestApi.logAction({
-			element: ChoiceModal.name,
+			element: ContinueModal.name,
 			action: 'Отмена',
 			data: props,
 			comment: `Отмена модального окна: ${title}`,
@@ -77,4 +77,4 @@ const ChoiceModal: FC<IChoiceModal> = (props) => {
 	);
 };
 
-export default ChoiceModal;
+export default ContinueModal;
