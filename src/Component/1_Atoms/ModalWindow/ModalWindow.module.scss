@@ -1,9 +1,9 @@
 @use "../../../Styles/Variables" as *;
 @use "../../../Styles/Mixins" as *;
 
-
 .wrapper {
 	position: fixed;
+	z-index: 2;
 	top: 0;
 	right: 0;
 	bottom: 0;
@@ -11,8 +11,9 @@
 	transition: $transition;
 	background: rgba(var(--color__black10), 0.6);
 	@include mixin--Center;
-
+	
 	.content {
+		width: 500px;
 		padding: $padding_modal_window;
 		transition: $transition;
 		border: 2px ridge rgb(var(--color__black5));
@@ -21,18 +22,16 @@
 	}
 }
 
-
 .windowOpen {
 	visibility: visible;
 	opacity: 1;
 }
 
-
 .windowClose {
 	visibility: hidden;
 	opacity: 0;
-
+	
 	.content {
-		transform: scale(0.3)
+		transform: scale(0.3);
 	}
 }

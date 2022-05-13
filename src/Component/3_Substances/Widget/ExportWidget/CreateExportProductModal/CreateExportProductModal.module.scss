@@ -3,7 +3,6 @@
 .wrapper {
 	display: flex;
 	flex-direction: column;
-	max-width: 500px;
 	gap: 20px;
 	
 	.title {
@@ -12,24 +11,35 @@
 	
 	.content {
 		display: flex;
-		align-items: center;
-		width: 100%;
+		flex-direction: column;
 		gap: 10px;
 		
 		.amount {
 			flex: 1;
+			text-align: center;
 		}
 		
-		.currencyGroup {
+		.inputRow {
 			display: flex;
-			flex-direction: column;
-			padding: 5px;
-			background: rgb(var(--color__black7));
+			align-items: center;
+			width: 100%;
 			gap: 10px;
 			
-			.currency {
+			.currencyGroup {
+				display: flex;
+				flex-direction: column;
+				padding: 5px;
+				background: rgb(var(--color__black7));
+				gap: 10px;
+				
+				.currency {
+					width: 100%;
+					text-align: left;
+				}
+			}
+			
+			.addBtn {
 				width: 100%;
-				text-align: left;
 			}
 		}
 	}

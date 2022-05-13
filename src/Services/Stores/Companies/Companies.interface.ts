@@ -48,14 +48,12 @@ export namespace companies {
 	export type TExportProduct = {
 		idProduct: string;
 		amountExport: number;
-		price: TPrice;
+		price: TPrice[];
 	};
 
 	type TPrice = {
-		[key in keyof typeof currency.ECurrency]?: {
-			currency: key;
-			amount?: number;
-		};
+		currency: currency.ECurrency;
+		price?: number;
 	};
 
 	type TRequisites = {

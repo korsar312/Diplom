@@ -57,12 +57,12 @@ export const myCompany: companies.TCompany = {
 		{
 			idProduct: '56785675466',
 			amountExport: 10,
-			price: {
-				[currency.ECurrency.DOLLAR]: {
+			price: [
+				{
 					currency: currency.ECurrency.DOLLAR,
-					amount: 100,
+					price: 100,
 				},
-			},
+			],
 		},
 	],
 

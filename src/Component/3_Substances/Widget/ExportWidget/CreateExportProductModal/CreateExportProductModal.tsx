@@ -18,6 +18,17 @@ interface ICreateExportProductModal {
 	idProduct: companies.TExportProduct['idProduct'];
 }
 
+type TFormValue = {
+	amountExport: null | number;
+	inputting: TInputting[];
+};
+
+type TInputting = {
+	id: number;
+	price: null | number;
+	currency: currency.ECurrency;
+};
+
 const ruleForAmount = [(val: string | number) => !isNaN(Number(val))];
 
 /**
@@ -31,11 +42,32 @@ const ruleForAmount = [(val: string | number) => !isNaN(Number(val))];
 const CreateExportProductModal: FC<ICreateExportProductModal> = (props) => {
 	const { isShow, extClass = '', success, onClose, idProduct } = props;
 
-	const [formValue, setFormValue] = useState({
-		amount: '',
-		amountExport: 0,
-		currency: currency.ECurrency.RUBLE,
+	const [formValue, setFormValue] = useState<TFormValue>({
+		amountExport: null,
+		inputting: [
+			{
+				id: 1,
+				price: null,
+				currency: currency.ECurrency.RUBLE,
+			},
+		],
 	});
+
+	function addInputting() {
+		setFormValue((val) => {
+			return {
+				...val,
+				inputting: [
+					...val.inputting,
+					{
+						id: new Date().getTime(),
+						price: null,
+						currency: currency.ECurrency.RUBLE,
+					},
+				],
+			};
+		});
+	}
 
 	function handleSuccess() {
 		services.rest.RestApi.logAction({
@@ -52,14 +84,24 @@ const CreateExportProductModal: FC<ICreateExportProductModal> = (props) => {
 	function createExportProduct(): companies.TExportProduct {
 		return {
 			idProduct,
-			amountExport: Number(formValue.amount),
-			price: {
-				RUBLE: {
-					amount: Number(formValue.amount),
-					currency: 'RUBLE',
-				},
-			},
+			amountExport: Number(formValue.amountExport),
+			price: formValue.inputting.map((el) => {
+				return {
+					currency: el.currency,
+					price: Number(el.price),
+				};
+			}),
 		};
+	}
+
+	function changeProduct<Key extends keyof TInputting>(id: number, property: Key, value: TInputting[Key]) {
+		setFormValue((val) => {
+			const oldProp = val.inputting.find((el) => el.id === id);
+			if (oldProp) {
+				oldProp[property] = value;
+			}
+			return { ...val };
+		});
 	}
 
 	function handleClose() {
@@ -81,25 +123,47 @@ const CreateExportProductModal: FC<ICreateExportProductModal> = (props) => {
 				</div>
 
 				<div className={styles.content}>
-					<InputStandard
-						color={'grey'}
-						callback={(value) => setFormValue((val) => ({ ...val, amount: value }))}
-						rule={ruleForAmount}
-						extClass={styles.amount}
-					/>
-					<DropMenu title={formValue.currency} isAbsolute={true}>
-						<div className={styles.currencyGroup}>
-							{Object.keys(currency.ECurrency).map((el) => (
-								<ButtonStandard
-									extClass={styles.currency}
-									color={'grey'}
-									click={() => ''}
-									// @ts-ignore
-									titleObj={{ text: language.ELanguageCurrencyWord[el] }}
-								/>
-							))}
+					<div className={styles.inputRow}>
+						<InputStandard
+							color={'grey'}
+							callback={(value) => setFormValue((val) => ({ ...val, amountExport: +value }))}
+							rule={ruleForAmount}
+							extClass={styles.amount}
+						/>
+					</div>
+
+					{formValue.inputting.map((el) => (
+						<div className={styles.inputRow}>
+							<InputStandard
+								color={'grey'}
+								callback={(value) => changeProduct(el.id, 'price', Number(value))}
+								rule={ruleForAmount}
+								extClass={styles.amount}
+							/>
+							<DropMenu title={el.currency} isAbsolute={true}>
+								<div className={styles.currencyGroup}>
+									{Object.keys(currency.ECurrency).map((el) => (
+										<ButtonStandard
+											extClass={styles.currency}
+											color={'grey'}
+											click={() => ''}
+											// @ts-ignore
+											titleObj={{ text: language.ELanguageCurrencyWord[el] }}
+										/>
+									))}
+								</div>
+							</DropMenu>
 						</div>
-					</DropMenu>
+					))}
+
+					<div className={styles.inputRow}>
+						<ButtonStandard
+							color={'skyBlue'}
+							click={addInputting}
+							titleObj={{ text: language.ELanguageSimpleWord.ADD_MORE_PRICE }}
+							extClass={styles.addBtn}
+						/>
+					</div>
 				</div>
 
 				<div className={styles.btnGroup}>
@@ -117,6 +181,7 @@ const CreateExportProductModal: FC<ICreateExportProductModal> = (props) => {
 							color={'green'}
 							click={handleSuccess}
 							titleObj={{ text: language.ELanguageSimpleWord.CONTINUE }}
+							isDisabled={!formValue.amountExport}
 						/>
 					</div>
 				</div>

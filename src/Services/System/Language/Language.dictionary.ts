@@ -321,4 +321,8 @@ export const dictionary: language.TLanguage = {
 		EN: 'Enter the number of units of products that can be sent for export',
 		RU: 'Введите количество единиц продукции, которое возможно отправить на экспорт',
 	},
+	ADD_MORE_PRICE: {
+		EN: 'Add more price',
+		RU: 'Добавить еще цену',
+	},
 };

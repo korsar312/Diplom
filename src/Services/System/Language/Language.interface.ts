@@ -65,6 +65,7 @@ export namespace language {
 		CANCEL = 'CANCEL',
 		CONTINUE = 'CONTINUE',
 		ENTER_THE_NUMBER_EXPORT_PRODUCT = 'ENTER_THE_NUMBER_EXPORT_PRODUCT',
+		ADD_MORE_PRICE = 'ADD_MORE_PRICE',
 	}
 
 	export const ELanguageEconomyWord = {
