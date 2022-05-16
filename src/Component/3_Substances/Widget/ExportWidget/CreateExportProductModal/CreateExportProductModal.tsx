@@ -152,7 +152,7 @@ const CreateExportProductModal: FC<ICreateExportProductModal> = (props) => {
 		<ModalWindow isShow={isShow} click={onClose}>
 			<div className={`${styles.wrapper} ${extClass}`}>
 				<div className={styles.title}>
-					<Text text={language.ELanguageSimpleWord.ENTER_THE_NUMBER_EXPORT_PRODUCT} />
+					<Text text={language.ELanguageSimpleWord.ENTER_THE_NUMBER_EXPORT_PRODUCT} userStyle={'fat_big'} />
 				</div>
 
 				<div className={styles.content}>
