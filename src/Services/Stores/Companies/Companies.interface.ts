@@ -53,7 +53,7 @@ export namespace companies {
 
 	type TPrice = {
 		currency: currency.ECurrency;
-		price?: number;
+		price: number;
 	};
 
 	type TRequisites = {

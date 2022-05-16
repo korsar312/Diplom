@@ -1,4 +1,4 @@
-import React, { FC, useContext, useRef, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import WidgetWrapper from '../../../1_Atoms/WidgetWrapper/WidgetWrapper';
 import styles from './ExportWidget.module.scss';
 import Text from '../../../0_Basic/Text/Text';
@@ -12,6 +12,7 @@ import { ReactComponent as IconAddExport } from '../../../../Assets/icon/icon_au
 import { ReactComponent as IconRemove } from '../../../../Assets/icon/icon_delete.svg';
 import { ReactComponent as IconRemoveExport } from '../../../../Assets/icon/icon_remove.svg';
 import { ReactComponent as IconInform } from '../../../../Assets/icon/icon_inform.svg';
+import { ReactComponent as IconSetting } from '../../../../Assets/icon/icon_settings.svg';
 import { defaultStyle } from '../../../../Styles/DefaultStyles/DefaultStyles.type';
 import { companies } from '../../../../Services/Stores/Companies/Companies.interface';
 import { PreloaderContext } from '../../../../App';
@@ -27,10 +28,10 @@ type TBtnGroup = {
 };
 
 enum EFuncBtn {
-	ADD_ITEM = 'ADD_ITEM',
+	ADD_ITEM = 'ADD_ITEM_EXPORT',
 	REMOVE_IMPORT_ITEM = 'REMOVE_EXPORT_ITEM',
 	REMOVE_ITEM = 'REMOVE_ITEM',
-	SET_IMPORT_QUANTITY = 'SET_IMPORT_QUANTITY',
+	SET_IMPORT_QUANTITY = 'SET_EXPORT_QUANTITY',
 	INFORM_ITEM_EXPORT = 'INFORM_ITEM_EXPORT',
 }
 
@@ -45,6 +46,12 @@ type TBtn = {
 	color: defaultStyle.TBackgroundColor;
 };
 
+type TModalFunc = {
+	removeProduct: (() => void) | null;
+	createExport: ((newExport: companies.TExportProduct) => void) | null;
+	changeExport: ((newExport: companies.TExportProduct) => void) | null;
+};
+
 /**
  * Виджет управления своей продукцией
  * @param props.extClass - дополнительный CSS класс
@@ -56,28 +63,33 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 	const allProducts = services.store.productsStore.getProducts || {};
 	const myCompany = services.store.companyStore.getMyCompany;
 
-	const [modalRemoveProduct, setModalRemoveProduct] = useState<(() => void) | null>(null);
-	const [modalAmountExport, setModalCreateExport] = useState<((newExport: companies.TExportProduct) => void) | null>(
-		null
-	);
+	const [modalFunc, setModalFunc] = useState<TModalFunc>({
+		removeProduct: null,
+		createExport: null,
+		changeExport: null,
+	});
 
-	const choiceProduct = useRef('');
+	const [choiceProduct, setChoiceProduct] = useState('');
 
 	const BtnGroup: TBtnGroup = {
-		ADD_ITEM: function (this: TBtn, idProduct: string) {
+		ADD_ITEM_EXPORT: function (this: TBtn, idProduct: string) {
 			this.alt = language.ELanguageSimpleWord.ADD_PRODUCT_TO_EXPORT;
 			this.func = () => {
-				choiceProduct.current = idProduct;
-				setModalCreateExport(
-					(amount: companies.TExportProduct) =>
-						function () {
-							if (myCompany) {
-								const newProductArr: companies.TExportProduct[] = [...myCompany.exportProduct, amount];
+				setChoiceProduct(idProduct);
 
-								saveCompany({ ...myCompany, exportProduct: newProductArr });
-							}
-						}
-				);
+				setModalFunc((old) => {
+					return { ...old, createExport: (newExport: companies.TExportProduct) => createExport(newExport) };
+				});
+
+				function createExport(newExportProduct: companies.TExportProduct) {
+					if (myCompany) {
+						const newProductArr: companies.TExportProduct[] = [
+							...myCompany.exportProduct,
+							newExportProduct,
+						];
+						saveCompany({ ...myCompany, exportProduct: newProductArr });
+					}
+				}
 			};
 			this.icon = IconAddExport;
 			this.color = 'green';
@@ -86,17 +98,16 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 		REMOVE_EXPORT_ITEM: function (this: TBtn, idProduct: string) {
 			this.alt = language.ELanguageSimpleWord.REMOVE_PRODUCT_FROM_EXPORT;
 			this.func = () => {
-				setModalRemoveProduct(
-					() =>
-						function () {
-							if (myCompany) {
-								const newProductArr = myCompany.exportProduct.filter(
-									(el) => el.idProduct !== idProduct
-								);
-								saveCompany({ ...myCompany, exportProduct: newProductArr });
-							}
-						}
-				);
+				setModalFunc((old) => {
+					return { ...old, removeProduct: () => removeExportProduct() };
+				});
+
+				function removeExportProduct() {
+					if (myCompany) {
+						const newProductArr = myCompany.exportProduct.filter((el) => el.idProduct !== idProduct);
+						saveCompany({ ...myCompany, exportProduct: newProductArr });
+					}
+				}
 			};
 			this.icon = IconRemoveExport;
 			this.color = 'red';
@@ -108,30 +119,48 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 				console.log(123);
 			};
 			this.icon = IconInform;
-			this.color = 'blue';
+			this.color = 'grey';
 		} as any as TBtnConstructor,
 
-		SET_IMPORT_QUANTITY: function (this: TBtn, idProduct: string) {
+		SET_EXPORT_QUANTITY: function (this: TBtn, idProduct: string) {
 			this.alt = language.ELanguageSimpleWord.SET_IMPORT_QUANTITY;
 			this.func = () => {
-				console.log(123);
+				setChoiceProduct(idProduct);
+
+				setModalFunc((old) => {
+					return {
+						...old,
+						createExport: (newExport: companies.TExportProduct) => setExportQuantity(newExport),
+					};
+				});
+
+				function setExportQuantity(newExportProduct: companies.TExportProduct) {
+					if (myCompany) {
+						const newProductArr: companies.TExportProduct[] = [
+							...myCompany.exportProduct,
+							newExportProduct,
+						];
+						saveCompany({ ...myCompany, exportProduct: newProductArr });
+					}
+				}
 			};
-			this.icon = IconInform;
-			this.color = 'grey';
+			this.icon = IconSetting;
+			this.color = 'blue';
 		} as any as TBtnConstructor,
 
 		REMOVE_ITEM: function (this: TBtn, idProduct: string) {
 			this.alt = language.ELanguageSimpleWord.REMOVE_PRODUCT;
 			this.func = () => {
-				setModalRemoveProduct(
-					() =>
-						function () {
-							if (myCompany) {
-								const newProductArr = myCompany.allProducts.filter((el) => el !== idProduct);
-								saveCompany({ ...myCompany, allProducts: newProductArr });
-							}
-						}
-				);
+				setModalFunc((old) => {
+					return { ...old, removeProduct: () => removeProduct() };
+				});
+
+				function removeProduct() {
+					if (myCompany) {
+						const newProductArr = myCompany.allProducts.filter((el) => el !== idProduct);
+						saveCompany({ ...myCompany, allProducts: newProductArr });
+					}
+				}
 			};
 			this.icon = IconRemove;
 			this.color = 'red';
@@ -191,16 +220,29 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 		<WidgetWrapper>
 			<div className={`${styles.wrapper} ${extClass}`}>
 				<ContinueModal
-					success={modalRemoveProduct || undefined}
-					isShow={!!modalRemoveProduct}
-					onClose={() => setModalRemoveProduct(null)}
+					success={modalFunc.removeProduct || undefined}
+					isShow={!!modalFunc.removeProduct}
+					onClose={() => setModalFunc((old) => ({ ...old, removeProduct: null }))}
 				/>
 				<CreateExportProductModal
-					success={modalAmountExport || undefined}
-					isShow={!!modalAmountExport}
-					onClose={() => setModalCreateExport(null)}
-					idProduct={choiceProduct.current}
+					success={modalFunc.createExport || undefined}
+					isShow={!!modalFunc.createExport}
+					onClose={() => setModalFunc((old) => ({ ...old, createExport: null }))}
+					idProduct={choiceProduct}
 				/>
+				{modalFunc.changeExport && (
+					<CreateExportProductModal
+						success={modalFunc.changeExport || undefined}
+						isShow={!!modalFunc.changeExport}
+						onClose={() => setModalFunc((old) => ({ ...old, changeExport: null }))}
+						idProduct={choiceProduct}
+						defaultValue={
+							choiceProduct
+								? myCompany?.exportProduct.find((el) => el.idProduct === choiceProduct)
+								: undefined
+						}
+					/>
+				)}
 
 				<div className={styles.title}>
 					<Text text={language.ELanguageSimpleWord.EXPORT} userStyle={'fat_extraBig'} />

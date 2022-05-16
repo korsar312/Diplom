@@ -9,6 +9,7 @@ import ButtonStandard from '../../../../1_Atoms/ButtonStandard/ButtonStandard';
 import Text from '../../../../0_Basic/Text/Text';
 import { currency } from '../../../../../Services/System/Currency/Currency.interface';
 import DropMenu from '../../../../2_Molecules/DropMenu/DropMenu';
+import { ReactComponent as IconDelete } from '../../../../../Assets/icon/icon_delete.svg';
 
 interface ICreateExportProductModal {
 	isShow: boolean;
@@ -16,6 +17,7 @@ interface ICreateExportProductModal {
 	success?: (exportProduct: companies.TExportProduct) => void;
 	onClose: () => void;
 	idProduct: companies.TExportProduct['idProduct'];
+	defaultValue?: companies.TExportProduct;
 }
 
 type TFormValue = {
@@ -38,20 +40,34 @@ const ruleForAmount = [(val: string | number) => !isNaN(Number(val))];
  * @param props.success - функция при нажатии на 'продолжить'
  * @param props.onClose - закрыть модальное окно
  * @param props.idProduct - id продукта
+ * @param props.defaultValue - первоначальное значение
  */
 const CreateExportProductModal: FC<ICreateExportProductModal> = (props) => {
-	const { isShow, extClass = '', success, onClose, idProduct } = props;
+	const { isShow, extClass = '', success, onClose, idProduct, defaultValue } = props;
 
-	const [formValue, setFormValue] = useState<TFormValue>({
-		amountExport: null,
-		inputting: [
-			{
-				id: 1,
-				price: null,
-				currency: currency.ECurrency.RUBLE,
-			},
-		],
-	});
+	const defaultFormValue: TFormValue = defaultValue
+		? {
+				amountExport: defaultValue.amountExport,
+				inputting: defaultValue.price.map((el, index): TInputting => {
+					return {
+						id: index,
+						price: el.price,
+						currency: el.currency,
+					};
+				}),
+		  }
+		: {
+				amountExport: null,
+				inputting: [
+					{
+						id: 1,
+						price: null,
+						currency: currency.ECurrency.RUBLE,
+					},
+				],
+		  };
+
+	const [formValue, setFormValue] = useState<TFormValue>(defaultFormValue);
 
 	function addInputting() {
 		setFormValue((val) => {
@@ -69,12 +85,21 @@ const CreateExportProductModal: FC<ICreateExportProductModal> = (props) => {
 		});
 	}
 
+	function removeInputting(id: string | number) {
+		setFormValue((val) => {
+			return {
+				...val,
+				inputting: [...val.inputting.filter((el) => +el.id !== +id)],
+			};
+		});
+	}
+
 	function handleSuccess() {
 		services.rest.RestApi.logAction({
 			element: CreateExportProductModal.name,
 			action: 'Подтверждение',
 			data: props,
-			comment: `Подтверждение модального окна создание объекта экспорта`,
+			comment: `Подтверждение модального окна создание объекта экспорта ${JSON.stringify(formValue)}`,
 		});
 
 		success?.(createExportProduct());
@@ -132,27 +157,34 @@ const CreateExportProductModal: FC<ICreateExportProductModal> = (props) => {
 						/>
 					</div>
 
-					{formValue.inputting.map((el) => (
-						<div className={styles.inputRow}>
+					{formValue.inputting.map((elInputting) => (
+						<div className={styles.inputRow} key={elInputting.id}>
 							<InputStandard
 								color={'grey'}
-								callback={(value) => changeProduct(el.id, 'price', Number(value))}
+								callback={(value) => changeProduct(elInputting.id, 'price', Number(value))}
 								rule={ruleForAmount}
 								extClass={styles.amount}
 							/>
-							<DropMenu title={el.currency} isAbsolute={true}>
+							<DropMenu title={elInputting.currency} isAbsolute={true}>
 								<div className={styles.currencyGroup}>
-									{Object.keys(currency.ECurrency).map((el) => (
+									{(Object.keys(currency.ECurrency) as currency.ECurrency[]).map((currency) => (
 										<ButtonStandard
+											key={currency}
 											extClass={styles.currency}
 											color={'grey'}
-											click={() => ''}
-											// @ts-ignore
-											titleObj={{ text: language.ELanguageCurrencyWord[el] }}
+											click={() => changeProduct(elInputting.id, 'currency', currency)}
+											titleObj={{ text: currency }}
 										/>
 									))}
 								</div>
 							</DropMenu>
+							<ButtonStandard
+								extClass={styles.delete}
+								color={'red'}
+								click={() => removeInputting(elInputting.id)}
+								iconLeft={{ icon: IconDelete }}
+								isDisabled={formValue.inputting.length <= 1}
+							/>
 						</div>
 					))}
 
@@ -181,7 +213,7 @@ const CreateExportProductModal: FC<ICreateExportProductModal> = (props) => {
 							color={'green'}
 							click={handleSuccess}
 							titleObj={{ text: language.ELanguageSimpleWord.CONTINUE }}
-							isDisabled={!formValue.amountExport}
+							isDisabled={!formValue.amountExport || !formValue.inputting.every((el) => el.price)}
 						/>
 					</div>
 				</div>
