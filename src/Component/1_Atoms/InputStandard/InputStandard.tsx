@@ -1,4 +1,4 @@
-import React, { FC, HTMLInputTypeAttribute, useState } from 'react';
+import React, { FC, HTMLInputTypeAttribute, useEffect, useState } from 'react';
 import styles from './InputStandard.module.scss';
 import defaultStyles from './../../../Styles/DefaultStyles/DefaultStyles.module.scss';
 import { rest } from '../../../Services/Rest/RestApi/RestApi.interface';
@@ -59,6 +59,10 @@ const InputStandard: FC<IInput> = (props) => {
 	} = props;
 
 	const [valueInput, setValueInput] = useState(defaultValue);
+
+	useEffect(() => {
+		setValueInput(defaultValue);
+	}, [defaultValue]);
 
 	function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
 		const inputting = event.target.value;

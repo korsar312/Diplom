@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import services from '../../../../../Services/Services';
 import { companies } from '../../../../../Services/Stores/Companies/Companies.interface';
 import ModalWindow from '../../../../1_Atoms/ModalWindow/ModalWindow';
@@ -45,29 +45,37 @@ const ruleForAmount = [(val: string | number) => !isNaN(Number(val))];
 const CreateExportProductModal: FC<ICreateExportProductModal> = (props) => {
 	const { isShow, extClass = '', success, onClose, idProduct, defaultValue } = props;
 
-	const defaultFormValue: TFormValue = defaultValue
-		? {
-				amountExport: defaultValue.amountExport,
-				inputting: defaultValue.price.map((el, index): TInputting => {
-					return {
-						id: index,
-						price: el.price,
-						currency: el.currency,
-					};
-				}),
-		  }
-		: {
-				amountExport: null,
-				inputting: [
-					{
-						id: 1,
-						price: null,
-						currency: currency.ECurrency.RUBLE,
-					},
-				],
-		  };
+	function defaultFormValue(): TFormValue {
+		return defaultValue
+			? {
+					amountExport: defaultValue.amountExport,
+					inputting: defaultValue.price.map((el, index): TInputting => {
+						return {
+							id: index,
+							price: el.price,
+							currency: el.currency,
+						};
+					}),
+			  }
+			: standardForm;
+	}
 
-	const [formValue, setFormValue] = useState<TFormValue>(defaultFormValue);
+	const standardForm: TFormValue = {
+		amountExport: null,
+		inputting: [
+			{
+				id: 1,
+				price: null,
+				currency: currency.ECurrency.RUBLE,
+			},
+		],
+	};
+
+	const [formValue, setFormValue] = useState(standardForm);
+
+	useEffect(() => {
+		setFormValue(defaultFormValue());
+	}, [defaultValue]);
 
 	function addInputting() {
 		setFormValue((val) => {
@@ -152,6 +160,7 @@ const CreateExportProductModal: FC<ICreateExportProductModal> = (props) => {
 						<InputStandard
 							color={'grey'}
 							callback={(value) => setFormValue((val) => ({ ...val, amountExport: +value }))}
+							defaultValue={String(formValue.amountExport || '')}
 							rule={ruleForAmount}
 							extClass={styles.amount}
 						/>
@@ -162,6 +171,7 @@ const CreateExportProductModal: FC<ICreateExportProductModal> = (props) => {
 							<InputStandard
 								color={'grey'}
 								callback={(value) => changeProduct(elInputting.id, 'price', Number(value))}
+								defaultValue={String(elInputting.price || '')}
 								rule={ruleForAmount}
 								extClass={styles.amount}
 							/>

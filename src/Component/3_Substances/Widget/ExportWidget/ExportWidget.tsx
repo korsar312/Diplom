@@ -116,7 +116,7 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 		INFORM_ITEM_EXPORT: function (this: TBtn, idProduct: string) {
 			this.alt = language.ELanguageSimpleWord.PRODUCT_INFORM;
 			this.func = () => {
-				console.log(123);
+				//console.log(123);
 			};
 			this.icon = IconInform;
 			this.color = 'grey';
@@ -130,16 +130,16 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 				setModalFunc((old) => {
 					return {
 						...old,
-						createExport: (newExport: companies.TExportProduct) => setExportQuantity(newExport),
+						changeExport: (newExport: companies.TExportProduct) => setExportQuantity(newExport),
 					};
 				});
 
-				function setExportQuantity(newExportProduct: companies.TExportProduct) {
+				function setExportQuantity(changeExportProduct: companies.TExportProduct) {
 					if (myCompany) {
-						const newProductArr: companies.TExportProduct[] = [
-							...myCompany.exportProduct,
-							newExportProduct,
-						];
+						const newProductArr: companies.TExportProduct[] = myCompany.exportProduct.map((el) =>
+							el.idProduct === changeExportProduct.idProduct ? changeExportProduct : el
+						);
+
 						saveCompany({ ...myCompany, exportProduct: newProductArr });
 					}
 				}
@@ -230,19 +230,17 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 					onClose={() => setModalFunc((old) => ({ ...old, createExport: null }))}
 					idProduct={choiceProduct}
 				/>
-				{modalFunc.changeExport && (
-					<CreateExportProductModal
-						success={modalFunc.changeExport || undefined}
-						isShow={!!modalFunc.changeExport}
-						onClose={() => setModalFunc((old) => ({ ...old, changeExport: null }))}
-						idProduct={choiceProduct}
-						defaultValue={
-							choiceProduct
-								? myCompany?.exportProduct.find((el) => el.idProduct === choiceProduct)
-								: undefined
-						}
-					/>
-				)}
+				<CreateExportProductModal
+					success={modalFunc.changeExport || undefined}
+					isShow={!!modalFunc.changeExport}
+					onClose={() => setModalFunc((old) => ({ ...old, changeExport: null }))}
+					idProduct={choiceProduct}
+					defaultValue={
+						choiceProduct
+							? myCompany?.exportProduct.find((el) => el.idProduct === choiceProduct)
+							: undefined
+					}
+				/>
 
 				<div className={styles.title}>
 					<Text text={language.ELanguageSimpleWord.EXPORT} userStyle={'fat_extraBig'} />
