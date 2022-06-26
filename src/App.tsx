@@ -1,15 +1,11 @@
-import React, { Suspense, useEffect, useState } from 'react';
-import { HashRouter, Route, Routes } from 'react-router-dom';
-import { routePath } from './Services/Routes/Route.path';
-import { RouteActivator } from './Services/Routes/RouteActivator';
-import AsidePanel from './Component/3_Substances/AsidePanel/AsidePanel';
-import Header from './Component/3_Substances/Header/Header';
+import React, { useEffect, useState } from 'react';
+import { HashRouter } from 'react-router-dom';
 import styles from './App.module.scss';
 import { observer } from 'mobx-react';
 import LoginPage from './Pages/LoginPage/LoginPage';
-import services from './Services/Services';
 import Preloader from './Component/2_Molecules/Preloader/Preloader';
-import ModalActivator from './Services/Stores/Modal/ModalActivator';
+import modules from './Logic/Modules/Modules';
+import BaseLayout from './Layouts/BaseLayout';
 
 type TPreloaderContext = {
 	isShow: boolean;
@@ -22,62 +18,43 @@ export const PreloaderContext = React.createContext<TPreloaderContext>({
 });
 
 const App = () => {
-	const [isShowPreloader, setIsShopPreloader] = useState(false);
+	const isAuthorized = modules.users.store.isAuthorized;
+	const [isAutoSingIn, setIsAutoSingIn] = useState(modules.users.service.IsAutoSingIn());
 
-	const theme = services.store.settingStore.isLightTheme;
-	const isEntered = services.store.usersStore.isEntered;
-	const isAuthorized = services.store.usersStore.isAuthorized;
+	const theme = modules.settings.store.isLightTheme;
+
+	const [isShowPreloader, setIsShopPreloader] = useState(false);
 
 	useEffect(() => {
 		autoLogin();
 	}, []);
+
+	function autoLogin() {
+		if (!isAutoSingIn) return;
+
+		const { login, password } = modules.users.service.GetInputDataUser();
+
+		if (login) {
+			modules.users.service.Login(login, password).catch(() => {
+				modules.users.service.DisabledAutoSingIn();
+				setIsAutoSingIn(false);
+			});
+		}
+	}
 
 	const valuePreloaderContext: TPreloaderContext = {
 		setIsShow: setIsShopPreloader,
 		isShow: isShowPreloader,
 	};
 
-	function autoLogin() {
-		if (!services.system.repositoryStorage.isAutoSingIn()) return;
-
-		const login = services.system.repositoryStorage.getLogin();
-		console.log(login);
-		if (login) {
-			services.store.usersStore.setCurrentUser = {
-				name: 'Ожидание...',
-			};
-			services.rest.RestApi.login(login.login, login.password);
-		}
-	}
-
-	const authorizedRender = (
-		<>
-			<AsidePanel />
-			<RouteActivator />
-			<div className={styles.content}>
-				<Header />
-				<Suspense fallback={''}>
-					<main>
-						<Routes>
-							{routePath
-								.filter((route) => !route.isPrivate || isAuthorized)
-								.map(({ name, element: Element, path, ...rest }) => (
-									<Route path={path} key={name} element={<Element />} {...rest} />
-								))}
-						</Routes>
-					</main>
-				</Suspense>
-			</div>
-		</>
-	);
-
 	return (
 		<div id="App" className={theme ? 'light-theme' : 'dark-theme'}>
 			<PreloaderContext.Provider value={valuePreloaderContext}>
 				<HashRouter>
-					<div className={styles.wrapper}>{isEntered ? authorizedRender : <LoginPage />}</div>
+					<div className={styles.wrapper}>
+						{isAuthorized ? <BaseLayout /> : isAutoSingIn ? null : <LoginPage />}
+					</div>
 				</HashRouter>
-				<ModalActivator />
 				<Preloader isShow={isShowPreloader} />
 			</PreloaderContext.Provider>
 		</div>

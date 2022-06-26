@@ -4,9 +4,9 @@ import { ReactComponent as IconLogo } from '../../../../Assets/icon/icon_logo.sv
 import ButtonStandard from '../../../1_Atoms/ButtonStandard/ButtonStandard';
 import { ReactComponent as IconShift } from '../../../../Assets/icon/icon_shift.svg';
 import Text from '../../../0_Basic/Text/Text';
-import { language } from '../../../../Services/System/Language/Language.interface';
-import services from '../../../../Services/Services';
-import { setting } from '../../../../Services/Stores/Settings/Setting.interface';
+import { language } from '../../../../Logic/Modules/Language/Language.interface';
+import { setting } from '../../../../Logic/Modules/Settings/Setting.interface';
+import modules from '../../../../Logic/Modules/Modules';
 
 interface IAsidePanelLogo {
 	click: () => void;
@@ -22,9 +22,9 @@ const AsidePanelLogo: FC<IAsidePanelLogo> = (props) => {
 	const { click, isShowPanel } = props;
 
 	function changeLanguage() {
-		services.store.settingStore.getCurrentLanguage === setting.ELanguageType.RU
-			? (services.store.settingStore.setCurrentLanguage = setting.ELanguageType.EN)
-			: (services.store.settingStore.setCurrentLanguage = setting.ELanguageType.RU);
+		modules.settings.store.getCurrentLanguage === setting.ELanguageType.RU
+			? (modules.settings.store.setCurrentLanguage = setting.ELanguageType.EN)
+			: (modules.settings.store.setCurrentLanguage = setting.ELanguageType.RU);
 	}
 
 	return (

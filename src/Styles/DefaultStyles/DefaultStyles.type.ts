@@ -11,5 +11,5 @@ export namespace defaultStyle {
 
 	export type TColor = 'red' | 'blue' | 'green' | 'white' | 'grey' | 'skyblue' | 'standard';
 
-	export type TBackgroundColor = 'red' | 'black' | 'blue' | 'skyBlue' | 'grey' | 'wight' | 'green';
+	export type TBackgroundColor = 'red' | 'black' | 'blue' | 'skyBlue' | 'grey' | 'wight' | 'green' | 'none';
 }

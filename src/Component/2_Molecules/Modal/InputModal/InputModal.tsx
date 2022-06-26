@@ -1,11 +1,11 @@
 import React, { FC, useRef } from 'react';
 import styles from './InputModal.module.scss';
 import ModalWindow from '../../../1_Atoms/ModalWindow/ModalWindow';
-import { language } from '../../../../Services/System/Language/Language.interface';
+import { language } from '../../../../Logic/Modules/Language/Language.interface';
 import Text from '../../../0_Basic/Text/Text';
-import services from '../../../../Services/Services';
 import InputStandard from '../../../1_Atoms/InputStandard/InputStandard';
 import ButtonStandard from '../../../1_Atoms/ButtonStandard/ButtonStandard';
+import API from '../../../../Logic/Api/API';
 
 interface IInputModal {
 	title: language.TAllLanguageWord;
@@ -31,7 +31,7 @@ const InputModal: FC<IInputModal> = (props) => {
 	const inputValue = useRef(defaultValue);
 
 	function handleSuccess() {
-		services.rest.RestApi.logAction({
+		API.RestApi.logAction({
 			element: InputModal.name,
 			action: 'Подтверждение',
 			data: props,
@@ -43,7 +43,7 @@ const InputModal: FC<IInputModal> = (props) => {
 	}
 
 	function handleClose() {
-		services.rest.RestApi.logAction({
+		API.RestApi.logAction({
 			element: InputModal.name,
 			action: 'Отмена',
 			data: props,

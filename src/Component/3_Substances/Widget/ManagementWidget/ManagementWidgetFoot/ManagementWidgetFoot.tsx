@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import styles from './ManagementWidgetFoot.module.scss';
-import { companies } from '../../../../../Services/Stores/Companies/Companies.interface';
-import { types } from '../../../../../Types/Types';
+import { companies } from '../../../../../Logic/Modules/Companies/Companies.interface';
+import { typesUtils } from '../../../../../Logic/Libs/Utils/TypesUtils';
 
 interface IManagementWidgetFoot {
 	myCompany: companies.TCompany;
-	savaConfig: (val: types.TChangeObject<companies.TCompany>) => void;
+	savaConfig: (val: typesUtils.TChangeObject<companies.TCompany>) => void;
 }
 
 /**

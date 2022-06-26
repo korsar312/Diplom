@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import styles from './DropMenu.module.scss';
 import ButtonStandard from '../../1_Atoms/ButtonStandard/ButtonStandard';
 import { ReactComponent as IconArrow } from '../../../Assets/icon/icon_arrow.svg';
-import { language } from '../../../Services/System/Language/Language.interface';
+import { language } from '../../../Logic/Modules/Language/Language.interface';
 import { defaultStyle } from '../../../Styles/DefaultStyles/DefaultStyles.type';
 import ContentWrapper from '../../0_Basic/ContentWrapper/ContentWrapper';
 

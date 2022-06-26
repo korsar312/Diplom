@@ -3,7 +3,7 @@
 
 .wrapper {
 	position: fixed;
-	z-index: 2;
+	z-index: 5;
 	top: 0;
 	right: 0;
 	bottom: 0;
@@ -11,7 +11,7 @@
 	transition: $transition;
 	background: rgba(var(--color__black10), 0.6);
 	@include mixin--Center;
-	
+
 	.content {
 		width: 500px;
 		padding: $padding_modal_window;
@@ -30,7 +30,7 @@
 .windowClose {
 	visibility: hidden;
 	opacity: 0;
-	
+
 	.content {
 		transform: scale(0.3);
 	}

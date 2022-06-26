@@ -1,7 +1,7 @@
 import styles from './Avatar.module.scss';
 import React, { FC } from 'react';
-import { rest } from '../../../Services/Rest/RestApi/RestApi.interface';
-import services from '../../../Services/Services';
+import { rest } from '../../../Logic/Api/RestApi/RestApi.interface';
+import API from '../../../Logic/Api/API';
 
 interface IAvatar {
 	click?: () => void;
@@ -27,7 +27,7 @@ const Avatar: FC<IAvatar> = (props) => {
 	const { click, log, isBorder, extClass = '', children, size = 'normal', circle = 'small' } = props;
 
 	function clickHandler() {
-		services.rest.RestApi.logAction({
+		API.RestApi.logAction({
 			element: Avatar.name,
 			action: 'Нажатие',
 			data: props,

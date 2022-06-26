@@ -2,14 +2,14 @@ import React, { FC, useContext, useEffect } from 'react';
 import WidgetWrapper from '../../../1_Atoms/WidgetWrapper/WidgetWrapper';
 import styles from './ManagementWidget.module.scss';
 import Line from '../../../1_Atoms/Line/Line';
-import services from '../../../../Services/Services';
 import { observer } from 'mobx-react';
 import ManagementWidgetHead from './ManagementWidgetHead/ManagementWidgetHead';
 import ManagementWidgetBody from './ManagementWidgetBody/ManagementWidgetBody';
 import ManagementWidgetFoot from './ManagementWidgetFoot/ManagementWidgetFoot';
-import { types } from '../../../../Types/Types';
-import { companies } from '../../../../Services/Stores/Companies/Companies.interface';
+import { typesUtils } from '../../../../Logic/Libs/Utils/TypesUtils';
+import { companies } from '../../../../Logic/Modules/Companies/Companies.interface';
 import { PreloaderContext } from '../../../../App';
+import modules from '../../../../Logic/Modules/Modules';
 
 interface IManagementWidget {
 	extClass?: string;
@@ -22,36 +22,26 @@ interface IManagementWidget {
 const ManagementWidget: FC<IManagementWidget> = (props) => {
 	const { extClass = '' } = props;
 
-	const myCompany = services.store.companyStore.getMyCompany;
+	const myCompany = modules.companies.store.getMyCompany();
 	const preloader = useContext(PreloaderContext);
 
 	useEffect(() => {
-		myCompany || services.rest.RestApi.getMyCompany();
-		// eslint-disable-next-line
+		myCompany || modules.companies.service.getMyCompany();
 	}, []);
 
-	function changeExist(val: types.TChangeObject<companies.TCompany>) {
+	function changeExist(val: typesUtils.TChangeObject<companies.TCompany>) {
 		const keyArr = Object.keys(val) as Array<keyof typeof val>;
-		return keyArr.some((el) => val[el] !== (myCompany && myCompany[el]));
+		return keyArr.some((el) => {
+			return val[el] !== (myCompany && myCompany[el]);
+		});
 	}
 
-	function saveConfig(val: types.TChangeObject<companies.TCompany>) {
+	function saveConfig(val: typesUtils.TChangeObject<companies.TCompany>) {
 		if (!changeExist(val)) return;
-
-		services.rest.RestApi.logAction({
-			element: ManagementWidget.name,
-			action: 'Изменение объекта',
-			data: val,
-			comment: `Изменение компании юзера по полям ${Object.keys(val)}`,
-		});
 
 		if (myCompany) {
 			preloader.setIsShow(true);
-
-			services.rest.RestApi.setMyCompany(myCompany, (isOk) => {
-				if (isOk) {
-					services.store.companyStore.setMyCompany = myCompany ? { ...myCompany, ...val } : null;
-				}
+			modules.companies.service.setMyCompany({ ...myCompany, ...val }).finally(() => {
 				preloader.setIsShow(false);
 			});
 		}

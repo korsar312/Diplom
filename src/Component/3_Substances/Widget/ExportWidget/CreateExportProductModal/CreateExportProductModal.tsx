@@ -1,15 +1,14 @@
 import React, { FC, useEffect, useState } from 'react';
-import services from '../../../../../Services/Services';
-import { companies } from '../../../../../Services/Stores/Companies/Companies.interface';
+import { companies } from '../../../../../Logic/Modules/Companies/Companies.interface';
 import ModalWindow from '../../../../1_Atoms/ModalWindow/ModalWindow';
 import styles from './CreateExportProductModal.module.scss';
-import { language } from '../../../../../Services/System/Language/Language.interface';
+import { language } from '../../../../../Logic/Modules/Language/Language.interface';
 import InputStandard from '../../../../1_Atoms/InputStandard/InputStandard';
 import ButtonStandard from '../../../../1_Atoms/ButtonStandard/ButtonStandard';
 import Text from '../../../../0_Basic/Text/Text';
-import { currency } from '../../../../../Services/System/Currency/Currency.interface';
 import DropMenu from '../../../../2_Molecules/DropMenu/DropMenu';
 import { ReactComponent as IconDelete } from '../../../../../Assets/icon/icon_delete.svg';
+import API from '../../../../../Logic/Api/API';
 
 interface ICreateExportProductModal {
 	isShow: boolean;
@@ -28,7 +27,7 @@ type TFormValue = {
 type TInputting = {
 	id: number;
 	price: null | number;
-	currency: currency.ECurrency;
+	currency: language.ECurrency;
 };
 
 const ruleForAmount = [(val: string | number) => !isNaN(Number(val))];
@@ -66,7 +65,7 @@ const CreateExportProductModal: FC<ICreateExportProductModal> = (props) => {
 			{
 				id: 1,
 				price: null,
-				currency: currency.ECurrency.RUBLE,
+				currency: language.ECurrency.RUBLE,
 			},
 		],
 	};
@@ -86,7 +85,7 @@ const CreateExportProductModal: FC<ICreateExportProductModal> = (props) => {
 					{
 						id: new Date().getTime(),
 						price: null,
-						currency: currency.ECurrency.RUBLE,
+						currency: language.ECurrency.RUBLE,
 					},
 				],
 			};
@@ -103,7 +102,7 @@ const CreateExportProductModal: FC<ICreateExportProductModal> = (props) => {
 	}
 
 	function handleSuccess() {
-		services.rest.RestApi.logAction({
+		API.RestApi.logAction({
 			element: CreateExportProductModal.name,
 			action: 'Подтверждение',
 			data: props,
@@ -138,7 +137,7 @@ const CreateExportProductModal: FC<ICreateExportProductModal> = (props) => {
 	}
 
 	function handleClose() {
-		services.rest.RestApi.logAction({
+		API.RestApi.logAction({
 			element: CreateExportProductModal.name,
 			action: 'Отмена',
 			data: props,
@@ -177,7 +176,7 @@ const CreateExportProductModal: FC<ICreateExportProductModal> = (props) => {
 							/>
 							<DropMenu title={elInputting.currency} isAbsolute={true}>
 								<div className={styles.currencyGroup}>
-									{(Object.keys(currency.ECurrency) as currency.ECurrency[]).map((currency) => (
+									{(Object.keys(language.ECurrency) as language.ECurrency[]).map((currency) => (
 										<ButtonStandard
 											key={currency}
 											extClass={styles.currency}

@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import styles from './Text.module.scss';
 import defaultStyles from './../../../Styles/DefaultStyles/DefaultStyles.module.scss';
-import { language } from '../../../Services/System/Language/Language.interface';
-import services from '../../../Services/Services';
+import { language } from '../../../Logic/Modules/Language/Language.interface';
 import { observer } from 'mobx-react';
 import { defaultStyle } from '../../../Styles/DefaultStyles/DefaultStyles.type';
+import modules from '../../../Logic/Modules/Modules';
 
 export interface IText {
 	text: TText;
@@ -32,7 +32,9 @@ const Text: FC<IText> = (props) => {
 	function wordTranslate(word: TText): string {
 		const wordTranslate = String(
 			word in language.allLanguageWord
-				? services.system.language.getText(word as language.TAllLanguageWord)
+				? modules.language.service.getText(word as language.TAllLanguageWord)[
+						modules.settings.store.getCurrentLanguage
+				  ]
 				: word
 		);
 

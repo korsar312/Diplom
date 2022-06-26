@@ -1,11 +1,11 @@
 import React, { FC, HTMLInputTypeAttribute, useEffect, useState } from 'react';
 import styles from './InputStandard.module.scss';
 import defaultStyles from './../../../Styles/DefaultStyles/DefaultStyles.module.scss';
-import { rest } from '../../../Services/Rest/RestApi/RestApi.interface';
-import { language } from '../../../Services/System/Language/Language.interface';
-import services from '../../../Services/Services';
+import { rest } from '../../../Logic/Api/RestApi/RestApi.interface';
+import { language } from '../../../Logic/Modules/Language/Language.interface';
 import IconWrapper from '../../0_Basic/IconWrapper/IconWrapper';
 import { defaultStyle } from '../../../Styles/DefaultStyles/DefaultStyles.type';
+import API from '../../../Logic/Api/API';
 
 interface IInput {
 	callback: (value: string) => void;
@@ -67,7 +67,7 @@ const InputStandard: FC<IInput> = (props) => {
 	function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
 		const inputting = event.target.value;
 
-		services.rest.RestApi.logAction({
+		API.RestApi.logAction({
 			element: InputStandard.name,
 			action: 'Ввод',
 			data: props,
@@ -86,7 +86,7 @@ const InputStandard: FC<IInput> = (props) => {
 	}
 
 	function handleIsFocus(isFocus: boolean) {
-		services.rest.RestApi.logAction({
+		API.RestApi.logAction({
 			element: InputStandard.name,
 			action: 'Фокус',
 			data: props,

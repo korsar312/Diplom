@@ -3,16 +3,16 @@ import styles from './ManagementWidgetHead.module.scss';
 import Avatar from '../../../../1_Atoms/Avatar/Avatar';
 import Text from '../../../../0_Basic/Text/Text';
 import ButtonStandard from '../../../../1_Atoms/ButtonStandard/ButtonStandard';
-import { language } from '../../../../../Services/System/Language/Language.interface';
+import { language } from '../../../../../Logic/Modules/Language/Language.interface';
 import InputStandard from '../../../../1_Atoms/InputStandard/InputStandard';
 import { ReactComponent as IconEdit } from './../../../../../Assets/icon/icon_edit.svg';
 import { ReactComponent as IconDone } from './../../../../../Assets/icon/icon_done.svg';
-import { companies } from '../../../../../Services/Stores/Companies/Companies.interface';
-import { types } from '../../../../../Types/Types';
+import { companies } from '../../../../../Logic/Modules/Companies/Companies.interface';
+import { typesUtils } from '../../../../../Logic/Libs/Utils/TypesUtils';
 
 interface IManagementWidgetHead {
 	myCompany: companies.TCompany;
-	savaConfig: (val: types.TChangeObject<companies.TCompany>) => void;
+	savaConfig: (val: typesUtils.TChangeObject<companies.TCompany>) => void;
 }
 
 /**
@@ -27,7 +27,7 @@ const ManagementWidgetHead: FC<IManagementWidgetHead> = (props) => {
 		subtitle: false,
 	});
 
-	const inputValues = useRef<types.TChangeObject<companies.TCompany>>({
+	const inputValues = useRef<typesUtils.TChangeObject<companies.TCompany>>({
 		name: myCompany.name,
 		subtitle: myCompany.subtitle,
 	});

@@ -1,13 +1,14 @@
 import React, { FC, ReactNode } from 'react';
 import styles from './ButtonStandard.module.scss';
 import defaultStyles from './../../../Styles/DefaultStyles/DefaultStyles.module.scss';
-import { rest } from '../../../Services/Rest/RestApi/RestApi.interface';
-import services from '../../../Services/Services';
 import IconWrapper from '../../0_Basic/IconWrapper/IconWrapper';
 import { defaultStyle } from '../../../Styles/DefaultStyles/DefaultStyles.type';
-import { language } from '../../../Services/System/Language/Language.interface';
 import { observer } from 'mobx-react';
 import Text, { IText } from '../../0_Basic/Text/Text';
+import { rest } from '../../../Logic/Api/RestApi/RestApi.interface';
+import { language } from '../../../Logic/Modules/Language/Language.interface';
+import API from '../../../Logic/Api/API';
+import modules from '../../../Logic/Modules/Modules';
 
 interface IButtonStandard {
 	click: () => void;
@@ -48,7 +49,7 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
 	const {
 		click,
 		titleObj,
-		color,
+		color = 'none',
 		extClass = '',
 		iconLeft,
 		iconRight,
@@ -61,7 +62,7 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
 	} = props;
 
 	function clickHandler() {
-		services.rest.RestApi.logAction({
+		API.RestApi.logAction({
 			element: ButtonStandard.name,
 			action: 'Нажатие',
 			data: props,
@@ -74,7 +75,7 @@ const ButtonStandard: FC<IButtonStandard> = (props) => {
 
 	return (
 		<button
-			title={alt && services.system.language.getText(alt)}
+			title={alt && modules.language.service.getText(alt)[modules.settings.store.getCurrentLanguage]}
 			type={'button'}
 			disabled={isDisabled}
 			onClick={clickHandler}

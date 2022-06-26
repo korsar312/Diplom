@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import { language } from '../../../../../../Services/System/Language/Language.interface';
-import services from '../../../../../../Services/Services';
+import { language } from '../../../../../../Logic/Modules/Language/Language.interface';
 import styles from '../ModalSettingUserSettingPage/ModalSettingUserSettingPage.module.scss';
 import Text from '../../../../../0_Basic/Text/Text';
 import Switcher from '../../../../../1_Atoms/Switcher/Switcher';
-import { setting } from '../../../../../../Services/Stores/Settings/Setting.interface';
+import { setting } from '../../../../../../Logic/Modules/Settings/Setting.interface';
+import modules from '../../../../../../Logic/Modules/Modules';
 
 interface IModalSettingUserGeneralPage {
 	extClass?: string;
@@ -17,10 +17,10 @@ interface IModalSettingUserGeneralPage {
 const ModalSettingUserGeneralPage: FC<IModalSettingUserGeneralPage> = (props) => {
 	const { extClass = '' } = props;
 
-	const theme = services.store.settingStore.isLightTheme;
+	const theme = modules.settings.store.isLightTheme;
 
 	function switchTheme(val: boolean) {
-		services.store.settingStore.setTheme = val ? setting.theme.LIGHT : setting.theme.DARK;
+		modules.settings.store.setTheme = val ? setting.theme.LIGHT : setting.theme.DARK;
 	}
 
 	return (

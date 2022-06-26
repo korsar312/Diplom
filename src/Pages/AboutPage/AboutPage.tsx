@@ -1,13 +1,13 @@
 import React from 'react';
-import { route } from '../../Services/Routes/Route.interfaces';
-import services from '../../Services/Services';
+import {route} from '../../Logic/Modules/Routes/Route.interfaces';
+import modules from '../../Logic/Modules/Modules';
 
 /**
  * Страница о проекте
  */
 const AboutPage = () => {
 	const toMainPage = () => {
-		services.route.RouterGo(route.Name.MAIN, undefined, AboutPage.name);
+		modules.route.service.RouterGo(route.Name.MAIN, undefined, AboutPage.name);
 	};
 
 	return (

@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import styles from './ModalSettingUserExitPage.module.scss';
-import { language } from '../../../../../../Services/System/Language/Language.interface';
+import { language } from '../../../../../../Logic/Modules/Language/Language.interface';
 import ButtonStandard from '../../../../../1_Atoms/ButtonStandard/ButtonStandard';
-import services from '../../../../../../Services/Services';
-import { modals } from '../../../../../../Services/Stores/Modal/Modal.interface';
+import { modals } from '../../../../../../Logic/Modules/Modal/Modal.interface';
+import modules from '../../../../../../Logic/Modules/Modules';
 
 interface IModalSettingUserExitPage {
 	extClass?: string;
@@ -17,9 +17,9 @@ const ModalSettingUserExitPage: FC<IModalSettingUserExitPage> = (props) => {
 	const { extClass = '' } = props;
 
 	function logOut() {
-		services.system.repositoryStorage.disabledAutSingIn();
-		services.store.modalStore.setShowModal(modals.EModal.userSetting, false);
-		services.store.usersStore.setCurrentUser = null;
+		modules.users.service.DisabledAutoSingIn();
+		modules.modal.store.setShowModal(modals.EModal.userSetting, false);
+		modules.users.store.setCurrentUser = null;
 	}
 
 	return (

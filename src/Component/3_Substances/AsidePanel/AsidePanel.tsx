@@ -4,10 +4,10 @@ import UnitPanel from '../../2_Molecules/UnitPanel/UnitPanel';
 import SearchInput from '../../2_Molecules/SearchInput/SearchInput';
 import AsidePanelLogo from './AsidePanelLogo/AsidePanelLogo';
 import AsidePanelNavigation from './AsidePanelNavigation/AsidePanelNavigation';
-import services from '../../../Services/Services';
-import { modals } from '../../../Services/Stores/Modal/Modal.interface';
-import { language } from '../../../Services/System/Language/Language.interface';
+import { modals } from '../../../Logic/Modules/Modal/Modal.interface';
+import { language } from '../../../Logic/Modules/Language/Language.interface';
 import Line from '../../1_Atoms/Line/Line';
+import modules from '../../../Logic/Modules/Modules';
 
 interface IAsidePanel {
 	extClass?: string;
@@ -23,10 +23,10 @@ const AsidePanel: FC<IAsidePanel> = (props) => {
 	const [isShowPanel, setIsShowPanel] = useState(true);
 	const [filterLink, setFilterLink] = useState('');
 
-	const person = services.store.usersStore.getCurrentUser;
+	const person = modules.users.store.getCurrentUser;
 
 	function openModalSettingUser() {
-		services.store.modalStore.setShowModal(modals.EModal.userSetting, true);
+		modules.modal.store.setShowModal(modals.EModal.userSetting, true);
 	}
 
 	return (

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './ModalWindow.module.scss';
-import services from '../../../Services/Services';
-import { rest } from '../../../Services/Rest/RestApi/RestApi.interface';
+import { rest } from '../../../Logic/Api/RestApi/RestApi.interface';
+import API from '../../../Logic/Api/API';
 
 interface IModalWindow {
 	click?: () => void;
@@ -25,7 +25,7 @@ const ModalWindow: FC<IModalWindow> = (props) => {
 	const { click, isShow, extClass = '', children, dontUseStyleContent, log } = props;
 
 	function clickHandler() {
-		services.rest.RestApi.logAction({
+		API.RestApi.logAction({
 			element: ModalWindow.name,
 			action: 'Нажатие',
 			data: props,

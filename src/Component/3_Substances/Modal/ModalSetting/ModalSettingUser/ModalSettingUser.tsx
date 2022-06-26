@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { language } from '../../../../../Services/System/Language/Language.interface';
+import { language } from '../../../../../Logic/Modules/Language/Language.interface';
 import ModalSettingUserGeneralPage from './ModalSettingUserGeneralPage/ModalSettingUserGeneralPage';
 import ModalSettingUserSettingPage from './ModalSettingUserSettingPage/ModalSettingUserSettingPage';
 import ModalSettingUserSecurityPage from './ModalSettingUserSecurityPage/ModalSettingUserSecurityPage';

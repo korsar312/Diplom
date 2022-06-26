@@ -1,9 +1,8 @@
-import React, { FC, useContext, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import WidgetWrapper from '../../../1_Atoms/WidgetWrapper/WidgetWrapper';
 import styles from './ExportWidget.module.scss';
 import Text from '../../../0_Basic/Text/Text';
-import { language } from '../../../../Services/System/Language/Language.interface';
-import services from '../../../../Services/Services';
+import { language } from '../../../../Logic/Modules/Language/Language.interface';
 import { observer } from 'mobx-react';
 import CardProduct from '../../../2_Molecules/CardProduct/CardProduct';
 import ContentWrapper from '../../../0_Basic/ContentWrapper/ContentWrapper';
@@ -14,10 +13,11 @@ import { ReactComponent as IconRemoveExport } from '../../../../Assets/icon/icon
 import { ReactComponent as IconInform } from '../../../../Assets/icon/icon_inform.svg';
 import { ReactComponent as IconSetting } from '../../../../Assets/icon/icon_settings.svg';
 import { defaultStyle } from '../../../../Styles/DefaultStyles/DefaultStyles.type';
-import { companies } from '../../../../Services/Stores/Companies/Companies.interface';
+import { companies } from '../../../../Logic/Modules/Companies/Companies.interface';
 import { PreloaderContext } from '../../../../App';
 import ContinueModal from '../../../2_Molecules/Modal/ContinueModal/ContinueModal';
 import CreateExportProductModal from './CreateExportProductModal/CreateExportProductModal';
+import modules from '../../../../Logic/Modules/Modules';
 
 interface IExportWidget {
 	extClass?: string;
@@ -60,8 +60,13 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 	const { extClass = '' } = props;
 
 	const preloader = useContext(PreloaderContext);
-	const allProducts = services.store.productsStore.getProducts || {};
-	const myCompany = services.store.companyStore.getMyCompany;
+	const allProducts = modules.products.store.getProducts();
+	const myCompany = modules.companies.store.getMyCompany();
+
+	useEffect(() => {
+		allProducts || modules.products.service.getProducts();
+		myCompany || modules.companies.service.getMyCompany();
+	}, []);
 
 	const [modalFunc, setModalFunc] = useState<TModalFunc>({
 		removeProduct: null,
@@ -113,7 +118,7 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 			this.color = 'red';
 		} as any as TBtnConstructor,
 
-		INFORM_ITEM_EXPORT: function (this: TBtn, idProduct: string) {
+		INFORM_ITEM_EXPORT: function (this: TBtn) {
 			this.alt = language.ELanguageSimpleWord.PRODUCT_INFORM;
 			this.func = () => {
 				//console.log(123);
@@ -169,11 +174,8 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 
 	function saveCompany(myCompany: companies.TCompany) {
 		preloader.setIsShow(true);
-		services.rest.RestApi.setMyCompany(myCompany, (isOk) => {
-			if (isOk) {
-				services.store.companyStore.setMyCompany = myCompany;
-				preloader.setIsShow(false);
-			}
+		modules.companies.service.setMyCompany(myCompany).finally(() => {
+			preloader.setIsShow(false);
 		});
 	}
 
@@ -260,25 +262,27 @@ const ExportWidget: FC<IExportWidget> = (props) => {
 					<div className={styles.fieldContent}>
 						<ContentWrapper color={'grey'} extClass={styles.field}>
 							<>
-								{myCompany?.allProducts?.map((item) => (
-									<CardProduct
-										key={item}
-										product={allProducts[item]}
-										btnGroup={createListAllProductBtn(item)}
-									/>
-								))}
+								{allProducts &&
+									myCompany?.allProducts.map((item) => (
+										<CardProduct
+											key={item}
+											product={allProducts[item]}
+											btnGroup={createListAllProductBtn(item)}
+										/>
+									))}
 							</>
 						</ContentWrapper>
 
 						<ContentWrapper color={'grey'} extClass={styles.field}>
 							<>
-								{myCompany?.exportProduct?.map((item) => (
-									<CardProduct
-										key={item.idProduct}
-										product={allProducts[item.idProduct]}
-										btnGroup={createListExportProductBtn(item.idProduct)}
-									/>
-								))}
+								{allProducts &&
+									myCompany?.exportProduct.map((item) => (
+										<CardProduct
+											key={item.idProduct}
+											product={allProducts[item.idProduct]}
+											btnGroup={createListExportProductBtn(item.idProduct)}
+										/>
+									))}
 							</>
 						</ContentWrapper>
 					</div>

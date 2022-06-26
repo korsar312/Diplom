@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './CardProduct.module.scss';
-import { product } from '../../../Services/Stores/Products/Products.interface';
+import { product } from '../../../Logic/Modules/Products/Products.interface';
 import { defaultStyle } from '../../../Styles/DefaultStyles/DefaultStyles.type';
 import Text from '../../0_Basic/Text/Text';
 import Avatar from '../../1_Atoms/Avatar/Avatar';

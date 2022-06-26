@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import styles from './ContinueModal.module.scss';
 import ModalWindow from '../../../1_Atoms/ModalWindow/ModalWindow';
-import { language } from '../../../../Services/System/Language/Language.interface';
+import { language } from '../../../../Logic/Modules/Language/Language.interface';
 import Text from '../../../0_Basic/Text/Text';
 import ButtonStandard from '../../../1_Atoms/ButtonStandard/ButtonStandard';
-import services from '../../../../Services/Services';
+import API from '../../../../Logic/Api/API';
 
 interface IContinueModal {
 	title?: language.TAllLanguageWord;
@@ -26,7 +26,7 @@ const ContinueModal: FC<IContinueModal> = (props) => {
 	const { title = language.ELanguageSimpleWord.ARE_YOU_SURE_KA, isShow, extClass = '', success, onClose } = props;
 
 	function handleSuccess() {
-		services.rest.RestApi.logAction({
+		API.RestApi.logAction({
 			element: ContinueModal.name,
 			action: 'Подтверждение',
 			data: props,
@@ -38,7 +38,7 @@ const ContinueModal: FC<IContinueModal> = (props) => {
 	}
 
 	function handleClose() {
-		services.rest.RestApi.logAction({
+		API.RestApi.logAction({
 			element: ContinueModal.name,
 			action: 'Отмена',
 			data: props,

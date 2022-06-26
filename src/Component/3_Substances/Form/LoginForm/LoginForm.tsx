@@ -1,13 +1,13 @@
 import React, { FC, useContext, useRef, useState } from 'react';
 import InputStandard from '../../../1_Atoms/InputStandard/InputStandard';
 import styles from './LoginForm.module.scss';
-import { language } from '../../../../Services/System/Language/Language.interface';
+import { language } from '../../../../Logic/Modules/Language/Language.interface';
 import Text from '../../../0_Basic/Text/Text';
 import ButtonStandard from '../../../1_Atoms/ButtonStandard/ButtonStandard';
-import services from '../../../../Services/Services';
 import { PreloaderContext } from '../../../../App';
-import { types } from '../../../../Types/Types';
+import { typesUtils } from '../../../../Logic/Libs/Utils/TypesUtils';
 import Switcher from '../../../1_Atoms/Switcher/Switcher';
+import modules from '../../../../Logic/Modules/Modules';
 
 interface ILoginForm {
 	extClass?: string;
@@ -57,7 +57,7 @@ const LoginForm: FC<ILoginForm> = (props) => {
 
 	const preloaderContext = useContext(PreloaderContext);
 
-	function setLoginData(userInput: types.TChangeObject<TInputValue>) {
+	function setLoginData(userInput: typesUtils.TChangeObject<TInputValue>) {
 		inputValue.current = { ...inputValue.current, ...userInput };
 		validAndCallback();
 	}
@@ -69,20 +69,24 @@ const LoginForm: FC<ILoginForm> = (props) => {
 
 	function clickHandler() {
 		preloaderContext.setIsShow(true);
-		services.rest.RestApi.login(inputValue.current.log || '', inputValue.current.pass || '', (isOk) => {
-			if (isOk) {
+		modules.users.service
+			.Login(inputValue.current.log || '', inputValue.current.pass || '')
+			.then(() => {
 				if (inputValue.current.autoSingIn) {
-					services.system.repositoryStorage.enabledAutSingIn({
+					modules.users.service.EnabledAutoSingIn({
 						login: inputValue.current.log,
 						password: inputValue.current.pass,
 					});
 				}
 				successfulLogin && successfulLogin();
-			} else {
+			})
+			.catch(() => {
 				setError(language.ELanguageSimpleWord.INVALID_PASSWORD);
-			}
-			preloaderContext.setIsShow(false);
-		});
+			})
+
+			.finally(() => {
+				preloaderContext.setIsShow(false);
+			});
 	}
 
 	return (

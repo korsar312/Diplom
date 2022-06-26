@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './WidgetBody.module.scss';
-import { language } from '../../../../Services/System/Language/Language.interface';
+import { language } from '../../../../Logic/Modules/Language/Language.interface';
 import Text from '../../../0_Basic/Text/Text';
 
 interface IWidgetBody {

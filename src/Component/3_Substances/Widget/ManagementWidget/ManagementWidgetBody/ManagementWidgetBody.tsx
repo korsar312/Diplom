@@ -1,18 +1,18 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import styles from './ManagementWidgetBody.module.scss';
-import { companies } from '../../../../../Services/Stores/Companies/Companies.interface';
-import { types } from '../../../../../Types/Types';
+import { companies } from '../../../../../Logic/Modules/Companies/Companies.interface';
+import { typesUtils } from '../../../../../Logic/Libs/Utils/TypesUtils';
 import Text from '../../../../0_Basic/Text/Text';
 import WidgetWrapper from '../../../../1_Atoms/WidgetWrapper/WidgetWrapper';
 import ButtonStandard from '../../../../1_Atoms/ButtonStandard/ButtonStandard';
-import { language } from '../../../../../Services/System/Language/Language.interface';
-import services from '../../../../../Services/Services';
+import { language } from '../../../../../Logic/Modules/Language/Language.interface';
 import { observer } from 'mobx-react';
 import DropMenu from '../../../../2_Molecules/DropMenu/DropMenu';
+import modules from '../../../../../Logic/Modules/Modules';
 
 interface IManagementWidgetBody {
 	myCompany: companies.TCompany;
-	saveConfig: (val: types.TChangeObject<companies.TCompany>) => void;
+	saveConfig: (val: typesUtils.TChangeObject<companies.TCompany>) => void;
 }
 
 /**
@@ -23,22 +23,23 @@ interface IManagementWidgetBody {
 const ManagementWidgetBody: FC<IManagementWidgetBody> = (props) => {
 	const { myCompany } = props;
 
-	function productArr() {
-		const allProduct = services.store.productsStore.getProducts;
-		if (!allProduct) {
-			services.rest.RestApi.getProduct();
-		} else {
-			return myCompany.allProducts.map((productId) => allProduct[productId]);
+	const allProductArr = modules.products.store.getProducts();
+	const productArr = allProductArr
+		? modules.companies.store.getMyCompany()?.allProducts.map((productId: string) => allProductArr[productId])
+		: null;
+
+	useEffect(() => {
+		if (allProductArr) {
+			modules.products.service.getProducts();
 		}
-		return [];
-	}
+	}, []);
 
 	return (
 		<div className={styles.wrapper}>
 			<WidgetWrapper extClass={styles.productFieldWrapper} color={'grey'}>
 				<>
 					<div className={styles.productWrapper}>
-						{productArr().map((product) => (
+						{productArr?.map((product) => (
 							<div className={styles.product} key={product.id}>
 								<ButtonStandard click={() => ''} color={'wight'}>
 									<>
@@ -69,7 +70,7 @@ const ManagementWidgetBody: FC<IManagementWidgetBody> = (props) => {
 				<DropMenu title={language.ELanguageSimpleWord.ADVANCED_SETTINGS}>
 					<div>
 						{Object.keys(language.ELanguageEconomyWord).map((el) => (
-							<ButtonStandard click={() => ''} titleObj={{ text: el }} />
+							<ButtonStandard key={el} click={() => ''} titleObj={{ text: el }} />
 						))}
 					</div>
 				</DropMenu>

@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
-import services from '../../../Services/Services';
-import { rest } from '../../../Services/Rest/RestApi/RestApi.interface';
+import { rest } from '../../../Logic/Api/RestApi/RestApi.interface';
 import styles from './Switcher.module.scss';
+import API from '../../../Logic/Api/API';
 
 interface ISwitcher {
 	click: (val: boolean, change: (val: boolean) => void) => void;
@@ -23,7 +23,7 @@ const Switcher: FC<ISwitcher> = (props) => {
 	const [switcherMode, setSwitcherMode] = useState(defaultValue);
 
 	function clickHandler() {
-		services.rest.RestApi.logAction({
+		API.RestApi.logAction({
 			element: Switcher.name,
 			action: `Переключение ${switcherMode}`,
 			data: props,
