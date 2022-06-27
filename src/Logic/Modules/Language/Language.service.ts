@@ -8,7 +8,7 @@ export class LanguageService {
 
 	/**
 	 * Возвращает выбранное объект предложение для языковой модели
-	 * @params wordKey - выбранное предложение
+	 * @param wordKey - выбранное предложение
 	 */
 	public getText(wordKey: language.TAllLanguageWord) {
 		return this.language[wordKey];
@@ -16,7 +16,7 @@ export class LanguageService {
 
 	/**
 	 * Возвращает денежный знак
-	 * @params wordKey - выбранное предложение
+	 * @param wordKey - выбранное предложение
 	 */
 	public getCurrencySymbol(wordKey: keyof language.TCurrency) {
 		return this.currency[wordKey].symbol;
@@ -24,7 +24,7 @@ export class LanguageService {
 
 	/**
 	 * Возвращает имя валюты для текущей языковой модели
-	 * @params wordKey - выбранное предложение
+	 * @param wordKey - выбранное предложение
 	 */
 	public getCurrencyName(wordKey: keyof language.TCurrency) {
 		return this.getText(this.currency[wordKey].name);

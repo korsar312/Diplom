@@ -19,7 +19,7 @@ export class ModalsStore {
 
 	/**
 	 * Устанавливает статус выбранного окна
-	 * @params show - отображение
+	 * @param show - отображение
 	 */
 	public setShowModal(window: modals.EModal, show: boolean) {
 		this.showModal[window] = show;

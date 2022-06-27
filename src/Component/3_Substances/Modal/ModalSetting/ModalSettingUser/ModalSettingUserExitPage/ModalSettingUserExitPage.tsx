@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import styles from './ModalSettingUserExitPage.module.scss';
 import { language } from '../../../../../../Logic/Modules/Language/Language.interface';
 import ButtonStandard from '../../../../../1_Atoms/ButtonStandard/ButtonStandard';
 import { modals } from '../../../../../../Logic/Modules/Modal/Modal.interface';
 import modules from '../../../../../../Logic/Modules/Modules';
+import { PreloaderContext } from '../../../../../../App';
 
 interface IModalSettingUserExitPage {
 	extClass?: string;
@@ -16,10 +17,14 @@ interface IModalSettingUserExitPage {
 const ModalSettingUserExitPage: FC<IModalSettingUserExitPage> = (props) => {
 	const { extClass = '' } = props;
 
+	const preloaderContext = useContext(PreloaderContext);
+
 	function logOut() {
-		modules.users.service.DisabledAutoSingIn();
-		modules.modal.store.setShowModal(modals.EModal.userSetting, false);
-		modules.users.store.setCurrentUser = null;
+		preloaderContext.setIsShow(true);
+		modules.users.service
+			.Logout()
+			.then(() => modules.modal.store.setShowModal(modals.EModal.userSetting, false))
+			.finally(() => preloaderContext.setIsShow(false));
 	}
 
 	return (

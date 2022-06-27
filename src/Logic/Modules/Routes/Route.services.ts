@@ -7,10 +7,10 @@ import API from '../../Api/API';
 export class RouteService {
 	/**
 	 * Программный переход на страницы
-	 * @params name - имя роута
-	 * @params params - параметры, что передаются в URL
-	 * @params actionElementName - инициализирующий переход элемент
-	 * @params state - параметры, что не передаются в URL
+	 * @param name - имя роута
+	 * @param params - параметры, что передаются в URL
+	 * @param actionElementName - инициализирующий переход элемент
+	 * @param state - параметры, что не передаются в URL
 	 */
 	public RouterGo(name: route.Name, params?: Params, actionElementName?: string, state?: Record<string, any>): void {
 		return this.go(name, params, actionElementName, state);

@@ -1,5 +1,5 @@
-import {useNavigate} from 'react-router-dom';
-import {useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import modules from '../Modules';
 
 /**
@@ -10,7 +10,6 @@ export const RouteActivator = () => {
 
 	useEffect(() => {
 		modules.route.store.setHistory(history);
-		// eslint-disable-next-line
 	}, []);
 
 	return null;

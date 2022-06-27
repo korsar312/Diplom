@@ -18,7 +18,7 @@ export class SettingStore {
 
 	/**
 	 * Устанавливает выбранную тему (темную, светлую, ...)
-	 * @params theme - тема
+	 * @param theme - тема
 	 */
 	public set setTheme(theme: setting.theme) {
 		this.theme = theme;
@@ -26,7 +26,7 @@ export class SettingStore {
 
 	/**
 	 * Устанавливает языковую модель
-	 * @params language - язык
+	 * @param language - язык
 	 */
 	public set setCurrentLanguage(language: setting.ELanguageType) {
 		this.currentLanguage = language;

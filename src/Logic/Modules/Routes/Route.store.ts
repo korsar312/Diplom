@@ -5,7 +5,7 @@ export class RouteStore {
 
 	/**
 	 * Устанавливает хук useNavigation в переменную
-	 * @params history - сам хук
+	 * @param history - сам хук
 	 */
 	public setHistory(history: NavigateFunction) {
 		this.navigation = history;

@@ -17,7 +17,7 @@ export class ProductsStore {
 
 	/**
 	 * Устанавливает продукты
-	 * @params person - продукты
+	 * @param product - продукты
 	 */
 	public setProducts(product: product.TProductHashMap) {
 		this.products = product;

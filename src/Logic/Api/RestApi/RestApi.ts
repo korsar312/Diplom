@@ -80,7 +80,7 @@ export class RestApi {
 	}
 
 	/**
-	 * Получить все товары и записать в стор
+	 * Получить все товары
 	 */
 	public getProduct() {
 		return new Promise((resolve: (value: product.TProductHashMap) => void) => {
@@ -107,7 +107,7 @@ export class RestApi {
 	}
 
 	/**
-	 * Получить компанию юзера и записать в стор
+	 * Получить компанию юзера
 	 */
 	public getMyCompany() {
 		return new Promise((resolve: (value: companies.TCompany) => void) => {

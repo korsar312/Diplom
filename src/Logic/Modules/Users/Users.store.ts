@@ -38,7 +38,7 @@ export class UsersStore {
 
 	/**
 	 * Устанавливает текущего пользователя
-	 * @params person - пользователь
+	 * @param person - пользователь
 	 */
 	public set setCurrentUser(person: users.TPerson | null) {
 		this.currentUser = person;

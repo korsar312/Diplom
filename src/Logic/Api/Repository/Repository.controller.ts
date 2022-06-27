@@ -17,7 +17,7 @@ export class RepositoryController implements repository.IRepository {
 
 	/**
 	 * Устанавливает значение истинности для автоматического входа
-	 * @params val - true:Включено  false:Выключено
+	 * @param val - true:Включено  false:Выключено
 	 */
 	public setAutoSingIn(val: boolean) {
 		this.repositoryController.setAutoSingIn(val);
@@ -32,7 +32,7 @@ export class RepositoryController implements repository.IRepository {
 
 	/**
 	 * Устанавливает Лог/Пасс для текущего пользователя
-	 * @params val - объект с Лог/Пасс
+	 * @param val - объект с Лог/Пасс
 	 */
 	public setInputDataUser(val: repository.TInputDataUser | '') {
 		this.repositoryController.setInputDataUser(val);

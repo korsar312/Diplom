@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from 'react';
 
 /**
  * Хук пагтнации
@@ -10,10 +10,8 @@ import {useState} from "react";
  * setCurrentPage - установка текущей страницы
  * totalPages - всего страниц
  *
- * @params countVisible - колличетсво видимых элементов
- * @params countElements - всего элементов
- *
- * @returns {Array} Lines from the file.
+ * @param countVisible - колличетсво видимых элементов
+ * @param countElements - всего элементов
  */
 
 export const useEditCurrentPage = (
@@ -33,10 +31,8 @@ export const useEditCurrentPage = (
 	};
 
 	const handleNextPage = () => {
-		(currentPage * countVisible || countVisible) < countElements &&
-		setCurrentPage((prevState) => prevState + 1);
+		(currentPage * countVisible || countVisible) < countElements && setCurrentPage((prevState) => prevState + 1);
 	};
 
 	return [currentPage, handlePrevPage, handleNextPage, handleFirstPage, setCurrentPage, totalPages];
 };
-

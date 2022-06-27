@@ -10,7 +10,7 @@ export class LocalStorageController implements repository.IRepository {
 
 	/**
 	 * Устанавливает в LocalStorage значение истинности для автоматического входа
-	 * @params val - true:Включено  false:Выключено
+	 * @param val - true:Включено  false:Выключено
 	 */
 	public setAutoSingIn(val: boolean) {
 		window.localStorage.setItem('autoSingIn', String(val ? '1' : '0'));
@@ -25,7 +25,7 @@ export class LocalStorageController implements repository.IRepository {
 
 	/**
 	 * Устанавливает в LocalStorage Лог/Пасс для текущего пользователя
-	 * @params val - объект с Лог/Пасс
+	 * @param val - объект с Лог/Пасс
 	 */
 	public setInputDataUser(val: repository.TInputDataUser | '') {
 		window.localStorage.setItem('dataSingIn', JSON.stringify(val));
