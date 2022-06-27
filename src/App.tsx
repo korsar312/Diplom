@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { HashRouter } from 'react-router-dom';
 import styles from './App.module.scss';
 import { observer } from 'mobx-react';
@@ -6,6 +6,7 @@ import LoginPage from './Pages/LoginPage/LoginPage';
 import Preloader from './Component/2_Molecules/Preloader/Preloader';
 import modules from './Logic/Modules/Modules';
 import BaseLayout from './Layouts/BaseLayout';
+import libs from './Logic/Libs/Libs';
 
 type TPreloaderContext = {
 	isShow: boolean;
@@ -28,6 +29,10 @@ const App = () => {
 	useEffect(() => {
 		autoLogin();
 	}, []);
+
+	libs.hooks.useComponentDidUpdate(() => {
+		setIsAutoSingIn(modules.users.service.IsAutoSingIn());
+	}, [isAuthorized]);
 
 	function autoLogin() {
 		if (!isAutoSingIn) return;
